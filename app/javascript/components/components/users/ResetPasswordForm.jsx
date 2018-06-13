@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 
 import AuthApi from '../../../api/auth-api';
 
+import Form from '../common/Form';
+import TextField from '../common/TextField';
+import Button from '../common/Button';
+
 export default class ResetPasswordForm extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = { password: "", passwordConfirmation: "", errors: {} };
+        this.state = { password: '', passwordConfirmation: '', errors: {} };
     }
 
     handleChange(event) {
@@ -29,23 +33,14 @@ export default class ResetPasswordForm extends React.Component {
         });
     }
 
-    renderInputs() {
-        return (
-            <div>
-                Password:&nbsp;<input type="password" name="password" onChange={this.handleChange.bind(this)} /> {this.state.errors.password}<br /><br />
-                Confirm Password:&nbsp;<input type="password" name="passwordConfirmation" onChange={this.handleChange.bind(this)} /> {this.state.errors.password_confirmation}
-            </div>
-        );
-    }
-
     render() {
         return (
-            <form onSubmit={this.handleSubmit.bind(this)}>
-                {this.renderInputs()}
-                <input type="submit" style={{visibility: 'hidden'}} /><br />
+            <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
+                <TextField type='password' label='Password' name='password' onChange={this.handleChange.bind(this)} /><br />
+                <TextField type='password' label='Password' name='passwordConfirmation' onChange={this.handleChange.bind(this)} /><br />
 
-                <button type="submit" onClick={this.handleSubmit.bind(this)}>Reset Password</button>
-            </form>
+                <Button type='submit'>Reset Password</Button>
+            </Form>
         );
     }
 }

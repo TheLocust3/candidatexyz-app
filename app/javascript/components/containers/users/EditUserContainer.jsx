@@ -7,7 +7,7 @@ class EditUserContainer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='content-15'>
                 <EditUserForm redirectUrl="/" user={this.props.user} />
             </div>
         );

@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import AuthApi from '../../../api/auth-api';
+import Form from '../common/Form';
+import TextField from '../common/TextField';
+import Button from '../common/Button';
 
 export default class ForgotPasswordForm extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = { email: null, errors: {} };
+        this.state = { email: '', errors: {} };
     }
 
     handleChange(event) {
@@ -20,31 +23,22 @@ export default class ForgotPasswordForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        AuthApi.forgotPassword(this.state.email).then( response => {
+        AuthApi.forgotPassword(this.state.email).then((response) => {
             window.location.href = this.props.redirectUrl;
-        }).catch( response => {
+        }).catch((response) => {
             this.setState({
                 errors: response.responseJSON.errors
             });
         });
     }
 
-    renderInputs() {
-        return (
-            <div>
-                Email:&nbsp;<input type="email" name="email" onChange={this.handleChange.bind(this)} /> {this.state.errors.email}
-            </div>
-        );
-    }
-
     render() {
         return (
-            <form onSubmit={this.handleSubmit.bind(this)}>
-                {this.renderInputs()}
-                <input type="submit" style={{visibility: 'hidden'}} /><br />
+            <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
+                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} /><br />
 
-                <button type="submit" onClick={this.handleSubmit.bind(this)}>Reset Password</button>
-            </form>
+                <Button type='submit'>Reset Password</Button>
+            </Form>
         );
     }
 }
