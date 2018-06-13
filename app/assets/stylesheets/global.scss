@@ -24,8 +24,12 @@ body, #root {
     width: 100%;
 }
 
-.content {
+.content-wrapper {
     display: table-cell;
+}
+
+.content {
+    margin: 3%;
 }
 
 .content-5 {

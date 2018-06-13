@@ -5,7 +5,7 @@ class Index extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='content'>
                 Hello World!
             </div>
         );

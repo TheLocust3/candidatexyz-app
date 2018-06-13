@@ -11,12 +11,10 @@ class Skeleton extends React.Component {
         return (
             <div>
                 <Navbar>
-                    <div>
-                        {this.props.children}
-                    </div>
-
-                    <Footer />
+                    {this.props.children}
                 </Navbar>
+
+                <Footer />
             </div>
         );
     }

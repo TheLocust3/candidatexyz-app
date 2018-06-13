@@ -21,11 +21,11 @@ export default class Navbar extends React.Component {
                     </div>
                 </nav>
 
-                <div className='content'>
+                <div className='content-wrapper'>
                     <header className='mdc-toolbar'>
                         <div className='mdc-toolbar__row'>
                             <section className='mdc-toolbar__section mdc-toolbar__section--align-start'>
-                                <span className='mdc-toolbar__title'>Title</span>
+                                <span className='mdc-toolbar__title'></span>
                             </section>
                         </div>
                     </header>
