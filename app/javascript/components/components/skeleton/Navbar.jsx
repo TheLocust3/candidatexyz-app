@@ -1,12 +1,14 @@
 import $ from 'jquery';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MDCTemporaryDrawer } from '@material/drawer';
 
 import { MAX_MOBILE_WIDTH } from '../../../constants';
+import AuthApi from '../../../api/auth-api';
 
-export default class Navbar extends React.Component {
+class Navbar extends React.Component {
 
     constructor(props) {
         super(props);
@@ -41,6 +43,12 @@ export default class Navbar extends React.Component {
         drawer.open = false;
     }
 
+    onSignOutClick() {
+        AuthApi.signOut().then(() => {
+            window.location.href = '/';
+        });
+    }
+
     renderDesktop() {
         let title = '';
         if (document.location.pathname == '/') {
@@ -72,6 +80,12 @@ export default class Navbar extends React.Component {
                         <div className='mdc-toolbar__row'>
                             <section className='mdc-toolbar__section mdc-toolbar__section--align-start'>
                                 <span className='mdc-toolbar__title'>{title}</span>
+                            </section>
+
+                            <section className='mdc-toolbar__section mdc-toolbar__section--align-end toolbar-right'>
+                                <div style={{ marginRight: '3%' }}>{this.props.user.firstName} {this.props.user.lastName}</div>
+
+                                <Link className='unstyled-link unstyled-link-black' onClick={this.onSignOutClick.bind(this)} to='#'>Sign Out</Link>
                             </section>
                         </div>
                     </header>
@@ -140,3 +154,11 @@ Navbar.propTypes = {
         PropTypes.string
     ]).isRequired
 };
+
+function mapStateToProps(state) {
+    return {
+        user: state.users.currentUser
+    };
+}
+
+export default connect(mapStateToProps)(Navbar);
