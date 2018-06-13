@@ -1,0 +1,14 @@
+@import 'global';
+
+$mdc-theme-primary: $purple-primary;
+$mdc-theme-secondary: $purple-primary;
+
+.mdc-toolbar {
+
+}
+
+.mdc-drawer {
+    display: table-cell;
+}
+
+@import '@material/theme/mdc-theme';

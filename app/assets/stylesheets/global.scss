@@ -1,0 +1,88 @@
+$mobile-width: 768px;
+
+$purple-primary: #470a66;
+$purple-light: #8e12cc;
+
+$button-font-size: 24px;
+$button-font-size--dense: 20px;
+$button-font-family: 'Saira Condensed', sans-serif;
+$link-color: #4c4c4c;
+$link-hover-color: #999999;
+
+body, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Noto Sans', sans-serif;
+    position: absolute;
+    top: 0;
+}
+
+.content-root {
+    display: table;
+    width: 100%;
+}
+
+.content {
+    display: table-cell;
+}
+
+.content-5 {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.content-10 {
+    margin-left: 10%;
+    margin-right: 10%;
+
+    @media (max-width: $mobile-width) {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+.content-15 {
+    margin-left: 15%;
+    margin-right: 15%;
+
+    @media (max-width: $mobile-width) {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+.content-20 {
+    margin-left: 20%;
+    margin-right: 20%;
+
+    @media (max-width: $mobile-width) {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+.content-25 {
+    margin-left: 25%;
+    margin-right: 25%;
+
+    @media (max-width: $mobile-width) {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+.content-bottom {
+    padding-bottom: 10vh;
+}
+
+.relative {
+    position: relative;
+}
+
+.middle {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}

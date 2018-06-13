@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import { fetchCurrentUser } from '../components/actions/user-actions';
 
+import Skeleton from '../components/containers/Skeleton';
+
 import Index from '../components/containers/Index';
 import SignIn from '../components/containers/users/SignInContainer';
 import EditUserContainer from '../components/containers/users/EditUserContainer';
@@ -20,13 +22,15 @@ class AppRoutes extends React.Component {
         if (_.isEmpty(this.props.user)) return <SignIn />;
 
         return (
-            <Route>
-                <Switch>
-                    <Route exact path='/' component={Index} />
-                    
-                    <Route exact path='/users/edit' component={EditUserContainer} />
-                </Switch>
-            </Route>
+            <Skeleton>
+                <Route>
+                    <Switch>
+                        <Route exact path='/' component={Index} />
+                        
+                        <Route exact path='/users/edit' component={EditUserContainer} />
+                    </Switch>
+                </Route>
+            </Skeleton>
         );
     }
 }
