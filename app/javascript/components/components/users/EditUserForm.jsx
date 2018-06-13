@@ -24,7 +24,7 @@ export default class EditUserForm extends React.Component {
         event.preventDefault();
 
         AuthApi.editUser(this.state.email, this.state.currentPassword, this.state.password, this.state.passwordConfirmation, this.state.firstName, this.state.lastName).then((response) => {
-            window.location.href = this.props.redirectUrl;
+            window.location.href = '/';
         }).catch((response) => {
             this.setState({
                 errors: response.responseJSON.errors
@@ -50,6 +50,5 @@ export default class EditUserForm extends React.Component {
 }
 
 EditUserForm.propTypes = {
-    redirectUrl: PropTypes.string.isRequired,
     user: PropTypes.object.isRequired
 };

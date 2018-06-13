@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import AuthApi from '../../../api/auth-api';
 
@@ -32,7 +31,7 @@ export default class SignInForm extends React.Component {
         event.preventDefault();
 
         AuthApi.signIn(this.state.email, this.state.password, this.state.rememberMe).then((response) => {
-            window.location.href = this.props.redirectUrl;
+            window.location.href = '/';
         }).catch((response) => {
             this.setState({
                 errors: { error: [response.responseJSON.error] }
@@ -62,7 +61,3 @@ export default class SignInForm extends React.Component {
         );
     }
 }
-
-SignInForm.propTypes = {
-    redirectUrl: PropTypes.string.isRequired
-};

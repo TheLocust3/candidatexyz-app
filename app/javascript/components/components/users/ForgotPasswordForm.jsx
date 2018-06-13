@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import AuthApi from '../../../api/auth-api';
 import Form from '../common/Form';
@@ -24,7 +23,7 @@ export default class ForgotPasswordForm extends React.Component {
         event.preventDefault();
 
         AuthApi.forgotPassword(this.state.email).then((response) => {
-            window.location.href = this.props.redirectUrl;
+            window.location.href = '/';
         }).catch((response) => {
             this.setState({
                 errors: response.responseJSON.errors
@@ -42,7 +41,3 @@ export default class ForgotPasswordForm extends React.Component {
         );
     }
 }
-
-ForgotPasswordForm.propTypes = {
-    redirectUrl: PropTypes.string.isRequired
-};

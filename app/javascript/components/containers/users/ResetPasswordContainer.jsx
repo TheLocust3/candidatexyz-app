@@ -12,8 +12,8 @@ export default class ResetPasswordContainer extends React.Component {
 
         return (
             <div className='content-15'>
-                <ResetPasswordForm redirectUrl="/" token={parsed.reset_password_token} /><br />
-                <Link to="/sign_in">Sign in</Link><br />
+                <ResetPasswordForm token={parsed.reset_password_token} /><br />
+                <Link to='/sign_in'>Sign in</Link><br />
 
                 <MDCAutoInit />
             </div>

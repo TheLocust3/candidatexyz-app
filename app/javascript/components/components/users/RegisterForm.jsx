@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import AuthApi from '../../../api/auth-api';
 import Form from '../common/Form';
@@ -24,7 +23,7 @@ export default class RegisterForm extends React.Component {
         event.preventDefault();
 
         AuthApi.register(this.state.email, this.state.password, this.state.passwordConfirmation, this.state.firstName, this.state.lastName).then((response) => {
-            window.location.href = this.props.redirectUrl;
+            window.location.href = '/';
         }).catch((response) => {
             this.setState({
                 errors: response.responseJSON.errors
@@ -47,7 +46,3 @@ export default class RegisterForm extends React.Component {
         );
     }
 }
-
-RegisterForm.propTypes = {
-    redirectUrl: PropTypes.string.isRequired
-};

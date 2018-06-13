@@ -25,7 +25,7 @@ export default class ResetPasswordForm extends React.Component {
         event.preventDefault();
 
         AuthApi.resetPassword(this.props.token, this.state.password, this.state.passwordConfirmation).then( response => {
-            window.location.href = this.props.redirectUrl;
+            window.location.href = '/';
         }).catch( response => {
             this.setState({
                 errors: response.responseJSON.errors
@@ -46,6 +46,5 @@ export default class ResetPasswordForm extends React.Component {
 }
 
 ResetPasswordForm.propTypes = {
-    redirectUrl: PropTypes.string.isRequired,
     token: PropTypes.string.isRequired
 };
