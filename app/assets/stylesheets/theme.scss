@@ -3,19 +3,4 @@
 $mdc-theme-primary: $purple-primary;
 $mdc-theme-secondary: $purple-primary;
 
-.mdc-toolbar {
-    height: 59px;
-
-    color: #212121;
-    background-color: #FFFFFF;
-
-    border: 0px solid;
-    border-color: #E0E0E0;
-    border-bottom-width: 1px;
-}
-
-.mdc-drawer {
-    display: table-cell;
-}
-
 @import '@material/theme/mdc-theme';

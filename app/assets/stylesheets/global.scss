@@ -30,6 +30,10 @@ body, #root {
 
 .content {
     margin: 3%;
+
+    @media (max-width: $mobile-width) {
+        margin-top: 10vh;
+    }
 }
 
 .content-5 {
@@ -89,4 +93,9 @@ body, #root {
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
+}
+
+.unstyled-link {
+    color: white;
+    text-decoration: none;
 }

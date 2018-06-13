@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Navbar from '../components/skeleton/Navbar';
 import Footer from '../components/skeleton/Footer';
+import MDCAutoInit from '../components/global/MDCAutoInit';
 
 class Skeleton extends React.Component {
 
@@ -15,6 +16,8 @@ class Skeleton extends React.Component {
                 </Navbar>
 
                 <Footer />
+
+                <MDCAutoInit />
             </div>
         );
     }

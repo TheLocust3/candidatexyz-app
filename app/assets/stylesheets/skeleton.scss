@@ -1,3 +1,21 @@
+.drawer-desktop {
+    display: table-cell;
+
+    padding-bottom: 1%;
+}
+
+.toolbar-desktop {
+    min-height: 59px;
+    padding-bottom: 1px;
+
+    color: #212121;
+    background-color: #FFFFFF;
+
+    border: 0px solid;
+    border-color: #E0E0E0;
+    border-bottom-width: 1px;
+}
+
 .footer {
     padding-top: 1%;
 
