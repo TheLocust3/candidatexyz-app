@@ -35,15 +35,15 @@ export default class EditUserForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} /><br />
-                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} /><br />
-                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} /><br />
+                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.email} style={{ width: '100%' }} /><br />
+                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.firstName} style={{ width: '100%' }} /><br />
+                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.lastName} style={{ width: '100%' }} /><br />
 
-                <TextField type='password' label='Current Password' name='currentPassword' onChange={this.handleChange.bind(this)} /><br />
-                <TextField type='password' label='New Password' name='password' onChange={this.handleChange.bind(this)} /><br />
-                <TextField type='password' label='Confirm New Password' name='passwordConfirmation' onChange={this.handleChange.bind(this)} /><br />
+                <TextField type='password' label='Current Password' name='currentPassword' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br />
+                <TextField type='password' label='New Password' name='password' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br />
+                <TextField type='password' label='Confirm New Password' name='passwordConfirmation' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br />
                 
-                <Button type='submit'>Submit</Button>
+                <Button type='submit' className='right-form-button'>Save</Button>
             </Form>
         );
     }

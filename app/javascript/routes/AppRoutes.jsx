@@ -8,8 +8,8 @@ import { fetchCurrentUser } from '../components/actions/user-actions';
 import Skeleton from '../components/containers/Skeleton';
 
 import Index from '../components/containers/Index';
+import Settings from '../components/containers/Settings';
 import SignIn from '../components/containers/users/SignInContainer';
-import EditUserContainer from '../components/containers/users/EditUserContainer';
 
 class AppRoutes extends React.Component {
 
@@ -27,7 +27,7 @@ class AppRoutes extends React.Component {
                     <Switch>
                         <Route exact path='/' component={Index} />
                         
-                        <Route exact path='/users/edit' component={EditUserContainer} />
+                        <Route exact path='/settings' component={Settings} />
                     </Switch>
                 </Route>
             </Skeleton>
