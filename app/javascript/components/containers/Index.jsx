@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { setTitle } from '../actions/global-actions';
 
+import Text from '../components/common/Text';
+
 class Index extends React.Component {
 
     componentWillMount() {
@@ -12,7 +14,7 @@ class Index extends React.Component {
     render() {
         return (
             <div className='content'>
-                Hello World!
+                <Text type='body1'>Hello World!</Text>
             </div>
         );
     }

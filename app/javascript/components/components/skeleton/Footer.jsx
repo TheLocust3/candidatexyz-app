@@ -1,17 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import Text from '../common/Text';
 
 export default class Footer extends React.Component {
 
     render() {
         return (
             <div className='footer'>
-                candidateXYZ
+                <Text type='body2'>candidateXYZ</Text>
             </div>
         );
     }
 }
-
-Footer.propTypes = {
-    
-};

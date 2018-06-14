@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { setTitle } from '../../actions/global-actions';
 
+import Text from '../../components/common/Text';
 import ForgotPasswordForm from '../../components/users/ForgotPasswordForm';
 
 class ForgotPasswordContainer extends React.Component {
@@ -16,7 +17,8 @@ class ForgotPasswordContainer extends React.Component {
         return (
             <div className='content-15'>
                 <ForgotPasswordForm /><br />
-                <Link to='/sign_in'>Sign in</Link><br />
+
+                <Link to='/sign_in'><Text type='body1'>Sign in</Text></Link>
             </div>
         );
     }
