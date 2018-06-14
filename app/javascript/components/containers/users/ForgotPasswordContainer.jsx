@@ -1,9 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+
+import { setTitle } from '../../actions/global-actions';
 
 import ForgotPasswordForm from '../../components/users/ForgotPasswordForm';
 
-export default class ForgotPasswordContainer extends React.Component {
+class ForgotPasswordContainer extends React.Component {
+
+    componentWillMount() {
+        this.props.dispatch(setTitle('Forgot Password'));
+    }
 
     render() {
         return (
@@ -14,3 +21,5 @@ export default class ForgotPasswordContainer extends React.Component {
         );
     }
 }
+
+export default connect()(ForgotPasswordContainer);

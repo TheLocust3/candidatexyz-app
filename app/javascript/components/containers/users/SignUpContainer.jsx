@@ -1,9 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+
+import { setTitle } from '../../actions/global-actions';
 
 import RegisterForm from '../../components/users/RegisterForm';
 
-export default class SignUpContainer extends React.Component {
+class SignUpContainer extends React.Component {
+
+    componentWillMount() {
+        this.props.dispatch(setTitle('Sign Up'));
+    }
 
     render() {
         return (
@@ -14,3 +21,5 @@ export default class SignUpContainer extends React.Component {
         );
     }
 }
+
+export default connect()(SignUpContainer);
