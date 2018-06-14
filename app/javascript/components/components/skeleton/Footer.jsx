@@ -7,7 +7,9 @@ export default class Footer extends React.Component {
     render() {
         return (
             <div className='footer'>
-                <Text type='body2'>candidateXYZ</Text>
+                <div className='footer-content'>
+                    <Text type='body2'>candidateXYZ</Text>
+                </div>
             </div>
         );
     }
