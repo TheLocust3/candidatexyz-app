@@ -55,8 +55,12 @@ class Navbar extends React.Component {
         let title = '';
         if (document.location.pathname == '/') {
             title = 'Home';
+        } else if (document.location.pathname == '/website') {
+            title = 'Website';
         } else if (document.location.pathname == '/settings') {
             title = 'Settings';
+        } else {
+            title = 'Not Found'
         }
 
         return (
@@ -69,6 +73,11 @@ class Navbar extends React.Component {
                             <Link className={`mdc-list-item ${document.location.pathname == '/' ? 'mdc-list-item--activated' : ''}`} to='/' data-mdc-auto-init='MDCRipple'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>home</i>
                                 <Text type='body2'>Home</Text>
+                            </Link>
+
+                            <Link className={`mdc-list-item ${document.location.pathname == '/website' ? 'mdc-list-item--activated' : ''}`} to='/website' data-mdc-auto-init='MDCRipple'>
+                                <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>desktop_windows</i>
+                                <Text type='body2'>Website</Text>
                             </Link>
 
                             <Link className={`mdc-list-item ${document.location.pathname == '/settings' ? 'mdc-list-item--activated' : ''}`} to='/settings' data-mdc-auto-init='MDCRipple'>
@@ -128,6 +137,11 @@ class Navbar extends React.Component {
                                 <Link className='mdc-list-item' to='/' onClick={this.onLinkClick.bind(this)} data-mdc-auto-init='MDCRipple'>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>home</i>
                                     <Text type='body2'>Home</Text>
+                                </Link>
+
+                                <Link className='mdc-list-item' to='/website' onClick={this.onLinkClick.bind(this)} data-mdc-auto-init='MDCRipple'>
+                                    <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>desktop_windows</i>
+                                    <Text type='body2'>Website</Text>
                                 </Link>
 
                                 <Link className='mdc-list-item' to='/settings' onClick={this.onLinkClick.bind(this)} data-mdc-auto-init='MDCRipple'>

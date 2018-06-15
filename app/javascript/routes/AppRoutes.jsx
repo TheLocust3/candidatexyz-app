@@ -6,8 +6,10 @@ import { connect } from 'react-redux';
 import { fetchCurrentUser } from '../components/actions/user-actions';
 
 import Skeleton from '../components/containers/Skeleton';
+import NotFound from '../components/containers/NotFound';
 
 import Index from '../components/containers/Index';
+import Website from '../components/containers/Website';
 import Settings from '../components/containers/Settings';
 import SignIn from '../components/containers/users/SignInContainer';
 
@@ -26,8 +28,10 @@ class AppRoutes extends React.Component {
                 <Route>
                     <Switch>
                         <Route exact path='/' component={Index} />
-                        
+                        <Route exact path='/website' component={Website} />
                         <Route exact path='/settings' component={Settings} />
+                        
+                        <Route component={NotFound} />
                     </Switch>
                 </Route>
             </Skeleton>
