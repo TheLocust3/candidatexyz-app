@@ -57,6 +57,8 @@ class Navbar extends React.Component {
             title = 'Home';
         } else if (document.location.pathname == '/website') {
             title = 'Website';
+        } else if (document.location.pathname == '/volunteers') {
+            title = 'Volunteers';
         } else if (document.location.pathname == '/settings') {
             title = 'Settings';
         } else {
@@ -78,6 +80,11 @@ class Navbar extends React.Component {
                             <Link className={`mdc-list-item ${document.location.pathname == '/website' ? 'mdc-list-item--activated' : ''}`} to='/website' data-mdc-auto-init='MDCRipple'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>desktop_windows</i>
                                 <Text type='body2'>Website</Text>
+                            </Link>
+
+                            <Link className={`mdc-list-item ${document.location.pathname == '/volunteers' ? 'mdc-list-item--activated' : ''}`} to='/volunteers' data-mdc-auto-init='MDCRipple'>
+                                <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>person</i>
+                                <Text type='body2'>Volunteers</Text>
                             </Link>
 
                             <Link className={`mdc-list-item ${document.location.pathname == '/settings' ? 'mdc-list-item--activated' : ''}`} to='/settings' data-mdc-auto-init='MDCRipple'>
@@ -142,6 +149,11 @@ class Navbar extends React.Component {
                                 <Link className='mdc-list-item' to='/website' onClick={this.onLinkClick.bind(this)} data-mdc-auto-init='MDCRipple'>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>desktop_windows</i>
                                     <Text type='body2'>Website</Text>
+                                </Link>
+
+                                <Link className='mdc-list-item' to='/volunteers' onClick={this.onLinkClick.bind(this)} data-mdc-auto-init='MDCRipple'>
+                                    <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>person</i>
+                                    <Text type='body2'>Volunteers</Text>
                                 </Link>
 
                                 <Link className='mdc-list-item' to='/settings' onClick={this.onLinkClick.bind(this)} data-mdc-auto-init='MDCRipple'>
