@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { setTitle } from '../actions/global-actions';
 
+import MDCAutoInit from '../components/global/MDCAutoInit';
 import Text from '../components/common/Text';
 import EditUserForm from '../components/users/EditUserForm';
 
@@ -17,6 +18,8 @@ class Settings extends React.Component {
             <div className='content content-10'>
                 <Text type='headline6'>User Settings</Text>
                 <EditUserForm user={this.props.user} />
+
+                <MDCAutoInit />
             </div>
         );
     }

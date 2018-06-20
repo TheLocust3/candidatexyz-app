@@ -26,7 +26,7 @@ export default class RegisterForm extends React.Component {
             window.location.href = '/';
         }).catch((response) => {
             this.setState({
-                errors: response.responseJSON.errors
+                errors: { error: response.data.errors }
             });
         });
     }

@@ -34,7 +34,7 @@ export default class SignInForm extends React.Component {
             window.location.href = '/';
         }).catch((response) => {
             this.setState({
-                errors: { error: [response.responseJSON.error] }
+                errors: { error: response.data.errors }
             });
         });
     }

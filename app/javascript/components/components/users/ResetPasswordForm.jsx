@@ -24,11 +24,11 @@ export default class ResetPasswordForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        AuthApi.resetPassword(this.props.token, this.state.password, this.state.passwordConfirmation).then( response => {
+        AuthApi.resetPassword(this.state.password, this.state.passwordConfirmation).then( response => {
             window.location.href = '/';
         }).catch( response => {
             this.setState({
-                errors: response.responseJSON.errors
+                errors: { error: response.data.errors }
             });
         });
     }
@@ -44,7 +44,3 @@ export default class ResetPasswordForm extends React.Component {
         );
     }
 }
-
-ResetPasswordForm.propTypes = {
-    token: PropTypes.string.isRequired
-};

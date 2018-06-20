@@ -23,11 +23,11 @@ export default class EditUserForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        AuthApi.editUser(this.state.email, this.state.currentPassword, this.state.password, this.state.passwordConfirmation, this.state.firstName, this.state.lastName).then((response) => {
+        AuthApi.editUser(this.state.email, this.state.password, this.state.passwordConfirmation, this.state.firstName, this.state.lastName).then((response) => {
             window.location.href = '/';
         }).catch((response) => {
             this.setState({
-                errors: response.responseJSON.errors
+                errors: { error: response.data.errors }
             });
         });
     }
@@ -39,7 +39,6 @@ export default class EditUserForm extends React.Component {
                 <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.firstName} style={{ width: '100%' }} /><br />
                 <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.lastName} style={{ width: '100%' }} /><br />
 
-                <TextField type='password' label='Current Password' name='currentPassword' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br />
                 <TextField type='password' label='New Password' name='password' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br />
                 <TextField type='password' label='Confirm New Password' name='passwordConfirmation' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br />
                 
