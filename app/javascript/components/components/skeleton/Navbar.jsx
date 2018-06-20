@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -32,6 +31,26 @@ class Navbar extends React.Component {
 
     componentDidMount() {
         window.addEventListener('resize', () => this.updateDimensions());
+    }
+
+    componentDidUpdate() {
+        this.handleDropdowns();
+    }
+
+    setupDropdowns() {
+        if (this.props.drawerSelected.item == 'communication') {
+            $('#communication-drop-down').show();
+        } else {
+            $('#communication-drop-down').hide();
+        }
+    }
+
+    handleDropdowns() {
+        if (this.props.drawerSelected.item == 'communication') {
+            $('#communication-drop-down').slideDown(200);
+        } else {
+            $('#communication-drop-down').slideUp(200);
+        }
     }
 
     onMenuClick() {
@@ -78,17 +97,19 @@ class Navbar extends React.Component {
                                 <Text type='body2' className={`mdc-list-item-text ${item == 'communication' ? 'mdc-list-item-text--activated' : ''}`}>Communication</Text>
                             </Link>
 
-                            <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/volunteers'>
-                                <Text type='body2' className={`drawer-sub-item-text ${subItem == 'volunteers' ? 'drawer-sub-item-text--activated' : ''}`}>Volunteers</Text>
-                            </Link>
+                            <div id='communication-drop-down'>
+                                <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/volunteers'>
+                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'volunteers' ? 'drawer-sub-item-text--activated' : ''}`}>Volunteers</Text>
+                                </Link>
 
-                            <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/sign-ups'>
-                                <Text type='body2' className={`drawer-sub-item-text ${subItem == 'signUps' ? 'drawer-sub-item-text--activated' : ''}`}>Sign Ups</Text>
-                            </Link>
+                                <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/sign-ups'>
+                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'signUps' ? 'drawer-sub-item-text--activated' : ''}`}>Sign Ups</Text>
+                                </Link>
 
-                            <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/messages'>
-                                <Text type='body2' className={`drawer-sub-item-text ${subItem == 'messages' ? 'drawer-sub-item-text--activated' : ''}`}>Messages</Text>
-                            </Link>
+                                <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/messages'>
+                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'messages' ? 'drawer-sub-item-text--activated' : ''}`}>Messages</Text>
+                                </Link>
+                            </div>
 
                             <Link className={`mdc-list-item ${item == 'settings' ? 'mdc-list-item--activated' : ''}`} to='/settings' data-mdc-auto-init='MDCRipple'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>settings</i>
