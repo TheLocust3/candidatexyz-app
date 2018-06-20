@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setTitle } from '../actions/global-actions';
+import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
 
 import Text from '../components/common/Text';
 
@@ -9,6 +9,8 @@ class Website extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Website'));
+        this.props.dispatch(setBreadcrumb('Website'));
+        this.props.dispatch(setDrawerSelected('website'))
     }
 
     render() {

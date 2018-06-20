@@ -1,9 +1,38 @@
 @import 'global';
 
+.option-text {
+    font-weight: 300;
+}
+
 .drawer-desktop {
     display: table-cell;
 
     padding-bottom: 1%;
+}
+
+.mdc-list-item-text {
+    font-weight: 300;
+}
+
+.mdc-list-item-text--activated {
+    font-weight: 500;
+}
+
+.drawer-sub-item {
+    height: 20px;
+    width: 100%;
+}
+
+.drawer-sub-item-text {
+    margin-left: 72px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+
+    font-weight: 200;
+}
+
+.drawer-sub-item-text--activated {
+    font-weight: 500;
 }
 
 .toolbar-desktop {

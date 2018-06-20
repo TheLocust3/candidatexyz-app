@@ -10,9 +10,13 @@ import NotFound from '../components/containers/NotFound';
 
 import Index from '../components/containers/Index';
 import Website from '../components/containers/Website';
-import Volunteers from '../components/containers/Volunteers';
 import Settings from '../components/containers/Settings';
 import SignIn from '../components/containers/users/SignInContainer';
+
+import Communication from '../components/containers/communication/Communication';
+import Volunteers from '../components/containers/communication/Volunteers';
+import SignUps from '../components/containers/communication/SignUps';
+import Messages from '../components/containers/communication/Messages';
 
 class AppRoutes extends React.Component {
 
@@ -30,8 +34,12 @@ class AppRoutes extends React.Component {
                     <Switch>
                         <Route exact path='/' component={Index} />
                         <Route exact path='/website' component={Website} />
-                        <Route exact path='/volunteers' component={Volunteers} />
                         <Route exact path='/settings' component={Settings} />
+
+                        <Route exact path='/communication' component={Communication} />
+                        <Route exact path='/communication/volunteers' component={Volunteers} />
+                        <Route exact path='/communication/sign-ups' component={SignUps} />
+                        <Route exact path='/communication/Messages' component={Messages} />
                         
                         <Route component={NotFound} />
                     </Switch>

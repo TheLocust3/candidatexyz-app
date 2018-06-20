@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setTitle } from '../actions/global-actions';
+import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
 
 import MDCAutoInit from '../components/global/MDCAutoInit';
 import Text from '../components/common/Text';
@@ -11,6 +11,8 @@ class Settings extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Settings'));
+        this.props.dispatch(setBreadcrumb('Settings'));
+        this.props.dispatch(setDrawerSelected('settings'))
     }
 
     render() {

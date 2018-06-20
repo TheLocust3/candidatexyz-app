@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setTitle } from '../actions/global-actions';
+import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
 
 import Text from '../components/common/Text';
 
@@ -9,6 +9,8 @@ class NotFound extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('404'));
+        this.props.dispatch(setBreadcrumb('Not Found'));
+        this.props.dispatch(setDrawerSelected(''))
     }
 
     render() {

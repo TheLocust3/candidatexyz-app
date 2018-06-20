@@ -2,7 +2,9 @@ import * as GlobalActions from '../actions/global-actions';
 import { TITLE } from '../../constants';
 
 const initialState = {
-    title: ''
+    title: '',
+    breadcrumb: '',
+    drawerSelected: { item: 'Home', subItem: '' }
 };
 
 export function globalReducer(state = initialState, action) {
@@ -12,6 +14,14 @@ export function globalReducer(state = initialState, action) {
 
             return Object.assign({}, state, {
                 title: action.data
+            });
+        case GlobalActions.SET_BREADCRUMB:
+            return Object.assign({}, state, {
+                breadcrumb: action.data
+            });
+        case GlobalActions.SET_DRAWER_SELECTED:
+            return Object.assign({}, state, {
+                drawerSelected: action.data
             });
         default:
             return state;

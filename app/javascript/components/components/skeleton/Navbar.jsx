@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -52,44 +53,46 @@ class Navbar extends React.Component {
     }
 
     renderDesktop() {
-        let title = '';
-        if (document.location.pathname == '/') {
-            title = 'Home';
-        } else if (document.location.pathname == '/website') {
-            title = 'Website';
-        } else if (document.location.pathname == '/volunteers') {
-            title = 'Volunteers';
-        } else if (document.location.pathname == '/settings') {
-            title = 'Settings';
-        } else {
-            title = 'Not Found'
-        }
+        let item = this.props.drawerSelected.item;
+        let subItem = this.props.drawerSelected.subItem;
 
         return (
             <div className='content-root'>
                 <nav className='mdc-drawer mdc-drawer--permanent mdc-typography drawer-desktop'>
-                    <Text type='body1' className='mdc-drawer__toolbar-spacer'>candidateXYZ</Text>
+                    <Text type='body1' className='mdc-drawer__toolbar-spacer option-text'>candidateXYZ</Text>
                     
                     <div className='mdc-drawer__content'>
                         <nav className='mdc-list'>
-                            <Link className={`mdc-list-item ${document.location.pathname == '/' ? 'mdc-list-item--activated' : ''}`} to='/' data-mdc-auto-init='MDCRipple'>
+                            <Link className={`mdc-list-item ${item == 'home' ? 'mdc-list-item--activated' : ''}`} to='/' data-mdc-auto-init='MDCRipple'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>home</i>
-                                <Text type='body2'>Home</Text>
+                                <Text type='body2' className={`mdc-list-item-text ${item == 'home' ? 'mdc-list-item-text--activated' : ''}`}>Home</Text>
                             </Link>
 
-                            <Link className={`mdc-list-item ${document.location.pathname == '/website' ? 'mdc-list-item--activated' : ''}`} to='/website' data-mdc-auto-init='MDCRipple'>
+                            <Link className={`mdc-list-item ${item == 'website' ? 'mdc-list-item--activated' : ''}`} to='/website' data-mdc-auto-init='MDCRipple'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>desktop_windows</i>
-                                <Text type='body2'>Website</Text>
+                                <Text type='body2' className={`mdc-list-item-text ${item == 'website' ? 'mdc-list-item-text--activated' : ''}`}>Website</Text>
                             </Link>
 
-                            <Link className={`mdc-list-item ${document.location.pathname == '/volunteers' ? 'mdc-list-item--activated' : ''}`} to='/volunteers' data-mdc-auto-init='MDCRipple'>
+                            <Link className={`mdc-list-item ${item == 'communication' ? 'mdc-list-item--activated' : ''}`} to='/communication' data-mdc-auto-init='MDCRipple'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>person</i>
-                                <Text type='body2'>Volunteers</Text>
+                                <Text type='body2' className={`mdc-list-item-text ${item == 'communication' ? 'mdc-list-item-text--activated' : ''}`}>Communication</Text>
                             </Link>
 
-                            <Link className={`mdc-list-item ${document.location.pathname == '/settings' ? 'mdc-list-item--activated' : ''}`} to='/settings' data-mdc-auto-init='MDCRipple'>
+                            <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/volunteers'>
+                                <Text type='body2' className={`drawer-sub-item-text ${subItem == 'volunteers' ? 'drawer-sub-item-text--activated' : ''}`}>Volunteers</Text>
+                            </Link>
+
+                            <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/sign-ups'>
+                                <Text type='body2' className={`drawer-sub-item-text ${subItem == 'signUps' ? 'drawer-sub-item-text--activated' : ''}`}>Sign Ups</Text>
+                            </Link>
+
+                            <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/messages'>
+                                <Text type='body2' className={`drawer-sub-item-text ${subItem == 'messages' ? 'drawer-sub-item-text--activated' : ''}`}>Messages</Text>
+                            </Link>
+
+                            <Link className={`mdc-list-item ${item == 'settings' ? 'mdc-list-item--activated' : ''}`} to='/settings' data-mdc-auto-init='MDCRipple'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>settings</i>
-                                <Text type='body2'>Settings</Text>
+                                <Text type='body2' className={`mdc-list-item-text ${item == 'settings' ? 'mdc-list-item-text--activated' : ''}`}>Settings</Text>
                             </Link>
                         </nav>
                     </div>
@@ -99,13 +102,13 @@ class Navbar extends React.Component {
                     <header className='mdc-toolbar toolbar-desktop'>
                         <div className='mdc-toolbar__row'>
                             <section className='mdc-toolbar__section mdc-toolbar__section--align-start'>
-                                <Text type='title' className='mdc-toolbar__title'>{title}</Text>
+                                <Text type='title' className='mdc-toolbar__title option-text'>{this.props.breadcrumb}</Text>
                             </section>
 
                             <section className='mdc-toolbar__section mdc-toolbar__section--align-end'>
-                                <Text type='body2' style={{ marginRight: '3%' }}>{this.props.user.firstName} {this.props.user.lastName}</Text>
+                                <Text type='body2' className='option-text' style={{ marginRight: '3%' }}>{this.props.user.firstName} {this.props.user.lastName}</Text>
 
-                                <Link className='unstyled-link unstyled-link-black' onClick={this.onSignOutClick.bind(this)} to='#'><Text type='body2'>Sign Out</Text></Link>
+                                <Link className='unstyled-link unstyled-link-black' onClick={this.onSignOutClick.bind(this)} to='#'><Text type='body2' className='option-text'>Sign Out</Text></Link>
                             </section>
                         </div>
                     </header>
@@ -194,7 +197,9 @@ Navbar.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        user: state.users.currentUser
+        user: state.users.currentUser,
+        breadcrumb: state.global.breadcrumb,
+        drawerSelected: state.global.drawerSelected
     };
 }
 
