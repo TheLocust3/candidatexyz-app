@@ -3,4 +3,16 @@
 $mdc-theme-primary: $purple-primary;
 $mdc-theme-secondary: $purple-primary;
 
+.mdc-text-field__input {
+    font-weight: 300;
+}
+
+.mdc-floating-label {
+    font-weight: 300;
+}
+
+.mdc-button {
+    font-weight: 300;
+}
+
 @import '@material/theme/mdc-theme';
