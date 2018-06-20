@@ -111,6 +111,11 @@ class Navbar extends React.Component {
                                 </Link>
                             </div>
 
+                            <Link className={`mdc-list-item ${item == 'campaign' ? 'mdc-list-item--activated' : ''}`} to='/campaign' data-mdc-auto-init='MDCRipple'>
+                                <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>domain</i>
+                                <Text type='body2' className={`mdc-list-item-text ${item == 'website' ? 'mdc-list-item-text--activated' : ''}`}>Campaign</Text>
+                            </Link>
+
                             <Link className={`mdc-list-item ${item == 'settings' ? 'mdc-list-item--activated' : ''}`} to='/settings' data-mdc-auto-init='MDCRipple'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>settings</i>
                                 <Text type='body2' className={`mdc-list-item-text ${item == 'settings' ? 'mdc-list-item-text--activated' : ''}`}>Settings</Text>
