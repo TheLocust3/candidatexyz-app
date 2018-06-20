@@ -31,6 +31,8 @@ class Navbar extends React.Component {
 
     componentDidMount() {
         window.addEventListener('resize', () => this.updateDimensions());
+
+        this.setupDropdowns();
     }
 
     componentDidUpdate() {

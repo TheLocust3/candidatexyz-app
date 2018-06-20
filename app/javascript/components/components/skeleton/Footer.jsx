@@ -8,7 +8,7 @@ export default class Footer extends React.Component {
         return (
             <div className='footer'>
                 <div className='footer-content'>
-                    <Text type='body2'>candidateXYZ</Text>
+                    <Text type='body2'>© 2018 - candidateXYZ, LLC. All rights reserved</Text>
                 </div>
             </div>
         );
