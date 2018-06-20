@@ -118,7 +118,7 @@ class Navbar extends React.Component {
 
     renderMobile() {
         return (
-            <div>
+            <div className='content-root'>
                 <header className='mdc-toolbar mdc-toolbar--fixed navbar'>
                     <div className='mdc-toolbar__row'>
                         <section className='mdc-toolbar__section mdc-toolbar__section--align-start'>
@@ -159,6 +159,11 @@ class Navbar extends React.Component {
                                 <Link className='mdc-list-item' to='/settings' onClick={this.onLinkClick.bind(this)} data-mdc-auto-init='MDCRipple'>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>settings</i>
                                     <Text type='body2'>Settings</Text>
+                                </Link>
+
+                                <Link className='mdc-list-item' to='#' onClick={this.onSignOutClick.bind(this)} data-mdc-auto-init='MDCRipple'>
+                                    <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>cancel</i>
+                                    <Text type='body2'>Sign Out</Text>
                                 </Link>
                             </div>
                         </nav>
