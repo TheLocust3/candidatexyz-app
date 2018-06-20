@@ -59,7 +59,7 @@ class Navbar extends React.Component {
         return (
             <div className='content-root'>
                 <nav className='mdc-drawer mdc-drawer--permanent mdc-typography drawer-desktop'>
-                    <Text type='body1' className='mdc-drawer__toolbar-spacer option-text'>candidateXYZ</Text>
+                    <Text type='body1' className='mdc-drawer__toolbar-spacer'>candidateXYZ</Text>
                     
                     <div className='mdc-drawer__content'>
                         <nav className='mdc-list'>
@@ -102,13 +102,13 @@ class Navbar extends React.Component {
                     <header className='mdc-toolbar toolbar-desktop'>
                         <div className='mdc-toolbar__row'>
                             <section className='mdc-toolbar__section mdc-toolbar__section--align-start'>
-                                <Text type='title' className='mdc-toolbar__title option-text'>{this.props.breadcrumb}</Text>
+                                <Text type='title' className='mdc-toolbar__title'>{this.props.breadcrumb}</Text>
                             </section>
 
                             <section className='mdc-toolbar__section mdc-toolbar__section--align-end'>
-                                <Text type='body2' className='option-text' style={{ marginRight: '3%' }}>{this.props.user.firstName} {this.props.user.lastName}</Text>
+                                <Text type='body2' style={{ marginRight: '3%' }}>{this.props.user.firstName} {this.props.user.lastName}</Text>
 
-                                <Link className='unstyled-link unstyled-link-black' onClick={this.onSignOutClick.bind(this)} to='#'><Text type='body2' className='option-text'>Sign Out</Text></Link>
+                                <Link className='unstyled-link unstyled-link-black' onClick={this.onSignOutClick.bind(this)} to='#'><Text type='body2'>Sign Out</Text></Link>
                             </section>
                         </div>
                     </header>

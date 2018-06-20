@@ -1,16 +1,13 @@
 @import 'global';
 
-.option-text {
-    font-weight: 300;
-}
-
 .drawer-desktop {
     display: table-cell;
 
     padding-bottom: 1%;
 }
 
-.mdc-list-item-text {
+// TODO: For some reason, if I want to change the font weight globally, it has to be changed before I screw with other font weights. This is a pretty good spot. Why would the position of this definition matter, you may ask. Good question.
+.mdc-typography {
     font-weight: 300;
 }
 
