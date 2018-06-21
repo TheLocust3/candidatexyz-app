@@ -2,8 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import { fetchCurrentUser } from '../components/actions/user-actions';
+import { UserActions } from 'candidatexyz-common-js';
 
 import Skeleton from '../components/containers/Skeleton';
 import NotFound from '../components/containers/NotFound';
@@ -23,7 +22,7 @@ import Messages from '../components/containers/communication/Messages';
 class AppRoutes extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(fetchCurrentUser());
+        this.props.dispatch(UserActions.fetchCurrentUser());
     }
 
     render() {

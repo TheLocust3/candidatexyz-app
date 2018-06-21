@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MDCTemporaryDrawer } from '@material/drawer';
+import { AuthApi } from 'candidatexyz-common-js';
 
 import { MAX_MOBILE_WIDTH } from '../../../constants';
-import AuthApi from '../../../api/auth-api';
 
 import Text from '../common/Text';
 

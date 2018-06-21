@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import AuthApi from '../../../api/auth-api';
+import { AuthApi } from 'candidatexyz-common-js';
 
 import Form from '../common/Form';
 import TextField from '../common/TextField';

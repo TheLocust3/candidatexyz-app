@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
+import { userReducer } from 'candidatexyz-common-js';
 
-import { userReducer } from './user-reducer'
 import { globalReducer } from './global-reducer'
 
 const reducer = combineReducers({

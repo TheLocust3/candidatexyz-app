@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
-
-import AuthApi from '../../../api/auth-api';
+import { AuthApi } from 'candidatexyz-common-js';
 
 import Form from '../common/Form';
 import TextField from '../common/TextField';
