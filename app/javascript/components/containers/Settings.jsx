@@ -12,7 +12,7 @@ class Settings extends React.Component {
     componentWillMount() {
         this.props.dispatch(setTitle('Settings'));
         this.props.dispatch(setBreadcrumb('Settings'));
-        this.props.dispatch(setDrawerSelected('settings'))
+        this.props.dispatch(setDrawerSelected('settings'));
     }
 
     render() {

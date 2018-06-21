@@ -10,7 +10,7 @@ class Index extends React.Component {
     componentWillMount() {
         this.props.dispatch(setTitle('Home'));
         this.props.dispatch(setBreadcrumb('Home'));
-        this.props.dispatch(setDrawerSelected('home'))
+        this.props.dispatch(setDrawerSelected('home'));
     }
 
     render() {

@@ -10,7 +10,7 @@ class Website extends React.Component {
     componentWillMount() {
         this.props.dispatch(setTitle('Website'));
         this.props.dispatch(setBreadcrumb('Website'));
-        this.props.dispatch(setDrawerSelected('website'))
+        this.props.dispatch(setDrawerSelected('website'));
     }
 
     render() {

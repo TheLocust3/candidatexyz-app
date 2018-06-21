@@ -42,7 +42,7 @@ class AppRoutes extends React.Component {
                         <Route exact path='/communication' component={Communication} />
                         <Route exact path='/communication/volunteers' component={Volunteers} />
                         <Route exact path='/communication/sign-ups' component={SignUps} />
-                        <Route exact path='/communication/Messages' component={Messages} />
+                        <Route exact path='/communication/messages' component={Messages} />
                         
                         <Route component={NotFound} />
                     </Switch>

@@ -15,4 +15,12 @@ $mdc-theme-secondary: $purple-primary;
     font-weight: 300;
 }
 
+.mdc-list-item__text {
+    font-weight: 300;
+}
+
+.mdc-list-item__secondary-text {
+    font-weight: 300;
+}
+
 @import '@material/theme/mdc-theme';

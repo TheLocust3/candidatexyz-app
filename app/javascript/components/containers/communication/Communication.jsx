@@ -10,7 +10,7 @@ class Communication extends React.Component {
     componentWillMount() {
         this.props.dispatch(setTitle('Communication'));
         this.props.dispatch(setBreadcrumb('Communication'));
-        this.props.dispatch(setDrawerSelected('communication'))
+        this.props.dispatch(setDrawerSelected('communication'));
     }
 
     render() {

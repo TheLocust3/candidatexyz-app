@@ -10,7 +10,7 @@ class NotFound extends React.Component {
     componentWillMount() {
         this.props.dispatch(setTitle('404'));
         this.props.dispatch(setBreadcrumb('Not Found'));
-        this.props.dispatch(setDrawerSelected(''))
+        this.props.dispatch(setDrawerSelected(''));
     }
 
     render() {

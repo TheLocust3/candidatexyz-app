@@ -10,7 +10,7 @@ class Campaign extends React.Component {
     componentWillMount() {
         this.props.dispatch(setTitle('Campaign'));
         this.props.dispatch(setBreadcrumb('Campaign'));
-        this.props.dispatch(setDrawerSelected('campaign'))
+        this.props.dispatch(setDrawerSelected('campaign'));
     }
 
     render() {
