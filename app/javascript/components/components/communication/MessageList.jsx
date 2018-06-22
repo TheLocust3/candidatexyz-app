@@ -18,7 +18,7 @@ export default class MessageList extends React.Component {
                                     {message.firstName} {message.lastName}
 
                                     <span className='mdc-list-item__secondary-text'>
-                                        {message.email}
+                                        {message.subject}
                                     </span>
                                 </span>
                             </li>
