@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Text from '../common/Text';
 
@@ -11,15 +12,17 @@ export default class MessageList extends React.Component {
             <ul className='mdc-list mdc-list--two-line'>
                 {messages.map((message, index) => {
                     return (
-                        <li key={index} className='mdc-list-item'>
-                            <span className='mdc-list-item__text'>
-                                {message.firstName} {message.lastName}
+                        <Link key={index} className='unstyled-link-black link-no-hover' to={`/communication/messages/${message.id}`}>
+                            <li className='mdc-list-item'>
+                                <span className='mdc-list-item__text'>
+                                    {message.firstName} {message.lastName}
 
-                                <span className='mdc-list-item__secondary-text'>
-                                    {message.email}
+                                    <span className='mdc-list-item__secondary-text'>
+                                        {message.email}
+                                    </span>
                                 </span>
-                            </span>
-                        </li>
+                            </li>
+                        </Link>
                     )
                 })}
             </ul>
@@ -34,7 +37,7 @@ export default class MessageList extends React.Component {
         if (_.isEmpty(this.props.messages)) {
             return this.renderNone();
         } else {
-            return this.renderList();
+            return this.renderList(this.props.messages);
         }
     }
 }

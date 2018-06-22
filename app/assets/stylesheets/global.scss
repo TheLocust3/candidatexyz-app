@@ -110,6 +110,10 @@ body, #root {
     color: #666666;
 }
 
+.link-no-hover:hover {
+    color: initial;
+}
+
 .right-form-button {
     float: right;
 }

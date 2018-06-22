@@ -20,7 +20,8 @@ class Volunteers extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='body1'>Volunteers Overview</Text>
+                <Text type='headline5'>Volunteer List</Text>
+                <br />
 
                 <Table headers={['First Name', 'Last Name', 'Email', 'Address', 'Help Type']} keys={['firstName', 'lastName', 'email', 'address', 'helpBlurb']} rows={this.props.volunteers.volunteers} />
             </div>

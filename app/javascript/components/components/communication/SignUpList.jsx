@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Text from '../common/Text';
 
@@ -21,16 +22,18 @@ export default class SignUpList extends React.Component {
             <ul className='mdc-list mdc-list--two-line'>
                 {this.props.contacts.map((contact, index) => {
                     return (
-                        <li key={index} className='mdc-list-item'>
-                            <span className='mdc-list-item__text'>
-                                {contact.firstName} {contact.lastName} {this.renderZipcode(contact.zipcode)}
+                        <Link key={index} className='unstyled-link-black link-no-hover' to={`/communication/sign-ups/${contact.id}`}>
+                            <li className='mdc-list-item'>
+                                <span className='mdc-list-item__text'>
+                                    {contact.firstName} {contact.lastName} {this.renderZipcode(contact.zipcode)}
 
-                                <span className='mdc-list-item__secondary-text'>
-                                    Email: {contact.email}<br />
-                                    Phone Number: {contact.phoneNumber}
+                                    <span className='mdc-list-item__secondary-text'>
+                                        Email: {contact.email}<br />
+                                        Phone Number: {contact.phoneNumber}
+                                    </span>
                                 </span>
-                            </span>
-                        </li>
+                            </li>
+                        </Link>
                     )
                 })}
             </ul>

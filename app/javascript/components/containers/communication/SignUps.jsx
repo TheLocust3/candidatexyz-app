@@ -20,7 +20,7 @@ class SignUps extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>Sign Ups List</Text>
+                <Text type='headline5'>Sign Up List</Text>
                 <br />
 
                 <SignUpList contacts={this.props.contacts.contacts} />

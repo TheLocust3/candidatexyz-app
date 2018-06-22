@@ -19,6 +19,9 @@ import Volunteers from '../components/containers/communication/Volunteers';
 import SignUps from '../components/containers/communication/SignUps';
 import Messages from '../components/containers/communication/Messages';
 
+import ShowSignUp from '../components/containers/communication/ShowSignUp';
+import ShowMessage from '../components/containers/communication/ShowMessage';
+
 class AppRoutes extends React.Component {
 
     componentWillMount() {
@@ -43,6 +46,9 @@ class AppRoutes extends React.Component {
                         <Route exact path='/communication/volunteers' component={Volunteers} />
                         <Route exact path='/communication/sign-ups' component={SignUps} />
                         <Route exact path='/communication/messages' component={Messages} />
+
+                        <Route exact path='/communication/sign-ups/:id' component={ShowSignUp} />
+                        <Route exact path='/communication/messages/:id' component={ShowMessage} />
                         
                         <Route component={NotFound} />
                     </Switch>
