@@ -20,7 +20,7 @@ export default class StaffList extends React.Component {
                                     {member.firstName} {member.lastName}
 
                                     <span className='mdc-list-item__secondary-text'>
-                                        Email: {member.email}<br />
+                                        {member.email}<br />
                                     </span>
                                 </span>
                             </li>
