@@ -29,7 +29,7 @@ export default class SignUpList extends React.Component {
 
                                     <span className='mdc-list-item__secondary-text'>
                                         Email: {contact.email}<br />
-                                        Phone Number: {contact.phoneNumber}
+                                        Phone Number: {_.isEmpty(contact.phoneNumber) ? 'N/A' : contact.phoneNumber}
                                     </span>
                                 </span>
                             </li>

@@ -17,9 +17,13 @@ class Settings extends React.Component {
 
     render() {
         return (
-            <div className='content content-10'>
-                <Text type='headline6'>User Settings</Text>
-                <EditUserForm user={this.props.user} />
+            <div className='content'>
+                <Text type='headline5'>User Settings</Text>
+                <br />
+
+                <div className='content-2'>
+                    <EditUserForm user={this.props.user} />
+                </div>
 
                 <MDCAutoInit />
             </div>
