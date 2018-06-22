@@ -50,7 +50,7 @@ export default class Volunteer extends React.Component {
                 <br />
 
                 <Text type='body1'>Help Type</Text>
-                <Text type='body2'>{_.isEmpty(volunteer.helpType) ? 'N/A' : volunteer.helpType}</Text>
+                <Text type='body2'>{_.isEmpty(volunteer.helpBlurb) ? 'N/A' : volunteer.helpBlurb}</Text>
             </div>
         )
     }
