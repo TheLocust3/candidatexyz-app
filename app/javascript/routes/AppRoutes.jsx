@@ -13,6 +13,7 @@ import Settings from '../components/containers/Settings';
 import SignIn from '../components/containers/users/SignInContainer';
 
 import Campaign from '../components/containers/campaign/Campaign';
+import Staff from '../components/containers/campaign/Staff';
 
 import Communication from '../components/containers/communication/Communication';
 import Volunteers from '../components/containers/communication/Volunteers';
@@ -41,8 +42,6 @@ class AppRoutes extends React.Component {
                         <Route exact path='/website' component={Website} />
                         <Route exact path='/settings' component={Settings} />
 
-                        <Route exact path='/campaign' component={Campaign} />
-
                         <Route exact path='/communication' component={Communication} />
                         <Route exact path='/communication/volunteers' component={Volunteers} />
                         <Route exact path='/communication/sign-ups' component={SignUps} />
@@ -51,6 +50,9 @@ class AppRoutes extends React.Component {
                         <Route exact path='/communication/sign-ups/:id' component={ShowSignUp} />
                         <Route exact path='/communication/messages/:id' component={ShowMessage} />
                         <Route exact path='/communication/volunteers/:id' component={ShowVolunteer} />
+
+                        <Route exact path='/campaign' component={Campaign} />
+                        <Route exact path='/campaign/staff' component={Staff} />
                         
                         <Route component={NotFound} />
                     </Switch>

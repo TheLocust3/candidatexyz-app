@@ -43,16 +43,26 @@ class Navbar extends React.Component {
     setupDropdowns() {
         if (this.props.drawerSelected.item == 'communication') {
             $('#communication-drop-down').show();
+            $('#campaign-drop-down').hide();
+        } else if (this.props.drawerSelected.item == 'campaign') {
+            $('#campaign-drop-down').show();
+            $('#communication-drop-down').hide();
         } else {
             $('#communication-drop-down').hide();
+            $('#campaign-drop-down').hide();
         }
     }
 
     handleDropdowns() {
         if (this.props.drawerSelected.item == 'communication') {
             $('#communication-drop-down').slideDown(200);
+            $('#campaign-drop-down').slideUp(200);
+        } else if (this.props.drawerSelected.item == 'campaign') {
+            $('#campaign-drop-down').slideDown(200);
+            $('#communication-drop-down').slideUp(200);
         } else {
             $('#communication-drop-down').slideUp(200);
+            $('#campaign-drop-down').slideUp(200);
         }
     }
 
@@ -118,6 +128,12 @@ class Navbar extends React.Component {
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>domain</i>
                                 <Text type='body2' className={`mdc-list-item-text ${item == 'campaign' ? 'mdc-list-item-text--activated' : ''}`}>Campaign</Text>
                             </Link>
+
+                            <div id='campaign-drop-down'>
+                                <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/campaign/staff'>
+                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'staff' ? 'drawer-sub-item-text--activated' : ''}`}>Staff</Text>
+                                </Link>
+                            </div>
 
                             <Link className={`mdc-list-item ${item == 'settings' ? 'mdc-list-item--activated' : ''}`} to='/settings' data-mdc-auto-init='MDCRipple'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>settings</i>
