@@ -21,6 +21,7 @@ import Messages from '../components/containers/communication/Messages';
 
 import ShowSignUp from '../components/containers/communication/ShowSignUp';
 import ShowMessage from '../components/containers/communication/ShowMessage';
+import ShowVolunteer from '../components/containers/communication/ShowVolunteer';
 
 class AppRoutes extends React.Component {
 
@@ -49,6 +50,7 @@ class AppRoutes extends React.Component {
 
                         <Route exact path='/communication/sign-ups/:id' component={ShowSignUp} />
                         <Route exact path='/communication/messages/:id' component={ShowMessage} />
+                        <Route exact path='/communication/volunteers/:id' component={ShowVolunteer} />
                         
                         <Route component={NotFound} />
                     </Switch>

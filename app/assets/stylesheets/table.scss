@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 0.5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+
+    border: 1px solid;
+    border-color: #E0E0E0;
+}
+
+th {
+    background-color: #F2F2F2;
+}
+
+tr.selectable {
+    cursor: pointer;
+}
+
+tr:hover.selectable {
+    background-color: #F9F9F9;
+}
+
+tr:active.selectable {
+    background-color: #f4f4f4;
+}
