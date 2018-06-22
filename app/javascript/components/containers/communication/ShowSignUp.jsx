@@ -18,6 +18,12 @@ class ShowSignUp extends React.Component {
         this.props.dispatch(ContactActions.fetchContact(this.props.match.params.id));
     }
 
+    renderSignUp() {
+        if (!this.props.isReady) return;
+
+        return <SignUp contact={this.props.contact} />;
+    }
+
     render() {
         return (
             <div className='content'>
@@ -25,7 +31,7 @@ class ShowSignUp extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    <SignUp contact={this.props.contact} />
+                    {this.renderSignUp()}
                 </div>
                 <br />
 
@@ -37,6 +43,7 @@ class ShowSignUp extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        isReady: state.contacts.isReady,
         contact: state.contacts.contact
     };
 }

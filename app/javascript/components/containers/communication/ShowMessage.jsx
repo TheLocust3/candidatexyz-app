@@ -18,6 +18,12 @@ class ShowMessage extends React.Component {
         this.props.dispatch(MessageActions.fetchMessage(this.props.match.params.id));
     }
 
+    renderMessage() {
+        if (!this.props.isReady) return;
+
+        return <Message message={this.props.message} />;
+    }
+
     render() {
         return (
             <div className='content'>
@@ -25,7 +31,7 @@ class ShowMessage extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    <Message message={this.props.message} />
+                    {this.renderMessage()}
                 </div>
                 <br />
 
@@ -37,6 +43,7 @@ class ShowMessage extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        isReady: state.messages.isReady,
         message: state.messages.message
     };
 }

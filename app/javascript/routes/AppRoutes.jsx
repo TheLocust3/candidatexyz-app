@@ -15,6 +15,8 @@ import SignIn from '../components/containers/users/SignInContainer';
 import Campaign from '../components/containers/campaign/Campaign';
 import Staff from '../components/containers/campaign/Staff';
 
+import ShowUser from '../components/containers/campaign/ShowUser';
+
 import Communication from '../components/containers/communication/Communication';
 import Volunteers from '../components/containers/communication/Volunteers';
 import SignUps from '../components/containers/communication/SignUps';
@@ -53,6 +55,8 @@ class AppRoutes extends React.Component {
 
                         <Route exact path='/campaign' component={Campaign} />
                         <Route exact path='/campaign/staff' component={Staff} />
+
+                        <Route exact path='/campaign/staff/:id' component={ShowUser} />
                         
                         <Route component={NotFound} />
                     </Switch>
@@ -64,7 +68,7 @@ class AppRoutes extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        isReady: state.users.isReady,
+        isReady: state.users.isCurrentUserReady,
         user: state.users.currentUser
     };
 }

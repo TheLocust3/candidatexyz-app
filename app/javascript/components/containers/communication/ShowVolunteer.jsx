@@ -18,6 +18,12 @@ class ShowVolunteer extends React.Component {
         this.props.dispatch(VolunteerActions.fetchVolunteer(this.props.match.params.id));
     }
 
+    renderVolunteer() {
+        if (!this.props.isReady) return;
+
+        return <Volunteer volunteer={this.props.volunteer} />;
+    }
+
     render() {
         return (
             <div className='content'>
@@ -25,7 +31,7 @@ class ShowVolunteer extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    <Volunteer volunteer={this.props.volunteer} />
+                    {this.renderVolunteer()}
                 </div>
                 <br />
 
@@ -37,6 +43,7 @@ class ShowVolunteer extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        isReady: state.volunteers.isReady,
         volunteer: state.volunteers.volunteer
     };
 }
