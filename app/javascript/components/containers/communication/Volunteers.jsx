@@ -21,7 +21,7 @@ class Volunteers extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Volunteer List</Text>
-                <br />
+                <br /><br />
 
                 <Table to='/communication/volunteers/' headers={['First Name', 'Last Name', 'Email', 'Address', 'Help Type']} keys={['firstName', 'lastName', 'email', 'address', 'helpBlurb']} rows={this.props.volunteers.volunteers} />
             </div>

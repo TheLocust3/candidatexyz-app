@@ -19,7 +19,7 @@ export default class Table extends React.Component {
                         {this.props.keys.map((key) => {
                             return (
                                 <td key={key}>
-                                    <Text type='body1'>{row[key]}</Text>
+                                    <Text type='body2'>{row[key]}</Text>
                                 </td>
                             );
                         })}

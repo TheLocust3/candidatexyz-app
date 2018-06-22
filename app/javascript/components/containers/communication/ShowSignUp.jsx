@@ -22,10 +22,12 @@ class ShowSignUp extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>View Sign Up</Text>
-                <br />
-
-                <SignUp contact={this.props.contact} />
                 <br /><br />
+
+                <div className='content-2'>
+                    <SignUp contact={this.props.contact} />
+                </div>
+                <br />
 
                 <BackLink to='/communication/sign-ups' />
             </div>

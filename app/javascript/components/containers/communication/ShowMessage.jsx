@@ -22,10 +22,12 @@ class ShowMessage extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>View Message</Text>
-                <br />
-
-                <Message message={this.props.message} />
                 <br /><br />
+
+                <div className='content-2'>
+                    <Message message={this.props.message} />
+                </div>
+                <br />
 
                 <BackLink to='/communication/messages' />
             </div>

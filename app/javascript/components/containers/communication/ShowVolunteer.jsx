@@ -22,10 +22,12 @@ class ShowVolunteer extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>View Volunteer</Text>
-                <br />
-
-                <Volunteer volunteer={this.props.volunteer} />
                 <br /><br />
+
+                <div className='content-2'>
+                    <Volunteer volunteer={this.props.volunteer} />
+                </div>
+                <br />
 
                 <BackLink to='/communication/volunteers' />
             </div>

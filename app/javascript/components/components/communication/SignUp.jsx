@@ -21,20 +21,20 @@ export default class SignUp extends React.Component {
 
         return (
             <div>
-                <Text type='headline6'>Name</Text>
-                <Text type='body1'>{this.renderName(contact)}</Text>
+                <Text type='body1'>Name</Text>
+                <Text type='body2'>{this.renderName(contact)}</Text>
                 <br />
 
-                <Text type='headline6'>Email</Text>
-                <Text type='body1'>{contact.email}</Text>
+                <Text type='body1'>Email</Text>
+                <Text type='body2'>{contact.email}</Text>
                 <br />
 
-                <Text type='headline6'>Zipcode</Text>
-                <Text type='body1'>{_.isEmpty(contact.zipcode) ? 'N/A' : contact.zipcode}</Text>
+                <Text type='body1'>Zipcode</Text>
+                <Text type='body2'>{_.isEmpty(contact.zipcode) ? 'N/A' : contact.zipcode}</Text>
                 <br />
 
-                <Text type='headline6'>Phone Number</Text>
-                <Text type='body1'>{_.isEmpty(contact.phoneNumber) ? 'N/A' : contact.phoneNumber}</Text>
+                <Text type='body1'>Phone Number</Text>
+                <Text type='body2'>{_.isEmpty(contact.phoneNumber) ? 'N/A' : contact.phoneNumber}</Text>
             </div>
         )
     }

@@ -21,18 +21,18 @@ export default class Message extends React.Component {
 
         return (
             <div>
-                <Text type='headline6'>Name</Text>
-                <Text type='body1'>{this.renderName(message)}</Text>
+                <Text type='body1'>Name</Text>
+                <Text type='body2'>{this.renderName(message)}</Text>
                 <br />
 
-                <Text type='headline6'>Email</Text>
-                <Text type='body1'>{message.email}</Text>
+                <Text type='body1'>Email</Text>
+                <Text type='body2'>{message.email}</Text>
                 <br />
 
-                <Text type='headline6'>Message</Text>
-                <Text type='body1'>Subject: {this.props.message.subject}</Text><br />
+                <Text type='body1'>Message</Text>
+                <Text type='body2'>Subject: {this.props.message.subject}</Text><br />
                 
-                <Text type='body1'>{message.message}</Text>
+                <Text type='body2'>{message.message}</Text>
             </div>
         )
     }
