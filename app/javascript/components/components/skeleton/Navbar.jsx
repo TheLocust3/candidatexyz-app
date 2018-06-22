@@ -9,6 +9,7 @@ import { AuthApi } from 'candidatexyz-common-js';
 import { MAX_MOBILE_WIDTH } from '../../../constants';
 
 import Text from '../common/Text';
+import CompanyTitle from '../common/CompanyTitle';
 
 class Navbar extends React.Component {
 
@@ -80,7 +81,7 @@ class Navbar extends React.Component {
         return (
             <div className='content-root'>
                 <nav className='mdc-drawer mdc-drawer--permanent mdc-typography drawer-desktop'>
-                    <Text type='body1' className='mdc-drawer__toolbar-spacer'>candidateXYZ</Text>
+                    <Text type='body1' className='mdc-drawer__toolbar-spacer'><CompanyTitle type='body1' /></Text>
                     
                     <div className='mdc-drawer__content'>
                         <nav className='mdc-list'>
@@ -153,7 +154,7 @@ class Navbar extends React.Component {
                 <header className='mdc-toolbar mdc-toolbar--fixed navbar'>
                     <div className='mdc-toolbar__row'>
                         <section className='mdc-toolbar__section mdc-toolbar__section--align-start'>
-                            <Link to='/' className='unstyled-link'><Text type='body1'>candidateXYZ</Text></Link>
+                            <Link to='/' className='unstyled-link'><CompanyTitle type='body1' invert/></Link>
                         </section>
 
                         <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
@@ -165,9 +166,9 @@ class Navbar extends React.Component {
                 <aside className='mdc-drawer mdc-drawer--temporary' id='mobile-navbar'>
                     <nav className='mdc-drawer__drawer'>
                         <header className='mdc-drawer__header'>
-                            <Text type='title' className='mdc-drawer__header-content mdc-theme--primary-bg' style={{ color: 'white' }}>
-                                candidateXYZ
-                            </Text>
+                            <div className='mdc-drawer__header-content mdc-theme--primary-bg'>
+                                <CompanyTitle type='title' invert/>
+                            </div>
                         </header>
 
                         <nav className='mdc-drawer__content mdc-list-group'>

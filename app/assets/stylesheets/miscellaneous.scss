@@ -1,7 +1,21 @@
+@import 'global';
+
 .back-link {
     padding-left: 1%;
 }
 
 .back-link-text {
     display: inline-block;
+}
+
+.xyz {
+    color: $purple-light;
+}
+
+.xyz-outer--inverted {
+    color: white;
+}
+
+.xyz--inverted {
+    color: white;
 }
