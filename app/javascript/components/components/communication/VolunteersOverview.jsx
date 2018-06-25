@@ -25,7 +25,8 @@ export default class VolunteersOverview extends React.Component {
                     <Text type='body2'>{this.renderNumberOfVolunteers()}</Text>
                 </Link>
 
-                <br />
+                <br /><br />
+                
                 <Text type='body1'>Recent Volunteer</Text>
                 <VolunteerThumbnail volunteer={recent} dense/>
             </div>

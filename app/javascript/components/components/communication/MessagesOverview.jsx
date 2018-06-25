@@ -25,7 +25,8 @@ export default class MessagesOverview extends React.Component {
                     <Text type='body2'>{this.renderNumberOfMessages()}</Text>
                 </Link>
                 
-                <br />
+                <br /><br />
+                
                 <Text type='body1'>Recent Message</Text>
                 <MessageThumbnail message={recent} dense/>
             </div>

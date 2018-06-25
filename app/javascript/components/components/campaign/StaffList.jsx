@@ -11,8 +11,6 @@ export default class StaffList extends React.Component {
         return (
             <ul className='mdc-list mdc-list--two-line'>
                 {this.props.staff.map((member, index) => {
-                    if (member.superuser) return;
-
                     return (
                         <Link key={index} className='unstyled-link-black link-no-hover' to={`/campaign/staff/${member.id}`}>
                             <li className='mdc-list-item'>

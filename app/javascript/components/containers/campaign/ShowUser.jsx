@@ -32,22 +32,30 @@ class ShowUser extends React.Component {
         return <User user={this.props.user} />;
     }
 
+    renderActions() {
+        if (!this.props.currentUser.admin) return;
+
+        return (
+            <div className='resource-actions'>
+                <Link className='resource-actions-item unstyled-link-black' to={`/campaign/staff/${this.props.match.params.id}/edit`}>
+                    <Text type='body2'>Edit</Text>
+                </Link>
+
+                <div className='resource-actions-spacer' />
+
+                <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
+                    <Text type='body2'>Delete</Text>
+                </a>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div className='content'>
                 <Text type='headline5'>View User</Text>
 
-                <div className='resource-actions'>
-                    <Link className='resource-actions-item unstyled-link-black' to={`/campaign/staff/${this.props.match.params.id}/edit`}>
-                        <Text type='body2'>Edit</Text>
-                    </Link>
-
-                    <div className='resource-actions-spacer' />
-
-                    <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
-                        <Text type='body2'>Delete</Text>
-                    </a>
-                </div>
+                {this.renderActions()}
                 <br /><br />
 
                 <div className='content-2'>
@@ -64,7 +72,8 @@ class ShowUser extends React.Component {
 function mapStateToProps(state) {
     return {
         isReady: state.users.isReady,
-        user: state.users.user
+        user: state.users.user,
+        currentUser: state.users.currentUser
     };
 }
 

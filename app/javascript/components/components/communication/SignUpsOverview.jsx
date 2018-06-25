@@ -25,7 +25,8 @@ export default class ContactsOverview extends React.Component {
                     <Text type='body2'>{this.renderNumberOfContacts()}</Text>
                 </Link>
 
-                <br />
+                <br /><br />
+                
                 <Text type='body1'>Recent Sign Up</Text>
                 <SignUpThumbnail contact={recent} dense/>
             </div>

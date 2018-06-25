@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CampaignActions } from 'candidatexyz-common-js';
+import { StaffActions, CampaignActions } from 'candidatexyz-common-js';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
 import Text from '../../components/common/Text';
+import StaffOverview from '../../components/campaign/StaffOverview';
 
 class Campaign extends React.Component {
 
@@ -14,14 +15,21 @@ class Campaign extends React.Component {
         this.props.dispatch(setDrawerSelected('campaign'));
 
         this.props.dispatch(CampaignActions.fetchCampaign(this.props.currentUser.campaignId));
+        this.props.dispatch(StaffActions.fetchAllUsers());
     }
 
     render() {
+        if (!this.props.isCampaignReady || !this.props.areUsersReady) return null;
+
         return (
             <div className='content'>
-                <Text type='headline5'>Campaign Overview</Text>
+                <Text type='headline5'>{this.props.campaign.name}</Text>
+                <br /><br />
 
-                <Text type='headline6'>{this.props.campaign.name}</Text>
+                <div className='content-2'>
+                    <Text type='headline6'>Staff</Text>
+                    <StaffOverview users={this.props.users.users} />
+                </div>
             </div>
         );
     }
@@ -30,7 +38,9 @@ class Campaign extends React.Component {
 function mapStateToProps(state) {
     return {
         currentUser: state.users.currentUser,
-        isReady: state.campaigns.isReady,
+        areUsersReady: state.users.isReady,
+        users: state.users.users,
+        isCampaignReady: state.campaigns.isReady,
         campaign: state.campaigns.campaign
     };
 }
