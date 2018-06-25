@@ -95,17 +95,17 @@ class Navbar extends React.Component {
                     
                     <div className='mdc-drawer__content'>
                         <nav className='mdc-list'>
-                            <Link className={`mdc-list-item ${item == 'home' ? 'mdc-list-item--activated' : ''}`} to='/' data-mdc-auto-init='MDCRipple'>
+                            <Link className={`mdc-list-item ${item == 'home' ? 'mdc-list-item--activated' : ''}`} to='/'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>home</i>
                                 <Text type='body2' className={`mdc-list-item-text ${item == 'home' ? 'mdc-list-item-text--activated' : ''}`}>Home</Text>
                             </Link>
 
-                            <Link className={`mdc-list-item ${item == 'website' ? 'mdc-list-item--activated' : ''}`} to='/website' data-mdc-auto-init='MDCRipple'>
+                            <Link className={`mdc-list-item ${item == 'website' ? 'mdc-list-item--activated' : ''}`} to='/website'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>desktop_windows</i>
                                 <Text type='body2' className={`mdc-list-item-text ${item == 'website' ? 'mdc-list-item-text--activated' : ''}`}>Website</Text>
                             </Link>
 
-                            <Link className={`mdc-list-item ${item == 'communication' ? 'mdc-list-item--activated' : ''}`} to='/communication' data-mdc-auto-init='MDCRipple'>
+                            <Link className={`mdc-list-item ${item == 'communication' ? 'mdc-list-item--activated' : ''}`} to='/communication'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>person</i>
                                 <Text type='body2' className={`mdc-list-item-text ${item == 'communication' ? 'mdc-list-item-text--activated' : ''}`}>Communication</Text>
                             </Link>
@@ -124,7 +124,7 @@ class Navbar extends React.Component {
                                 </Link>
                             </div>
 
-                            <Link className={`mdc-list-item ${item == 'campaign' ? 'mdc-list-item--activated' : ''}`} to='/campaign' data-mdc-auto-init='MDCRipple'>
+                            <Link className={`mdc-list-item ${item == 'campaign' ? 'mdc-list-item--activated' : ''}`} to='/campaign'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>domain</i>
                                 <Text type='body2' className={`mdc-list-item-text ${item == 'campaign' ? 'mdc-list-item-text--activated' : ''}`}>Campaign</Text>
                             </Link>
@@ -135,7 +135,7 @@ class Navbar extends React.Component {
                                 </Link>
                             </div>
 
-                            <Link className={`mdc-list-item ${item == 'settings' ? 'mdc-list-item--activated' : ''}`} to='/settings' data-mdc-auto-init='MDCRipple'>
+                            <Link className={`mdc-list-item ${item == 'settings' ? 'mdc-list-item--activated' : ''}`} to='/settings'>
                                 <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>settings</i>
                                 <Text type='body2' className={`mdc-list-item-text ${item == 'settings' ? 'mdc-list-item-text--activated' : ''}`}>Settings</Text>
                             </Link>
@@ -189,27 +189,27 @@ class Navbar extends React.Component {
 
                         <nav className='mdc-drawer__content mdc-list-group'>
                             <div className='mdc-list'>
-                                <Link className='mdc-list-item' to='/' onClick={this.onLinkClick.bind(this)} data-mdc-auto-init='MDCRipple'>
+                                <Link className='mdc-list-item' to='/' onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>home</i>
                                     <Text type='body2'>Home</Text>
                                 </Link>
 
-                                <Link className='mdc-list-item' to='/website' onClick={this.onLinkClick.bind(this)} data-mdc-auto-init='MDCRipple'>
+                                <Link className='mdc-list-item' to='/website' onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>desktop_windows</i>
                                     <Text type='body2'>Website</Text>
                                 </Link>
 
-                                <Link className='mdc-list-item' to='/volunteers' onClick={this.onLinkClick.bind(this)} data-mdc-auto-init='MDCRipple'>
+                                <Link className='mdc-list-item' to='/volunteers' onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>person</i>
                                     <Text type='body2'>Volunteers</Text>
                                 </Link>
 
-                                <Link className='mdc-list-item' to='/settings' onClick={this.onLinkClick.bind(this)} data-mdc-auto-init='MDCRipple'>
+                                <Link className='mdc-list-item' to='/settings' onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>settings</i>
                                     <Text type='body2'>Settings</Text>
                                 </Link>
 
-                                <Link className='mdc-list-item' to='#' onClick={this.onSignOutClick.bind(this)} data-mdc-auto-init='MDCRipple'>
+                                <Link className='mdc-list-item' to='#' onClick={this.onSignOutClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>cancel</i>
                                     <Text type='body2'>Sign Out</Text>
                                 </Link>
