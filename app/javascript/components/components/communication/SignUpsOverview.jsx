@@ -21,7 +21,7 @@ export default class ContactsOverview extends React.Component {
 
         return (
             <div>
-                <Link className='link' to='/communication/contacts'>
+                <Link className='link' to='/communication/sign-ups'>
                     <Text type='body2'>{this.renderNumberOfContacts()}</Text>
                 </Link>
 
