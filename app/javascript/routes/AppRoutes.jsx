@@ -26,6 +26,8 @@ import ShowSignUp from '../components/containers/communication/ShowSignUp';
 import ShowMessage from '../components/containers/communication/ShowMessage';
 import ShowVolunteer from '../components/containers/communication/ShowVolunteer';
 
+import EditSignUp from '../components/containers/communication/EditSignUp';
+
 class AppRoutes extends React.Component {
 
     componentWillMount() {
@@ -45,13 +47,16 @@ class AppRoutes extends React.Component {
                         <Route exact path='/settings' component={Settings} />
 
                         <Route exact path='/communication' component={Communication} />
-                        <Route exact path='/communication/volunteers' component={Volunteers} />
-                        <Route exact path='/communication/sign-ups' component={SignUps} />
-                        <Route exact path='/communication/messages' component={Messages} />
 
+                        <Route exact path='/communication/sign-ups' component={SignUps} />
                         <Route exact path='/communication/sign-ups/:id' component={ShowSignUp} />
-                        <Route exact path='/communication/messages/:id' component={ShowMessage} />
+                        <Route exact path='/communication/sign-ups/:id/edit' component={EditSignUp} />
+
                         <Route exact path='/communication/volunteers/:id' component={ShowVolunteer} />
+                        <Route exact path='/communication/volunteers' component={Volunteers} />
+
+                        <Route exact path='/communication/messages' component={Messages} />
+                        <Route exact path='/communication/messages/:id' component={ShowMessage} />
 
                         <Route exact path='/campaign' component={Campaign} />
                         <Route exact path='/campaign/staff' component={Staff} />

@@ -2,6 +2,8 @@ import _ from 'lodash'
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Text from './Text';
+
 export default class Form extends React.Component {
 
     handleSubmit(event) {
@@ -14,7 +16,7 @@ export default class Form extends React.Component {
         if (_.isEmpty(this.props.errors)) return;
 
         return (
-            <i>
+            <Text type='caption'>
                 {_.map(this.props.errors, (errorMessage, errorName) => {
                     return (
                         <div key={errorName}>
@@ -22,19 +24,21 @@ export default class Form extends React.Component {
                         </div>
                     )
                 })}
-            </i>
+            </Text>
         )
     }
 
     render() {
-        let { handleSubmit, errors, children, ...props } = this.props;
+        let { handleSubmit, errors, top, children, ...props } = this.props;
 
         return (
             <form onSubmit={this.handleSubmit.bind(this)} {...props}>
+                {top ? this.renderErrors() : ''}
+
                 {children}
                 <br /><br />
 
-                {this.renderErrors()}
+                {!top ? this.renderErrors() : ''}
             </form>
         );
     }
@@ -43,6 +47,7 @@ export default class Form extends React.Component {
 Form.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     errors: PropTypes.object,
+    top: PropTypes.bool,
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.element),
         PropTypes.element,
