@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Text from '../../common/Text';
+import MessageThumbnail from './MessageThumbnail';
 
 export default class MessageList extends React.Component {
 
@@ -12,18 +13,10 @@ export default class MessageList extends React.Component {
             <ul className='mdc-list mdc-list--two-line'>
                 {messages.map((message, index) => {
                     return (
-                        <Link key={index} className='unstyled-link-black link-no-hover' to={`/communication/messages/${message.id}`}>
-                            <li className='mdc-list-item'>
-                                <span className='mdc-list-item__text'>
-                                    {message.firstName} {message.lastName}
-
-                                    <span className='mdc-list-item__secondary-text'>
-                                        {message.subject}
-                                    </span>
-                                </span>
-                            </li>
-                        </Link>
-                    )
+                        <div key={index}>
+                            <MessageThumbnail message={message} />
+                        </div>
+                    );
                 })}
             </ul>
         );

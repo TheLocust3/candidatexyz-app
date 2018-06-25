@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { userReducer, contactReducer, volunteerReducer, messageReducer } from 'candidatexyz-common-js';
+import { userReducer, contactReducer, volunteerReducer, messageReducer, campaignReducer } from 'candidatexyz-common-js';
 
 import { globalReducer } from './global-reducer'
 
@@ -8,7 +8,8 @@ const reducer = combineReducers({
     global: globalReducer,
     contacts: contactReducer,
     volunteers: volunteerReducer,
-    messages: messageReducer
+    messages: messageReducer,
+    campaigns: campaignReducer
 });
 
 export default reducer;

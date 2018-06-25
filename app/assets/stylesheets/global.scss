@@ -107,6 +107,10 @@ body, #root {
     transform: translate(0, -50%);
 }
 
+.link:visited {
+    color: blue;
+}
+
 .unstyled-link {
     color: white;
     text-decoration: none;

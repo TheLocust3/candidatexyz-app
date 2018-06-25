@@ -20,12 +20,7 @@ class Text extends React.Component {
 Text.propTypes = {
     className: PropTypes.string,
     type: PropTypes.string.isRequired,
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.element),
-        PropTypes.element,
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
-    ]),
+    children: PropTypes.any,
 };
 
 export default Text;
