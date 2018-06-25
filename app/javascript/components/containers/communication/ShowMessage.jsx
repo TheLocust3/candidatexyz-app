@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { MessageActions } from 'candidatexyz-common-js';
+import { Link } from 'react-router-dom';
+import { MessageApi, MessageActions } from 'candidatexyz-common-js';
 
+import { history } from '../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
 import Text from '../../components/common/Text';
@@ -18,6 +20,12 @@ class ShowMessage extends React.Component {
         this.props.dispatch(MessageActions.fetchMessage(this.props.match.params.id));
     }
 
+    onDeleteClick(event) {
+        MessageApi.destroy(this.props.match.params.id).then(() => {
+            history.push('/communication/messages');
+        });
+    }
+
     renderMessage() {
         if (!this.props.isReady) return;
 
@@ -28,6 +36,18 @@ class ShowMessage extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>View Message</Text>
+
+                <div className='resource-actions'>
+                    <Link className='resource-actions-item unstyled-link-black' to={`/communication/messages/${this.props.match.params.id}/edit`}>
+                        <Text type='body2'>Edit</Text>
+                    </Link>
+
+                    <div className='resource-actions-spacer' />
+
+                    <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
+                        <Text type='body2'>Delete</Text>
+                    </a>
+                </div>
                 <br /><br />
 
                 <div className='content-2'>

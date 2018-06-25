@@ -211,6 +211,7 @@ resource "aws_lb_listener" "lb_listener2" {
 
 resource "aws_autoscaling_group" "autoscaling" {
   name                 = "${var.name}"
+  force_delete         = true
   max_size             = "2"
   min_size             = "2"
   launch_configuration = "${aws_launch_configuration.launch.name}"

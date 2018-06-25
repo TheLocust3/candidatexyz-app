@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ContactActions } from 'candidatexyz-common-js';
+import { Link } from 'react-router-dom';
+import { ContactActions, ContactApi } from 'candidatexyz-common-js';
 
+import { history } from '../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
 import Text from '../../components/common/Text';
@@ -18,6 +20,12 @@ class ShowSignUp extends React.Component {
         this.props.dispatch(ContactActions.fetchContact(this.props.match.params.id));
     }
 
+    onDeleteClick(event) {
+        ContactApi.destroy(this.props.match.params.id).then(() => {
+            history.push('/communication/sign-ups');
+        });
+    }
+
     renderSignUp() {
         if (!this.props.isReady) return;
 
@@ -28,6 +36,19 @@ class ShowSignUp extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>View Sign Up</Text>
+                
+                <div className='resource-actions'>
+                    <Link className='resource-actions-item unstyled-link-black' to={`/communication/sign-ups/${this.props.match.params.id}/edit`}>
+                        <Text type='body2'>Edit</Text>
+                    </Link>
+
+                    <div className='resource-actions-spacer' />
+
+                    <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
+                        <Text type='body2'>Delete</Text>
+                    </a>
+                </div>
+
                 <br /><br />
 
                 <div className='content-2'>
