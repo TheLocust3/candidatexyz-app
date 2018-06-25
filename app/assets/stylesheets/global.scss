@@ -128,3 +128,16 @@ body, #root {
 .right-form-button {
     float: right;
 }
+
+.checkbox-wrapper {
+    position: relative;
+    margin-left: -10px;
+
+    display: inline-block;
+}
+
+.checkbox-label {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%)
+}

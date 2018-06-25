@@ -14,6 +14,7 @@ import SignIn from '../components/containers/users/SignInContainer';
 
 import Campaign from '../components/containers/campaign/Campaign';
 import Staff from '../components/containers/campaign/Staff';
+import EditUser from '../components/containers/campaign/EditUser';
 
 import ShowUser from '../components/containers/campaign/ShowUser';
 
@@ -62,8 +63,8 @@ class AppRoutes extends React.Component {
 
                         <Route exact path='/campaign' component={Campaign} />
                         <Route exact path='/campaign/staff' component={Staff} />
-
                         <Route exact path='/campaign/staff/:id' component={ShowUser} />
+                        <Route exact path='/campaign/staff/:id/edit' component={EditUser} />
                         
                         <Route component={NotFound} />
                     </Switch>
