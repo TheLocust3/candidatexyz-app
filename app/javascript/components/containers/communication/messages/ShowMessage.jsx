@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { MessageApi, MessageActions } from 'candidatexyz-common-js';
 
-import { history } from '../../../constants';
-import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
+import { history } from '../../../../constants';
+import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
-import Text from '../../components/common/Text';
-import BackLink from '../../components/common/BackLink';
-import Message from '../../components/communication/Message';
+import Text from '../../../components/common/Text';
+import BackLink from '../../../components/common/BackLink';
+import Message from '../../../components/communication/messages/Message';
 
 class ShowMessage extends React.Component {
 

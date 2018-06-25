@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { VolunteerActions } from 'candidatexyz-common-js';
 
-import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
+import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
-import Text from '../../components/common/Text';
-import Table from '../../components/common/Table';
+import Text from '../../../components/common/Text';
+import Table from '../../../components/common/Table';
 
 class Volunteers extends React.Component {
 

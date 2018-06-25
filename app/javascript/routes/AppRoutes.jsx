@@ -18,16 +18,16 @@ import Staff from '../components/containers/campaign/Staff';
 import ShowUser from '../components/containers/campaign/ShowUser';
 
 import Communication from '../components/containers/communication/Communication';
-import Volunteers from '../components/containers/communication/Volunteers';
-import SignUps from '../components/containers/communication/SignUps';
-import Messages from '../components/containers/communication/Messages';
+import Volunteers from '../components/containers/communication/volunteers/Volunteers';
+import SignUps from '../components/containers/communication/sign-ups/SignUps';
+import Messages from '../components/containers/communication/messages/Messages';
 
-import ShowSignUp from '../components/containers/communication/ShowSignUp';
-import ShowMessage from '../components/containers/communication/ShowMessage';
-import ShowVolunteer from '../components/containers/communication/ShowVolunteer';
+import ShowSignUp from '../components/containers/communication/sign-ups/ShowSignUp';
+import ShowMessage from '../components/containers/communication/messages/ShowMessage';
+import ShowVolunteer from '../components/containers/communication/volunteers/ShowVolunteer';
 
-import EditSignUp from '../components/containers/communication/EditSignUp';
-import EditVolunteer from '../components/containers/communication/EditVolunteer';
+import EditSignUp from '../components/containers/communication/sign-ups/EditSignUp';
+import EditVolunteer from '../components/containers/communication/volunteers/EditVolunteer';
 
 class AppRoutes extends React.Component {
 

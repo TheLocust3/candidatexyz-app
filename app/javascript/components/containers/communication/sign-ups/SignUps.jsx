@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ContactActions } from 'candidatexyz-common-js';
 
-import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
+import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
-import Text from '../../components/common/Text';
-import SignUpList from '../../components/communication/SignUpList';
+import Text from '../../../components/common/Text';
+import SignUpList from '../../../components/communication/sign-ups/SignUpList';
 
 class SignUps extends React.Component {
 

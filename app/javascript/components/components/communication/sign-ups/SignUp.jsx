@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Text from '../common/Text';
+import Text from '../../common/Text';
 
 export default class SignUp extends React.Component {
 

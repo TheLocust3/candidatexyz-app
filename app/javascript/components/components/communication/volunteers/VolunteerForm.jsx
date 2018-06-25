@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { VolunteerApi } from 'candidatexyz-common-js';
 
-import { history } from '../../../constants';
+import { history } from '../../../../constants';
 
-import MDCAutoInit from '../global/MDCAutoInit';
-import Button from '../common/Button';
-import TextField from '../common/TextField';
-import TextArea from '../common/TextArea';
-import Form from '../common/Form';
+import MDCAutoInit from '../../global/MDCAutoInit';
+import Button from '../../common/Button';
+import TextField from '../../common/TextField';
+import TextArea from '../../common/TextArea';
+import Form from '../../common/Form';
 
 export default class SignUpForm extends React.Component {
 

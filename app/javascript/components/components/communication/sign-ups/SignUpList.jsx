@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import Text from '../common/Text';
+import Text from '../../common/Text';
 
 export default class SignUpList extends React.Component {
 

@@ -1,19 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { VolunteerApi, VolunteerActions } from 'candidatexyz-common-js';
+import { VolunteerActions, VolunteerApi } from 'candidatexyz-common-js';
 
-import { history } from '../../../constants';
-import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
+import { history } from '../../../../constants';
+import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
-import Text from '../../components/common/Text';
-import BackLink from '../../components/common/BackLink';
-import Volunteer from '../../components/communication/Volunteer';
+import Text from '../../../components/common/Text';
+import BackLink from '../../../components/common/BackLink';
+import VolunteerForm from '../../../components/communication/volunteers/VolunteerForm';
 
-class ShowVolunteer extends React.Component {
+class EditVolunteer extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setTitle('View Volunteer'));
+        this.props.dispatch(setTitle('Edit Volunteer'));
         this.props.dispatch(setBreadcrumb('Volunteer'));
         this.props.dispatch(setDrawerSelected('communication', 'volunteers'));
 
@@ -26,36 +25,29 @@ class ShowVolunteer extends React.Component {
         });
     }
 
-    renderVolunteer() {
+    renderVolunteerForm() {
         if (!this.props.isReady) return;
 
-        return <Volunteer volunteer={this.props.volunteer} />;
+        return <VolunteerForm volunteer={this.props.volunteer} />;
     }
 
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>View Volunteer</Text>
-
+                <Text type='headline5'>Edit Volunteer</Text>
                 <div className='resource-actions'>
-                    <Link className='resource-actions-item unstyled-link-black' to={`/communication/volunteers/${this.props.match.params.id}/edit`}>
-                        <Text type='body2'>Edit</Text>
-                    </Link>
-
-                    <div className='resource-actions-spacer' />
-
                     <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
                         <Text type='body2'>Delete</Text>
                     </a>
                 </div>
-                <br /><br />
+                <br />
 
                 <div className='content-2'>
-                    {this.renderVolunteer()}
+                    {this.renderVolunteerForm()}
                 </div>
                 <br />
 
-                <BackLink to='/communication/volunteers' />
+                <BackLink to={`/communication/volunteers/${this.props.match.params.id}`} />
             </div>
         );
     }
@@ -68,4 +60,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(ShowVolunteer);
+export default connect(mapStateToProps)(EditVolunteer);
