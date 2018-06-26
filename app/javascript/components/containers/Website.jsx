@@ -6,6 +6,7 @@ import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-ac
 
 import Text from '../components/common/Text';
 import AnalyticsOverview from '../components/website/AnalyticsOverview';
+import AnalyticsGraphs from '../components/website/AnalyticsGraphs';
 
 class Website extends React.Component {
 
@@ -28,6 +29,9 @@ class Website extends React.Component {
                 <div className='content-2'>
                     <Text type='headline6'>At a Glance</Text>
                     <AnalyticsOverview analyticEntries={this.props.analyticEntries.analyticEntries} />
+
+                    <Text type='headline6'>Graphs</Text>
+                    <AnalyticsGraphs analyticEntries={this.props.analyticEntries.analyticEntries} />
                 </div>
             </div>
         );
