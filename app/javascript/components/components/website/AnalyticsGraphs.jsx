@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { condenseTimeSeries } from '../../../helpers';
 
+import Text from '../common/Text';
 import TimeLineChart from '../common/graphs/TimeLineChart';
 
 export default class Website extends React.Component {
@@ -17,21 +18,27 @@ export default class Website extends React.Component {
     render() {
         let today = _.filter(this.props.analyticEntries, (analyticEntry) => { return moment(analyticEntry.createdAt) > moment().subtract(24, 'hours') });
         let month = _.filter(this.props.analyticEntries, (analyticEntry) => { return moment(analyticEntry.createdAt) > moment().subtract(31, 'days') });
-        let year = _.filter(this.props.analyticEntries, (analyticEntry) => { return moment(analyticEntry.createdAt) > moment().subtract(12, 'months') });
 
         let hoursData = condenseTimeSeries(this.dataFromEntries(today), 'hour');
         let daysData = condenseTimeSeries(this.dataFromEntries(month), 'date');
-        let monthsData = condenseTimeSeries(this.dataFromEntries(year), 'month');
+
+        let dayStart = moment().minute(0).second(0).millisecond(0).subtract(24, 'hours');
+        let dayEnd = moment().minute(0).second(0).millisecond(0);
+        let monthStart = moment().hour(0).minute(0).second(0).millisecond(0).subtract(31, 'days');
+        let monthEnd = moment().hour(0).minute(0).second(0).millisecond(0);
 
         return (
-            <div className='content'>
-                <TimeLineChart data={hoursData} label='Page Views' yAxis='Page Views' unit='hour' />
-                <br />
+            <div>
+                <Text type='headline6'>Past 24 Hours</Text>
+                <Text type='body2'>Page views per hour</Text><br />
 
-                <TimeLineChart data={daysData} label='Page Views' yAxis='Page Views' unit='day' />
-                <br />
+                <TimeLineChart data={hoursData} label='Page Views' yAxis='Page Views' unit='hour' minX={dayStart} maxX={dayEnd} />
+                <br /><br />
 
-                <TimeLineChart data={monthsData} label='Page Views' yAxis='Page Views' unit='month' />
+                <Text type='headline6'>Past 31 Days</Text>
+                <Text type='body2'>Page views per day</Text><br />
+
+                <TimeLineChart data={daysData} label='Page Views' yAxis='Page Views' unit='day' minX={monthStart} maxX={monthEnd} />
             </div>
         );
     }

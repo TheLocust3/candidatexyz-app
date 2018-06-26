@@ -30,8 +30,10 @@ export default class TimeLineChart extends React.Component {
                         labelString: this.props.xAxis
                     },
                     time: {
-                        unit: this.props.unit
-                    }    
+                        unit: this.props.unit,
+                        min: this.props.minX,
+                        max: this.props.maxX
+                    }
                 }],
                 yAxes: [{
                     display: true,
@@ -58,5 +60,7 @@ TimeLineChart.propTypes = {
     xAxis: PropTypes.string,
     yAxis: PropTypes.string,
     label: PropTypes.string,
-    unit: PropTypes.string.isRequired
+    unit: PropTypes.string.isRequired,
+    minX: PropTypes.any,
+    maxX: PropTypes.any
 };

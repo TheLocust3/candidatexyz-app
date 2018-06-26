@@ -24,13 +24,13 @@ class Website extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Website Analytics</Text>
-                <br /><br />
+                <br />
 
                 <div className='content-2'>
                     <Text type='headline6'>At a Glance</Text>
                     <AnalyticsOverview analyticEntries={this.props.analyticEntries.analyticEntries} />
+                    <br /><br />
 
-                    <Text type='headline6'>Graphs</Text>
                     <AnalyticsGraphs analyticEntries={this.props.analyticEntries.analyticEntries} />
                 </div>
             </div>

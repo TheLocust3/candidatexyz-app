@@ -12,12 +12,12 @@ export default class Website extends React.Component {
         let month = _.filter(this.props.analyticEntries, (analyticEntry) => { return moment(analyticEntry.createdAt) > moment().subtract(31, 'days') });
 
         return (
-            <div className='content'>
-                <Text type='body2'>Total site views: {this.props.analyticEntries.length}</Text>
+            <div>
+                <Text type='body2'>Total page views: {this.props.analyticEntries.length}</Text>
 
-                <Text type='body2'>Site views over last 24 hours: {today.length}</Text>
+                <Text type='body2'>Page views over last 24 hours: {today.length}</Text>
 
-                <Text type='body2'>Site views over last 31 days: {month.length}</Text>
+                <Text type='body2'>Page views over last 31 days: {month.length}</Text>
             </div>
         );
     }
