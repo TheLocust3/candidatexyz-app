@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { UserActions } from 'candidatexyz-common-js';
+import { UserActions, setCampaignId } from 'candidatexyz-common-js';
 
 import Skeleton from '../components/containers/Skeleton';
 import NotFound from '../components/containers/NotFound';
@@ -34,6 +34,12 @@ class AppRoutes extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(UserActions.fetchCurrentUser());
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.isReady || _.isEmpty(nextProps.user)) return;
+        
+        setCampaignId(nextProps.user.campaignId);
     }
 
     render() {
