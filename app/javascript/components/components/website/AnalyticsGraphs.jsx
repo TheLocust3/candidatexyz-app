@@ -16,8 +16,10 @@ export default class Website extends React.Component {
     }
 
     render() {
-        let today = _.filter(this.props.analyticEntries, (analyticEntry) => { return moment(analyticEntry.createdAt) > moment().subtract(24, 'hours') });
-        let month = _.filter(this.props.analyticEntries, (analyticEntry) => { return moment(analyticEntry.createdAt) > moment().subtract(31, 'days') });
+        let entries = _.sortBy(this.props.analyticEntries, (analyticEntry) => { return moment(analyticEntry.createdAt).unix() });
+
+        let today = _.filter(entries, (analyticEntry) => { return moment(analyticEntry.createdAt) > moment().subtract(24, 'hours') });
+        let month = _.filter(entries, (analyticEntry) => { return moment(analyticEntry.createdAt) > moment().subtract(31, 'days') });
 
         let hoursData = condenseTimeSeries(this.dataFromEntries(today), 'hour');
         let daysData = condenseTimeSeries(this.dataFromEntries(month), 'date');
