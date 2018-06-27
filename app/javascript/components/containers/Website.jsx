@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { AnalyticEntryActions } from 'candidatexyz-common-js';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
@@ -16,6 +17,9 @@ class Website extends React.Component {
         this.props.dispatch(setDrawerSelected('website'));
 
         this.props.dispatch(AnalyticEntryActions.fetchAllAnalyticEntries());
+        this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(99, 'years').format(), moment().format(), 'year'));
+        this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(31, 'days').format(), moment().format(), 'day'));
+        this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(24, 'hours').format(), moment().format(), 'hour'));
     }
 
     render() {
@@ -28,10 +32,10 @@ class Website extends React.Component {
 
                 <div className='content-2'>
                     <Text type='headline6'>At a Glance</Text>
-                    <AnalyticsOverview analyticEntries={this.props.analyticEntries.analyticEntries} />
+                    <AnalyticsOverview analyticEntries={this.props.aggregateEntries} />
                     <br /><br />
 
-                    <AnalyticsGraphs analyticEntries={this.props.analyticEntries.analyticEntries} />
+                    <AnalyticsGraphs analyticEntries={this.props.aggregateEntries} />
                 </div>
             </div>
         );
@@ -41,7 +45,8 @@ class Website extends React.Component {
 function mapStateToProps(state) {
     return {
         isReady: state.analyticEntries.isReady,
-        analyticEntries: state.analyticEntries.analyticEntries
+        analyticEntries: state.analyticEntries.analyticEntries,
+        aggregateEntries: state.analyticEntries.aggregateEntries
     };
 }
 

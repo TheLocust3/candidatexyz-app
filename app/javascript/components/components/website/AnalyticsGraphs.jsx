@@ -2,27 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-import { condenseTimeSeries } from '../../../helpers';
-
 import Text from '../common/Text';
 import TimeLineChart from '../common/graphs/TimeLineChart';
 
-export default class Website extends React.Component {
-
-    dataFromEntries(entries) {
-        return entries.map((entry) => {
-            return { x: moment(entry.createdAt), y: 1 };
-        });
-    }
+export default class AnalyticGraphs extends React.Component {
 
     render() {
-        let entries = _.sortBy(this.props.analyticEntries, (analyticEntry) => { return moment(analyticEntry.createdAt).unix() });
+        let hour = _.sortBy(this.props.analyticEntries.hour, (entry) => { return moment(entry.datetime).unix() });
+        let day = _.sortBy(this.props.analyticEntries.day, (entry) => { return moment(entry.datetime).unix() });
 
-        let today = _.filter(entries, (analyticEntry) => { return moment(analyticEntry.createdAt) > moment().subtract(24, 'hours') });
-        let month = _.filter(entries, (analyticEntry) => { return moment(analyticEntry.createdAt) > moment().subtract(31, 'days') });
-
-        let hoursData = condenseTimeSeries(this.dataFromEntries(today), 'hour');
-        let daysData = condenseTimeSeries(this.dataFromEntries(month), 'date');
+        let hoursData = _.map(hour, (entry) => { return { x: entry.datetime, y: entry.hits } });
+        let daysData = _.map(day, (entry) => { return { x: entry.datetime, y: entry.hits } });
 
         let dayStart = moment().minute(0).second(0).millisecond(0).subtract(24, 'hours');
         let dayEnd = moment().minute(0).second(0).millisecond(0);
@@ -46,6 +36,6 @@ export default class Website extends React.Component {
     }
 }
 
-Website.propTypes = {
-    analyticEntries: PropTypes.array
+AnalyticGraphs.propTypes = {
+    analyticEntries: PropTypes.object
 };

@@ -25,36 +25,3 @@ export function autoInit() {
     mdcAutoInit.register('MDCTabBar', MDCTabBar);
     mdcAutoInit(document, () => { /* no messages */ });
 }
-
-const TIME_HIERARCHY = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
-export function normalizeTime(time, largest) {
-    let lower = _.slice(TIME_HIERARCHY, 0, _.findIndex(TIME_HIERARCHY, (type) => { return type == largest }));
-    let newTime = time;
-
-    lower.map((timeType) => {
-        if (timeType == 'month' || timeType == 'date') {
-            newTime.set(timeType, 1);
-        } else {
-            newTime.set(timeType, 0);
-        }
-    });
-
-    return newTime;
-}
-
-// data = [{ x: date, y: data }, ...]
-
-export function condenseTimeSeries(data, by) {
-    let processedData = [];
-
-    data.map((datum) => {
-        let index = _.findIndex(processedData, (processedDatum) => { return processedDatum.x.get(by) == datum.x.get(by) });
-        if (index == -1) {
-            processedData.push({ x: normalizeTime(datum.x, by), y: datum.y })
-        } else {
-            processedData[index] = { x: processedData[index].x, y: processedData[index].y + datum.y }
-        }
-    });
-
-    return processedData;
-}
