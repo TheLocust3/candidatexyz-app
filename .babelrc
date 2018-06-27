@@ -5,7 +5,10 @@
       {
         "modules": false,
         "targets": {
-          "browsers": "> 1%",
+          "browsers": [
+            "> 0.2%",
+            "IE >= 11"
+            ],
           "uglify": true
         },
         "useBuiltIns": true
