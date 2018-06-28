@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MailApi } from 'candidatexyz-common-js';
 
-import { history } from '../../../constants';
-
 import Form from '../common/Form';
 import TextField from '../common/TextField';
 import Button from '../common/Button';

@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { VolunteerActions, ContactActions, MessageActions } from 'candidatexyz-common-js';
+import { VolunteerActions, ContactActions, MailApi } from 'candidatexyz-common-js';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
+import { history } from '../../../constants';
 
 import MDCAutoInit from '../../components/global/MDCAutoInit';
 import Text from '../../components/common/Text';
@@ -18,17 +19,41 @@ class Mail extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { group: '' };
+        this.state = { group: '', send: false, mail: null };
     }
 
     componentWillMount() {
-        this.props.dispatch(setTitle('Communication'));
-        this.props.dispatch(setBreadcrumb('Communication'));
-        this.props.dispatch(setDrawerSelected('communication'));
+        this.props.dispatch(setTitle('Send Mail'));
+        this.props.dispatch(setBreadcrumb('Mail'));
+        this.props.dispatch(setDrawerSelected('communication', 'mail'));
+    }
 
-        this.props.dispatch(VolunteerActions.fetchAllVolunteers());
-        this.props.dispatch(ContactActions.fetchAllContacts());
-        this.props.dispatch(MessageActions.fetchAllMessages());
+    componentWillReceiveProps(nextProps) {
+        if (!this.state.send) return;
+
+        let emails = [];
+        if (this.state.group == 'signUps') {
+            if (!nextProps.areContactsReady) return;
+
+            emails = nextProps.contacts.contacts.map((contact) => {
+                return { id: contact.id, email: contact.email, type: 'contact', firstName: contact.firstName, lastName: contact.lastName }
+            });
+        } else if (this.state.group == 'volunteers') {
+            if (!nextProps.areVolunteersReady) return;
+
+            emails = nextProps.volunteers.volunteers.map((volunteer) => {
+                return { id: volunteer.id, email: volunteer.email, type: 'volunteer', firstName: volunteer.firstName, lastName: volunteer.lastName }
+            });
+        }
+        
+        emails.map((email) => {
+            let subject = this.state.mail.subject.replace(/[FIRST_NAME]/g, email.firstName).replace(/[LAST_NAME]/g, email.lastName);
+            let body = this.state.mail.body.replace(/[FIRST_NAME]/g, email.firstName).replace(/[LAST_NAME]/g, email.lastName);
+
+            MailApi.sendEmail(email.email, subject, body, email.type, email.id);
+        });
+
+        history.push('/');
     }
 
     handleGroupChange(select) {
@@ -40,7 +65,16 @@ class Mail extends React.Component {
     }
     
     sendMail(mail) {
-        console.log(mail)
+        if (this.state.group == 'signUps') {
+            this.props.dispatch(ContactActions.fetchAllContacts());
+        } else if (this.state.group == 'volunteers') {
+            this.props.dispatch(VolunteerActions.fetchAllVolunteers());
+        }
+
+        this.setState({
+            send: true,
+            mail: mail
+        });
     }
 
     render() {
@@ -60,7 +94,7 @@ class Mail extends React.Component {
                         })}
                     </Select>
 
-                    <MailForm sendMail={this.sendMail} />
+                    <MailForm sendMail={(mail) => this.sendMail(mail)} />
                 </div>
 
                 <MDCAutoInit />
@@ -71,9 +105,10 @@ class Mail extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        areVolunteersReady: state.volunteers.isReady,
         volunteers: state.volunteers.volunteers,
-        contacts: state.contacts.contacts,
-        messages: state.messages.messages
+        areContactsReady: state.contacts.isReady,
+        contacts: state.contacts.contacts
     };
 }
 

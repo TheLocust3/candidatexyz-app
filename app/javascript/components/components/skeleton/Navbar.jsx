@@ -124,7 +124,7 @@ class Navbar extends React.Component {
                                 </Link>
 
                                 <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/mail'>
-                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'mail' ? 'drawer-sub-item-text--activated' : ''}`}>Send Mail</Text>
+                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'mail' ? 'drawer-sub-item-text--activated' : ''}`}>Send Email</Text>
                                 </Link>
                             </div>
 
