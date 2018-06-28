@@ -31,7 +31,6 @@ export default class EditCampaignForm extends React.Component {
         CampaignApi.update(this.props.campaign.id, this.state.campaign.name).then((response) => {
             history.push('/');
         }).catch((response) => {
-            console.log(response)
             this.setState({
                 errors: { error: response.responseJSON.errors }
             });

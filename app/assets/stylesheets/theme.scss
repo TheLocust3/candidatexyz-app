@@ -23,4 +23,12 @@ $mdc-theme-secondary: $purple-primary;
     font-weight: 300;
 }
 
+.mdc-floating-label {
+    font-weight: 300;
+}
+
+.mdc-select__native-control {
+    font-weight: 300;
+}
+
 @import '@material/theme/mdc-theme';

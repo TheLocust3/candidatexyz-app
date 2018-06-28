@@ -22,6 +22,7 @@ import Communication from '../components/containers/communication/Communication'
 import Volunteers from '../components/containers/communication/volunteers/Volunteers';
 import SignUps from '../components/containers/communication/sign-ups/SignUps';
 import Messages from '../components/containers/communication/messages/Messages';
+import Mail from '../components/containers/communication/Mail';
 
 import ShowSignUp from '../components/containers/communication/sign-ups/ShowSignUp';
 import ShowMessage from '../components/containers/communication/messages/ShowMessage';
@@ -55,6 +56,7 @@ class AppRoutes extends React.Component {
                         <Route exact path='/settings' component={Settings} />
 
                         <Route exact path='/communication' component={Communication} />
+                        <Route exact path='/communication/mail' component={Mail} />
 
                         <Route exact path='/communication/sign-ups' component={SignUps} />
                         <Route exact path='/communication/sign-ups/:id' component={ShowSignUp} />

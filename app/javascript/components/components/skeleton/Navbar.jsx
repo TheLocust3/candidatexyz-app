@@ -122,6 +122,10 @@ class Navbar extends React.Component {
                                 <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/messages'>
                                     <Text type='body2' className={`drawer-sub-item-text ${subItem == 'messages' ? 'drawer-sub-item-text--activated' : ''}`}>Messages</Text>
                                 </Link>
+
+                                <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/mail'>
+                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'mail' ? 'drawer-sub-item-text--activated' : ''}`}>Send Mail</Text>
+                                </Link>
                             </div>
 
                             <Link className={`mdc-list-item ${item == 'campaign' ? 'mdc-list-item--activated' : ''}`} to='/campaign'>
