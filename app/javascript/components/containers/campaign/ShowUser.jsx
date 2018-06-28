@@ -21,6 +21,9 @@ class ShowUser extends React.Component {
     }
 
     onDeleteClick(event) {
+        let shouldDelete = confirm('Are you sure?');
+        if (!shouldDelete) return;
+
         StaffApi.destroy(this.props.match.params.id).then(() => {
             history.push('/communication/staff');
         });

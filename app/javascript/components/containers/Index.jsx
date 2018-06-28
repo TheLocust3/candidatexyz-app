@@ -39,7 +39,7 @@ class Index extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Text type='headline6'>Page hits over past 24 hours</Text><br />
+                    <Text type='headline6'>Page Hits</Text><br />
                     <AggregateGraph analyticEntries={this.props.aggregateEntries.hour} start={dayStart} end={dayEnd} unit='hour' />
                     <br /><br />
 

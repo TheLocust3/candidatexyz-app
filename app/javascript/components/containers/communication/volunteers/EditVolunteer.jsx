@@ -20,6 +20,9 @@ class EditVolunteer extends React.Component {
     }
 
     onDeleteClick(event) {
+        let shouldDelete = confirm('Are you sure?');
+        if (!shouldDelete) return;
+        
         VolunteerApi.destroy(this.props.match.params.id).then(() => {
             history.push('/communication/volunteers');
         });
