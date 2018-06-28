@@ -47,8 +47,8 @@ class Mail extends React.Component {
         }
         
         emails.map((email) => {
-            let subject = this.state.mail.subject.replace(/[FIRST_NAME]/g, email.firstName).replace(/[LAST_NAME]/g, email.lastName);
-            let body = this.state.mail.body.replace(/[FIRST_NAME]/g, email.firstName).replace(/[LAST_NAME]/g, email.lastName);
+            let subject = this.state.mail.subject.replace(/\[FIRST_NAME\]/g, email.firstName).replace(/\[LAST_NAME\]/g, email.lastName);
+            let body = this.state.mail.body.replace(/\[FIRST_NAME\]/g, email.firstName).replace(/\[LAST_NAME\]/g, email.lastName);
 
             MailApi.sendEmail(email.email, subject, body, email.type, email.id);
         });
