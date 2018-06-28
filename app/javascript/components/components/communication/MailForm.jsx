@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CampaignApi } from 'candidatexyz-common-js';
+import { MailApi } from 'candidatexyz-common-js';
 
 import { history } from '../../../constants';
 
 import Form from '../common/Form';
 import TextField from '../common/TextField';
 import Button from '../common/Button';
+import TextEditor from '../common/TextEditor';
 
 export default class MailForm extends React.Component {
 
@@ -25,6 +26,15 @@ export default class MailForm extends React.Component {
         });
     }
 
+    handleEditorChange(content) {
+        let mail = this.state.mail;
+        mail.body = content;
+
+        this.setState({
+            mail: mail
+        });
+    }
+
     handleSubmit(event) {
         event.preventDefault();
 
@@ -36,8 +46,8 @@ export default class MailForm extends React.Component {
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
                 <TextField label='Subject' name='subject' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br /><br />
                 
-                Body Here
-                <br /><br />
+                <TextEditor onChange={(content) => this.handleEditorChange(content)} />
+                <br />
                 
                 <Button type='submit' className='right-form-button'>Send</Button>
             </Form>

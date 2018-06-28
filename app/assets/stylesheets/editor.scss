@@ -1,0 +1,82 @@
+.editor {
+    margin-top: 3%;
+    margin-bottom: 3%;
+
+    font-weight: 300;
+}
+
+.editor-wrapper {
+    border: 1px solid grey;
+}
+
+.editor-editor {
+    min-height: 40vh;
+    margin-left: 1%;
+    margin-right: 1%;
+
+    cursor: text;
+}
+
+.editor-editor-small {
+    min-height: 20vh;
+}
+
+.editor-toolbar {
+    border-bottom: 1px solid grey;
+
+    font-weight: 300;
+}
+
+// react-draft-wsysiwyg styling
+
+.rdw-option-wrapper {
+    border: 1px solid grey;
+}
+
+.rdw-option-wrapper:hover {
+    box-shadow: 2px 2px 0px #BFBDBD;
+}
+
+.rdw-dropdown-wrapper {
+    border: 1px solid grey;
+}
+
+.rdw-dropdown-wrapper:hover {
+    box-shadow: 2px 2px 0px #BFBDBD;
+}
+
+.rdw-link-modal-btn {
+    border: 1px solid grey;
+}
+
+.rdw-link-modal-btn:hover {
+    box-shadow: 2px 2px 0px #BFBDBD;
+}
+
+.rdw-link-modal-input {
+    border: 1px solid grey;
+}
+
+.rdw-embedded-modal-btn {
+    border: 1px solid grey;
+}
+
+.rdw-embedded-modal-btn:hover {
+    box-shadow: 2px 2px 0px #BFBDBD;
+}
+
+.rdw-image-modal-btn {
+    border: 1px solid grey;
+}
+
+.rdw-image-modal-btn:hover {
+    box-shadow: 2px 2px 0px #BFBDBD;
+}
+
+.rdw-image-modal-url-input {
+    border: 1px solid grey;
+}
+
+.rdw-image-modal-size-input {
+    border: 1px solid grey;
+}

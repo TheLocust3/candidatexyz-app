@@ -11,14 +11,14 @@ import Select from '../../components/common/Select';
 import SelectItem from '../../components/common/SelectItem';
 import MailForm from '../../components/communication/MailForm';
 
-const GROUPS = [{ key: 'signUps', value: 'All Sign Ups' }, { key: 'volunteers', value: 'All Volunteers' }];
+const GROUPS = [{ key: '', value: '' }, { key: 'signUps', value: 'All Sign Ups' }, { key: 'volunteers', value: 'All Volunteers' }];
 
 class Mail extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = { group: null };
+        this.state = { group: '' };
     }
 
     componentWillMount() {
