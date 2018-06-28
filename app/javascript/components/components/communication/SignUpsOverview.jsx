@@ -16,24 +16,33 @@ export default class ContactsOverview extends React.Component {
         }
     }
 
-    render() {
+    renderNonSmall() {
+        if (this.props.small) return;
         let recent = _.last(_.sortBy(this.props.contacts, (contact) => { moment(contact.createdAt).unix() }));
 
+        return (
+            <div style={{ marginTop: '3%' }}>
+                <Text type='body1'>Recent Sign Up</Text>
+                <SignUpThumbnail contact={recent} dense />
+            </div>
+        );
+    }
+
+    render() {
         return (
             <div>
                 <Link className='link' to='/communication/sign-ups'>
                     <Text type='body2'>{this.renderNumberOfContacts()}</Text>
                 </Link>
+                <br />
 
-                <br /><br />
-                
-                <Text type='body1'>Recent Sign Up</Text>
-                <SignUpThumbnail contact={recent} dense/>
+                {this.renderNonSmall()}
             </div>
         )
     }
 }
 
 ContactsOverview.propTypes = {
-    contacts: PropTypes.array
+    contacts: PropTypes.array,
+    small: PropTypes.bool
 };

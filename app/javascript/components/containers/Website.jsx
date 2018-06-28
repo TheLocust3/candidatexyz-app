@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -16,14 +17,13 @@ class Website extends React.Component {
         this.props.dispatch(setBreadcrumb('Website'));
         this.props.dispatch(setDrawerSelected('website'));
 
-        this.props.dispatch(AnalyticEntryActions.fetchAllAnalyticEntries());
         this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(99, 'years').format(), moment().format(), 'year'));
         this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(31, 'days').format(), moment().format(), 'day'));
         this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(24, 'hours').format(), moment().format(), 'hour'));
     }
 
     render() {
-        if (!this.props.isReady) return null;
+        if (!this.props.isAggregateReady.year || !this.props.isAggregateReady.day || !this.props.isAggregateReady.hour) return null;
 
         return (
             <div className='content'>
@@ -44,8 +44,7 @@ class Website extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        isReady: state.analyticEntries.isReady,
-        analyticEntries: state.analyticEntries.analyticEntries,
+        isAggregateReady: state.analyticEntries.isAggregateReady,
         aggregateEntries: state.analyticEntries.aggregateEntries
     };
 }

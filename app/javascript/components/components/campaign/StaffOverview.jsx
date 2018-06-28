@@ -2,7 +2,6 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 
 import Text from '../common/Text';
 
@@ -28,6 +27,17 @@ export default class StaffOverview extends React.Component {
         )
     }
 
+    renderNonSmall() {
+        if (this.props.small) return;
+
+        return (
+            <div style={{ marginTop: '3%' }}>
+                <Text type='body1'>Administrators</Text>
+                {this.renderAdmins()}
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
@@ -35,15 +45,14 @@ export default class StaffOverview extends React.Component {
                     <Text type='body2'>{this.renderNumberOfUsers()}</Text>
                 </Link>
 
-                <br /><br />
-
-                <Text type='body1'>Administrators</Text>
-                {this.renderAdmins()}
+                <br />
+                {this.renderNonSmall()}
             </div>
         )
     }
 }
 
 StaffOverview.propTypes = {
-    users: PropTypes.array
+    users: PropTypes.array,
+    small: PropTypes.bool
 };

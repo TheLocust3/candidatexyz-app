@@ -16,24 +16,32 @@ export default class MessagesOverview extends React.Component {
         }
     }
 
-    render() {
+    renderNonSmall() {
+        if (this.props.small) return;
         let recent = _.last(_.sortBy(this.props.messages, (message) => { return moment(message.createdAt).unix() }));
 
+        return (
+            <div style={{ marginTop: '3%' }}>
+                <Text type='body1'>Recent Message</Text>
+                <MessageThumbnail message={recent} dense />
+            </div>
+        );
+    }
+
+    render() {
         return (
             <div>
                 <Link className='link' to='/communication/messages'>
                     <Text type='body2'>{this.renderNumberOfMessages()}</Text>
                 </Link>
                 
-                <br /><br />
-                
-                <Text type='body1'>Recent Message</Text>
-                <MessageThumbnail message={recent} dense/>
+                {this.renderNonSmall()}
             </div>
         )
     }
 }
 
 MessagesOverview.propTypes = {
-    messages: PropTypes.array
+    messages: PropTypes.array,
+    small: PropTypes.bool
 };

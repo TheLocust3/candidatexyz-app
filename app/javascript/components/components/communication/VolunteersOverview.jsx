@@ -16,24 +16,33 @@ export default class VolunteersOverview extends React.Component {
         }
     }
 
-    render() {
+    renderNonSmall() {
+        if (this.props.small) return;
         let recent = _.last(_.sortBy(this.props.volunteers, (volunteer) => { moment(volunteer.createdAt).unix() }));
 
+        return (
+            <div style={{ marginTop: '3%' }}>
+                <Text type='body1'>Recent Volunteer</Text>
+                <VolunteerThumbnail volunteer={recent} dense />
+            </div>
+        );
+    }
+
+    render() {
         return (
             <div>
                 <Link className='link' to='/communication/volunteers'>
                     <Text type='body2'>{this.renderNumberOfVolunteers()}</Text>
                 </Link>
+                <br />
 
-                <br /><br />
-                
-                <Text type='body1'>Recent Volunteer</Text>
-                <VolunteerThumbnail volunteer={recent} dense/>
+                {this.renderNonSmall()}
             </div>
         )
     }
 }
 
 VolunteersOverview.propTypes = {
-    volunteers: PropTypes.array
+    volunteers: PropTypes.array,
+    small: PropTypes.bool
 };
