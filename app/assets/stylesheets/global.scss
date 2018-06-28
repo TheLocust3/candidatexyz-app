@@ -8,6 +8,7 @@ $button-font-size--dense: 20px;
 $button-font-family: 'Saira Condensed', sans-serif;
 $link-color: #4c4c4c;
 $link-hover-color: #999999;
+$text-black: #212121;
 
 body, #root {
     margin: 0;
@@ -109,10 +110,12 @@ body, #root {
 
 .link {
     display: inline-block;
+
+    color: $purple-light;
 }
 
-.link:visited {
-    color: blue;
+.link:hover {
+    color: $text-black;
 }
 
 .unstyled-link {
@@ -121,7 +124,7 @@ body, #root {
 }
 
 .unstyled-link-black {
-    color: #212121;
+    color: $text-black;
     text-decoration: none;
 }
 
