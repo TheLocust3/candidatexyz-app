@@ -37,12 +37,12 @@ export default class StaffSignUpForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} style={{ width: '40%' }} /><br />
-                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} style={{ width: '40%' }} /><br />
-                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} style={{ width: '40%' }} /><br />
+                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} /><br />
+                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} /><br />
+                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} /><br />
 
-                <TextField type='password' label='Password' name='password' onChange={this.handleChange.bind(this)} style={{ width: '40%' }} /><br />
-                <TextField type='password' label='Confirm Password' name='passwordConfirmation' onChange={this.handleChange.bind(this)} style={{ width: '40%' }} /><br /><br />
+                <TextField type='password' label='Password' name='password' onChange={this.handleChange.bind(this)} /><br />
+                <TextField type='password' label='Confirm Password' name='passwordConfirmation' onChange={this.handleChange.bind(this)} /><br /><br />
 
                 <Button type='submit'>Sign Up</Button>
             </Form>

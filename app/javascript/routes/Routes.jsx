@@ -5,8 +5,8 @@ import { history } from '../constants';
 
 import AppRoutes from './AppRoutes';
 
+import StaffSignUp from '../components/containers/campaign/StaffSignUp';
 import SignInContainer from '../components/containers/users/SignInContainer';
-import SignUpContainer from '../components/containers/users/SignUpContainer';
 import ForgotPasswordContainer from '../components/containers/users/ForgotPasswordContainer';
 import ResetPasswordContainer from '../components/containers/users/ResetPasswordContainer';
 
@@ -27,9 +27,10 @@ class Routes extends React.Component {
 
                     <Switch>
                         <Route exact path='/sign_in' component={SignInContainer} />
-                        <Route exact path='/sign_up' component={SignUpContainer} />
                         <Route exact path='/forgot_password' component={ForgotPasswordContainer} />
                         <Route exact path='/reset_password' component={ResetPasswordContainer} />
+
+                        <Route exact path='/campaign/sign-up/:token' component={StaffSignUp} />
 
                         <AppRoutes />
                     </Switch>

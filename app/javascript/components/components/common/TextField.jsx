@@ -43,7 +43,7 @@ export default class TextField extends React.Component {
         type = _.isEmpty(type) ? 'text' : type;
 
         return (
-            <div id={this.state.uuid} className={`mdc-text-field ${denseClassName} ${className}`} data-mdc-auto-init='MDCTextField' style={style}>
+            <div id={this.state.uuid} className={`mdc-text-field ${denseClassName} textfield ${className}`} data-mdc-auto-init='MDCTextField' style={style}>
                 <input type={type} className='mdc-text-field__input mdc-typography--body2' onChange={onChange} value={value} size={size} required={required} {...props} />
                 <label className='mdc-floating-label mdc-typography--body2'>{label}</label>
 

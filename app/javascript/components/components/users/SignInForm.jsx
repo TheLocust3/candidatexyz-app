@@ -51,9 +51,9 @@ export default class SignInForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} /><br />
+                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br />
 
-                <TextField type='password' label='Password' name='password' onChange={this.handleChange.bind(this)} /><br />
+                <TextField type='password' label='Password' name='password' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br /><br />
 
                 <Button type='submit'>Sign In</Button>
             </Form>

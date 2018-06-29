@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
-import { setTitle } from '../../actions/global-actions';
+import { setTitle, setBreadcrumb } from '../../actions/global-actions';
 
+import MDCAutoInit from '../../components/global/MDCAutoInit';
 import Text from '../../components/common/Text';
 import ForgotPasswordForm from '../../components/users/ForgotPasswordForm';
 
@@ -11,14 +12,23 @@ class ForgotPasswordContainer extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Forgot Password'));
+        this.props.dispatch(setBreadcrumb('Forgot Password'));
     }
 
     render() {
         return (
-            <div className='content-15'>
-                <ForgotPasswordForm /><br />
+            <div className='fullpage relative'>
+                <div className='sign-in-box middle-center'>
+                    <Text type='headline4'>Forgot Password</Text><br />
 
-                <Link to='/sign_in'><Text type='body1'>Sign in</Text></Link>
+                    <div className='content-5'>
+                        <ForgotPasswordForm /><br />
+
+                        <Link to='/sign_in'><Text type='body2'>Sign in</Text></Link>
+                    </div>
+                </div>
+
+                <MDCAutoInit />
             </div>
         );
     }

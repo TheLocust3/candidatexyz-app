@@ -84,10 +84,69 @@ class Navbar extends React.Component {
         });
     }
 
-    renderDesktop() {
+    renderDrawerList() {
         let item = this.props.drawerSelected.item;
         let subItem = this.props.drawerSelected.subItem;
 
+        return (
+            <div>
+                <Link className={`mdc-list-item ${item == 'home' ? 'mdc-list-item--activated' : ''}`} to='/'>
+                    <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>home</i>
+                    <Text type='body2' className={`mdc-list-item-text ${item == 'home' ? 'mdc-list-item-text--activated' : ''}`}>Home</Text>
+                </Link>
+
+                <Link className={`mdc-list-item ${item == 'website' ? 'mdc-list-item--activated' : ''}`} to='/website'>
+                    <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>desktop_windows</i>
+                    <Text type='body2' className={`mdc-list-item-text ${item == 'website' ? 'mdc-list-item-text--activated' : ''}`}>Website</Text>
+                </Link>
+
+                <Link className={`mdc-list-item ${item == 'communication' ? 'mdc-list-item--activated' : ''}`} to='/communication'>
+                    <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>person</i>
+                    <Text type='body2' className={`mdc-list-item-text ${item == 'communication' ? 'mdc-list-item-text--activated' : ''}`}>Communication</Text>
+                </Link>
+
+                <div id='communication-drop-down'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/volunteers'>
+                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'volunteers' ? 'drawer-sub-item-text--activated' : ''}`}>Volunteers</Text>
+                    </Link>
+
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/sign-ups'>
+                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'signUps' ? 'drawer-sub-item-text--activated' : ''}`}>Sign Ups</Text>
+                    </Link>
+
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/messages'>
+                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'messages' ? 'drawer-sub-item-text--activated' : ''}`}>Messages</Text>
+                    </Link>
+
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/mail'>
+                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'mail' ? 'drawer-sub-item-text--activated' : ''}`}>Send Email</Text>
+                    </Link>
+                </div>
+
+                <Link className={`mdc-list-item ${item == 'campaign' ? 'mdc-list-item--activated' : ''}`} to='/campaign'>
+                    <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>domain</i>
+                    <Text type='body2' className={`mdc-list-item-text ${item == 'campaign' ? 'mdc-list-item-text--activated' : ''}`}>Campaign</Text>
+                </Link>
+
+                <div id='campaign-drop-down'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/campaign/staff'>
+                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'staff' ? 'drawer-sub-item-text--activated' : ''}`}>Staff</Text>
+                    </Link>
+
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/campaign/invite-staff'>
+                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'inviteStaff' ? 'drawer-sub-item-text--activated' : ''}`}>Invite Staff</Text>
+                    </Link>
+                </div>
+
+                <Link className={`mdc-list-item ${item == 'settings' ? 'mdc-list-item--activated' : ''}`} to='/settings'>
+                    <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>settings</i>
+                    <Text type='body2' className={`mdc-list-item-text ${item == 'settings' ? 'mdc-list-item-text--activated' : ''}`}>Settings</Text>
+                </Link>
+            </div>
+        );
+    }
+
+    renderDesktop() {
         return (
             <div className='content-root'>
                 <nav className='mdc-drawer mdc-drawer--permanent mdc-typography drawer-desktop'>
@@ -95,58 +154,7 @@ class Navbar extends React.Component {
                     
                     <div className='mdc-drawer__content'>
                         <nav className='mdc-list'>
-                            <Link className={`mdc-list-item ${item == 'home' ? 'mdc-list-item--activated' : ''}`} to='/'>
-                                <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>home</i>
-                                <Text type='body2' className={`mdc-list-item-text ${item == 'home' ? 'mdc-list-item-text--activated' : ''}`}>Home</Text>
-                            </Link>
-
-                            <Link className={`mdc-list-item ${item == 'website' ? 'mdc-list-item--activated' : ''}`} to='/website'>
-                                <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>desktop_windows</i>
-                                <Text type='body2' className={`mdc-list-item-text ${item == 'website' ? 'mdc-list-item-text--activated' : ''}`}>Website</Text>
-                            </Link>
-
-                            <Link className={`mdc-list-item ${item == 'communication' ? 'mdc-list-item--activated' : ''}`} to='/communication'>
-                                <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>person</i>
-                                <Text type='body2' className={`mdc-list-item-text ${item == 'communication' ? 'mdc-list-item-text--activated' : ''}`}>Communication</Text>
-                            </Link>
-
-                            <div id='communication-drop-down'>
-                                <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/volunteers'>
-                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'volunteers' ? 'drawer-sub-item-text--activated' : ''}`}>Volunteers</Text>
-                                </Link>
-
-                                <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/sign-ups'>
-                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'signUps' ? 'drawer-sub-item-text--activated' : ''}`}>Sign Ups</Text>
-                                </Link>
-
-                                <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/messages'>
-                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'messages' ? 'drawer-sub-item-text--activated' : ''}`}>Messages</Text>
-                                </Link>
-
-                                <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/mail'>
-                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'mail' ? 'drawer-sub-item-text--activated' : ''}`}>Send Email</Text>
-                                </Link>
-                            </div>
-
-                            <Link className={`mdc-list-item ${item == 'campaign' ? 'mdc-list-item--activated' : ''}`} to='/campaign'>
-                                <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>domain</i>
-                                <Text type='body2' className={`mdc-list-item-text ${item == 'campaign' ? 'mdc-list-item-text--activated' : ''}`}>Campaign</Text>
-                            </Link>
-
-                            <div id='campaign-drop-down'>
-                                <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/campaign/staff'>
-                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'staff' ? 'drawer-sub-item-text--activated' : ''}`}>Staff</Text>
-                                </Link>
-
-                                <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/campaign/invite-staff'>
-                                    <Text type='body2' className={`drawer-sub-item-text ${subItem == 'inviteStaff' ? 'drawer-sub-item-text--activated' : ''}`}>Invite Staff</Text>
-                                </Link>
-                            </div>
-
-                            <Link className={`mdc-list-item ${item == 'settings' ? 'mdc-list-item--activated' : ''}`} to='/settings'>
-                                <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>settings</i>
-                                <Text type='body2' className={`mdc-list-item-text ${item == 'settings' ? 'mdc-list-item-text--activated' : ''}`}>Settings</Text>
-                            </Link>
+                            {this.renderDrawerList()}
                         </nav>
                     </div>
                 </nav>

@@ -1,4 +1,5 @@
 @import 'global';
+@import 'editor';
 
 .back-link {
     padding-left: 1%;
@@ -41,4 +42,21 @@
 
 .resource-list-item--dense {
     height: 60px;
+}
+
+.sign-in-box {
+    min-width: 50%;
+    min-height: 40%;
+
+    padding: 1%;
+    padding-top: 2%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+
+    border: 1px solid lighten($grey-border, 20%);
+    border-radius: 2px;
+
+    -moz-box-shadow:    2px 2px 2px 0px lighten($grey-border, 30%);
+    -webkit-box-shadow: 2px 2px 2px 0px lighten($grey-border, 30%);
+    box-shadow:         2px 2px 2px 0px lighten($grey-border, 30%);
 }
