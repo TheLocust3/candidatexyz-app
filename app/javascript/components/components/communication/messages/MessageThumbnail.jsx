@@ -6,7 +6,7 @@ import Text from '../../common/Text';
 
 export default class MessageThumbnail extends React.Component {
 
-    render() {
+    renderThumbnail() {
         let message = this.props.message;
 
         let denseClassName = this.props.dense ? 'resource-list-item--dense' : '';
@@ -26,6 +26,18 @@ export default class MessageThumbnail extends React.Component {
                 </li>
             </Link>
         );
+    }
+
+    render() {
+        if (_.isEmpty(this.props.message)) {
+            return (
+                <Text type='body2'>
+                    None
+                </Text>
+            )
+        } else {
+            return this.renderThumbnail();
+        }
     }
 }
 

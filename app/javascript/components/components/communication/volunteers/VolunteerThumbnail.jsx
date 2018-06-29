@@ -17,7 +17,7 @@ export default class VolunteerThumbnail extends React.Component {
         );
     }
 
-    render() {
+    renderThumbnail() {
         let volunteer = this.props.volunteer;
 
         let denseClassName = this.props.dense ? 'resource-list-item--dense' : '';
@@ -42,6 +42,18 @@ export default class VolunteerThumbnail extends React.Component {
                 </li>
             </Link>
         );
+    }
+
+    render() {
+        if (_.isEmpty(this.props.volunteer)) {
+            return (
+                <Text type='body2'>
+                    None
+                </Text>
+            )
+        } else {
+            return this.renderThumbnail();
+        }
     }
 }
 

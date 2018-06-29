@@ -17,7 +17,7 @@ export default class SignUpThumbnail extends React.Component {
         );
     }
 
-    render() {
+    renderThumbnail() {
         let contact = this.props.contact;
 
         let denseClassName = this.props.dense ? 'resource-list-item--dense' : '';
@@ -42,6 +42,18 @@ export default class SignUpThumbnail extends React.Component {
                 </li>
             </Link>
         );
+    }
+
+    render() {
+        if (_.isEmpty(this.props.contact)) {
+            return (
+                <Text type='body2'>
+                    None
+                </Text>
+            )
+        } else {
+            return this.renderThumbnail();
+        }
     }
 }
 

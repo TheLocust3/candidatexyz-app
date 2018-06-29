@@ -23,6 +23,7 @@ export default class VolunteersOverview extends React.Component {
         return (
             <div style={{ marginTop: '3%' }}>
                 <Text type='body1'>Recent Volunteer</Text>
+                
                 <VolunteerThumbnail volunteer={recent} dense />
             </div>
         );
