@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk/es';
 import { configure } from 'candidatexyz-common-js';
+import { createBrowserHistory } from 'history/es';
 
 import reducer from './components/reducers/root-reducer';
-
-import { createBrowserHistory } from 'history/es';
+import { DEVELOPMENT_ENVIRONMENT } from './features';
 
 export let history = createBrowserHistory();
 export const store = createStore(reducer, applyMiddleware(thunkMiddleware));
@@ -14,7 +14,6 @@ export const TITLE = 'candidateXYZ';
 export const PURPLE_PRIMARY = { red: 71, green: 10, blue: 102 };
 export const PURPLE_LIGHT = { red: 142, green: 18, blue: 204 };
 
-export const DEVELOPMENT_ENVIRONMENT = true;
 export const DOMAIN = DEVELOPMENT_ENVIRONMENT ? 'http://127.0.0.1:3000' : 'https://candidatexyz.com';
 
 configure({ developmentRoutes: DEVELOPMENT_ENVIRONMENT });
