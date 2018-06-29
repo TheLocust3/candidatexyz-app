@@ -7,11 +7,11 @@ variable "name" {
 }
 
 variable "database_name" {
-  default = "api"
+  default = "websites"
 }
 
 variable "common_name" {
-  default = "api"
+  default = "websites"
 }
 
 variable "key" {
@@ -56,6 +56,17 @@ resource "aws_s3_bucket" "bucket" {
 
 data "aws_security_group" "security_group" {
   name = "${var.common_name}-ec2"
+}
+
+data "aws_iam_policy_document" "ec2-role" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
+    }
+  }
 }
 
 resource "aws_iam_role" "ec2-role" {
