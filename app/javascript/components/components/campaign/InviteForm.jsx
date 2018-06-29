@@ -37,10 +37,10 @@ export default class InviteForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <TextField type='email' label='Email' name='email' onChange={(event) => this.handleChange(event)} required={true} style={{ width: '100%' }} />
-                <br />
+                <TextField type='email' label='Email' name='email' onChange={(event) => this.handleChange(event)} required={true} />
+                <br /><br />
                 
-                <Button type='submit' className='right-form-button'>Invite</Button>
+                <Button type='submit'>Invite</Button>
             </Form>
         );
     }
