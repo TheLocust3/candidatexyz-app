@@ -29,6 +29,3 @@ cd /home/ubuntu/rails
 export $(cat /home/ubuntu/secrets.env | xargs)
 
 bundle install
-
-./bin/rake assets:clobber RAILS_ENV=production
-./bin/rake assets:precompile RAILS_ENV=production
