@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { AnalyticEntryActions } from 'candidatexyz-common-js';
+import { CampaignActions, AnalyticEntryActions } from 'candidatexyz-common-js';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
 
@@ -17,18 +17,22 @@ class Website extends React.Component {
         this.props.dispatch(setBreadcrumb('Website'));
         this.props.dispatch(setDrawerSelected('website'));
 
+        this.props.dispatch(CampaignActions.fetchCampaign(this.props.currentUser.campaignId));
         this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(99, 'years').format(), moment().format(), 'year'));
         this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(31, 'days').format(), moment().format(), 'day'));
         this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(24, 'hours').format(), moment().format(), 'hour'));
     }
 
     render() {
-        if (!this.props.isAggregateReady.year || !this.props.isAggregateReady.day || !this.props.isAggregateReady.hour) return null;
+        if (!this.props.isCampaignReady || !this.props.isAggregateReady.year || !this.props.isAggregateReady.day || !this.props.isAggregateReady.hour) return null;
 
         return (
             <div className='content'>
                 <Text type='headline5'>Website Analytics</Text>
                 <br />
+
+                <a className='link' href={this.props.campaign.url}><Text type='body2'>Website</Text></a>
+                <br /><br />
 
                 <div className='content-2'>
                     <Text type='headline6'>At a Glance</Text>
@@ -44,6 +48,9 @@ class Website extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        currentUser: state.users.currentUser,
+        isCampaignReady: state.campaigns.isReady,
+        campaign: state.campaigns.campaign,
         isAggregateReady: state.analyticEntries.isAggregateReady,
         aggregateEntries: state.analyticEntries.aggregateEntries
     };

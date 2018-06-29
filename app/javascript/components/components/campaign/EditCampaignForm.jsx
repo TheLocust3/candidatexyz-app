@@ -28,7 +28,7 @@ export default class EditCampaignForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        CampaignApi.update(this.props.campaign.id, this.state.campaign.name).then((response) => {
+        CampaignApi.update(this.props.campaign.id, this.state.campaign.name, this.state.campaign.url).then((response) => {
             history.push('/');
         }).catch((response) => {
             this.setState({
@@ -41,6 +41,8 @@ export default class EditCampaignForm extends React.Component {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
                 <TextField label='Name' name='name' onChange={this.handleChange.bind(this)} defaultValue={this.props.campaign.name} style={{ width: '100%' }} /><br />
+
+                <TextField label='Website URL' name='url' onChange={this.handleChange.bind(this)} defaultValue={this.props.campaign.url} style={{ width: '100%' }} /><br />
                 
                 <Button type='submit' className='right-form-button'>Save</Button>
             </Form>

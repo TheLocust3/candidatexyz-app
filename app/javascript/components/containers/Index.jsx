@@ -38,6 +38,9 @@ class Index extends React.Component {
                 <Text type='headline5'>{this.props.campaign.name}</Text>
                 <br />
 
+                <a className='link' href={this.props.campaign.url}><Text type='body2'>Website</Text></a>
+                <br /><br />
+
                 <div className='content-2'>
                     <Text type='headline6'>Page Hits</Text><br />
                     <AggregateGraph analyticEntries={this.props.aggregateEntries.hour} start={dayStart} end={dayEnd} unit='hour' />
