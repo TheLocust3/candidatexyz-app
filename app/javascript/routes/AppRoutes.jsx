@@ -15,6 +15,8 @@ import SignIn from '../components/containers/users/SignInContainer';
 import Campaign from '../components/containers/campaign/Campaign';
 import Staff from '../components/containers/campaign/Staff';
 import EditUser from '../components/containers/campaign/EditUser';
+import InviteStaff from '../components/containers/campaign/InviteStaff';
+import StaffSignUp from '../components/containers/campaign/StaffSignUp';
 
 import ShowUser from '../components/containers/campaign/ShowUser';
 
@@ -73,6 +75,8 @@ class AppRoutes extends React.Component {
                         <Route exact path='/campaign/staff' component={Staff} />
                         <Route exact path='/campaign/staff/:id' component={ShowUser} />
                         <Route exact path='/campaign/staff/:id/edit' component={EditUser} />
+                        <Route exact path='/campaign/invite-staff' component={InviteStaff} />
+                        <Route exact path='/campaign/sign-up/:token' component={StaffSignUp} />
                         
                         <Route component={NotFound} />
                     </Switch>

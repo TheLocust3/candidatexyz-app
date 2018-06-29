@@ -25,7 +25,7 @@ class ShowUser extends React.Component {
         if (!shouldDelete) return;
 
         StaffApi.destroy(this.props.match.params.id).then(() => {
-            history.push('/communication/staff');
+            history.push('/campaign/staff');
         });
     }
 
