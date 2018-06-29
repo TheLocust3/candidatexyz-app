@@ -19,9 +19,9 @@ variable "key" {
 }
 
 data "aws_ami" "image" {
-  name_regex = "candidatexyz-barebones"
+  # name_regex = "candidatexyz-barebones"
 
-  # name_regex  = "candidatexyz-app"
+  name_regex  = "candidatexyz-app"
   most_recent = true
 }
 
