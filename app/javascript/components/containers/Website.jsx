@@ -5,6 +5,7 @@ import moment from 'moment';
 import { CampaignActions, AnalyticEntryActions } from 'candidatexyz-common-js';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
+import { websiteLink } from '../../helpers';
 
 import Text from '../components/common/Text';
 import AnalyticsOverview from '../components/website/AnalyticsOverview';
@@ -31,7 +32,7 @@ class Website extends React.Component {
                 <Text type='headline5'>Website Analytics</Text>
                 <br />
 
-                <a className='link' href={this.props.campaign.url}><Text type='body2'>Website</Text></a>
+                <a className='link' href={websiteLink(this.props.campaign.url)}><Text type='body2'>Website</Text></a>
                 <br /><br />
 
                 <div className='content-2'>

@@ -4,6 +4,7 @@ import { StaffActions, AnalyticEntryActions, CampaignActions, VolunteerActions, 
 import moment from 'moment';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
+import { websiteLink } from '../../helpers';
 
 import Text from '../components/common/Text';
 import AggregateGraph from '../components/website/AggregateGraph';
@@ -38,7 +39,7 @@ class Index extends React.Component {
                 <Text type='headline5'>{this.props.campaign.name}</Text>
                 <br />
 
-                <a className='link' href={this.props.campaign.url}><Text type='body2'>Website</Text></a>
+                <a className='link' href={websiteLink(this.props.campaign.url)}><Text type='body2'>Website</Text></a>
                 <br /><br />
 
                 <div className='content-2'>

@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import _ from 'lodash';
 
 // Stolen from https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
@@ -24,4 +25,18 @@ export function autoInit() {
     mdcAutoInit.register('MDCSelect', MDCSelect);
     mdcAutoInit.register('MDCTabBar', MDCTabBar);
     mdcAutoInit(document, () => { /* no messages */ });
+}
+
+export function websiteLink(domain) {
+    let currentHeaders = $.auth.retrieveData('authHeaders');
+    if (_.isUndefined(currentHeaders)) {
+        return domain;
+    }
+
+    let queryString = '?'
+    for (var key in $.auth.getConfig().tokenFormat) {
+        queryString += `${key}=${encodeURIComponent(currentHeaders[key])}&`;
+    }
+    
+    return `${domain}/${queryString}`
 }
