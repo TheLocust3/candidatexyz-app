@@ -58,4 +58,8 @@
     -moz-box-shadow:    2px 2px 2px 0px lighten($grey-border, 30%);
     -webkit-box-shadow: 2px 2px 2px 0px lighten($grey-border, 30%);
     box-shadow:         2px 2px 2px 0px lighten($grey-border, 30%);
+
+    @media (max-width: $mobile-width) {
+        min-width: 90%;
+    }
 }

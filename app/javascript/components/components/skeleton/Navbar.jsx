@@ -215,9 +215,14 @@ class Navbar extends React.Component {
                                     <Text type='body2'>Website</Text>
                                 </Link>
 
-                                <Link className='mdc-list-item' to='/volunteers' onClick={this.onLinkClick.bind(this)}>
+                                <Link className='mdc-list-item' to='/communication' onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>person</i>
-                                    <Text type='body2'>Volunteers</Text>
+                                    <Text type='body2'>Communication</Text>
+                                </Link>
+
+                                <Link className='mdc-list-item' to='/campaign' onClick={this.onLinkClick.bind(this)}>
+                                    <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>domain</i>
+                                    <Text type='body2'>Campaign</Text>
                                 </Link>
 
                                 <Link className='mdc-list-item' to='/settings' onClick={this.onLinkClick.bind(this)}>
