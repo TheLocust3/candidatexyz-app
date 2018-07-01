@@ -159,10 +159,12 @@ resource "aws_lb_listener" "lb_listener2" {
 }
 
 resource "aws_autoscaling_group" "autoscaling" {
-  name                 = "${var.name}"
-  force_delete         = true
-  max_size             = "2"
-  min_size             = "2"
+  name             = "${var.name}"
+  force_delete     = true
+  max_size         = "2"
+  min_size         = "1"
+  desired_capacity = "1"
+
   launch_configuration = "${aws_launch_configuration.launch.name}"
   availability_zones   = ["${data.aws_availability_zone.zone.name}"]
   target_group_arns    = ["${aws_lb_target_group.target.arn}"]
