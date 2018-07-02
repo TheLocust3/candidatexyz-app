@@ -7,7 +7,13 @@ import { PURPLE_PRIMARY } from '../../../../constants';
 
 export default class TimeLineChart extends React.Component {
 
+    numberOfDigits(num) {
+        return String(num).length;
+    }
+
     render() {
+        let yMax = _.maxBy(this.props.data, (datum) => { return datum.y }).y;
+
         let displayXAxisLabel = !_.isEmpty(this.props.xAxis);
         let displayYAxisLabel = !_.isEmpty(this.props.yAxis);
 
@@ -42,7 +48,8 @@ export default class TimeLineChart extends React.Component {
                         labelString: this.props.yAxis
                     },
                     ticks: {
-                        min: 0
+                        min: 0,
+                        max: _.round(yMax * 1.25, -1 * (this.numberOfDigits(yMax) - 1))
                     }
                 }]
             },

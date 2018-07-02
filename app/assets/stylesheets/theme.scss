@@ -11,6 +11,10 @@ $mdc-theme-secondary: $purple-primary;
     font-weight: 300;
 }
 
+.mdc-floating-label--float-above {
+    color: $purple-light !important;
+}
+
 .mdc-button {
     font-weight: 300;
 }
@@ -20,10 +24,6 @@ $mdc-theme-secondary: $purple-primary;
 }
 
 .mdc-list-item__secondary-text {
-    font-weight: 300;
-}
-
-.mdc-floating-label {
     font-weight: 300;
 }
 
