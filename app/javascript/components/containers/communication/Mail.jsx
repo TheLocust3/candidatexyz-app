@@ -85,7 +85,7 @@ class Mail extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.areVolunteersReady && this.props.areContactsReady}>
+                    <Loader isReady={(this.props.areVolunteersReady && this.props.areContactsReady) || (!this.state.send)}>
                         <Select label='Send To' selectedIndex={_.findIndex(GROUPS, (group) => { return group.key == this.state.group })} onChange={(select) => this.handleGroupChange(select)} style={{ width: '30%' }}>
                             {_.map(GROUPS, (group) => {
                                 return (
