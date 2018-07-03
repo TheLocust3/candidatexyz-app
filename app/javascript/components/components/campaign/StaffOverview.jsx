@@ -16,7 +16,6 @@ export default class StaffOverview extends React.Component {
     }
 
     renderAdmins() {
-        console.log(this.props.users)
         return (
             <Text type='body2'>
                 {_.join(this.props.users.filter((user) => { return user.admin }).map((user) => {

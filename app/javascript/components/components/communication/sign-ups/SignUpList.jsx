@@ -1,10 +1,13 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import queryString from 'query-string';
 
 import Text from '../../common/Text';
+import Pager from '../../common/Pager';
 import SignUpThumbnail from './SignUpThumbnail';
+
+const PER_PAGE = 10;
 
 export default class SignUpList extends React.Component {
 
@@ -19,9 +22,12 @@ export default class SignUpList extends React.Component {
     }
 
     renderList() {
+        let parsed = queryString.parse(location.search);
+        let page = _.isEmpty(parsed.page) ? 0 : Number(parsed.page);
+
         return (
             <ul className='mdc-list mdc-list--two-line'>
-                {this.props.contacts.map((contact, index) => {
+                {_.slice(this.props.contacts, page * PER_PAGE, (page + 1) * PER_PAGE).map((contact, index) => {
                     return (
                         <div key={index}>
                             <SignUpThumbnail contact={contact} />
@@ -40,7 +46,14 @@ export default class SignUpList extends React.Component {
         if (_.isEmpty(this.props.contacts)) {
             return this.renderNone();
         } else {
-            return this.renderList();
+            return (
+                <div>
+                    {this.renderList()}
+                    <br />
+
+                    <Pager elements={this.props.contacts} elementsPerPage={PER_PAGE} baseLink='/communication/sign-ups' />
+                </div>
+            );
         }
     }
 }

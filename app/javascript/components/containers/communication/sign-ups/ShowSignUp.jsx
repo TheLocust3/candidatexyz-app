@@ -50,7 +50,7 @@ class ShowSignUp extends React.Component {
 
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady}>
-                        <SignUp contact={this.props.contact} />;
+                        <SignUp contact={this.props.contact} />
                     </Loader>
                 </div>
                 <br />
