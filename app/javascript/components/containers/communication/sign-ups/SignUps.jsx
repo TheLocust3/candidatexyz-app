@@ -4,6 +4,7 @@ import { ContactActions } from 'candidatexyz-common-js';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
+import Loader from '../../../components/common/Loader';
 import Text from '../../../components/common/Text';
 import SignUpList from '../../../components/communication/sign-ups/SignUpList';
 
@@ -23,7 +24,9 @@ class SignUps extends React.Component {
                 <Text type='headline5'>Sign Up List</Text>
                 <br />
 
-                <SignUpList contacts={this.props.contacts.contacts} />
+                <Loader isReady={this.props.isReady}>
+                    <SignUpList contacts={this.props.contacts.contacts} />
+                </Loader>
             </div>
         );
     }
@@ -31,6 +34,7 @@ class SignUps extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        isReady: state.contacts.isReady,
         contacts: state.contacts.contacts
     };
 }

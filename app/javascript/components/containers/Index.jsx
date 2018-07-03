@@ -6,6 +6,7 @@ import moment from 'moment';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
 import { websiteLink } from '../../helpers';
 
+import Loader from '../components/common/Loader';
 import Text from '../components/common/Text';
 import AggregateGraph from '../components/website/AggregateGraph';
 import VolunteersOverview from '../components/communication/VolunteersOverview';
@@ -29,8 +30,6 @@ class Index extends React.Component {
     }
 
     render() {
-        if (!this.props.isCampaignReady || !this.props.isAggregateReady.hour || !this.props.areVolunteersReady || !this.props.areContactsReady || !this.props.areMessagesReady || !this.props.areUsersReady) return null;
-
         let dayStart = moment().minute(0).second(0).millisecond(0).subtract(24, 'hours');
         let dayEnd = moment().minute(0).second(0).millisecond(0);
 
@@ -43,26 +42,28 @@ class Index extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    <Text type='headline6'>Page Hits</Text><br />
-                    <AggregateGraph analyticEntries={this.props.aggregateEntries.hour} start={dayStart} end={dayEnd} unit='hour' />
-                    <br /><br />
+                    <Loader isReady={this.props.isCampaignReady && this.props.isAggregateReady.hour && this.props.areVolunteersReady && this.props.areContactsReady && this.props.areMessagesReady && this.props.areUsersReady}>
+                        <Text type='headline6'>Page Hits</Text><br />
+                        <AggregateGraph analyticEntries={this.props.aggregateEntries.hour} start={dayStart} end={dayEnd} unit='hour' />
+                        <br /><br />
 
-                    <Text type='headline6'>Communication</Text><br />
-                    
-                    <div className='content-2'>
-                        <VolunteersOverview volunteers={this.props.volunteers.volunteers} small />
+                        <Text type='headline6'>Communication</Text><br />
+                        
+                        <div className='content-2'>
+                            <VolunteersOverview volunteers={this.props.volunteers.volunteers} small />
 
-                        <SignUpsOverview contacts={this.props.contacts.contacts} small />
+                            <SignUpsOverview contacts={this.props.contacts.contacts} small />
 
-                        <MessagesOverview messages={this.props.messages.messages} small />
-                    </div>
-                    <br />
+                            <MessagesOverview messages={this.props.messages.messages} small />
+                        </div>
+                        <br />
 
-                    <Text type='headline6'>Campaign</Text><br />
+                        <Text type='headline6'>Campaign</Text><br />
 
-                    <div className='content-2'>
-                        <StaffOverview users={this.props.users.users} small />
-                    </div>
+                        <div className='content-2'>
+                            <StaffOverview users={this.props.users.users} small />
+                        </div>
+                    </Loader>
                 </div>
             </div>
         );

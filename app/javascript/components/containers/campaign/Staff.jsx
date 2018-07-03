@@ -4,6 +4,7 @@ import { UserActions } from 'candidatexyz-common-js';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
+import Loader from '../../components/common/Loader';
 import Text from '../../components/common/Text';
 import StaffList from '../../components/campaign/StaffList';
 
@@ -23,7 +24,9 @@ class Staff extends React.Component {
                 <Text type='headline5'>Staff Overview</Text>
                 <br />
 
-                <StaffList staff={this.props.staff.users} />
+                <Loader isReady={this.props.isReady}>
+                    <StaffList staff={this.props.staff.users} />
+                </Loader>
             </div>
         );
     }
@@ -31,6 +34,7 @@ class Staff extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        isReady: state.users.isReady,
         staff: state.users.users
     };
 }

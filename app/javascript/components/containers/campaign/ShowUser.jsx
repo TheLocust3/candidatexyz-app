@@ -6,6 +6,7 @@ import { StaffActions, StaffApi } from 'candidatexyz-common-js';
 import { history } from '../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
+import Loader from '../../components/common/Loader';
 import Text from '../../components/common/Text';
 import BackLink from '../../components/common/BackLink';
 import User from '../../components/campaign/User';
@@ -27,12 +28,6 @@ class ShowUser extends React.Component {
         StaffApi.destroy(this.props.match.params.id).then(() => {
             history.push('/campaign/staff');
         });
-    }
-
-    renderUser() {
-        if (!this.props.isReady) return;
-
-        return <User user={this.props.user} />;
     }
 
     renderActions() {
@@ -62,7 +57,9 @@ class ShowUser extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    {this.renderUser()}
+                    <Loader isReady={this.props.isReady}>
+                        <User user={this.props.user} />
+                    </Loader>
                 </div>
                 <br />
 

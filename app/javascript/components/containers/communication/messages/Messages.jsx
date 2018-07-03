@@ -4,6 +4,7 @@ import { MessageActions } from 'candidatexyz-common-js';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
+import Loader from '../../../components/common/Loader';
 import Text from '../../../components/common/Text';
 import MessageList from '../../../components/communication/messages/MessageList';
 
@@ -23,7 +24,9 @@ class Messages extends React.Component {
                 <Text type='headline5'>Message List</Text>
                 <br />
 
-                <MessageList messages={this.props.messages.messages} />
+                <Loader isReady={this.props.isReady}>
+                    <MessageList messages={this.props.messages.messages} />
+                </Loader>
             </div>
         );
     }
@@ -31,6 +34,7 @@ class Messages extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        isReady: state.messages.isReady,
         messages: state.messages.messages
     };
 }

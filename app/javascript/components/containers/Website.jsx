@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -7,6 +6,7 @@ import { CampaignActions, AnalyticEntryActions } from 'candidatexyz-common-js';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
 import { websiteLink } from '../../helpers';
 
+import Loader from '../components/common/Loader';
 import Text from '../components/common/Text';
 import AnalyticsOverview from '../components/website/AnalyticsOverview';
 import AnalyticsGraphs from '../components/website/AnalyticsGraphs';
@@ -25,8 +25,6 @@ class Website extends React.Component {
     }
 
     render() {
-        if (!this.props.isCampaignReady || !this.props.isAggregateReady.year || !this.props.isAggregateReady.day || !this.props.isAggregateReady.hour) return null;
-
         return (
             <div className='content'>
                 <Text type='headline5'>Website Analytics</Text>
@@ -37,10 +35,13 @@ class Website extends React.Component {
 
                 <div className='content-2'>
                     <Text type='headline6'>At a Glance</Text>
-                    <AnalyticsOverview analyticEntries={this.props.aggregateEntries} />
-                    <br /><br />
 
-                    <AnalyticsGraphs analyticEntries={this.props.aggregateEntries} />
+                    <Loader isReady={this.props.isCampaignReady && this.props.isAggregateReady.year && this.props.isAggregateReady.day && this.props.isAggregateReady.hour}>
+                        <AnalyticsOverview analyticEntries={this.props.aggregateEntries} />
+                        <br /><br />
+
+                        <AnalyticsGraphs analyticEntries={this.props.aggregateEntries} />
+                    </Loader>
                 </div>
             </div>
         );

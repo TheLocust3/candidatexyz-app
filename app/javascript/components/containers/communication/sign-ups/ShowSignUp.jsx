@@ -6,6 +6,7 @@ import { ContactActions, ContactApi } from 'candidatexyz-common-js';
 import { history } from '../../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
+import Loader from '../../../components/common/Loader';
 import Text from '../../../components/common/Text';
 import BackLink from '../../../components/common/BackLink';
 import SignUp from '../../../components/communication/sign-ups/SignUp';
@@ -28,13 +29,7 @@ class ShowSignUp extends React.Component {
             history.push('/communication/sign-ups');
         });
     }
-
-    renderSignUp() {
-        if (!this.props.isReady) return;
-
-        return <SignUp contact={this.props.contact} />;
-    }
-
+    
     render() {
         return (
             <div className='content'>
@@ -54,7 +49,9 @@ class ShowSignUp extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    {this.renderSignUp()}
+                    <Loader isReady={this.props.isReady}>
+                        <SignUp contact={this.props.contact} />;
+                    </Loader>
                 </div>
                 <br />
 

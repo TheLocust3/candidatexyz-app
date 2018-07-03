@@ -5,6 +5,7 @@ import { ContactActions, ContactApi } from 'candidatexyz-common-js';
 import { history } from '../../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
+import Loader from '../../../components/common/Loader';
 import Text from '../../../components/common/Text';
 import BackLink from '../../../components/common/BackLink';
 import SignUpForm from '../../../components/communication/sign-ups/SignUpForm';
@@ -28,12 +29,6 @@ class EditSignUp extends React.Component {
         });
     }
 
-    renderSignUpForm() {
-        if (!this.props.isReady) return;
-
-        return <SignUpForm contact={this.props.contact} />;
-    }
-
     render() {
         return (
             <div className='content'>
@@ -46,7 +41,9 @@ class EditSignUp extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    {this.renderSignUpForm()}
+                    <Loader isReady={this.props.isReady}>
+                        <SignUpForm contact={this.props.contact} />
+                    </Loader>
                 </div>
                 <br />
 

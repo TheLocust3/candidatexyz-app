@@ -5,6 +5,7 @@ import { StaffActions, StaffApi } from 'candidatexyz-common-js';
 import { history } from '../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
+import Loader from '../../components/common/Loader';
 import Text from '../../components/common/Text';
 import BackLink from '../../components/common/BackLink';
 import UserForm from '../../components/campaign/UserForm';
@@ -28,12 +29,6 @@ class EditUser extends React.Component {
         });
     }
 
-    renderUserForm() {
-        if (!this.props.isReady) return;
-
-        return <UserForm user={this.props.user} />;
-    }
-
     render() {
         return (
             <div className='content'>
@@ -46,7 +41,9 @@ class EditUser extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    {this.renderUserForm()}
+                    <Loader isReady={this.props.isReady}>
+                        <UserForm user={this.props.user} />
+                    </Loader>
                 </div>
                 <br />
 

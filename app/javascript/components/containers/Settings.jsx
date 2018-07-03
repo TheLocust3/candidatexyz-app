@@ -5,6 +5,7 @@ import { CampaignActions } from 'candidatexyz-common-js';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
 
 import MDCAutoInit from '../components/global/MDCAutoInit';
+import Loader from '../components/common/Loader';
 import Text from '../components/common/Text';
 import EditUserForm from '../components/users/EditUserForm';
 import EditCampaignForm from '../components/campaign/EditCampaignForm';
@@ -27,16 +28,18 @@ class Settings extends React.Component {
                 <Text type='headline5'>Campaign Settings</Text>
                 <br />
 
-                <div className='content-2'>
-                    <EditCampaignForm campaign={this.props.campaign} />
-                </div>
+                <Loader isReady={this.props.isReady}>
+                    <div className='content-2'>
+                        <EditCampaignForm campaign={this.props.campaign} />
+                    </div>
 
-                <Text type='headline5'>User Settings</Text>
-                <br />
+                    <Text type='headline5'>User Settings</Text>
+                    <br />
 
-                <div className='content-2'>
-                    <EditUserForm user={this.props.user} />
-                </div>
+                    <div className='content-2'>
+                        <EditUserForm user={this.props.user} />
+                    </div>
+                </Loader>
 
                 <MDCAutoInit />
             </div>

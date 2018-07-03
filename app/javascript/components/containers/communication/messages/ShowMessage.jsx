@@ -5,6 +5,7 @@ import { MessageApi, MessageActions } from 'candidatexyz-common-js';
 import { history } from '../../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
+import Loader from '../../../components/common/Loader';
 import Text from '../../../components/common/Text';
 import BackLink from '../../../components/common/BackLink';
 import Message from '../../../components/communication/messages/Message';
@@ -28,11 +29,6 @@ class ShowMessage extends React.Component {
         });
     }
 
-    renderMessage() {
-        if (!this.props.isReady) return;
-
-        return <Message message={this.props.message} />;
-    }
 
     render() {
         return (
@@ -47,7 +43,9 @@ class ShowMessage extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    {this.renderMessage()}
+                    <Loader isReady={this.props.isReady}>
+                        <Message message={this.props.message} />
+                    </Loader>
                 </div>
                 <br />
 

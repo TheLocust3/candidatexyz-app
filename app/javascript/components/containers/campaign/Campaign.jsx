@@ -4,6 +4,7 @@ import { StaffActions, CampaignActions } from 'candidatexyz-common-js';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
+import Loader from '../../components/common/Loader';
 import Text from '../../components/common/Text';
 import StaffOverview from '../../components/campaign/StaffOverview';
 
@@ -19,8 +20,6 @@ class Campaign extends React.Component {
     }
 
     render() {
-        if (!this.props.isCampaignReady || !this.props.areUsersReady) return null;
-
         return (
             <div className='content'>
                 <Text type='headline5'>{this.props.campaign.name}</Text>
@@ -28,7 +27,10 @@ class Campaign extends React.Component {
 
                 <div className='content-2'>
                     <Text type='headline6'>Staff</Text>
-                    <StaffOverview users={this.props.users.users} />
+
+                    <Loader isReady={this.props.areUsersReady && this.props.isCampaignReady}>
+                        <StaffOverview users={this.props.users.users} />
+                    </Loader>
                 </div>
             </div>
         );

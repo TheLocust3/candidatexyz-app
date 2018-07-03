@@ -4,6 +4,7 @@ import { VolunteerActions, ContactActions, MessageActions } from 'candidatexyz-c
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
+import Loader from '../../components/common/Loader';
 import Text from '../../components/common/Text';
 import VolunteersOverview from '../../components/communication/VolunteersOverview';
 import SignUpsOverview from '../../components/communication/SignUpsOverview';
@@ -22,27 +23,27 @@ class Communication extends React.Component {
     }
 
     render() {
-        if (!this.props.areVolunteersReady || !this.props.areContactsReady || !this.props.areMessagesReady) return null;
-
         return (
             <div className='content'>
                 <Text type='headline5'>Communication Overview</Text>
                 <br />
 
                 <div className='content-2'>
-                    <Text type='headline6'>Volunteers</Text>
+                    <Loader isReady={this.props.areVolunteersReady && this.props.areContactsReady && this.props.areMessagesReady}>
+                        <Text type='headline6'>Volunteers</Text>
 
-                    <VolunteersOverview volunteers={this.props.volunteers.volunteers} />
-                    <br /><br />
+                        <VolunteersOverview volunteers={this.props.volunteers.volunteers} />
+                        <br /><br />
 
-                    <Text type='headline6'>Sign Ups</Text>
+                        <Text type='headline6'>Sign Ups</Text>
 
-                    <SignUpsOverview contacts={this.props.contacts.contacts} />
-                    <br /><br />
+                        <SignUpsOverview contacts={this.props.contacts.contacts} />
+                        <br /><br />
 
-                    <Text type='headline6'>Messages</Text>
+                        <Text type='headline6'>Messages</Text>
 
-                    <MessagesOverview messages={this.props.messages.messages} />
+                        <MessagesOverview messages={this.props.messages.messages} />
+                    </Loader>
                 </div>
             </div>
         );

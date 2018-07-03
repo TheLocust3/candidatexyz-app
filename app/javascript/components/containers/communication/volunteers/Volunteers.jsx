@@ -4,6 +4,7 @@ import { VolunteerActions } from 'candidatexyz-common-js';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
+import Loader from '../../../components/common/Loader';
 import Text from '../../../components/common/Text';
 import Table from '../../../components/common/Table';
 
@@ -24,7 +25,9 @@ class Volunteers extends React.Component {
                 <br /><br />
 
                 <div className='content-1'>
-                    <Table to='/communication/volunteers/' headers={['First Name', 'Last Name', 'Email', 'Address', 'Help Type']} keys={['firstName', 'lastName', 'email', 'address', 'helpBlurb']} rows={this.props.volunteers.volunteers} />
+                    <Loader isReady={this.props.isReady}>
+                        <Table to='/communication/volunteers/' headers={['First Name', 'Last Name', 'Email', 'Address', 'Help Type']} keys={['firstName', 'lastName', 'email', 'address', 'helpBlurb']} rows={this.props.volunteers.volunteers} />
+                    </Loader>
                 </div>
             </div>
         );
@@ -33,6 +36,7 @@ class Volunteers extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        isReady: state.volunteers.isReady,
         volunteers: state.volunteers.volunteers
     };
 }

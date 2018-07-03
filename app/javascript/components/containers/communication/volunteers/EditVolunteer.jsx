@@ -5,6 +5,7 @@ import { VolunteerActions, VolunteerApi } from 'candidatexyz-common-js';
 import { history } from '../../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
+import Loader from '../../../components/common/Loader';
 import Text from '../../../components/common/Text';
 import BackLink from '../../../components/common/BackLink';
 import VolunteerForm from '../../../components/communication/volunteers/VolunteerForm';
@@ -27,13 +28,7 @@ class EditVolunteer extends React.Component {
             history.push('/communication/volunteers');
         });
     }
-
-    renderVolunteerForm() {
-        if (!this.props.isReady) return;
-
-        return <VolunteerForm volunteer={this.props.volunteer} />;
-    }
-
+    
     render() {
         return (
             <div className='content'>
@@ -46,7 +41,9 @@ class EditVolunteer extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    {this.renderVolunteerForm()}
+                    <Loader isReady={this.props.isReady}>
+                        <VolunteerForm volunteer={this.props.volunteer} />
+                    </Loader>
                 </div>
                 <br />
 
