@@ -49,7 +49,7 @@ export default class TimeLineChart extends React.Component {
                     },
                     ticks: {
                         min: 0,
-                        max: _.round(yMax * 1.25, -1 * (this.numberOfDigits(yMax) - 1))
+                        max: _.ceil(yMax * 1.25, -1 * (this.numberOfDigits(yMax) - 1))
                     }
                 }]
             },
