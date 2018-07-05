@@ -12,7 +12,8 @@ export default class TimeLineChart extends React.Component {
     }
 
     render() {
-        let yMax = _.maxBy(this.props.data, (datum) => { return datum.y }).y;
+        let max = _.maxBy(this.props.data, (datum) => { return datum.y });
+        let yMax = _.isEmpty(max) ? 1 : max.y;
 
         let displayXAxisLabel = !_.isEmpty(this.props.xAxis);
         let displayYAxisLabel = !_.isEmpty(this.props.yAxis);
