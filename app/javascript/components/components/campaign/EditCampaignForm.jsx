@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CampaignApi } from 'candidatexyz-common-js';
+import { Button, Form, TextField } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../constants';
-
-import Form from '../common/Form';
-import TextField from '../common/TextField';
-import Button from '../common/Button';
 
 export default class EditCampaignForm extends React.Component {
 

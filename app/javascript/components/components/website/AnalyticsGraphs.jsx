@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
-import Text from '../common/Text';
 import AggregateGraph from './AggregateGraph';
 
 export default class AnalyticGraphs extends React.Component {

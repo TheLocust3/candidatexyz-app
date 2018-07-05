@@ -3,8 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
-
-import Text from '../common/Text';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class Pager extends React.Component {
 

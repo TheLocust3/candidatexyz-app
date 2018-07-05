@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
-import Text from '../../components/common/Text';
 import StaffSignUpForm from '../../components/campaign/StaffSignUpForm';
 
 class StaffSignUp extends React.Component {

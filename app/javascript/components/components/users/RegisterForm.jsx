@@ -1,9 +1,6 @@
 import React from 'react';
 import { AuthApi } from 'candidatexyz-common-js';
-
-import Form from '../common/Form';
-import TextField from '../common/TextField';
-import Button from '../common/Button';
+import { Form, TextField, Button } from 'candidatexyz-common-js/lib/elements';
 
 export default class RegisterForm extends React.Component {
 

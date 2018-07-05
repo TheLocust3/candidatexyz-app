@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import Text from './Text';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 class CompanyTitle extends React.Component {
 

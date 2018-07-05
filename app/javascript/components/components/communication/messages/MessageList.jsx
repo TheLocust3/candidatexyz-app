@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
-import Text from '../../common/Text';
 import Pager from '../../common/Pager';
 import MessageThumbnail from './MessageThumbnail';
 

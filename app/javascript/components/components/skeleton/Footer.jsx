@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Text from '../common/Text';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class Footer extends React.Component {
 

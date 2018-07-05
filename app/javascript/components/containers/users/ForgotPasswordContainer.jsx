@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb } from '../../actions/global-actions';
 
 import MDCAutoInit from '../../components/global/MDCAutoInit';
-import Text from '../../components/common/Text';
 import ForgotPasswordForm from '../../components/users/ForgotPasswordForm';
 
 class ForgotPasswordContainer extends React.Component {

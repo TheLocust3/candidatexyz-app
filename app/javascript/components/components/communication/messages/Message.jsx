@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import Text from '../../common/Text';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class Message extends React.Component {
 

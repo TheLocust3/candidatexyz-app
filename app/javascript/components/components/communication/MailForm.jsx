@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MailApi } from 'candidatexyz-common-js';
-
-import Form from '../common/Form';
-import TextField from '../common/TextField';
-import Button from '../common/Button';
-import TextEditor from '../common/TextEditor';
+import { Button, Form, TextField, TextEditor } from 'candidatexyz-common-js/lib/elements';
 
 export default class MailForm extends React.Component {
 

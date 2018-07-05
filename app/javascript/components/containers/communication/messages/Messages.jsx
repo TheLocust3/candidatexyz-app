@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { MessageActions } from 'candidatexyz-common-js';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
 import Loader from '../../../components/common/Loader';
-import Text from '../../../components/common/Text';
 import MessageList from '../../../components/communication/messages/MessageList';
 
 class Messages extends React.Component {

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
-import Text from '../common/Text';
 import MessageThumbnail from './messages/MessageThumbnail';
 
 export default class MessagesOverview extends React.Component {

@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MDCTemporaryDrawer } from '@material/drawer';
 import { AuthApi } from 'candidatexyz-common-js';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { MAX_MOBILE_WIDTH } from '../../../constants';
 
-import Text from '../common/Text';
 import CompanyTitle from '../common/CompanyTitle';
 
 class Navbar extends React.Component {

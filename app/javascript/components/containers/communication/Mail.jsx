@@ -2,15 +2,13 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { VolunteerActions, ContactActions, MailApi } from 'candidatexyz-common-js';
+import { Text, Select, SelectItem } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 import { history } from '../../../constants';
 
 import MDCAutoInit from '../../components/global/MDCAutoInit';
 import Loader from '../../components/common/Loader';
-import Text from '../../components/common/Text';
-import Select from '../../components/common/Select';
-import SelectItem from '../../components/common/SelectItem';
 import MailForm from '../../components/communication/MailForm';
 
 const GROUPS = [{ key: '', value: '' }, { key: 'signUps', value: 'All Sign Ups' }, { key: 'volunteers', value: 'All Volunteers' }];

@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
-import Text from '../../common/Text';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class MessageThumbnail extends React.Component {
 

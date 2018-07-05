@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AuthApi } from 'candidatexyz-common-js';
-
-import Form from '../common/Form';
-import TextField from '../common/TextField';
-import Button from '../common/Button';
+import { Form, TextField, Button } from 'candidatexyz-common-js/lib/elements';
 
 export default class EditUserForm extends React.Component {
 

@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StaffActions, AnalyticEntryActions, CampaignActions, VolunteerActions, ContactActions, MessageActions } from 'candidatexyz-common-js';
 import moment from 'moment';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
 import { websiteLink } from '../../helpers';
 
 import Loader from '../components/common/Loader';
-import Text from '../components/common/Text';
 import AggregateGraph from '../components/website/AggregateGraph';
 import VolunteersOverview from '../components/communication/VolunteersOverview';
 import SignUpsOverview from '../components/communication/SignUpsOverview';

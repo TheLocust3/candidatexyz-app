@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../constants';
-
-import Text from '../common/Text';
 
 export default class Table extends React.Component {
 

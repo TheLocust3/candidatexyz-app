@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaffApi } from 'candidatexyz-common-js';
+import { Button, Form, TextField, Checkbox } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../constants';
 
 import MDCAutoInit from '../global/MDCAutoInit';
-import Button from '../common/Button';
-import TextField from '../common/TextField';
-import Checkbox from '../common/Checkbox';
-import Form from '../common/Form';
 
 export default class UserForm extends React.Component {
 

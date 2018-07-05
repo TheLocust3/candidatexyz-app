@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ContactActions, ContactApi } from 'candidatexyz-common-js';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
 import Loader from '../../../components/common/Loader';
-import Text from '../../../components/common/Text';
 import BackLink from '../../../components/common/BackLink';
 import SignUp from '../../../components/communication/sign-ups/SignUp';
 

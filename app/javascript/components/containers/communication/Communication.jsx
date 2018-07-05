@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { VolunteerActions, ContactActions, MessageActions } from 'candidatexyz-common-js';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
 import Loader from '../../components/common/Loader';
-import Text from '../../components/common/Text';
 import VolunteersOverview from '../../components/communication/VolunteersOverview';
 import SignUpsOverview from '../../components/communication/SignUpsOverview';
 import MessagesOverview from '../../components/communication/MessagesOverview';

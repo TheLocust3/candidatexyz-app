@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb } from '../../actions/global-actions';
 
 import MDCAutoInit from '../../components/global/MDCAutoInit';
-import Text from '../../components/common/Text';
 import ResetPasswordForm from '../../components/users/ResetPasswordForm';
 
 class ResetPasswordContainer extends React.Component {

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
-import Text from '../common/Text';
 import VolunteerThumbnail from './volunteers/VolunteerThumbnail';
 
 export default class VolunteersOverview extends React.Component {

@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
 import { VolunteerActions } from 'candidatexyz-common-js';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
 import Loader from '../../../components/common/Loader';
-import Text from '../../../components/common/Text';
 import Pager from '../../../components/common/Pager';
 import Table from '../../../components/common/Table';
 

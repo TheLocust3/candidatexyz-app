@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { CampaignActions, AnalyticEntryActions } from 'candidatexyz-common-js';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
 import { websiteLink } from '../../helpers';
 
 import Loader from '../components/common/Loader';
-import Text from '../components/common/Text';
 import AnalyticsOverview from '../components/website/AnalyticsOverview';
 import AnalyticsGraphs from '../components/website/AnalyticsGraphs';
 
