@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { CampaignActions } from 'candidatexyz-common-js';
-import { Text } from 'candidatexyz-common-js/lib/elements';
+import { Text, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
 
-import MDCAutoInit from '../components/global/MDCAutoInit';
 import Loader from '../components/common/Loader';
 import EditUserForm from '../components/users/EditUserForm';
 import EditCampaignForm from '../components/campaign/EditCampaignForm';

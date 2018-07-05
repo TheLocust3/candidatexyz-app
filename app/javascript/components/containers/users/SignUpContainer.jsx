@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { Text } from 'candidatexyz-common-js/lib/elements';
+import { Text, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb } from '../../actions/global-actions';
 
-import MDCAutoInit from '../../components/global/MDCAutoInit';
 import RegisterForm from '../../components/users/RegisterForm';
 
 class SignUpContainer extends React.Component {

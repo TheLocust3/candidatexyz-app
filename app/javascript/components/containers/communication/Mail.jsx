@@ -2,12 +2,11 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { VolunteerActions, ContactActions, MailApi } from 'candidatexyz-common-js';
-import { Text, Select, SelectItem } from 'candidatexyz-common-js/lib/elements';
+import { Text, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 import { history } from '../../../constants';
 
-import MDCAutoInit from '../../components/global/MDCAutoInit';
 import Loader from '../../components/common/Loader';
 import MailForm from '../../components/communication/MailForm';
 

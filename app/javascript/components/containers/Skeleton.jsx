@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import Navbar from '../components/skeleton/Navbar';
 import Footer from '../components/skeleton/Footer';
-import MDCAutoInit from '../components/global/MDCAutoInit';
 
 class Skeleton extends React.Component {
 

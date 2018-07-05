@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { VolunteerApi } from 'candidatexyz-common-js';
-import { Button, TextField, TextArea, Form } from 'candidatexyz-common-js/lib/elements';
+import { Button, TextField, TextArea, Form, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
-
-import MDCAutoInit from '../../global/MDCAutoInit';
 
 export default class SignUpForm extends React.Component {
 
