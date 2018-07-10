@@ -57,7 +57,7 @@ export default class DonorForm extends React.Component {
                 });
             });
         } else {
-            DonorApi.update(donor.name, donor.amount, donor.address, donor.zipcode, donor.city, donor.state, donor.dateReceived, donor.occupation, donor.employer).then((response) => {
+            DonorApi.update(this.props.donor.id, donor.name, donor.amount, donor.address, donor.zipcode, donor.city, donor.state, donor.dateReceived, donor.occupation, donor.employer).then((response) => {
                 history.push(`/campaign/donors/${this.props.donor.id}`)
             }).catch((response) => {
                 this.setState({
