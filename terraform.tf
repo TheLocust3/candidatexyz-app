@@ -195,6 +195,10 @@ resource "aws_codedeploy_deployment_group" "deployment" {
     deployment_type   = "IN_PLACE"
   }
 
+  lifecycle {
+    ignore_changes = ["*"]
+  }
+
   // Terraform fails to setup Blue Green deployment so currently just set it up in AWS console
   /*deployment_style {
     deployment_option = "WITH_TRAFFIC_CONTROL"
