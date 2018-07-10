@@ -136,6 +136,10 @@ class Navbar extends React.Component {
                     <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/campaign/invite-staff'>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'inviteStaff' ? 'drawer-sub-item-text--activated' : ''}`}>Invite Staff</Text>
                     </Link>
+
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/campaign/donors'>
+                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'donors' ? 'drawer-sub-item-text--activated' : ''}`}>Donors</Text>
+                    </Link>
                 </div>
 
                 <Link className={`mdc-list-item ${item == 'settings' ? 'mdc-list-item--activated' : ''}`} to='/settings'>

@@ -85,3 +85,29 @@
     margin-left: 1%;
     margin-right: 1%;
 }
+
+.DayPicker {
+    font-weight: 300;
+}
+
+.DayPicker-wrapper {
+    outline: none;
+}
+
+.DayPicker-NavButton {
+    outline: none;
+}
+
+.DayPicker-Day {
+    outline: none;
+}
+
+.DayPickerInput input {
+    padding-top: 3%;
+    padding-bottom: 3%;
+    
+    text-align: center;
+    outline: none;
+
+    font-weight: 300 !important;
+}

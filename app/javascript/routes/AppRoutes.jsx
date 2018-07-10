@@ -17,6 +17,11 @@ import Staff from '../components/containers/campaign/Staff';
 import EditUser from '../components/containers/campaign/EditUser';
 import InviteStaff from '../components/containers/campaign/InviteStaff';
 
+import Donors from '../components/containers/campaign/donors/Donors';
+import ShowDonor from '../components/containers/campaign/donors/ShowDonor';
+import CreateDonor from '../components/containers/campaign/donors/CreateDonor';
+import EditDonor from '../components/containers/campaign/donors/EditDonor';
+
 import ShowUser from '../components/containers/campaign/ShowUser';
 
 import Communication from '../components/containers/communication/Communication';
@@ -78,6 +83,11 @@ class AppRoutes extends React.Component {
                         <Route exact path='/campaign/staff/:id' component={ShowUser} />
                         <Route exact path='/campaign/staff/:id/edit' component={EditUser} />
                         <Route exact path='/campaign/invite-staff' component={InviteStaff} />
+
+                        <Route exact path='/campaign/donors' component={Donors} />
+                        <Route exact path='/campaign/donors/create' component={CreateDonor} />
+                        <Route exact path='/campaign/donors/:id' component={ShowDonor} />
+                        <Route exact path='/campaign/donors/:id/edit' component={EditDonor} />
                         
                         <Route component={NotFound} />
                     </Switch>
