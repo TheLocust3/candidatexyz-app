@@ -1,3 +1,5 @@
+$header-color: #F2F2F2;
+
 table {
     width: 100%;
 
@@ -14,7 +16,14 @@ td, th {
 }
 
 th {
-    background-color: #F2F2F2;
+    background-color: $header-color;
+}
+
+.selectable {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 tr.selectable {
@@ -27,4 +36,27 @@ tr:hover.selectable {
 
 tr:active.selectable {
     background-color: #F4F4F4;
+}
+
+th.selectable {
+    cursor: pointer;
+}
+
+th:active.selectable {
+    background-color: darken($header-color, 5%);
+}
+
+.header-text {
+    position: relative;
+
+    margin-left: 13px;
+    margin-right: 13px;
+
+    display: inline-block;
+}
+
+.header-arrow {
+    position: absolute;
+    top: 0;
+    right: -13px;
 }
