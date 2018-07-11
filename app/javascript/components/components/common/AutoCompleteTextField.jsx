@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -12,10 +13,23 @@ export default class AutoCompleteTextField extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { suggested: [], value: '' };
+        this.state = { suggested: [], value: _.isEmpty(this.props.defaultValue) ? '' : this.props.defaultValue, closed: false };
+    }
+
+    componentDidMount() {
+        $(document).click((event) => {
+            if (!this.state.closed && !$(event.target).parents().is('.autocomplete-wrapper')) {
+                this.setState({
+                    suggested: [],
+                    closed: true
+                });
+            }
+        });
     }
 
     componentDidUpdate() {
+        if (this.state.closed) return;
+        
         if (_.isEmpty(this.state.value)) {
             if (this.state.suggested.length != 0) {
                 this.setState({
@@ -46,6 +60,10 @@ export default class AutoCompleteTextField extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        $(document).off('click');
+    }
+
     handleChange(event) {
         this.setState({
             value: event.target.value
@@ -60,6 +78,13 @@ export default class AutoCompleteTextField extends React.Component {
         });
 
         this.props.onAutoComplete(element);
+    }
+
+    onClick() {
+        this.setState({
+            suggested: [],
+            closed: false
+        });
     }
 
     renderAutoComplete() {
@@ -85,7 +110,7 @@ export default class AutoCompleteTextField extends React.Component {
 
         return (
             <div className='autocomplete-wrapper'>
-                <TextField label='Name' value={this.state.value} onChange={this.handleChange.bind(this)} {...props} />
+                <TextField label='Name' value={this.state.value} onChange={this.handleChange.bind(this)} onClick={() => this.onClick()} {...props} />
 
                 {this.renderAutoComplete()}
             </div>

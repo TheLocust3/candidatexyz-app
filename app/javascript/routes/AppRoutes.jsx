@@ -17,10 +17,10 @@ import Staff from '../components/containers/campaign/Staff';
 import EditUser from '../components/containers/campaign/EditUser';
 import InviteStaff from '../components/containers/campaign/InviteStaff';
 
-import Donors from '../components/containers/campaign/donors/Donors';
-import ShowDonor from '../components/containers/campaign/donors/ShowDonor';
-import CreateDonor from '../components/containers/campaign/donors/CreateDonor';
-import EditDonor from '../components/containers/campaign/donors/EditDonor';
+import Donations from '../components/containers/campaign/donations/Donations';
+import ShowDonation from '../components/containers/campaign/donations/ShowDonation';
+import CreateDonation from '../components/containers/campaign/donations/CreateDonation';
+import EditDonation from '../components/containers/campaign/donations/EditDonation';
 
 import ShowUser from '../components/containers/campaign/ShowUser';
 
@@ -84,10 +84,10 @@ class AppRoutes extends React.Component {
                         <Route exact path='/campaign/staff/:id/edit' component={EditUser} />
                         <Route exact path='/campaign/invite-staff' component={InviteStaff} />
 
-                        <Route exact path='/campaign/donors' component={Donors} />
-                        <Route exact path='/campaign/donors/create' component={CreateDonor} />
-                        <Route exact path='/campaign/donors/:id' component={ShowDonor} />
-                        <Route exact path='/campaign/donors/:id/edit' component={EditDonor} />
+                        <Route exact path='/campaign/donations' component={Donations} />
+                        <Route exact path='/campaign/donations/create' component={CreateDonation} />
+                        <Route exact path='/campaign/donations/:id' component={ShowDonation} />
+                        <Route exact path='/campaign/donations/:id/edit' component={EditDonation} />
                         
                         <Route component={NotFound} />
                     </Switch>

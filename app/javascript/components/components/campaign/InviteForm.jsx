@@ -4,12 +4,14 @@ import { Button, Form, TextField } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../constants';
 
+import Loader from '../common/Loader';
+
 export default class InviteForm extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = { email: '', errors: {} };
+        this.state = { email: '', sending: false, errors: {} };
     }
 
     handleChange(event) {
@@ -20,6 +22,10 @@ export default class InviteForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+
+        this.setState({
+            sending: true
+        });
 
         StaffApi.createToken(this.state.email).then(() => {
             history.push('/campaign/staff');
@@ -33,10 +39,12 @@ export default class InviteForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <TextField type='email' label='Email' name='email' onChange={(event) => this.handleChange(event)} required={true} />
-                <br /><br />
-                
-                <Button type='submit'>Invite</Button>
+                <Loader isReady={!this.state.sending}>
+                    <TextField type='email' label='Email' name='email' onChange={(event) => this.handleChange(event)} required={true} />
+                    <br /><br />
+                    
+                    <Button type='submit'>Invite</Button>
+                </Loader>
             </Form>
         );
     }

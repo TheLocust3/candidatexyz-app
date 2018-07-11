@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { DonorActions, DonorApi } from 'candidatexyz-common-js';
+import { ReceiptActions, ReceiptApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
@@ -8,32 +8,32 @@ import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/glo
 
 import BackLink from '../../../components/common/BackLink';
 import Loader from '../../../components/common/Loader';
-import DonorForm from '../../../components/campaign/donors/DonorForm';
+import DonationForm from '../../../components/campaign/donations/DonationForm';
 
-class CreateDonor extends React.Component {
+class CreateDonation extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setTitle('Create Donor'));
-        this.props.dispatch(setBreadcrumb('Donor'));
-        this.props.dispatch(setDrawerSelected('campaign', 'donors'));
+        this.props.dispatch(setTitle('Create Donation'));
+        this.props.dispatch(setBreadcrumb('Donation'));
+        this.props.dispatch(setDrawerSelected('campaign', 'donation'));
 
-        this.props.dispatch(DonorActions.fetchAllDonors());
+        this.props.dispatch(ReceiptActions.fetchAllReceipts());
     }
     
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>Create Donor</Text>
+                <Text type='headline5'>Create Donation</Text>
                 <br />
 
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady}>
-                        <DonorForm donors={this.props.donors.donors} />
+                        <DonationForm receipts={this.props.receipts.receipts} />
                     </Loader>
                 </div>
                 <br />
 
-                <BackLink to='/campaign/donors/' />
+                <BackLink to='/campaign/donations/' />
             </div>
         );
     }
@@ -41,9 +41,9 @@ class CreateDonor extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        isReady: state.donors.isReady,
-        donors: state.donors.donors
+        isReady: state.receipts.isReady,
+        receipts: state.receipts.receipts
     };
 }
 
-export default connect(mapStateToProps)(CreateDonor);
+export default connect(mapStateToProps)(CreateDonation);

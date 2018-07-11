@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { DonorActions, DonorApi } from 'candidatexyz-common-js';
+import { ReceiptActions, ReceiptApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
@@ -9,34 +9,34 @@ import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/glo
 
 import Loader from '../../../components/common/Loader';
 import BackLink from '../../../components/common/BackLink';
-import Donor from '../../../components/campaign/donors/Donor';
+import Donation from '../../../components/campaign/donations/Donation';
 
-class ShowDonor extends React.Component {
+class ShowDonation extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setTitle('View Donor'));
-        this.props.dispatch(setBreadcrumb('Donor'));
-        this.props.dispatch(setDrawerSelected('campaign', 'donors'));
+        this.props.dispatch(setTitle('View Donation'));
+        this.props.dispatch(setBreadcrumb('Donation'));
+        this.props.dispatch(setDrawerSelected('campaign', 'donations'));
 
-        this.props.dispatch(DonorActions.fetchDonor(this.props.match.params.id));
+        this.props.dispatch(ReceiptActions.fetchReceipt(this.props.match.params.id));
     }
 
     onDeleteClick(event) {
         let shouldDelete = confirm('Are you sure?');
         if (!shouldDelete) return;
 
-        DonorApi.destroy(this.props.match.params.id).then(() => {
-            history.push('/campaign/donors');
+        ReceiptApi.destroy(this.props.match.params.id).then(() => {
+            history.push('/campaign/donations');
         });
     }
     
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>View Donor</Text>
+                <Text type='headline5'>View Donation</Text>
 
                 <div className='resource-actions'>
-                    <Link className='resource-actions-item unstyled-link-black' to={`/campaign/donors/${this.props.match.params.id}/edit`}>
+                    <Link className='resource-actions-item unstyled-link-black' to={`/campaign/donations/${this.props.match.params.id}/edit`}>
                         <Text type='body2'>Edit</Text>
                     </Link>
 
@@ -50,12 +50,12 @@ class ShowDonor extends React.Component {
 
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady}>
-                        <Donor donor={this.props.donor} />
+                        <Donation receipt={this.props.receipt} />
                     </Loader>
                 </div>
                 <br />
 
-                <BackLink to='/campaign/donors' />
+                <BackLink to='/campaign/donations' />
             </div>
         );
     }
@@ -63,9 +63,9 @@ class ShowDonor extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        isReady: state.donors.isReady,
-        donor: state.donors.donor
+        isReady: state.receipts.isReady,
+        receipt: state.receipts.receipt
     };
 }
 
-export default connect(mapStateToProps)(ShowDonor);
+export default connect(mapStateToProps)(ShowDonation);

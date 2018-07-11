@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Text } from 'candidatexyz-common-js/lib/elements';
+import { Text, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
@@ -23,6 +23,8 @@ class StaffSignUp extends React.Component {
                 <div className='content-2'>
                     <StaffSignUpForm token={this.props.match.params.token} />
                 </div>
+
+                <MDCAutoInit />
             </div>
         );
     }
