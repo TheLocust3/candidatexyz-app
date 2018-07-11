@@ -9,9 +9,9 @@ import MomentLocaleUtils, {
     parseDate,
   } from 'react-day-picker/moment';
 import { ReceiptApi } from 'candidatexyz-common-js';
-import { Text, Button, TextField, Form, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
+import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
-import { history } from '../../../../constants';
+import { history, STATES } from '../../../../constants';
 import { arraysEquals } from '../../../../helpers';
 
 import AutoCompleteTextField from '../../common/AutoCompleteTextField';
@@ -23,7 +23,7 @@ export default class DonationForm extends React.Component {
 
         this.state = { errors: {} };
         if (_.isEmpty(this.props.receipt)) {
-            this.state.receipt = { dateReceived: new Date() };
+            this.state.receipt = { state: 'MA', dateReceived: new Date() };
         } else {
             this.state.receipt = this.props.receipt;
         }
@@ -41,6 +41,15 @@ export default class DonationForm extends React.Component {
     handleDateChange(date) {
         let receipt = this.state.receipt;
         receipt.dateReceived = date;
+
+        this.setState({
+            receipt: receipt
+        });
+    }
+
+    handleStateChange(select) {
+        let receipt = this.state.receipt;
+        receipt.state = select.value;
 
         this.setState({
             receipt: receipt
@@ -81,6 +90,20 @@ export default class DonationForm extends React.Component {
         return moment(date).format(format);
     }
 
+    renderStateDropdown() {
+        return (
+            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.receipt.state })} style={{ width: '30%', marginRight: '5%' }}>
+                {STATES.map((state) => {
+                    return (
+                        <SelectItem key={state}>
+                            {state}
+                        </SelectItem>
+                    );
+                })}
+            </Select>
+        )
+    }
+
     render() {
         let amount = this.state.receipt.amount;
 
@@ -90,7 +113,7 @@ export default class DonationForm extends React.Component {
 
                 <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.address} style={{ width: '100%' }} required /><br />
                 <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.city} style={{ width: '30%', marginRight: '5%' }} required />
-                <TextField label='State' name='state' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.state} style={{ width: '30%', marginRight: '5%' }} required />
+                {this.renderStateDropdown()}
                 <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.zipcode} style={{ width: '30%' }} required /><br /><br />
 
                 <Text type='body2' style={{ display: 'inline-block' }}>
