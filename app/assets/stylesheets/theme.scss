@@ -3,6 +3,10 @@
 $mdc-theme-primary: $purple-primary;
 $mdc-theme-secondary: $purple-primary;
 
+.mdc-toolbar__title {
+    font-weight: 300;
+}
+
 .mdc-text-field__input {
     font-weight: 300;
 }

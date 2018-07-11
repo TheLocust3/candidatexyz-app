@@ -7,9 +7,16 @@ import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-ac
 
 import Loader from '../components/common/Loader';
 import EditUserForm from '../components/users/EditUserForm';
+import SuperuserForm from '../components/users/SuperuserForm';
 import EditCampaignForm from '../components/campaign/EditCampaignForm';
 
 class Settings extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = { fetchingCampaigns: false };
+    }
 
     componentWillMount() {
         this.props.dispatch(setTitle('Settings'));
@@ -17,6 +24,30 @@ class Settings extends React.Component {
         this.props.dispatch(setDrawerSelected('settings'));
 
         this.props.dispatch(CampaignActions.fetchCampaign(this.props.user.campaignId));
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.user.superuser || this.state.fetchingCampaigns) return
+
+        this.props.dispatch(CampaignActions.fetchAllCampaigns());
+        this.setState({
+            fetchingCampaigns: true
+        });
+    }
+
+    renderSuperuser() {
+        if (!this.props.user.superuser) return;
+
+        return (
+            <div>
+                <Text type='headline5'>Superuser Settings</Text>
+                <br />
+
+                <div className='content-2'>
+                    <SuperuserForm user={this.props.user} campaigns={this.props.campaigns.campaigns} />
+                </div>
+            </div>
+        );
     }
 
     render() {
@@ -38,6 +69,8 @@ class Settings extends React.Component {
                     <div className='content-2'>
                         <EditUserForm user={this.props.user} />
                     </div>
+
+                    {this.renderSuperuser()}
                 </Loader>
 
                 <MDCAutoInit />
@@ -50,7 +83,8 @@ function mapStateToProps(state) {
     return {
         user: state.users.currentUser,
         isReady: state.campaigns.isReady,
-        campaign: state.campaigns.campaign
+        campaign: state.campaigns.campaign,
+        campaigns: state.campaigns.campaigns
     };
 }
 
