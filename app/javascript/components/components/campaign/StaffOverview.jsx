@@ -15,9 +15,18 @@ export default class StaffOverview extends React.Component {
     }
 
     renderAdmins() {
+        let admins = this.props.users.filter((user) => { return user.admin });
+        if (_.isEmpty(admins)) {
+            return (
+                <Text type='body2'>
+                    None
+                </Text>
+            )
+        }
+
         return (
             <Text type='body2'>
-                {_.join(this.props.users.filter((user) => { return user.admin }).map((user) => {
+                {_.join(admins.map((user) => {
                     if (user.admin) {
                         return `${user.firstName} ${user.lastName}`;
                     }

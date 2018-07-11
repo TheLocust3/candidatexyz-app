@@ -6,7 +6,7 @@ import { Text, TextField } from 'candidatexyz-common-js/lib/elements';
 
 import { arraysEquals } from '../../../helpers';
 
-const MAX_SHOWN = 10;
+const MAX_SHOWN = 5;
 
 export default class AutoCompleteTextField extends React.Component {
 

@@ -163,6 +163,9 @@ body, #root {
 .checkbox-label {
     position: absolute;
     top: 50%;
+
+    width: 200px;
+    
     transform: translate(0, -50%)
 }
 
