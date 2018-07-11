@@ -42,9 +42,12 @@ export default class AutoCompleteTextField extends React.Component {
 
         let suggested = _.filter(this.props.elements, (element) => { return _.startsWith(_.lowerCase(element[this.props.elementKey]), _.lowerCase(this.state.value)) });
         suggested = _.sortBy(suggested, (element) => { return element[this.props.elementKey] });
+        suggested = _.uniqBy(suggested, (element) => { return element[this.props.elementKey] });
 
         if (!_.isEmpty(suggested) && suggested[0][this.props.elementKey] == this.state.value) {
             if (this.state.suggested.length != 0) {
+                this.props.onAutoComplete(suggested[0]);
+
                 this.setState({
                     suggested: []
                 });
