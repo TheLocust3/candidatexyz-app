@@ -16,9 +16,11 @@ export default class Table extends React.Component {
                 return (
                     <tr key={index} className='selectable' onClick={() => this.onRowClick(row.id)}>
                         {this.props.keys.map((key) => {
+                            let value = _.isFunction(key) ? key(row) : row[key];
+                            
                             return (
                                 <td key={key}>
-                                    <Text type='body2'>{row[key]}</Text>
+                                    <Text type='body2'>{value}</Text>
                                 </td>
                             );
                         })}

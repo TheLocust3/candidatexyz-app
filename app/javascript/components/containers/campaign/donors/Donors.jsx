@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
+import moment from 'moment';
 import { DonorActions } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
@@ -39,7 +40,7 @@ class Donors extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>
-                        <Table to='/campaign/donors/' headers={['Name', 'Amount', 'Date Received', 'Address', 'City', 'State']} keys={['name', 'amount', 'dateReceived', 'address', 'city', 'state']} rows={_.slice(this.props.donors.donors, page * PER_PAGE, (page + 1) * PER_PAGE)} />
+                        <Table to='/campaign/donors/' headers={['Name', 'Amount', 'Date Received', 'Address', 'City', 'State']} keys={['name', 'amountString', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'address', 'city', 'state']} rows={_.slice(this.props.donors.donors, page * PER_PAGE, (page + 1) * PER_PAGE)} />
                         <br /><br />
 
                         <Pager elements={this.props.donors.donors} elementsPerPage={PER_PAGE} baseLink='/campaign/donors' />

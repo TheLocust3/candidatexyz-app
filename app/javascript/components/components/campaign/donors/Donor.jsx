@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class Donor extends React.Component {
@@ -15,7 +16,7 @@ export default class Donor extends React.Component {
                 <br />
 
                 <Text type='body1'>Amount</Text>
-                <Text type='body2'>${donor.amount}</Text>
+                <Text type='body2'>{donor.amountString}</Text>
                 <br />
 
                 <Text type='body1'>Address</Text>
@@ -27,11 +28,11 @@ export default class Donor extends React.Component {
                 <br />
 
                 <Text type='body1'>Employer</Text>
-                <Text type='body2'>{_.isEmpty(donor.employer) ? 'N/A' : donor.employer}</Text>
+                    <Text type='body2'>{_.isEmpty(donor.employer) ? 'N/A' : donor.employer}</Text>
                 <br />
 
                 <Text type='body1'>Date Received</Text>
-                <Text type='body2'>{donor.dateReceived}</Text>
+                <Text type='body2'>{moment(donor.dateReceived).format('MM/DD/YYYY')}</Text>
             </div>
         )
     }
