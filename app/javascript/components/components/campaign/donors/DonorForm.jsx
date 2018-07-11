@@ -12,16 +12,20 @@ import { DonorApi } from 'candidatexyz-common-js';
 import { Text, Button, TextField, Form, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
+import { arraysEquals } from '../../../../helpers';
+
+import AutoCompleteTextField from '../../common/AutoCompleteTextField';
 
 export default class DonorForm extends React.Component {
 
     constructor(props) {
         super(props);
 
+        this.state = { errors: {} };
         if (_.isEmpty(this.props.donor)) {
-            this.state = { donor: { dateReceived: new Date() }, errors: {} };
+            this.state.donor = { dateReceived: new Date() };
         } else {
-            this.state = { donor: this.props.donor, errors: {} };
+            this.state.donor = this.props.donor;
         }
     }
 
@@ -65,6 +69,14 @@ export default class DonorForm extends React.Component {
         }
     }
 
+    onAutoComplete(donor) {
+        donor.amount = '';
+
+        this.setState({
+            donor: { ...donor, ...this.state.donor }
+        });
+    }
+
     formatDate(date, format, locale) {
         return moment(date).format(format);
     }
@@ -74,7 +86,7 @@ export default class DonorForm extends React.Component {
 
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <TextField label='Name' name='name' onChange={this.handleChange.bind(this)} defaultValue={this.state.donor.name} style={{ width: '100%' }} required /><br /><br />
+                <AutoCompleteTextField elements={this.props.donors} elementKey='name' label='Name' name='name' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.donor.name} style={{ width: '100%' }} required /><br /><br />
 
                 <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.donor.address} style={{ width: '100%' }} required /><br />
                 <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.donor.city} style={{ width: '30%', marginRight: '5%' }} required />
@@ -102,5 +114,6 @@ export default class DonorForm extends React.Component {
 }
 
 DonorForm.propTypes = {
-    donor: PropTypes.object
+    donor: PropTypes.object,
+    donors: PropTypes.array.isRequired
 };

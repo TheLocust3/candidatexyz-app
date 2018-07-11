@@ -18,6 +18,7 @@ class EditDonor extends React.Component {
         this.props.dispatch(setDrawerSelected('campaign', 'donors'));
 
         this.props.dispatch(DonorActions.fetchDonor(this.props.match.params.id));
+        this.props.dispatch(DonorActions.fetchAllDonors());
     }
 
     onDeleteClick(event) {
@@ -42,7 +43,7 @@ class EditDonor extends React.Component {
 
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady}>
-                        <DonorForm donor={this.props.donor} />
+                        <DonorForm donor={this.props.donor} donors={this.props.donors.donors} />
                     </Loader>
                 </div>
                 <br />
@@ -56,7 +57,8 @@ class EditDonor extends React.Component {
 function mapStateToProps(state) {
     return {
         isReady: state.donors.isReady,
-        donor: state.donors.donor
+        donor: state.donors.donor,
+        donors: state.donors.donors
     };
 }
 

@@ -7,14 +7,17 @@ import { history } from '../../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
 import BackLink from '../../../components/common/BackLink';
+import Loader from '../../../components/common/Loader';
 import DonorForm from '../../../components/campaign/donors/DonorForm';
 
-class EditDonor extends React.Component {
+class CreateDonor extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Create Donor'));
         this.props.dispatch(setBreadcrumb('Donor'));
         this.props.dispatch(setDrawerSelected('campaign', 'donors'));
+
+        this.props.dispatch(DonorActions.fetchAllDonors());
     }
     
     render() {
@@ -24,7 +27,9 @@ class EditDonor extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <DonorForm />
+                    <Loader isReady={this.props.isReady}>
+                        <DonorForm donors={this.props.donors.donors} />
+                    </Loader>
                 </div>
                 <br />
 
@@ -34,4 +39,11 @@ class EditDonor extends React.Component {
     }
 }
 
-export default connect()(EditDonor);
+function mapStateToProps(state) {
+    return {
+        isReady: state.donors.isReady,
+        donors: state.donors.donors
+    };
+}
+
+export default connect(mapStateToProps)(CreateDonor);

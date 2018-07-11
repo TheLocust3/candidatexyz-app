@@ -115,3 +115,41 @@
 
     font-weight: 300 !important;
 }
+
+.autocomplete-wrapper {
+    position: relative;
+}
+
+.autocomplete {
+    position: absolute;
+    top: 70px;
+    z-index: 2;
+
+    width: 220px;
+
+    background-color: darken(white, 1%);
+
+    -moz-box-shadow:    2px 2px 2px 0px lighten($grey-border, 30%);
+    -webkit-box-shadow: 2px 2px 2px 0px lighten($grey-border, 30%);
+    box-shadow:         2px 2px 2px 0px lighten($grey-border, 30%);
+}
+
+.autocomplete-item {
+    width: 200px;
+
+    padding: 10px;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.autocomplete-item:hover {
+    background-color: darken(white, 5%);
+}
+
+.autocomplete-item:active {
+    background-color: darken(white, 10%);
+}
