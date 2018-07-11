@@ -41,8 +41,6 @@ export default class DonorForm extends React.Component {
         this.setState({
             donor: donor
         });
-
-        console.log(donor)
     }
 
     handleSubmit(event) {
