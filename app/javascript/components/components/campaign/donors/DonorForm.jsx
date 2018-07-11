@@ -89,7 +89,7 @@ export default class DonorForm extends React.Component {
                     <DayPickerInput inputProps={{ className: 'mdc-typography--body2' }} classNames={{ container: 'DayPickerInput mdc-typography--body2', overlayWrapper: 'DayPickerInput-OverlayWrapper mdc-typography--body2', overlay: 'DayPickerInput-Overlay mdc-typography--body2' }}
                         formatDate={formatDate} parseDate={parseDate} value={`${formatDate(this.state.donor.dateReceived)}`} onDayChange={(date) => this.handleDateChange(date)} /><br />
                 </Text>
-                <TextField label='Amount' name='amount' onChange={this.handleChange.bind(this)} defaultValue={_.isEmpty(amount) ? '' : String(amount)} style={{ width: 'auto', marginLeft: '5%' }} required /><br /><br />
+                <TextField label='Amount' name='amount' onChange={this.handleChange.bind(this)} defaultValue={_.isUndefined(amount) ? '' : String(amount)} style={{ width: 'auto', marginLeft: '5%' }} required /><br /><br />
 
 
                 <TextField label='Occupation' name='occupation' onChange={this.handleChange.bind(this)} defaultValue={this.state.donor.occupation} style={{ width: '47.5%', marginRight: '5%' }} />
