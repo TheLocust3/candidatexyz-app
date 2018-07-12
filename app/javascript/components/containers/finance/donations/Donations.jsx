@@ -31,6 +31,12 @@ class Donations extends React.Component {
                     <Link className='resource-actions-item unstyled-link-black' to='/finance/donations/create'>
                         <Text type='body2'>Create</Text>
                     </Link>
+
+                    <div className='resource-actions-spacer' />
+
+                    <Link className='resource-actions-item unstyled-link-black' to='/finance/donors'>
+                        <Text type='body2'>Donor List</Text>
+                    </Link>
                 </div>
                 <br />
 

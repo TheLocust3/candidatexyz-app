@@ -28,7 +28,7 @@ export default class Donation extends React.Component {
                 <br />
 
                 <Text type='body1'>Employer</Text>
-                    <Text type='body2'>{_.isEmpty(receipt.employer) ? 'N/A' : receipt.employer}</Text>
+                <Text type='body2'>{_.isEmpty(receipt.employer) ? 'N/A' : receipt.employer}</Text>
                 <br />
 
                 <Text type='body1'>Date Received</Text>

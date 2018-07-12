@@ -19,7 +19,7 @@ class Finance extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>Campaign Finance</Text>
+                <Text type='headline5'>Finance Overview</Text>
                 <br />
 
             </div>
