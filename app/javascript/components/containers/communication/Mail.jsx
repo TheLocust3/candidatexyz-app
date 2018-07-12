@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { VolunteerActions, ContactActions } from 'candidatexyz-common-js';
+import { VolunteerActions, ContactActions, ReceiptActions, DonorHelper } from 'candidatexyz-common-js';
 import { Text, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
@@ -9,7 +9,7 @@ import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global
 import Loader from '../../components/common/Loader';
 import MailForm from '../../components/communication/MailForm';
 
-const GROUPS = [{ key: '', value: '' }, { key: 'signUps', value: 'All Sign Ups' }, { key: 'volunteers', value: 'All Volunteers' }];
+const GROUPS = [{ key: '', value: '' }, { key: 'signUps', value: 'All Sign Ups' }, { key: 'volunteers', value: 'All Volunteers' }, { key: 'donors', value: 'All Donors' }];
 
 class Mail extends React.Component {
 
@@ -26,7 +26,7 @@ class Mail extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (!(nextProps.areContactsReady || nextProps.areVolunteersReady) || !this.state.pullingResource) return;
+        if (!(nextProps.areContactsReady || nextProps.areVolunteersReady || nextProps.areReceiptsReady) || !this.state.pullingResource) return;
 
         let emails = [];
         if (this.state.group == 'signUps') {
@@ -36,6 +36,10 @@ class Mail extends React.Component {
         } else if (this.state.group == 'volunteers') {
             emails = nextProps.volunteers.volunteers.map((volunteer) => {
                 return { id: volunteer.id, email: volunteer.email, type: 'volunteer', firstName: volunteer.firstName, lastName: volunteer.lastName }
+            });
+        } else if (this.state.group == 'donors') {
+            emails = _.filter(DonorHelper.generateDonors(nextProps.receipts.receipts), (donor) => { return donor.receiptType == 'donation' }).map((donor) => {
+                return { id: donor.id, email: donor.email, type: 'donor', firstName: donor.name, lastName: '' }
             });
         }
 
@@ -58,6 +62,8 @@ class Mail extends React.Component {
             this.props.dispatch(ContactActions.fetchAllContacts());
         } else if (this.state.group == 'volunteers') {
             this.props.dispatch(VolunteerActions.fetchAllVolunteers());
+        } else if (this.state.group =='donors') {
+            this.props.dispatch(ReceiptActions.fetchAllReceipts());
         }
 
         this.setState({
@@ -100,7 +106,9 @@ function mapStateToProps(state) {
         areVolunteersReady: state.volunteers.isReady,
         volunteers: state.volunteers.volunteers,
         areContactsReady: state.contacts.isReady,
-        contacts: state.contacts.contacts
+        contacts: state.contacts.contacts,
+        areReceiptsReady: state.receipts.isReady,
+        receipts: state.receipts.receipts
     };
 }
 
