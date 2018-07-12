@@ -18,7 +18,7 @@ class Donations extends React.Component {
     componentWillMount() {
         this.props.dispatch(setTitle('Donations'));
         this.props.dispatch(setBreadcrumb('Donations'));
-        this.props.dispatch(setDrawerSelected('campaign', 'donations'));
+        this.props.dispatch(setDrawerSelected('finance', 'donations'));
 
         this.props.dispatch(ReceiptActions.fetchAllReceipts());
     }
@@ -28,7 +28,7 @@ class Donations extends React.Component {
             <div className='content'>
                 <Text type='headline5'>Donation List</Text>
                 <div className='resource-actions'>
-                    <Link className='resource-actions-item unstyled-link-black' to='/campaign/donations/create'>
+                    <Link className='resource-actions-item unstyled-link-black' to='/finance/donations/create'>
                         <Text type='body2'>Create</Text>
                     </Link>
                 </div>
@@ -36,10 +36,10 @@ class Donations extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>
-                        <Table to='/campaign/donations/' headers={['Name', 'Amount', 'Date Received', 'Address', 'City', 'State']} keys={['name', 'amountString', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'address', 'city', 'state']} rows={this.props.receipts.receipts} rowsPerPage={PER_PAGE} />
+                        <Table to='/finance/donations/' headers={['Name', 'Amount', 'Date Received', 'Address', 'City', 'State']} keys={['name', 'amountString', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'address', 'city', 'state']} rows={this.props.receipts.receipts} rowsPerPage={PER_PAGE} />
                         <br /><br />
 
-                        <Pager elements={this.props.receipts.receipts} elementsPerPage={PER_PAGE} baseLink='/campaign/donations' />
+                        <Pager elements={this.props.receipts.receipts} elementsPerPage={PER_PAGE} baseLink='/finance/donations' />
                     </Loader>
                 </div>
             </div>

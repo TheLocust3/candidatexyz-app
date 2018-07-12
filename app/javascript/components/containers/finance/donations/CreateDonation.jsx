@@ -8,14 +8,14 @@ import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/glo
 
 import BackLink from '../../../components/common/BackLink';
 import Loader from '../../../components/common/Loader';
-import DonationForm from '../../../components/campaign/donations/DonationForm';
+import DonationForm from '../../../components/finance/donations/DonationForm';
 
 class CreateDonation extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Create Donation'));
         this.props.dispatch(setBreadcrumb('Donation'));
-        this.props.dispatch(setDrawerSelected('campaign', 'donation'));
+        this.props.dispatch(setDrawerSelected('finance', 'donation'));
 
         this.props.dispatch(ReceiptActions.fetchAllReceipts());
     }
@@ -33,7 +33,7 @@ class CreateDonation extends React.Component {
                 </div>
                 <br />
 
-                <BackLink to='/campaign/donations/' />
+                <BackLink to='/finance/donations/' />
             </div>
         );
     }

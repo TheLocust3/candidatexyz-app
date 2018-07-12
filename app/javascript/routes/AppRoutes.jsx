@@ -17,10 +17,12 @@ import Staff from '../components/containers/campaign/Staff';
 import EditUser from '../components/containers/campaign/EditUser';
 import InviteStaff from '../components/containers/campaign/InviteStaff';
 
-import Donations from '../components/containers/campaign/donations/Donations';
-import ShowDonation from '../components/containers/campaign/donations/ShowDonation';
-import CreateDonation from '../components/containers/campaign/donations/CreateDonation';
-import EditDonation from '../components/containers/campaign/donations/EditDonation';
+import Finance from '../components/containers/finance/Finance';
+
+import Donations from '../components/containers/finance/donations/Donations';
+import ShowDonation from '../components/containers/finance/donations/ShowDonation';
+import CreateDonation from '../components/containers/finance/donations/CreateDonation';
+import EditDonation from '../components/containers/finance/donations/EditDonation';
 
 import ShowUser from '../components/containers/campaign/ShowUser';
 
@@ -84,10 +86,12 @@ class AppRoutes extends React.Component {
                         <Route exact path='/campaign/staff/:id/edit' component={EditUser} />
                         <Route exact path='/campaign/invite-staff' component={InviteStaff} />
 
-                        <Route exact path='/campaign/donations' component={Donations} />
-                        <Route exact path='/campaign/donations/create' component={CreateDonation} />
-                        <Route exact path='/campaign/donations/:id' component={ShowDonation} />
-                        <Route exact path='/campaign/donations/:id/edit' component={EditDonation} />
+                        <Route exact path='/finance' component={Finance} />
+
+                        <Route exact path='/finance/donations' component={Donations} />
+                        <Route exact path='/finance/donations/create' component={CreateDonation} />
+                        <Route exact path='/finance/donations/:id' component={ShowDonation} />
+                        <Route exact path='/finance/donations/:id/edit' component={EditDonation} />
                         
                         <Route component={NotFound} />
                     </Switch>

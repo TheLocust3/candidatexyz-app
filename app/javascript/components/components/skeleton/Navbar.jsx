@@ -44,12 +44,19 @@ class Navbar extends React.Component {
         if (this.props.drawerSelected.item == 'communication') {
             $('#communication-drop-down').show();
             $('#campaign-drop-down').hide();
+            $('#finance-drop-down').hide();
         } else if (this.props.drawerSelected.item == 'campaign') {
             $('#campaign-drop-down').show();
             $('#communication-drop-down').hide();
+            $('#finance-drop-down').hide();
+        } else if (this.props.drawerSelected.item == 'finance') {
+            $('#finance-drop-down').show();
+            $('#communication-drop-down').hide();
+            $('#campaign-drop-down').hide();
         } else {
             $('#communication-drop-down').hide();
             $('#campaign-drop-down').hide();
+            $('#finance-drop-down').hide();
         }
     }
 
@@ -57,12 +64,19 @@ class Navbar extends React.Component {
         if (this.props.drawerSelected.item == 'communication') {
             $('#communication-drop-down').slideDown(200);
             $('#campaign-drop-down').slideUp(200);
+            $('#finance-drop-down').slideUp(200);
         } else if (this.props.drawerSelected.item == 'campaign') {
             $('#campaign-drop-down').slideDown(200);
             $('#communication-drop-down').slideUp(200);
+            $('#finance-drop-down').slideUp(200);
+        } else if (this.props.drawerSelected.item == 'finance') {
+            $('#finance-drop-down').slideDown(200);
+            $('#communication-drop-down').slideUp(200);  
+            $('#campaign-drop-down').slideUp(200);  
         } else {
             $('#communication-drop-down').slideUp(200);
             $('#campaign-drop-down').slideUp(200);
+            $('#finance-drop-down').slideUp(200);
         }
     }
 
@@ -123,6 +137,17 @@ class Navbar extends React.Component {
                     </Link>
                 </div>
 
+                <Link className={`mdc-list-item ${item == 'finance' ? 'mdc-list-item--activated' : ''}`} to='/finance'>
+                    <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>attach_money</i>
+                    <Text type='body2' className={`mdc-list-item-text ${item == 'finance' ? 'mdc-list-item-text--activated' : ''}`}>Finance</Text>
+                </Link>
+
+                <div id='finance-drop-down'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/finance/donations'>
+                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'donations' ? 'drawer-sub-item-text--activated' : ''}`}>Donations</Text>
+                    </Link>
+                </div>
+
                 <Link className={`mdc-list-item ${item == 'campaign' ? 'mdc-list-item--activated' : ''}`} to='/campaign'>
                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>domain</i>
                     <Text type='body2' className={`mdc-list-item-text ${item == 'campaign' ? 'mdc-list-item-text--activated' : ''}`}>Campaign</Text>
@@ -135,10 +160,6 @@ class Navbar extends React.Component {
 
                     <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/campaign/invite-staff'>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'inviteStaff' ? 'drawer-sub-item-text--activated' : ''}`}>Invite Staff</Text>
-                    </Link>
-
-                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/campaign/donations'>
-                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'donations' ? 'drawer-sub-item-text--activated' : ''}`}>Donations</Text>
                     </Link>
                 </div>
 
@@ -222,6 +243,11 @@ class Navbar extends React.Component {
                                 <Link className='mdc-list-item' to='/communication' onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>person</i>
                                     <Text type='body2'>Communication</Text>
+                                </Link>
+
+                                <Link className='mdc-list-item' to='/finance' onClick={this.onLinkClick.bind(this)}>
+                                    <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>attach_money</i>
+                                    <Text type='body2'>Finance</Text>
                                 </Link>
 
                                 <Link className='mdc-list-item' to='/campaign' onClick={this.onLinkClick.bind(this)}>

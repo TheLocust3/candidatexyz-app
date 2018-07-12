@@ -19,3 +19,5 @@ export const PURPLE_LIGHT = { red: 142, green: 18, blue: 204 };
 export const DOMAIN = DEVELOPMENT_ENVIRONMENT ? 'http://127.0.0.1:3000' : 'https://candidatexyz.com';
 
 configure({ developmentRoutes: DEVELOPMENT_ENVIRONMENT });
+
+export const OCCUPATION_AMOUNT_THRESHOLD = 200;

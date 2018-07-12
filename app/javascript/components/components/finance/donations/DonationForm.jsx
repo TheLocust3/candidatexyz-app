@@ -8,10 +8,10 @@ import MomentLocaleUtils, {
     formatDate,
     parseDate,
   } from 'react-day-picker/moment';
-import { ReceiptApi } from 'candidatexyz-common-js';
+import { ReceiptApi, DonorHelper } from 'candidatexyz-common-js';
 import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
-import { history, STATES } from '../../../../constants';
+import { history, STATES, OCCUPATION_AMOUNT_THRESHOLD } from '../../../../constants';
 import { arraysEquals } from '../../../../helpers';
 
 import AutoCompleteTextField from '../../common/AutoCompleteTextField';
@@ -21,11 +21,24 @@ export default class DonationForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { errors: {} };
+        this.state = { donors: DonorHelper.generateDonors(this.props.receipts), donor: { amount: 0 }, occupationRequired: false, errors: {} };
         if (_.isEmpty(this.props.receipt)) {
             this.state.receipt = { state: 'MA', dateReceived: new Date() };
         } else {
             this.state.receipt = this.props.receipt;
+        }
+    }
+
+    componentDidUpdate() {
+        let amount = this.state.donor.amount + Number(this.state.receipt.amount);
+        if (amount >= OCCUPATION_AMOUNT_THRESHOLD && !this.state.occupationRequired) {
+            this.setState({
+                occupationRequired: true
+            });
+        } else if (amount < OCCUPATION_AMOUNT_THRESHOLD && this.state.occupationRequired) {
+            this.setState({
+                occupationRequired: false
+            });
         }
     }
 
@@ -82,7 +95,8 @@ export default class DonationForm extends React.Component {
         receipt.amount = '';
 
         this.setState({
-            receipt: { ...receipt, ...this.state.receipt }
+            receipt: { ...receipt, ...this.state.receipt },
+            donor: _.find(this.state.donors, (donor) => { return donor.name == receipt.name })
         });
     }
 
@@ -105,8 +119,6 @@ export default class DonationForm extends React.Component {
     }
 
     render() {
-        let amount = this.state.receipt.amount;
-
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
                 <AutoCompleteTextField elements={this.props.receipts} elementKey='name' label='Name' name='name' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.receipt.name} style={{ width: '100%' }} required /><br />
@@ -122,11 +134,11 @@ export default class DonationForm extends React.Component {
                     <DayPickerInput inputProps={{ className: 'mdc-typography--body2' }} classNames={{ container: 'DayPickerInput mdc-typography--body2', overlayWrapper: 'DayPickerInput-OverlayWrapper mdc-typography--body2', overlay: 'DayPickerInput-Overlay mdc-typography--body2' }}
                         formatDate={formatDate} parseDate={parseDate} value={`${formatDate(this.state.receipt.dateReceived)}`} onDayChange={(date) => this.handleDateChange(date)} /><br />
                 </Text>
-                <TextField label='Amount' name='amount' onChange={this.handleChange.bind(this)} defaultValue={_.isUndefined(amount) ? '' : String(amount)} style={{ width: 'auto', marginLeft: '5%' }} required /><br /><br />
+                <TextField type='number' label='Amount ($)' name='amount' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.amount} style={{ width: 'auto', marginLeft: '5%' }} required /><br /><br />
 
 
-                <TextField label='Occupation' name='occupation' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.occupation} style={{ width: '47.5%', marginRight: '5%' }} />
-                <TextField label='Employer' name='employer' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.employer} style={{ width: '47.5%' }} /><br /><br />
+                <TextField label='Occupation' name='occupation' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.occupation} style={{ width: '47.5%', marginRight: '5%' }} required={this.state.occupationRequired} />
+                <TextField label='Employer' name='employer' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.employer} style={{ width: '47.5%' }} required={this.state.occupationRequired} /><br /><br />
 
                 <Button>Save</Button>
 
