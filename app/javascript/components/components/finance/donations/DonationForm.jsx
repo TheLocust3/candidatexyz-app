@@ -84,7 +84,7 @@ export default class DonationForm extends React.Component {
         let receipt = this.state.receipt;
 
         if (_.isEmpty(this.props.receipt)) {
-            ReceiptApi.create(receipt.name, receipt.receiptType, receipt.amount, receipt.address, receipt.zipcode, receipt.city, receipt.state, receipt.dateReceived, receipt.occupation, receipt.employer, receipt.email, receipt.phoneNumber).then((response) => {
+            ReceiptApi.create(receipt.name, receipt.receiptType, receipt.amount, receipt.address, receipt.city, receipt.state, receipt.country, receipt.dateReceived, receipt.occupation, receipt.employer, receipt.email, receipt.phoneNumber).then((response) => {
                 history.push(`/finance/donations/${response.id}`);
             }).catch((response) => {
                 this.setState({
@@ -92,7 +92,7 @@ export default class DonationForm extends React.Component {
                 });
             });
         } else {
-            ReceiptApi.update(this.props.receipt.id, receipt.name, receipt.receiptType, receipt.amount, receipt.address, receipt.zipcode, receipt.city, receipt.state, receipt.dateReceived, receipt.occupation, receipt.employer, receipt.email, receipt.phoneNumber).then((response) => {
+            ReceiptApi.update(this.props.receipt.id, receipt.name, receipt.receiptType, receipt.amount, receipt.address, receipt.city, receipt.state, receipt.country, receipt.dateReceived, receipt.occupation, receipt.employer, receipt.email, receipt.phoneNumber).then((response) => {
                 history.push(`/finance/donations/${this.props.receipt.id}`);
             }).catch((response) => {
                 this.setState({
@@ -166,7 +166,7 @@ export default class DonationForm extends React.Component {
                 <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.address} style={{ width: '100%' }} required /><br />
                 <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.city} style={{ width: '30%', marginRight: '5%' }} required />
                 {this.renderStateDropdown()}
-                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.zipcode} style={{ width: '30%' }} required /><br /><br />
+                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.country} style={{ width: '30%' }} required /><br /><br />
 
                 <Text type='body2' style={{ display: 'inline-block' }}>
                     Date Received:

@@ -36,7 +36,7 @@ export default class Donor extends React.Component {
                 <br />
 
                 <Text type='body1'>Address</Text>
-                <Text type='body2'>{donor.address}, {donor.city}, {donor.state}</Text>
+                <Text type='body2'>{donor.address}, {donor.city}, {donor.state}, {donor.country}</Text>
                 <br />
 
                 {this.renderDonationFields()}
