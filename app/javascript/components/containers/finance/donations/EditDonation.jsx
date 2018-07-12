@@ -43,7 +43,7 @@ class EditDonation extends React.Component {
 
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady}>
-                        <DonationForm receipt={this.props.receipt} receipts={this.props.receipts.receipts} />
+                        <DonationForm receipt={this.props.receipt} receipts={this.props.receipts.receipts} receiptType='donation' />
                     </Loader>
                 </div>
                 <br />

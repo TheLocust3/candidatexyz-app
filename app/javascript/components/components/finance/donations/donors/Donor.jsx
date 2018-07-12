@@ -5,6 +5,23 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class Donor extends React.Component {
 
+    renderDonationFields() {
+        let donor = this.props.donor;
+        if (donor.receiptType != 'donation') return;
+
+        return (
+            <div>
+                <Text type='body1'>Email</Text>
+                <Text type='body2'>{_.isEmpty(donor.email) ? 'N/A' : donor.email}</Text>
+                <br />
+
+                <Text type='body1'>Phone Number</Text>
+                <Text type='body2'>{_.isEmpty(donor.phoneNumber) ? 'N/A' : donor.phoneNumber}</Text>
+                <br />
+            </div>
+        );
+    }
+
     render() {
         let donor = this.props.donor;
 
@@ -14,13 +31,15 @@ export default class Donor extends React.Component {
                 <Text type='body2'>{donor.name}</Text>
                 <br />
 
-                <Text type='body1'>Amount</Text>
+                <Text type='body1'>Total Amount</Text>
                 <Text type='body2'>${donor.amount}</Text>
                 <br />
 
                 <Text type='body1'>Address</Text>
                 <Text type='body2'>{donor.address}, {donor.city}, {donor.state}</Text>
                 <br />
+
+                {this.renderDonationFields()}
 
                 <Text type='body1'>Occupation</Text>
                 <Text type='body2'>{_.isEmpty(donor.occupation) ? 'N/A' : donor.occupation}</Text>

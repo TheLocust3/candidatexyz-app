@@ -28,7 +28,7 @@ class CreateDonation extends React.Component {
 
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady}>
-                        <DonationForm receipts={this.props.receipts.receipts} />
+                        <DonationForm receipts={this.props.receipts.receipts} receiptType='donation' />
                     </Loader>
                 </div>
                 <br />

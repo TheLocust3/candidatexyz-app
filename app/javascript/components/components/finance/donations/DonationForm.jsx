@@ -11,7 +11,7 @@ import MomentLocaleUtils, {
 import { ReceiptApi, DonorHelper } from 'candidatexyz-common-js';
 import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
-import { history, STATES, OCCUPATION_AMOUNT_THRESHOLD } from '../../../../constants';
+import { history, STATES, RECEIPT_TYPES, OCCUPATION_AMOUNT_THRESHOLD } from '../../../../constants';
 import { arraysEquals } from '../../../../helpers';
 
 import AutoCompleteTextField from '../../common/AutoCompleteTextField';
@@ -23,7 +23,7 @@ export default class DonationForm extends React.Component {
 
         this.state = { donors: DonorHelper.generateDonorsInYear(this.props.receipts), donor: { amount: 0 }, occupationRequired: false, errors: {} };
         if (_.isEmpty(this.props.receipt)) {
-            this.state.receipt = { state: 'MA', dateReceived: new Date() };
+            this.state.receipt = { receiptType: RECEIPT_TYPES[0].value, state: 'MA', dateReceived: new Date() };
         } else {
             this.state.receipt = this.props.receipt;
         }
@@ -62,6 +62,15 @@ export default class DonationForm extends React.Component {
         });
     }
 
+    handleReceiptTypeChange(select) {
+        let receipt = this.state.receipt;
+        receipt.receiptType = _.find(RECEIPT_TYPES, (receiptType) => { return receiptType.label == select.value }).value;
+
+        this.setState({
+            receipt: receipt
+        });
+    }
+
     handleStateChange(select) {
         let receipt = this.state.receipt;
         receipt.state = select.value;
@@ -75,16 +84,16 @@ export default class DonationForm extends React.Component {
         let receipt = this.state.receipt;
 
         if (_.isEmpty(this.props.receipt)) {
-            ReceiptApi.create(receipt.name, receipt.amount, receipt.address, receipt.zipcode, receipt.city, receipt.state, receipt.dateReceived, receipt.occupation, receipt.employer).then((response) => {
-                history.push(`/campaign/donations/${response.id}`);
+            ReceiptApi.create(receipt.name, receipt.receiptType, receipt.amount, receipt.address, receipt.zipcode, receipt.city, receipt.state, receipt.dateReceived, receipt.occupation, receipt.employer, receipt.email, receipt.phoneNumber).then((response) => {
+                history.push(`/finance/donations/${response.id}`);
             }).catch((response) => {
                 this.setState({
                     errors: response.responseJSON.errors
                 });
             });
         } else {
-            ReceiptApi.update(this.props.receipt.id, receipt.name, receipt.amount, receipt.address, receipt.zipcode, receipt.city, receipt.state, receipt.dateReceived, receipt.occupation, receipt.employer).then((response) => {
-                history.push(`/campaign/donations/${this.props.receipt.id}`);
+            ReceiptApi.update(this.props.receipt.id, receipt.name, receipt.receiptType, receipt.amount, receipt.address, receipt.zipcode, receipt.city, receipt.state, receipt.dateReceived, receipt.occupation, receipt.employer, receipt.email, receipt.phoneNumber).then((response) => {
+                history.push(`/finance/donations/${this.props.receipt.id}`);
             }).catch((response) => {
                 this.setState({
                     errors: response.responseJSON.errors
@@ -97,13 +106,31 @@ export default class DonationForm extends React.Component {
         receipt.amount = '';
 
         this.setState({
-            receipt: { ...receipt, ...this.state.receipt },
+            receipt: { ...receipt, ...this.state.receipt, name: receipt.name },
             donor: _.find(this.state.donors, (donor) => { return donor.name == receipt.name })
         });
     }
 
     formatDate(date, format, locale) {
         return moment(date).format(format);
+    }
+
+    renderReceiptTypeDropdown() {
+        if (this.props.receiptType == 'donation') return;
+
+        return (
+            <div>
+                <Select label='Type' onChange={(select) => this.handleReceiptTypeChange(select)} selectedIndex={_.findIndex(RECEIPT_TYPES, (receiptType) => { return receiptType.value == this.state.receipt.receiptType })} style={{ width: '30%', marginRight: '5%' }}>
+                    {RECEIPT_TYPES.map((receiptType) => {
+                        return (
+                            <SelectItem key={receiptType.value}>
+                                {receiptType.label}
+                            </SelectItem>
+                        );
+                    })}
+                </Select>
+            </div>
+        );
     }
 
     renderStateDropdown() {
@@ -117,12 +144,25 @@ export default class DonationForm extends React.Component {
                     );
                 })}
             </Select>
-        )
+        );
+    }
+
+    renderDonationFields() {
+        if (this.props.receiptType != 'donation') return;
+
+        return (
+            <div>
+                <TextField type='email' label='Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.email} style={{ width: '57.5%', marginRight: '5%' }} />
+                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.phoneNumber} style={{ width: '37.5%' }} />
+            </div>
+        );
     }
 
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
+                {this.renderReceiptTypeDropdown()}
+                
                 <AutoCompleteTextField elements={this.props.receipts} elementKey='name' label='Name' name='name' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.receipt.name} style={{ width: '100%' }} required /><br />
 
                 <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.address} style={{ width: '100%' }} required /><br />
@@ -136,8 +176,9 @@ export default class DonationForm extends React.Component {
                     <DayPickerInput inputProps={{ className: 'mdc-typography--body2' }} classNames={{ container: 'DayPickerInput mdc-typography--body2', overlayWrapper: 'DayPickerInput-OverlayWrapper mdc-typography--body2', overlay: 'DayPickerInput-Overlay mdc-typography--body2' }}
                         formatDate={formatDate} parseDate={parseDate} value={`${formatDate(this.state.receipt.dateReceived)}`} onDayChange={(date) => this.handleDateChange(date)} /><br />
                 </Text>
-                <TextField type='number' label='Amount ($)' name='amount' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.amount} style={{ width: 'auto', marginLeft: '5%' }} required /><br /><br />
+                <TextField type='number' label='Amount ($)' name='amount' onChange={this.handleChange.bind(this)} defaultValue={String(this.state.receipt.amount)} style={{ width: 'auto', marginLeft: '5%' }} required /><br />
 
+                {this.renderDonationFields()}
 
                 <TextField label='Occupation' name='occupation' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.occupation} style={{ width: '47.5%', marginRight: '5%' }} required={this.state.occupationRequired} />
                 <TextField label='Employer' name='employer' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.employer} style={{ width: '47.5%' }} required={this.state.occupationRequired} /><br /><br />
@@ -152,5 +193,6 @@ export default class DonationForm extends React.Component {
 
 DonationForm.propTypes = {
     receipt: PropTypes.object,
-    receipts: PropTypes.array.isRequired
+    receipts: PropTypes.array.isRequired,
+    receiptType: PropTypes.string
 };

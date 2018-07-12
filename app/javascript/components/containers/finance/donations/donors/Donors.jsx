@@ -32,7 +32,7 @@ class Donors extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>
-                        <Table to='/finance/donors/' headers={['Name', 'Total Amount', 'Address', 'City', 'State']} keys={['name', 'amount', 'address', 'city', 'state']} rows={DonorHelper.generateDonorsInYear(this.props.receipts.receipts)} rowsPerPage={PER_PAGE} />
+                        <Table to='/finance/donors/' headers={['Name', 'Total Amount', 'Address', 'City', 'State']} keys={['name', (receipt) => { return `$${receipt.amount}` }, 'address', 'city', 'state']} rows={DonorHelper.generateDonorsInYear(this.props.receipts.receipts)} rowsPerPage={PER_PAGE} />
                         <br />
                         <BackLink to='/finance/donations' />
 

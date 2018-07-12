@@ -30,9 +30,9 @@ class ShowDonor extends React.Component {
             history.push('/finance/donors');
         });
     }
-    
+
     render() {
-        if (_.isEmpty(this.props.receipts.receipts)) return null;
+        if (_.isEmpty(this.props.receipts.receipts) || _.isEmpty(this.props.receipt)) return null;
 
         return (
             <div className='content'>
