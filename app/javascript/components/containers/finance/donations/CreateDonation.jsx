@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ReceiptActions, ReceiptApi } from 'candidatexyz-common-js';
+import { ReceiptActions, ReceiptApi, DonorHelper } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
@@ -28,7 +28,8 @@ class CreateDonation extends React.Component {
 
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady}>
-                        <DonationForm receipts={this.props.receipts.receipts} receiptType='donation' />
+                        {/* Generate donors (below) so autocomplete completes the fullest one possible (with email and stuff) */}
+                        <DonationForm receipts={DonorHelper.generateDonors(this.props.receipts.receipts)} receiptType='donation' />
                     </Loader>
                 </div>
                 <br />

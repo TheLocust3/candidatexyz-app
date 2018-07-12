@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ReceiptActions, ReceiptApi } from 'candidatexyz-common-js';
+import { ReceiptActions, ReceiptApi, DonorHelper } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
@@ -43,7 +43,7 @@ class EditDonation extends React.Component {
 
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady}>
-                        <DonationForm receipt={this.props.receipt} receipts={this.props.receipts.receipts} receiptType='donation' />
+                        <DonationForm receipt={this.props.receipt} receipts={DonorHelper.generateDonors(this.props.receipts.receipts)} receiptType='donation' />
                     </Loader>
                 </div>
                 <br />

@@ -13,15 +13,14 @@ export default class AutoCompleteTextField extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { suggested: [], value: _.isEmpty(this.props.defaultValue) ? '' : this.props.defaultValue, closed: false };
+        this.state = { suggested: [], value: _.isEmpty(this.props.defaultValue) ? '' : this.props.defaultValue };
     }
 
     componentDidMount() {
         $(document).click((event) => {
             if (!this.state.closed && !$(event.target).parents().is('.autocomplete-wrapper')) {
                 this.setState({
-                    suggested: [],
-                    closed: true
+                    suggested: []
                 });
             }
         });
@@ -83,13 +82,6 @@ export default class AutoCompleteTextField extends React.Component {
         this.props.onAutoComplete(element);
     }
 
-    onClick() {
-        this.setState({
-            suggested: [],
-            closed: false
-        });
-    }
-
     renderAutoComplete() {
         if (_.isEmpty(this.state.suggested)) return;
 
@@ -113,7 +105,7 @@ export default class AutoCompleteTextField extends React.Component {
 
         return (
             <div className='autocomplete-wrapper'>
-                <TextField label='Name' value={this.state.value} onChange={this.handleChange.bind(this)} onClick={() => this.onClick()} {...props} />
+                <TextField label='Name' value={this.state.value} onChange={this.handleChange.bind(this)} {...props} />
 
                 {this.renderAutoComplete()}
             </div>
