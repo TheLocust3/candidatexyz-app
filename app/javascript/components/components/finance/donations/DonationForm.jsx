@@ -21,7 +21,7 @@ export default class DonationForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { donors: DonorHelper.generateDonors(this.props.receipts), donor: { amount: 0 }, occupationRequired: false, errors: {} };
+        this.state = { donors: DonorHelper.generateDonorsInYear(this.props.receipts), donor: { amount: 0 }, occupationRequired: false, errors: {} };
         if (_.isEmpty(this.props.receipt)) {
             this.state.receipt = { state: 'MA', dateReceived: new Date() };
         } else {
@@ -30,6 +30,8 @@ export default class DonationForm extends React.Component {
     }
 
     componentDidUpdate() {
+        if (_.isEmpty(this.state.donor)) return;
+
         let amount = this.state.donor.amount + Number(this.state.receipt.amount);
         if (amount >= OCCUPATION_AMOUNT_THRESHOLD && !this.state.occupationRequired) {
             this.setState({

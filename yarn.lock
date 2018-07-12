@@ -1917,7 +1917,7 @@ camelcase@^4.1.0:
 
 "candidatexyz-common-js@https://github.com/TheLocust3/candidatexyz-common-js.git":
   version "1.0.1"
-  resolved "https://github.com/TheLocust3/candidatexyz-common-js.git#1f5a12b4a93ed7187ba380e403d5e54da888883c"
+  resolved "https://github.com/TheLocust3/candidatexyz-common-js.git#2d238749ba79e5d93b7d48322182947f27bea2e1"
   dependencies:
     babel-cli "^6.26.0"
     babel-polyfill "^6.26.0"
@@ -1931,6 +1931,7 @@ camelcase@^4.1.0:
     jquery "^3.3.1"
     lodash "^4.17.10"
     material-components-web "^0.37.0"
+    moment "^2.22.2"
     proptypes "^1.1.0"
     react "^16.4.1"
     react-dom "^16.4.1"
