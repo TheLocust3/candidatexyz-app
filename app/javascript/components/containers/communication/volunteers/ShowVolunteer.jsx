@@ -15,7 +15,7 @@ class ShowVolunteer extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('View Volunteer'));
-        this.props.dispatch(setBreadcrumb('Volunteer'));
+        this.props.dispatch(setBreadcrumb('Volunteers'));
         this.props.dispatch(setDrawerSelected('communication', 'volunteers'));
 
         this.props.dispatch(VolunteerActions.fetchVolunteer(this.props.match.params.id));

@@ -14,7 +14,7 @@ class EditInKind extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Edit In Kind Contribution'));
-        this.props.dispatch(setBreadcrumb('In Kind Contribution'));
+        this.props.dispatch(setBreadcrumb('In Kind Contributions'));
         this.props.dispatch(setDrawerSelected('finance', 'inKind'));
 
         this.props.dispatch(InKindActions.fetchInKind(this.props.match.params.id));

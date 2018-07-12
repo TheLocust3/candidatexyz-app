@@ -15,7 +15,7 @@ class ShowDonor extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('View Donor'));
-        this.props.dispatch(setBreadcrumb('Donor'));
+        this.props.dispatch(setBreadcrumb('Donors'));
         this.props.dispatch(setDrawerSelected('finance', 'donations'));
 
         this.props.dispatch(ReceiptActions.fetchReceipt(this.props.match.params.id));

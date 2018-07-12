@@ -14,7 +14,7 @@ class CreateInKind extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Add In Kind Contribution'));
-        this.props.dispatch(setBreadcrumb('In Kind Contribution'));
+        this.props.dispatch(setBreadcrumb('In Kind Contributions'));
         this.props.dispatch(setDrawerSelected('finance', 'inKinds'));
 
         this.props.dispatch(InKindActions.fetchAllInKinds());

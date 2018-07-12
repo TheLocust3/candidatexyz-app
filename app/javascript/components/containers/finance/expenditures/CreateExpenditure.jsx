@@ -14,7 +14,7 @@ class CreateExpenditure extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Add Expense'));
-        this.props.dispatch(setBreadcrumb('Expense'));
+        this.props.dispatch(setBreadcrumb('Expenses'));
         this.props.dispatch(setDrawerSelected('finance', 'expenditures'));
 
         this.props.dispatch(ExpenditureActions.fetchAllExpenditures());

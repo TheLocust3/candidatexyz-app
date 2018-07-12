@@ -10,7 +10,7 @@ class InviteStaff extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Campaign'));
-        this.props.dispatch(setBreadcrumb('Invite Staff'));
+        this.props.dispatch(setBreadcrumb('Staff'));
         this.props.dispatch(setDrawerSelected('campaign', 'inviteStaff'));
     }
 

@@ -14,7 +14,7 @@ class EditExpenditure extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Edit Expense'));
-        this.props.dispatch(setBreadcrumb('Expense'));
+        this.props.dispatch(setBreadcrumb('Expenses'));
         this.props.dispatch(setDrawerSelected('finance', 'expenditures'));
 
         this.props.dispatch(ExpenditureActions.fetchExpenditure(this.props.match.params.id));

@@ -15,7 +15,7 @@ class ShowMessage extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('View Message'));
-        this.props.dispatch(setBreadcrumb('Message'));
+        this.props.dispatch(setBreadcrumb('Messages'));
         this.props.dispatch(setDrawerSelected('communication', 'messages'));
 
         this.props.dispatch(MessageActions.fetchMessage(this.props.match.params.id));

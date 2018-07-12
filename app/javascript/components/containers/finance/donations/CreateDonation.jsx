@@ -14,7 +14,7 @@ class CreateDonation extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Create Donation'));
-        this.props.dispatch(setBreadcrumb('Donation'));
+        this.props.dispatch(setBreadcrumb('Donations'));
         this.props.dispatch(setDrawerSelected('finance', 'donation'));
 
         this.props.dispatch(ReceiptActions.fetchAllReceipts());

@@ -15,7 +15,7 @@ class ShowSignUp extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('View Sign Up'));
-        this.props.dispatch(setBreadcrumb('Sign Up'));
+        this.props.dispatch(setBreadcrumb('Sign Ups'));
         this.props.dispatch(setDrawerSelected('communication', 'signUps'));
 
         this.props.dispatch(ContactActions.fetchContact(this.props.match.params.id));

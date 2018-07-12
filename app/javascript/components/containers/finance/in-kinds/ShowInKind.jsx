@@ -15,7 +15,7 @@ class ShowInKind extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('View In Kind Contribution'));
-        this.props.dispatch(setBreadcrumb('In Kind Contribution'));
+        this.props.dispatch(setBreadcrumb('In Kind Contributions'));
         this.props.dispatch(setDrawerSelected('finance', 'inKinds'));
 
         this.props.dispatch(InKindActions.fetchInKind(this.props.match.params.id));

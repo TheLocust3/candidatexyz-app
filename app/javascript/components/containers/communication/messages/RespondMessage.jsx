@@ -20,7 +20,7 @@ class RespondMessage extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Respond to Message'));
-        this.props.dispatch(setBreadcrumb('Message'));
+        this.props.dispatch(setBreadcrumb('Messages'));
         this.props.dispatch(setDrawerSelected('communication', 'messages'));
 
         this.props.dispatch(MessageActions.fetchMessage(this.props.match.params.id));
