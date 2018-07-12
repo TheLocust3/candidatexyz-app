@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { InKindActions, InKindApi } from 'candidatexyz-common-js';
+import { LiabilityActions, LiabilityApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
@@ -8,32 +8,32 @@ import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/glo
 
 import Loader from '../../../components/common/Loader';
 import BackLink from '../../../components/common/BackLink';
-import InKindForm from '../../../components/finance/in-kinds/InKindForm';
+import LiabilityForm from '../../../components/finance/liabilities/LiabilityForm';
 
-class EditInKind extends React.Component {
+class EditLiability extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setTitle('Edit In Kind Contribution'));
-        this.props.dispatch(setBreadcrumb('In Kind Contributions'));
-        this.props.dispatch(setDrawerSelected('finance', 'inKind'));
+        this.props.dispatch(setTitle('Edit Liability'));
+        this.props.dispatch(setBreadcrumb('Liabilities'));
+        this.props.dispatch(setDrawerSelected('finance', 'liabilities'));
 
-        this.props.dispatch(InKindActions.fetchInKind(this.props.match.params.id));
-        this.props.dispatch(InKindActions.fetchAllInKinds());
+        this.props.dispatch(LiabilityActions.fetchLiability(this.props.match.params.id));
+        this.props.dispatch(LiabilityActions.fetchAllLiabilities());
     }
 
     onDeleteClick(event) {
         let shouldDelete = confirm('Are you sure?');
         if (!shouldDelete) return;
         
-        InKindApi.destroy(this.props.match.params.id).then(() => {
-            history.push('/finance/in-kinds');
+        LiabilityApi.destroy(this.props.match.params.id).then(() => {
+            history.push('/finance/liabilities');
         });
     }
     
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>Edit In Kind Contribution</Text>
+                <Text type='headline5'>Edit Liability</Text>
                 <div className='resource-actions'>
                     <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
                         <Text type='body2'>Delete</Text>
@@ -43,12 +43,12 @@ class EditInKind extends React.Component {
 
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady}>
-                        <InKindForm inKind={this.props.inKind} inKinds={this.props.inKinds.inKinds} />
+                        <LiabilityForm liability={this.props.liability} liabilities={this.props.liabilities.liabilities} />
                     </Loader>
                 </div>
                 <br />
 
-                <BackLink to={`/finance/in-kinds/${this.props.match.params.id}`} />
+                <BackLink to={`/finance/liabilities/${this.props.match.params.id}`} />
             </div>
         );
     }
@@ -56,10 +56,10 @@ class EditInKind extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        isReady: state.inKinds.isReady,
-        inKind: state.inKinds.inKind,
-        inKinds: state.inKinds.inKinds
+        isReady: state.liabilities.isReady,
+        liability: state.liabilities.liability,
+        liabilities: state.liabilities.liabilities
     };
 }
 
-export default connect(mapStateToProps)(EditInKind);
+export default connect(mapStateToProps)(EditLiability);

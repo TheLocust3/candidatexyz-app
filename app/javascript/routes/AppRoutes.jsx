@@ -37,6 +37,11 @@ import ShowInKind from '../components/containers/finance/in-kinds/ShowInKind';
 import CreateInKind from '../components/containers/finance/in-kinds/CreateInKind';
 import EditInKind from '../components/containers/finance/in-kinds/EditInKind';
 
+import Liabilities from '../components/containers/finance/liabilities/Liabilities';
+import ShowLiability from '../components/containers/finance/liabilities/ShowLiability';
+import CreateLiability from '../components/containers/finance/liabilities/CreateLiability';
+import EditLiability from '../components/containers/finance/liabilities/EditLiability';
+
 import ShowUser from '../components/containers/campaign/ShowUser';
 
 import Communication from '../components/containers/communication/Communication';
@@ -118,6 +123,11 @@ class AppRoutes extends React.Component {
                         <Route exact path='/finance/in-kinds/create' component={CreateInKind} />
                         <Route exact path='/finance/in-kinds/:id' component={ShowInKind} />
                         <Route exact path='/finance/in-kinds/:id/edit' component={EditInKind} />
+
+                        <Route exact path='/finance/liabilities' component={Liabilities} />
+                        <Route exact path='/finance/liabilities/create' component={CreateLiability} />
+                        <Route exact path='/finance/liabilities/:id' component={ShowLiability} />
+                        <Route exact path='/finance/liabilities/:id/edit' component={EditLiability} />
 
                         <Route component={NotFound} />
                     </Switch>
