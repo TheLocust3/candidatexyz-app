@@ -16,8 +16,8 @@ const PER_PAGE = 10;
 class Expenditures extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setTitle('Expenditures'));
-        this.props.dispatch(setBreadcrumb('Expenditures'));
+        this.props.dispatch(setTitle('Expenses'));
+        this.props.dispatch(setBreadcrumb('Expenses'));
         this.props.dispatch(setDrawerSelected('finance', 'expenditures'));
 
         this.props.dispatch(ExpenditureActions.fetchAllExpenditures());
@@ -26,10 +26,10 @@ class Expenditures extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>Expenditure List</Text>
+                <Text type='headline5'>Expenses List</Text>
                 <div className='resource-actions'>
                     <Link className='resource-actions-item unstyled-link-black' to='/finance/expenditures/create'>
-                        <Text type='body2'>Create</Text>
+                        <Text type='body2'>Add</Text>
                     </Link>
                 </div>
                 <br />

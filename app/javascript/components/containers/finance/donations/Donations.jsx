@@ -29,7 +29,7 @@ class Donations extends React.Component {
                 <Text type='headline5'>Donation List</Text>
                 <div className='resource-actions'>
                     <Link className='resource-actions-item unstyled-link-black' to='/finance/donations/create'>
-                        <Text type='body2'>Create</Text>
+                        <Text type='body2'>Add</Text>
                     </Link>
 
                     <div className='resource-actions-spacer' />

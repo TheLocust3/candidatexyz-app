@@ -13,9 +13,9 @@ import ExpenditureForm from '../../../components/finance/expenditures/Expenditur
 class CreateExpenditure extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setTitle('Create Expenditure'));
-        this.props.dispatch(setBreadcrumb('Expenditure'));
-        this.props.dispatch(setDrawerSelected('finance', 'expenditure'));
+        this.props.dispatch(setTitle('Add Expense'));
+        this.props.dispatch(setBreadcrumb('Expense'));
+        this.props.dispatch(setDrawerSelected('finance', 'expenditures'));
 
         this.props.dispatch(ExpenditureActions.fetchAllExpenditures());
     }
@@ -23,7 +23,7 @@ class CreateExpenditure extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>Create Expenditure</Text>
+                <Text type='headline5'>Add Expense</Text>
                 <br />
 
                 <div className='content-2'>

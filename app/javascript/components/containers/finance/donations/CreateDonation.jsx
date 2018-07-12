@@ -23,7 +23,7 @@ class CreateDonation extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>Create Donation</Text>
+                <Text type='headline5'>Add Donation</Text>
                 <br />
 
                 <div className='content-2'>

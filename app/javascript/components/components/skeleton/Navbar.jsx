@@ -148,7 +148,7 @@ class Navbar extends React.Component {
                     </Link>
 
                     <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/finance/expenditures'>
-                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'expenditures' ? 'drawer-sub-item-text--activated' : ''}`}>Expenditures</Text>
+                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'expenditures' ? 'drawer-sub-item-text--activated' : ''}`}>Expenses</Text>
                     </Link>
                 </div>
 

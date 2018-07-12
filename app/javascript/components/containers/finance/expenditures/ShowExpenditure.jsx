@@ -14,8 +14,8 @@ import Expenditure from '../../../components/finance/expenditures/Expenditure';
 class ShowExpenditure extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setTitle('View Expenditure'));
-        this.props.dispatch(setBreadcrumb('Expenditure'));
+        this.props.dispatch(setTitle('View Expense'));
+        this.props.dispatch(setBreadcrumb('Expense'));
         this.props.dispatch(setDrawerSelected('finance', 'expenditures'));
 
         this.props.dispatch(ExpenditureActions.fetchExpenditure(this.props.match.params.id));
@@ -33,7 +33,7 @@ class ShowExpenditure extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>View Expenditure</Text>
+                <Text type='headline5'>View Expense</Text>
 
                 <div className='resource-actions'>
                     <Link className='resource-actions-item unstyled-link-black' to={`/finance/expenditures/${this.props.match.params.id}/edit`}>

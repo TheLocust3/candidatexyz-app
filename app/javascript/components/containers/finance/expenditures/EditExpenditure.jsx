@@ -13,8 +13,8 @@ import ExpenditureForm from '../../../components/finance/expenditures/Expenditur
 class EditExpenditure extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setTitle('Edit Expenditure'));
-        this.props.dispatch(setBreadcrumb('Expenditure'));
+        this.props.dispatch(setTitle('Edit Expense'));
+        this.props.dispatch(setBreadcrumb('Expense'));
         this.props.dispatch(setDrawerSelected('finance', 'expenditures'));
 
         this.props.dispatch(ExpenditureActions.fetchExpenditure(this.props.match.params.id));
@@ -33,7 +33,7 @@ class EditExpenditure extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>Edit Donation</Text>
+                <Text type='headline5'>Edit Expense</Text>
                 <div className='resource-actions'>
                     <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
                         <Text type='body2'>Delete</Text>
