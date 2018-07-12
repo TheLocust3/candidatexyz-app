@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
@@ -14,8 +15,10 @@ export default class Table extends React.Component {
     }
 
     sort(rows) {
+        let keys = _.isEmpty(this.props.sortingKeys) ? this.props.keys : this.props.sortingKeys;
+
         let sorted = _.sortBy(rows, (row) => { 
-            let key = this.props.keys[this.state.selectedIndex];
+            let key = keys[this.state.selectedIndex];
             return _.isFunction(key) ? key(row) : row[key];
         });
         
@@ -99,7 +102,7 @@ export default class Table extends React.Component {
     }
 
     render() {
-        let { rows, rowsPerPage, headers, keys, to, ...props } = this.props;
+        let { rows, rowsPerPage, headers, keys, sortingKeys, to, ...props } = this.props;
 
         return (
             <table {...props}>
@@ -120,5 +123,6 @@ Table.propTypes = {
     rowsPerPage: PropTypes.number,
     headers: PropTypes.array.isRequired,
     keys: PropTypes.array.isRequired,
+    sortingKeys: PropTypes.array,
     to: PropTypes.string.isRequired
 };

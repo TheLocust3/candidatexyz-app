@@ -27,6 +27,11 @@ import EditDonation from '../components/containers/finance/donations/EditDonatio
 import Donors from '../components/containers/finance/donations/donors/Donors';
 import ShowDonor from '../components/containers/finance/donations/donors/ShowDonor';
 
+import Expenditures from '../components/containers/finance/expenditures/Expenditures';
+import ShowExpenditure from '../components/containers/finance/expenditures/ShowExpenditure';
+import CreateExpenditure from '../components/containers/finance/expenditures/CreateExpenditure';
+import EditExpenditure from '../components/containers/finance/expenditures/EditExpenditure';
+
 import ShowUser from '../components/containers/campaign/ShowUser';
 
 import Communication from '../components/containers/communication/Communication';
@@ -98,6 +103,11 @@ class AppRoutes extends React.Component {
 
                         <Route exact path='/finance/donors' component={Donors} />
                         <Route exact path='/finance/donors/:id' component={ShowDonor} />
+
+                        <Route exact path='/finance/expenditures' component={Expenditures} />
+                        <Route exact path='/finance/expenditures/create' component={CreateExpenditure} />
+                        <Route exact path='/finance/expenditures/:id' component={ShowExpenditure} />
+                        <Route exact path='/finance/expenditures/:id/edit' component={EditExpenditure} />
                         
                         <Route component={NotFound} />
                     </Switch>

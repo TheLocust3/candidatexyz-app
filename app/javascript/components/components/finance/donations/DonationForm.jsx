@@ -111,10 +111,6 @@ export default class DonationForm extends React.Component {
         });
     }
 
-    formatDate(date, format, locale) {
-        return moment(date).format(format);
-    }
-
     renderReceiptTypeDropdown() {
         if (this.props.receiptType == 'donation') return;
 
@@ -159,6 +155,8 @@ export default class DonationForm extends React.Component {
     }
 
     render() {
+        let amount = _.isUndefined(this.state.receipt.amount) ? null : String(this.state.receipt.amount);
+
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
                 {this.renderReceiptTypeDropdown()}
@@ -176,7 +174,7 @@ export default class DonationForm extends React.Component {
                     <DayPickerInput inputProps={{ className: 'mdc-typography--body2' }} classNames={{ container: 'DayPickerInput mdc-typography--body2', overlayWrapper: 'DayPickerInput-OverlayWrapper mdc-typography--body2', overlay: 'DayPickerInput-Overlay mdc-typography--body2' }}
                         formatDate={formatDate} parseDate={parseDate} value={`${formatDate(this.state.receipt.dateReceived)}`} onDayChange={(date) => this.handleDateChange(date)} /><br />
                 </Text>
-                <TextField type='number' label='Amount ($)' name='amount' onChange={this.handleChange.bind(this)} defaultValue={String(this.state.receipt.amount)} style={{ width: 'auto', marginLeft: '5%' }} required /><br />
+                <TextField type='number' label='Amount ($)' name='amount' step='0.01' onChange={this.handleChange.bind(this)} defaultValue={amount} style={{ width: 'auto', marginLeft: '5%' }} required /><br />
 
                 {this.renderDonationFields()}
 

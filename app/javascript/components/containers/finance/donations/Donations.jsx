@@ -42,7 +42,7 @@ class Donations extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>
-                        <Table to='/finance/donations/' headers={['Name', 'Amount', 'Date Received', 'Address', 'City', 'State']} keys={['name', 'amountString', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'address', 'city', 'state']} rows={this.props.receipts.receipts} rowsPerPage={PER_PAGE} />
+                        <Table to='/finance/donations/' headers={['Name', 'Amount', 'Date Received', 'Address', 'City', 'State']} keys={['name', 'amountString', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'address', 'city', 'state']} sortingKeys={['name', 'amount', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'address', 'city', 'state']} rows={this.props.receipts.receipts} rowsPerPage={PER_PAGE} />
                         <br /><br />
 
                         <Pager elements={this.props.receipts.receipts} elementsPerPage={PER_PAGE} baseLink='/finance/donations' />
