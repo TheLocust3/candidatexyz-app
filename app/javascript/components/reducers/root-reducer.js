@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { userReducer, contactReducer, volunteerReducer, messageReducer, campaignReducer, analyticEntryReducer, receiptReducer, expenditureReducer } from 'candidatexyz-common-js';
+import { userReducer, contactReducer, volunteerReducer, messageReducer, campaignReducer, analyticEntryReducer, receiptReducer, expenditureReducer, inKindReducer } from 'candidatexyz-common-js';
 
 import { globalReducer } from './global-reducer'
 
@@ -12,7 +12,8 @@ const reducer = combineReducers({
     campaigns: campaignReducer,
     analyticEntries: analyticEntryReducer,
     receipts: receiptReducer,
-    expenditures: expenditureReducer
+    expenditures: expenditureReducer,
+    inKinds: inKindReducer
 });
 
 export default reducer;

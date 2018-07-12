@@ -8,7 +8,7 @@ import MomentLocaleUtils, {
     formatDate,
     parseDate,
   } from 'react-day-picker/moment';
-import { ExpenditureApi, ExpenditureHelper } from 'candidatexyz-common-js';
+import { ExpenditureApi } from 'candidatexyz-common-js';
 import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { history, STATES } from '../../../../constants';
@@ -114,7 +114,7 @@ export default class ExpenditureForm extends React.Component {
                 <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.country} style={{ width: '30%' }} required /><br /><br />
 
                 <Text type='body2' style={{ display: 'inline-block' }}>
-                    Date Received:
+                    Date Paid:
 
                     <DayPickerInput inputProps={{ className: 'mdc-typography--body2' }} classNames={{ container: 'DayPickerInput mdc-typography--body2', overlayWrapper: 'DayPickerInput-OverlayWrapper mdc-typography--body2', overlay: 'DayPickerInput-Overlay mdc-typography--body2' }}
                         formatDate={formatDate} parseDate={parseDate} value={`${formatDate(this.state.expenditure.datePaid)}`} onDayChange={(date) => this.handleDateChange(date)} /><br />

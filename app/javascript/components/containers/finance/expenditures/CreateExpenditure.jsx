@@ -33,7 +33,7 @@ class CreateExpenditure extends React.Component {
                 </div>
                 <br />
 
-                <BackLink to='/finance/expendituress/' />
+                <BackLink to='/finance/expenditures/' />
             </div>
         );
     }

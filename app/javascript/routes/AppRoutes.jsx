@@ -32,6 +32,11 @@ import ShowExpenditure from '../components/containers/finance/expenditures/ShowE
 import CreateExpenditure from '../components/containers/finance/expenditures/CreateExpenditure';
 import EditExpenditure from '../components/containers/finance/expenditures/EditExpenditure';
 
+import InKinds from '../components/containers/finance/in-kinds/InKinds';
+import ShowInKind from '../components/containers/finance/in-kinds/ShowInKind';
+import CreateInKind from '../components/containers/finance/in-kinds/CreateInKind';
+import EditInKind from '../components/containers/finance/in-kinds/EditInKind';
+
 import ShowUser from '../components/containers/campaign/ShowUser';
 
 import Communication from '../components/containers/communication/Communication';
@@ -109,6 +114,11 @@ class AppRoutes extends React.Component {
                         <Route exact path='/finance/expenditures/:id' component={ShowExpenditure} />
                         <Route exact path='/finance/expenditures/:id/edit' component={EditExpenditure} />
                         
+                        <Route exact path='/finance/in-kinds' component={InKinds} />
+                        <Route exact path='/finance/in-kinds/create' component={CreateInKind} />
+                        <Route exact path='/finance/in-kinds/:id' component={ShowInKind} />
+                        <Route exact path='/finance/in-kinds/:id/edit' component={EditInKind} />
+
                         <Route component={NotFound} />
                     </Switch>
                 </Route>
