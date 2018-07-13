@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { ReportActions } from 'candidatexyz-common-js';
@@ -27,7 +28,7 @@ class CreateReport extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.isReady}>
+                    <Loader isReady={this.props.isReady && !_.isEmpty(this.props.reportTypes)}>
                         <ReportForm reportTypes={this.props.reportTypes} />
                     </Loader>
                 </div>

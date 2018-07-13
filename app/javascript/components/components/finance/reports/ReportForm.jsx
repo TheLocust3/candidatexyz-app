@@ -104,5 +104,5 @@ export default class ReportForm extends React.Component {
 }
 
 ReportForm.propTypes = {
-    reportTypes: PropTypes.object
+    reportTypes: PropTypes.object.isRequired
 };

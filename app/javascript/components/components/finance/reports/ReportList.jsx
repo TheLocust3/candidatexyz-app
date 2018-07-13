@@ -29,7 +29,7 @@ export default class ReportList extends React.Component {
     }
 
     renderNone() {
-        return <Text type='body1'>You currently have no sign ups!</Text>;
+        return <Text type='body1'>You currently have no reports!</Text>;
     }
 
     render() {
