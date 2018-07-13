@@ -8,7 +8,7 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
 import Loader from '../../../components/common/Loader';
-import Pager from '../../../components/common/Pager';
+import ReportList from '../../../components/finance/reports/ReportList';
 
 const PER_PAGE = 10;
 
@@ -35,9 +35,7 @@ class Reports extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>
-                        A cool list
-
-                        <Pager elements={this.props.reports.reports} elementsPerPage={PER_PAGE} baseLink='/finance/reports' />
+                        <ReportList reports={this.props.reports.reports} />
                     </Loader>
                 </div>
             </div>
