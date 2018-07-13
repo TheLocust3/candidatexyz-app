@@ -23,7 +23,7 @@ export default class DonationForm extends React.Component {
 
         this.state = { donors: DonorHelper.generateDonorsInYear(this.props.receipts), donor: { amount: 0 }, occupationRequired: false, errors: {} };
         if (_.isEmpty(this.props.receipt)) {
-            this.state.receipt = { receiptType: RECEIPT_TYPES[0].value, state: 'MA', dateReceived: new Date() };
+            this.state.receipt = { receiptType: RECEIPT_TYPES[0].value, state: 'MA', country: 'United States', dateReceived: new Date() };
         } else {
             this.state.receipt = this.props.receipt;
         }
@@ -166,7 +166,7 @@ export default class DonationForm extends React.Component {
                 <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.address} style={{ width: '100%' }} required /><br />
                 <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.city} style={{ width: '30%', marginRight: '5%' }} required />
                 {this.renderStateDropdown()}
-                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.country} style={{ width: '30%' }} required /><br /><br />
+                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} value={this.state.receipt.country} style={{ width: '30%' }} required /><br /><br />
 
                 <Text type='body2' style={{ display: 'inline-block' }}>
                     Date Received:

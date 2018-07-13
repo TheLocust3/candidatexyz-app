@@ -22,7 +22,7 @@ export default class LiabilityForm extends React.Component {
 
         this.state = { errors: {} };
         if (_.isEmpty(this.props.liability)) {
-            this.state.liability = { state: 'MA', dateIncurred: new Date() };
+            this.state.liability = { state: 'MA', country: 'United States', dateIncurred: new Date() };
         } else {
             this.state.liability = this.props.liability;
         }
@@ -111,7 +111,7 @@ export default class LiabilityForm extends React.Component {
                 <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.liability.address} style={{ width: '100%' }} required /><br />
                 <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.liability.city} style={{ width: '30%', marginRight: '5%' }} required />
                 {this.renderStateDropdown()}
-                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.state.liability.country} style={{ width: '30%' }} required /><br /><br />
+                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} value={this.state.liability.country} style={{ width: '30%' }} required /><br /><br />
 
                 <Text type='body2' style={{ display: 'inline-block' }}>
                     Date Incurred:

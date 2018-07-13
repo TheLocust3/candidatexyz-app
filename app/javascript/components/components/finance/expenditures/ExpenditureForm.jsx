@@ -22,7 +22,7 @@ export default class ExpenditureForm extends React.Component {
 
         this.state = { errors: {} };
         if (_.isEmpty(this.props.expenditure)) {
-            this.state.expenditure = { state: 'MA', datePaid: new Date() };
+            this.state.expenditure = { state: 'MA', country: 'United States', datePaid: new Date() };
         } else {
             this.state.expenditure = this.props.expenditure;
         }
@@ -111,7 +111,7 @@ export default class ExpenditureForm extends React.Component {
                 <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.address} style={{ width: '100%' }} required /><br />
                 <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.city} style={{ width: '30%', marginRight: '5%' }} required />
                 {this.renderStateDropdown()}
-                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.country} style={{ width: '30%' }} required /><br /><br />
+                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} value={this.state.expenditure.country} style={{ width: '30%' }} required /><br /><br />
 
                 <Text type='body2' style={{ display: 'inline-block' }}>
                     Date Paid:

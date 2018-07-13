@@ -22,7 +22,7 @@ export default class InKindForm extends React.Component {
 
         this.state = { errors: {} };
         if (_.isEmpty(this.props.inKind)) {
-            this.state.inKind = { state: 'MA', dateReceived: new Date() };
+            this.state.inKind = { state: 'MA', country: 'United States', dateReceived: new Date() };
         } else {
             this.state.inKind = this.props.inKind;
         }
@@ -111,7 +111,7 @@ export default class InKindForm extends React.Component {
                 <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.inKind.address} style={{ width: '100%' }} required /><br />
                 <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.inKind.city} style={{ width: '30%', marginRight: '5%' }} required />
                 {this.renderStateDropdown()}
-                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.state.inKind.country} style={{ width: '30%' }} required /><br /><br />
+                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} value={this.state.inKind.country} style={{ width: '30%' }} required /><br /><br />
 
                 <Text type='body2' style={{ display: 'inline-block' }}>
                     Date Received:
