@@ -44,9 +44,5 @@ export default class Loader extends React.Component {
 
 Loader.propTypes = {
     isReady: PropTypes.bool,
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.element),
-        PropTypes.element,
-        PropTypes.string
-    ]).isRequired
+    children: PropTypes.any.isRequired
 };

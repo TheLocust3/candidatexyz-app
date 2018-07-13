@@ -19,6 +19,10 @@ import InviteStaff from '../components/containers/campaign/InviteStaff';
 
 import Finance from '../components/containers/finance/Finance';
 
+import Reports from '../components/containers/finance/reports/Reports';
+import ShowReport from '../components/containers/finance/reports/ShowReport';
+import CreateReport from '../components/containers/finance/reports/CreateReport';
+
 import Donations from '../components/containers/finance/donations/Donations';
 import ShowDonation from '../components/containers/finance/donations/ShowDonation';
 import CreateDonation from '../components/containers/finance/donations/CreateDonation';
@@ -105,6 +109,10 @@ class AppRoutes extends React.Component {
                         <Route exact path='/campaign/invite-staff' component={InviteStaff} />
 
                         <Route exact path='/finance' component={Finance} />
+
+                        <Route exact path='/finance/reports' component={Reports} />
+                        <Route exact path='/finance/reports/create' component={CreateReport} />
+                        <Route exact path='/finance/reports/:id' component={ShowReport} />
 
                         <Route exact path='/finance/donations' component={Donations} />
                         <Route exact path='/finance/donations/create' component={CreateDonation} />

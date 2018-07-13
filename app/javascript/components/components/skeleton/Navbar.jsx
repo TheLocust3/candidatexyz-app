@@ -143,6 +143,10 @@ class Navbar extends React.Component {
                 </Link>
 
                 <div id='finance-drop-down'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/finance/reports'>
+                        <Text type='body2' className={`drawer-sub-item-text ${subItem == 'reports' ? 'drawer-sub-item-text--activated' : ''}`}>Reports</Text>
+                    </Link>
+
                     <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/finance/donations'>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'donations' ? 'drawer-sub-item-text--activated' : ''}`}>Donations</Text>
                     </Link>
