@@ -17,6 +17,9 @@ import Staff from '../components/containers/campaign/Staff';
 import EditUser from '../components/containers/campaign/EditUser';
 import InviteStaff from '../components/containers/campaign/InviteStaff';
 
+import ShowCommittee from '../components/containers/campaign/committee/ShowCommittee';
+import EditCommittee from '../components/containers/campaign/committee/EditCommittee';
+
 import Finance from '../components/containers/finance/Finance';
 
 import Reports from '../components/containers/finance/reports/Reports';
@@ -107,6 +110,9 @@ class AppRoutes extends React.Component {
                         <Route exact path='/campaign/staff/:id' component={ShowUser} />
                         <Route exact path='/campaign/staff/:id/edit' component={EditUser} />
                         <Route exact path='/campaign/invite-staff' component={InviteStaff} />
+
+                        <Route exact path='/campaign/committee' component={ShowCommittee} />
+                        <Route exact path='/campaign/committee/edit' component={EditCommittee} />
 
                         <Route exact path='/finance' component={Finance} />
 
