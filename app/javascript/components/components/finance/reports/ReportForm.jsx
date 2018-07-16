@@ -95,7 +95,7 @@ export default class ReportForm extends React.Component {
                 </Text>
                 <br /><br />
 
-                <Button>Save</Button>
+                <Button>Generate</Button>
 
                 <MDCAutoInit />
             </Form>

@@ -116,6 +116,18 @@
     font-weight: 300 !important;
 }
 
+.DayPicker-Day:hover {
+    background-color: rgba($purple-primary, 0.1) !important;
+}
+
+.DayPicker-Day--today {
+    color: $purple-light;
+}
+
+.DayPicker-Day--selected {
+    background-color: $purple-primary !important;
+}
+
 .autocomplete-wrapper {
     position: relative;
     width: 100%;
