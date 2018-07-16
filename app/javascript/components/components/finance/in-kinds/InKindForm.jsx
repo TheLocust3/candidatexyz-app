@@ -13,6 +13,7 @@ import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from '
 
 import { history, STATES } from '../../../../constants';
 
+import AddressInput from '../../common/AddressInput';
 import AutoCompleteTextField from '../../common/AutoCompleteTextField';
 
 export default class InKindForm extends React.Component {
@@ -46,9 +47,9 @@ export default class InKindForm extends React.Component {
         });
     }
 
-    handleStateChange(select) {
+    handleAddressChange(name, value) {
         let inKind = this.state.inKind;
-        inKind.state = select.value;
+        inKind[name] = value;
 
         this.setState({
             inKind: inKind
@@ -85,20 +86,6 @@ export default class InKindForm extends React.Component {
         });
     }
 
-    renderStateDropdown() {
-        return (
-            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.inKind.state })} style={{ width: '30%', marginRight: '5%' }}>
-                {STATES.map((state) => {
-                    return (
-                        <SelectItem key={state}>
-                            {state}
-                        </SelectItem>
-                    );
-                })}
-            </Select>
-        );
-    }
-
     render() {
         let value = _.isUndefined(this.state.inKind.value) ? null : String(this.state.inKind.value);
 
@@ -108,10 +95,8 @@ export default class InKindForm extends React.Component {
 
                 <TextField label='Description' name='description' onChange={this.handleChange.bind(this)} defaultValue={this.state.inKind.description} style={{ width: '100%' }} required /><br /><br />
 
-                <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.inKind.address} style={{ width: '100%' }} required /><br />
-                <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.inKind.city} style={{ width: '30%', marginRight: '5%' }} required />
-                {this.renderStateDropdown()}
-                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} value={this.state.inKind.country} style={{ width: '30%' }} required /><br /><br />
+                <AddressInput address={this.state.inKind.address} city={this.state.inKind.city} state={this.state.inKind.state} country={this.state.inKind.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <br /><br />
 
                 <Text type='body2' style={{ display: 'inline-block' }}>
                     Date Received:

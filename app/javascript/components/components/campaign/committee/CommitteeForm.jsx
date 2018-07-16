@@ -6,6 +6,8 @@ import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from '
 
 import { history, STATES } from '../../../../constants';
 
+import AddressInput from '../../common/AddressInput';
+
 export default class CommitteeForm extends React.Component {
 
     constructor(props) {
@@ -28,9 +30,9 @@ export default class CommitteeForm extends React.Component {
         });
     }
 
-    handleStateChange(select) {
+    handleAddressChange(name, value) {
         let committee = this.state.committee;
-        committee.state = select.value;
+        committee[name] = value;
 
         this.setState({
             committee: committee
@@ -59,20 +61,6 @@ export default class CommitteeForm extends React.Component {
         }
     }
 
-    renderStateDropdown() {
-        return (
-            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.committee.state })} style={{ width: '30%', marginRight: '5%' }}>
-                {STATES.map((state) => {
-                    return (
-                        <SelectItem key={state}>
-                            {state}
-                        </SelectItem>
-                    );
-                })}
-            </Select>
-        );
-    }
-
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
@@ -83,10 +71,8 @@ export default class CommitteeForm extends React.Component {
                 <TextField type='email' label='Committee Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.email} style={{ width: '100%' }} required /><br />
                 <TextField label='Committee Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.phoneNumber} style={{ width: '100%' }} required /><br /><br />
 
-                <TextField label='Mailing Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.address} style={{ width: '100%' }} required /><br />
-                <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.city} style={{ width: '30%', marginRight: '5%' }} required />
-                {this.renderStateDropdown()}
-                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} value={this.state.committee.country} style={{ width: '30%' }} required /><br /><br />
+                <AddressInput address={this.state.committee.address} city={this.state.committee.city} state={this.state.committee.state} country={this.state.committee.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <br /><br />
 
                 <Button>Save</Button>
 

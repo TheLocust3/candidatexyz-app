@@ -5,6 +5,8 @@ import { Button, Form, TextField, Select, SelectItem } from 'candidatexyz-common
 
 import { history, STATES } from '../../../constants';
 
+import AddressInput from '../common/AddressInput';
+
 export default class StaffSignUpForm extends React.Component {
 
     constructor(props) {
@@ -19,9 +21,9 @@ export default class StaffSignUpForm extends React.Component {
         });
     }
 
-    handleStateChange(select) {
+    handleAddressChange(name, value) {
         this.setState({
-            state: select.value
+            [name]: value
         });
     }
 
@@ -37,20 +39,6 @@ export default class StaffSignUpForm extends React.Component {
         });
     }
 
-    renderStateDropdown() {
-        return (
-            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.state })} style={{ width: '40%' }}>
-                {STATES.map((state) => {
-                    return (
-                        <SelectItem key={state}>
-                            {state}
-                        </SelectItem>
-                    );
-                })}
-            </Select>
-        );
-    }
-
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
@@ -58,10 +46,8 @@ export default class StaffSignUpForm extends React.Component {
                 <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} required /><br />
                 <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} required /><br /><br />
 
-                <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} /><br />
-                <TextField label='City' name='city' onChange={this.handleChange.bind(this)} /><br /><br />
-                {this.renderStateDropdown()}<br />
-                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.state.country} /><br /><br />
+                <AddressInput state={this.state.state} country={this.state.country} onChange={(name, value) => this.handleAddressChange(name, value)} />
+                <br /><br />
 
                 <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} /><br /><br />
 

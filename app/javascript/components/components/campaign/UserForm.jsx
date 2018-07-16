@@ -5,6 +5,8 @@ import { Button, Form, TextField, Checkbox, Select, SelectItem, MDCAutoInit } fr
 
 import { history, STATES } from '../../../constants';
 
+import AddressInput from '../common/AddressInput';
+
 export default class UserForm extends React.Component {
 
     constructor(props) {
@@ -31,18 +33,18 @@ export default class UserForm extends React.Component {
         });
     }
 
-    handleStateChange(select) {
+    handlePositionChange(select) {
         let user = this.state.user;
-        user.state = select.value;
+        user.position = select.value;
 
         this.setState({
             user: user
         });
     }
 
-    handlePositionChange(select) {
+    handleAddressChange(name, value) {
         let user = this.state.user;
-        user.position = select.value;
+        user[name] = value;
 
         this.setState({
             user: user
@@ -57,20 +59,6 @@ export default class UserForm extends React.Component {
                 errors: response.responseJSON.errors
             });
         });
-    }
-
-    renderStateDropdown() {
-        return (
-            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.user.state })} style={{ width: '30%', marginRight: '5%' }}>
-                {STATES.map((state) => {
-                    return (
-                        <SelectItem key={state}>
-                            {state}
-                        </SelectItem>
-                    );
-                })}
-            </Select>
-        );
     }
 
     renderPositionDropdown() {
@@ -95,10 +83,8 @@ export default class UserForm extends React.Component {
                 <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.firstName} style={{ width: '100%' }} /><br />
                 <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.lastName} style={{ width: '100%' }} /><br /><br />
 
-                <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.user.address} style={{ width: '100%' }} /><br />
-                <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.user.city} style={{ width: '30%', marginRight: '5%' }} />
-                {this.renderStateDropdown()}
-                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.state.user.country} style={{ width: '30%' }} /><br /><br />
+                <AddressInput address={this.state.user.address} city={this.state.user.city} state={this.state.user.state} country={this.state.user.country} onChange={(name, value) => this.handleAddressChange(name, value)} />
+                <br /><br />
 
                 <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.phoneNumber} style={{ width: '100%' }} /><br /><br />
 

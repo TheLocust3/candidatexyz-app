@@ -14,6 +14,7 @@ import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from '
 import { history, STATES, RECEIPT_TYPES, OCCUPATION_AMOUNT_THRESHOLD } from '../../../../constants';
 import { arraysEquals } from '../../../../helpers';
 
+import AddressInput from '../../common/AddressInput';
 import AutoCompleteTextField from '../../common/AutoCompleteTextField';
 
 export default class DonationForm extends React.Component {
@@ -71,9 +72,9 @@ export default class DonationForm extends React.Component {
         });
     }
 
-    handleStateChange(select) {
+    handleAddressChange(name, value) {
         let receipt = this.state.receipt;
-        receipt.state = select.value;
+        receipt[name] = value;
 
         this.setState({
             receipt: receipt
@@ -129,20 +130,6 @@ export default class DonationForm extends React.Component {
         );
     }
 
-    renderStateDropdown() {
-        return (
-            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.receipt.state })} style={{ width: '30%', marginRight: '5%' }}>
-                {STATES.map((state) => {
-                    return (
-                        <SelectItem key={state}>
-                            {state}
-                        </SelectItem>
-                    );
-                })}
-            </Select>
-        );
-    }
-
     renderDonationFields() {
         if (this.props.receiptType != 'donation') return;
 
@@ -163,10 +150,8 @@ export default class DonationForm extends React.Component {
                 
                 <AutoCompleteTextField elements={this.props.receipts} elementKey='name' label='Name' name='name' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.receipt.name} style={{ width: '100%' }} required /><br />
 
-                <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.address} style={{ width: '100%' }} required /><br />
-                <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.city} style={{ width: '30%', marginRight: '5%' }} required />
-                {this.renderStateDropdown()}
-                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} value={this.state.receipt.country} style={{ width: '30%' }} required /><br /><br />
+                <AddressInput address={this.state.receipt.address} city={this.state.receipt.city} state={this.state.receipt.state} country={this.state.receipt.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <br /><br />
 
                 <Text type='body2' style={{ display: 'inline-block' }}>
                     Date Received:

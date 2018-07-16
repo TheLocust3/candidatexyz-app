@@ -13,6 +13,7 @@ import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from '
 
 import { history, STATES } from '../../../../constants';
 
+import AddressInput from '../../common/AddressInput';
 import AutoCompleteTextField from '../../common/AutoCompleteTextField';
 
 export default class ExpenditureForm extends React.Component {
@@ -46,9 +47,9 @@ export default class ExpenditureForm extends React.Component {
         });
     }
 
-    handleStateChange(select) {
+    handleAddressChange(name, value) {
         let expenditure = this.state.expenditure;
-        expenditure.state = select.value;
+        expenditure[name] = value;
 
         this.setState({
             expenditure: expenditure
@@ -85,20 +86,6 @@ export default class ExpenditureForm extends React.Component {
         });
     }
 
-    renderStateDropdown() {
-        return (
-            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.expenditure.state })} style={{ width: '30%', marginRight: '5%' }}>
-                {STATES.map((state) => {
-                    return (
-                        <SelectItem key={state}>
-                            {state}
-                        </SelectItem>
-                    );
-                })}
-            </Select>
-        );
-    }
-
     render() {
         let amount = _.isUndefined(this.state.expenditure.amount) ? null : String(this.state.expenditure.amount);
 
@@ -108,10 +95,8 @@ export default class ExpenditureForm extends React.Component {
 
                 <TextField label='Purpose' name='purpose' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.purpose} style={{ width: '100%' }} required /><br /><br />
 
-                <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.address} style={{ width: '100%' }} required /><br />
-                <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.city} style={{ width: '30%', marginRight: '5%' }} required />
-                {this.renderStateDropdown()}
-                <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} value={this.state.expenditure.country} style={{ width: '30%' }} required /><br /><br />
+                <AddressInput address={this.state.expenditure.address} city={this.state.expenditure.city} state={this.state.expenditure.state} country={this.state.expenditure.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <br /><br />
 
                 <Text type='body2' style={{ display: 'inline-block' }}>
                     Date Paid:
