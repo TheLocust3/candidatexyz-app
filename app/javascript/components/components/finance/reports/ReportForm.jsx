@@ -9,7 +9,7 @@ import MomentLocaleUtils, {
     parseDate,
   } from 'react-day-picker/moment';
 import { ReportApi } from 'candidatexyz-common-js';
-import { Text, Button, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
+import { Text, Button, Checkbox, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
 
@@ -18,7 +18,7 @@ export default class ReportForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { report: { reportType: this.props.reportTypes.ma[0].value, beginningDate: new Date(), endingDate: new Date() }, errors: {} };
+        this.state = { report: { official: false, reportType: this.props.reportTypes.ma[0].value, beginningDate: new Date(), endingDate: new Date() }, errors: {} };
     }
 
     handleChange(event) {
@@ -48,10 +48,19 @@ export default class ReportForm extends React.Component {
         });
     }
 
+    handleOfficialCheck(event) {
+        let report = this.state.report;
+        report.official = !report.official;
+
+        this.setState({
+            report: report
+        });
+    }
+
     handleSubmit(event) {
         let report = this.state.report;
 
-        ReportApi.create(report.reportType, report.beginningDate, report.endingDate).then((response) => {
+        ReportApi.create(report.reportType, report.beginningDate, report.endingDate, report.official).then((response) => {
             history.push(`/finance/reports/${response.id}`);
         }).catch((response) => {
             this.setState({
@@ -77,6 +86,9 @@ export default class ReportForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
+                <Checkbox label='Generate as official report?' onChange={this.handleOfficialCheck.bind(this)} defaultChecked={this.state.report.official} />
+                <br /><br />
+
                 {this.renderReportTypeDropdown()}
                 <br /><br /><br />
 

@@ -23,7 +23,7 @@ export default class ReportThumbnail extends React.Component {
 
                         <span className='mdc-list-item__secondary-text'>
                             <Text type={subtitleType}>
-                                Type: {report.reportTypeName}<br />
+                                Type: {report.reportTypeName} ({report.official ? 'Official' : 'Unofficial'})<br />
                                 Status: {_.capitalize(report.status)}
                             </Text>
                         </span>
