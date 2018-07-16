@@ -15,6 +15,22 @@ export default class User extends React.Component {
         )
     }
 
+    renderAddress(user) {
+        if (_.isEmpty(user.address) || _.isEmpty(user.city) || _.isEmpty(user.state) || _.isEmpty(user.country)) {
+            return (
+                <div>
+                    N/A
+                </div>
+            );
+        }
+
+        return (
+            <div>
+                {user.address}, {user.city}, {user.state}, {user.country}
+            </div>
+        );
+    }
+
     render() {
         let user = this.props.user;
 
@@ -28,8 +44,20 @@ export default class User extends React.Component {
                 <Text type='body2'>{user.email}</Text>
                 <br />
 
+                <Text type='body1'>Phone Number</Text>
+                <Text type='body2'>{_.isEmpty(user.phoneNumber) ? 'N/A' : user.phoneNumber}</Text>
+                <br />
+
+                <Text type='body1'>Address</Text>
+                <Text type='body2'>{this.renderAddress(user)}</Text>
+                <br />
+
+                <Text type='body1'>Campaign Position</Text>
+                <Text type='body2'>{_.isEmpty(user.position) ? 'None' : user.position}</Text>
+                <br />
+
                 <Text type='body1'>Admin?</Text>
-                <Text type='body2'>{this.props.user.admin ? 'Yes' : 'No'}</Text>
+                <Text type='body2'>{user.admin ? 'Yes' : 'No'}</Text>
             </div>
         )
     }

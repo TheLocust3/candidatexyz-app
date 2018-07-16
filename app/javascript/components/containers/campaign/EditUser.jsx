@@ -17,6 +17,7 @@ class EditUser extends React.Component {
         this.props.dispatch(setBreadcrumb('Staff'));
         this.props.dispatch(setDrawerSelected('campaign', 'staff'));
 
+        this.props.dispatch(StaffActions.fetchStaffPositions());
         this.props.dispatch(StaffActions.fetchUser(this.props.match.params.id));
     }
 
@@ -42,7 +43,7 @@ class EditUser extends React.Component {
 
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady}>
-                        <UserForm user={this.props.user} />
+                        <UserForm user={this.props.user} positions={this.props.positions.positions} />
                     </Loader>
                 </div>
                 <br />
@@ -56,7 +57,8 @@ class EditUser extends React.Component {
 function mapStateToProps(state) {
     return {
         isReady: state.users.isReady,
-        user: state.users.user
+        user: state.users.user,
+        positions: state.users.positions
     };
 }
 

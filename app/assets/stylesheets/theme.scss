@@ -31,15 +31,9 @@ $mdc-theme-secondary: $purple-primary;
     font-weight: 300;
 }
 
-.mdc-select {
-    padding-bottom: 3px;
-}
-
-.mdc-select .mdc-line-ripple {
-    margin-bottom: 3px;
-}
-
 .mdc-select__native-control {
+    padding-bottom: 8px !important;
+    
     font-weight: 300;
 }
 

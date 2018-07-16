@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Text } from 'candidatexyz-common-js/lib/elements';
+import { StaffActions } from 'candidatexyz-common-js';
+import { Text, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
+import Loader from '../../components/common/Loader';
 import InviteForm from '../../components/campaign/InviteForm';
 
 class InviteStaff extends React.Component {
@@ -12,6 +14,8 @@ class InviteStaff extends React.Component {
         this.props.dispatch(setTitle('Campaign'));
         this.props.dispatch(setBreadcrumb('Staff'));
         this.props.dispatch(setDrawerSelected('campaign', 'inviteStaff'));
+
+        this.props.dispatch(StaffActions.fetchStaffPositions());
     }
 
     render() {
@@ -21,11 +25,22 @@ class InviteStaff extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    <InviteForm />
+                    <Loader isReady={this.props.isReady}>
+                        <InviteForm positions={this.props.positions.positions} />
+                    </Loader>
                 </div>
+
+                <MDCAutoInit />
             </div>
         );
     }
 }
 
-export default connect()(InviteStaff);
+function mapStateToProps(state) {
+    return {
+        isReady: state.users.isReady,
+        positions: state.users.positions
+    };
+}
+
+export default connect(mapStateToProps)(InviteStaff);
