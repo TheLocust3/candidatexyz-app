@@ -120,11 +120,19 @@
     background-color: rgba($purple-primary, 0.1) !important;
 }
 
+.DayPicker-Day--outside:hover {
+    background-color: white !important;
+}
+
 .DayPicker-Day--today {
     color: $purple-light;
 }
 
 .DayPicker-Day--selected {
+    background-color: $purple-primary !important;
+}
+
+.DayPicker-Day--selected:hover {
     background-color: $purple-primary !important;
 }
 
