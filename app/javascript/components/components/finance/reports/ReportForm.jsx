@@ -55,6 +55,10 @@ export default class ReportForm extends React.Component {
         report.official = !report.official;
         report.beginningDate = new Date();
 
+        if (!_.isUndefined(this.state.lastReport) && report.official) {
+            report.beginningDate = this.state.lastReport.endingDate;
+        }
+
         this.setState({
             report: report 
         });
@@ -63,7 +67,7 @@ export default class ReportForm extends React.Component {
     handleSubmit(event) {
         let report = this.state.report;
 
-        ReportApi.create(report.reportType, report.beginningDate, report.endingDate, report.official).then((response) => {
+        ReportApi.create(report.reportType, report.beginningDate, this.state.reportType.endingDate.toDate(), report.official).then((response) => {
             history.push(`/finance/reports/${response.id}`);
         }).catch((response) => {
             this.setState({
@@ -87,6 +91,8 @@ export default class ReportForm extends React.Component {
     }
 
     render() {
+        let disabled = !_.isUndefined(this.state.lastReport) && this.state.report.official;
+
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
                 <Checkbox label='Generate as official report?' onChange={this.handleOfficialCheck.bind(this)} defaultChecked={this.state.report.official} />
@@ -95,7 +101,7 @@ export default class ReportForm extends React.Component {
                 {this.renderReportTypeDropdown()}
                 <br /><br /><br />
 
-                <DatePicker label='Beginning Date:' value={this.state.report.official ? this.state.lastReport.endingDate : this.state.report.beginningDate} onChange={(date) => { this.handleDateChange('beginningDate', date) }} style={{ display: 'inline-block' }} inputProps={{ disabled: this.state.report.official }} />
+                <DatePicker label='Beginning Date:' value={disabled ? this.state.lastReport.endingDate : this.state.report.beginningDate} onChange={(date) => { this.handleDateChange('beginningDate', date) }} style={{ display: 'inline-block' }} inputProps={{ disabled: disabled }} />
                 <DatePicker label='Ending Date:' value={this.state.reportType.endingDate} onChange={(date) => { this.handleDateChange('endingDate', date) }} style={{ display: 'inline-block', marginLeft: '5%' }} inputProps={{ disabled: true }} />
                 <br /><br />
 
