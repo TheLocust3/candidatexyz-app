@@ -1,13 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
-import DayPicker from 'react-day-picker';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import MomentLocaleUtils, {
-    formatDate,
-    parseDate,
-  } from 'react-day-picker/moment';
 import { LiabilityApi } from 'candidatexyz-common-js';
 import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
@@ -15,6 +8,7 @@ import { history, STATES } from '../../../../constants';
 
 import AddressInput from '../../common/AddressInput';
 import AutoCompleteTextField from '../../common/AutoCompleteTextField';
+import DatePicker from '../../common/DatePicker';
 
 export default class LiabilityForm extends React.Component {
 
@@ -98,12 +92,7 @@ export default class LiabilityForm extends React.Component {
                 <AddressInput address={this.state.liability.address} city={this.state.liability.city} state={this.state.liability.state} country={this.state.liability.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br /><br />
 
-                <Text type='body2' style={{ display: 'inline-block' }}>
-                    Date Incurred:
-
-                    <DayPickerInput inputProps={{ className: 'mdc-typography--body2' }} classNames={{ container: 'DayPickerInput mdc-typography--body2', overlayWrapper: 'DayPickerInput-OverlayWrapper mdc-typography--body2', overlay: 'DayPickerInput-Overlay mdc-typography--body2' }}
-                        formatDate={formatDate} parseDate={parseDate} value={`${formatDate(this.state.liability.dateIncurred)}`} onDayChange={(date) => this.handleDateChange(date)} /><br />
-                </Text>
+                <DatePicker label='Date Incurred:' defaultValue={this.state.liability.dateIncurred} onChange={(date) => { this.handleDateChange(date) }} style={{ display: 'inline-block' }} />
                 <TextField type='number' label='Amount ($)' name='amount' step='0.01' onChange={this.handleChange.bind(this)} defaultValue={amount} style={{ width: 'auto', marginLeft: '5%' }} required />
                 <br /><br />
 
