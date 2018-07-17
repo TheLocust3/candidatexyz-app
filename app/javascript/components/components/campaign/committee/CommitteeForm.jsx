@@ -43,7 +43,7 @@ export default class CommitteeForm extends React.Component {
         let committee = this.state.committee;
 
         if (_.isEmpty(this.props.committee)) {
-            CommitteeApi.create(committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.office, committee.district).then((response) => {
+            CommitteeApi.create(committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.office, committee.district, committee.bank).then((response) => {
                 history.push('/campaign/committee');
             }).catch((response) => {
                 this.setState({
@@ -51,7 +51,7 @@ export default class CommitteeForm extends React.Component {
                 });
             });
         } else {
-            CommitteeApi.update(this.props.committee.id, committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.office, committee.district).then((response) => {
+            CommitteeApi.update(this.props.committee.id, committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.office, committee.district, committee.bank).then((response) => {
                 history.push('/campaign/committee');
             }).catch((response) => {
                 this.setState({
@@ -72,6 +72,9 @@ export default class CommitteeForm extends React.Component {
                 <TextField label='Committee Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.phoneNumber} style={{ width: '100%' }} required /><br /><br />
 
                 <AddressInput address={this.state.committee.address} city={this.state.committee.city} state={this.state.committee.state} country={this.state.committee.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <br />
+
+                <TextField label='Bank Name' name='bank' onChange={this.handleChange.bind(this)} defaultValue={this.props.committee.bank} style={{ width: '100%' }} />
                 <br /><br />
 
                 <Button>Save</Button>

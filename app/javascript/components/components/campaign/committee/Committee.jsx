@@ -28,6 +28,10 @@ export default class Committee extends React.Component {
 
                 <Text type='body1'>District</Text>
                 <Text type='body2'>{committee.district}</Text>
+                <br />
+
+                <Text type='body1'>Bank</Text>
+                <Text type='body2'>{committee.bank}</Text>
             </div>
         )
     }
