@@ -16,6 +16,8 @@ export default class ReportForm extends React.Component {
         this.state = { reportType: ReportHelper.generateReportType(this.props.reportTypes.ma[0], this.props.campaign), report: {
             official: false, reportType: this.props.reportTypes.ma[0].value, beginningDate: new Date(), endingDate: new Date()
         }, errors: {} };
+
+        this.state.lastReport = ReportHelper.lastOfficialReport(this.props.reports);
     }
 
     handleChange(event) {
@@ -51,9 +53,10 @@ export default class ReportForm extends React.Component {
     handleOfficialCheck(event) {
         let report = this.state.report;
         report.official = !report.official;
+        report.beginningDate = new Date();
 
         this.setState({
-            report: report
+            report: report 
         });
     }
 
@@ -92,7 +95,7 @@ export default class ReportForm extends React.Component {
                 {this.renderReportTypeDropdown()}
                 <br /><br /><br />
 
-                <DatePicker label='Beginning Date:' defaultValue={this.state.report.beginningDate} onChange={(date) => { this.handleDateChange('beginningDate', date) }} style={{ display: 'inline-block' }} />
+                <DatePicker label='Beginning Date:' value={this.state.report.official ? this.state.lastReport.endingDate : this.state.report.beginningDate} onChange={(date) => { this.handleDateChange('beginningDate', date) }} style={{ display: 'inline-block' }} inputProps={{ disabled: this.state.report.official }} />
                 <DatePicker label='Ending Date:' value={this.state.reportType.endingDate} onChange={(date) => { this.handleDateChange('endingDate', date) }} style={{ display: 'inline-block', marginLeft: '5%' }} inputProps={{ disabled: true }} />
                 <br /><br />
 
@@ -106,5 +109,6 @@ export default class ReportForm extends React.Component {
 
 ReportForm.propTypes = {
     reportTypes: PropTypes.object.isRequired,
+    reports: PropTypes.array.isRequired,
     campaign: PropTypes.object.isRequired
 };

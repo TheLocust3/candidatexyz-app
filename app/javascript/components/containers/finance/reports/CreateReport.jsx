@@ -19,6 +19,7 @@ class CreateReport extends React.Component {
         this.props.dispatch(setDrawerSelected('finance', 'reports'));
 
         this.props.dispatch(ReportActions.fetchReportTypes());
+        this.props.dispatch(ReportActions.fetchAllReports());
         this.props.dispatch(CampaignActions.fetchCampaign(this.props.user.campaignId));
     }
     
@@ -29,8 +30,8 @@ class CreateReport extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.isReady && !_.isEmpty(this.props.reportTypes) && this.props.isCampaignReady}>
-                        <ReportForm reportTypes={this.props.reportTypes} campaign={this.props.campaign} />
+                    <Loader isReady={this.props.areReportTypesReady && this.props.isReady && !_.isEmpty(this.props.reportTypes) && this.props.isCampaignReady}>
+                        <ReportForm reportTypes={this.props.reportTypes} reports={this.props.reports.reports} campaign={this.props.campaign} />
                     </Loader>
                 </div>
                 <br />
@@ -44,7 +45,9 @@ class CreateReport extends React.Component {
 function mapStateToProps(state) {
     return {
         isReady: state.reports.isReady,
+        areReportTypesReady: state.reports.areReportTypesReady,
         reportTypes: state.reports.reportTypes,
+        reports: state.reports.reports,
         user: state.users.currentUser,
         isCampaignReady: state.campaigns.isReady,
         campaign: state.campaigns.campaign
