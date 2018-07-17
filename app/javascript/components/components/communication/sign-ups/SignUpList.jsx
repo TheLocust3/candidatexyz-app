@@ -27,7 +27,7 @@ export default class SignUpList extends React.Component {
 
         return (
             <ul className='mdc-list mdc-list--two-line'>
-                {_.slice(this.props.contacts, page * PER_PAGE, (page + 1) * PER_PAGE).map((contact, index) => {
+                {_.slice(_.reverse(_.sortBy(this.props.contacts, (contact) => { return contact.createdAt })), page * PER_PAGE, (page + 1) * PER_PAGE).map((contact, index) => {
                     return (
                         <div key={index}>
                             <SignUpThumbnail contact={contact} />

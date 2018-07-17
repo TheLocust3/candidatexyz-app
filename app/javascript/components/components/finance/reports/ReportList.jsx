@@ -17,7 +17,7 @@ export default class ReportList extends React.Component {
 
         return (
             <ul className='mdc-list mdc-list--two-line'>
-                {_.slice(this.props.reports, page * PER_PAGE, (page + 1) * PER_PAGE).map((report, index) => {
+                {_.slice(_.reverse(_.sortBy(this.props.reports, (report) => { return report })), page * PER_PAGE, (page + 1) * PER_PAGE).map((report, index) => {
                     return (
                         <div key={index}>
                             <ReportThumbnail report={report} />

@@ -16,7 +16,7 @@ export default class StaffList extends React.Component {
 
         return (
             <ul className='mdc-list mdc-list--two-line'>
-                {_.slice(this.props.staff, page * PER_PAGE, (page + 1) * PER_PAGE).map((member, index) => {
+                {_.slice(_.sortBy(this.props.staff, (staff) => { return staff.firstName }), page * PER_PAGE, (page + 1) * PER_PAGE).map((member, index) => {
                     return (
                         <Link key={index} className='unstyled-link-black link-no-hover' to={`/campaign/staff/${member.id}`}>
                             <li className='mdc-list-item'>

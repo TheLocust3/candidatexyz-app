@@ -17,7 +17,7 @@ export default class MessageList extends React.Component {
 
         return (
             <ul className='mdc-list mdc-list--two-line'>
-                {_.slice(this.props.messages, page * PER_PAGE, (page + 1) * PER_PAGE).map((message, index) => {
+                {_.slice(_.reverse(_.sortBy(this.props.messages, (message) => { return message.createdAt })), page * PER_PAGE, (page + 1) * PER_PAGE).map((message, index) => {
                     return (
                         <div key={index}>
                             <MessageThumbnail message={message} />
