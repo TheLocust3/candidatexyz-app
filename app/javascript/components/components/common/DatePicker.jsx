@@ -27,14 +27,14 @@ export default class DatePicker extends React.Component {
     }
 
     render() {
-        let { defaultValue, label, ...props } = this.props;
+        let { defaultValue, value, label, inputProps, ...props } = this.props;
 
         return (
             <Text type='body2' {...props}>
                 {label}
 
                 <DayPickerInput inputProps={{ className: 'mdc-typography--body2' }} classNames={{ container: 'DayPickerInput mdc-typography--body2', overlayWrapper: 'DayPickerInput-OverlayWrapper mdc-typography--body2', overlay: 'DayPickerInput-Overlay mdc-typography--body2' }}
-                    formatDate={formatDate} parseDate={parseDate} value={`${formatDate(this.state.date)}`} onDayChange={(date) => this.handleDateChange(date)} /><br />
+                    formatDate={formatDate} parseDate={parseDate} value={`${formatDate(_.isUndefined(value) ? this.state.date : value)}`} onDayChange={(date) => this.handleDateChange(date)} inputProps={inputProps} /><br />
             </Text>
         );
     }
@@ -42,6 +42,8 @@ export default class DatePicker extends React.Component {
 
 DatePicker.propTypes = {
     defaultValue: PropTypes.any,
+    value: PropTypes.any,
     label: PropTypes.string,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    inputProps: PropTypes.object
 };

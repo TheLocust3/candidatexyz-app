@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { ReportActions } from 'candidatexyz-common-js';
+import { ReportActions, CampaignActions } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
@@ -19,6 +19,7 @@ class CreateReport extends React.Component {
         this.props.dispatch(setDrawerSelected('finance', 'reports'));
 
         this.props.dispatch(ReportActions.fetchReportTypes());
+        this.props.dispatch(CampaignActions.fetchCampaign(this.props.user.campaignId));
     }
     
     render() {
@@ -28,8 +29,8 @@ class CreateReport extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.isReady && !_.isEmpty(this.props.reportTypes)}>
-                        <ReportForm reportTypes={this.props.reportTypes} />
+                    <Loader isReady={this.props.isReady && !_.isEmpty(this.props.reportTypes) && this.props.isCampaignReady}>
+                        <ReportForm reportTypes={this.props.reportTypes} campaign={this.props.campaign} />
                     </Loader>
                 </div>
                 <br />
@@ -43,7 +44,10 @@ class CreateReport extends React.Component {
 function mapStateToProps(state) {
     return {
         isReady: state.reports.isReady,
-        reportTypes: state.reports.reportTypes
+        reportTypes: state.reports.reportTypes,
+        user: state.users.currentUser,
+        isCampaignReady: state.campaigns.isReady,
+        campaign: state.campaigns.campaign
     };
 }
 
