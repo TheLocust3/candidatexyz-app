@@ -18,6 +18,10 @@ export default class EditCampaignForm extends React.Component {
         if (_.isEmpty(this.state.campaign.electionDay)) {
             this.state.campaign.electionDay = new Date();
         }
+
+        if (_.isEmpty(this.state.campaign.preliminaryDay)) {
+            this.state.campaign.preliminaryDay = new Date();
+        }
     }
 
     handleChange(event) {
@@ -29,9 +33,9 @@ export default class EditCampaignForm extends React.Component {
         });
     }
 
-    handleDateChange(date) {
+    handleDateChange(name, date) {
         let campaign = this.state.campaign;
-        campaign.electionDay = date;
+        campaign[name] = date;
 
         this.setState({
             campaign: campaign
@@ -41,7 +45,7 @@ export default class EditCampaignForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        CampaignApi.update(this.props.campaign.id, this.state.campaign.name, this.state.campaign.url, this.state.campaign.electionDay).then((response) => {
+        CampaignApi.update(this.props.campaign.id, this.state.campaign.name, this.state.campaign.url, this.state.campaign.electionDay, this.state.campaign.preliminaryDay).then((response) => {
             history.push('/');
         }).catch((response) => {
             this.setState({
@@ -59,7 +63,9 @@ export default class EditCampaignForm extends React.Component {
                 <TextField label='Website URL' name='url' onChange={this.handleChange.bind(this)} defaultValue={this.props.campaign.url} style={{ width: '100%' }} />
                 <br /><br />
 
-                <DatePicker label='Election Day:' defaultValue={this.state.campaign.electionDay} onChange={(date) => { this.handleDateChange(date) }} />
+                <DatePicker label='Preliminary Election Day:' defaultValue={this.state.campaign.preliminaryDay} onChange={(date) => { this.handleDateChange('preliminaryDay', date) }} style={{ display: 'inline-block', marginRight: '5%' }} />
+                <DatePicker label='Election Day:' defaultValue={this.state.campaign.electionDay} onChange={(date) => { this.handleDateChange('electionDay', date) }} style={{ display: 'inline-block' }} />
+                <br /><br />
                 
                 <Button type='submit' className='right-form-button'>Save</Button>
             </Form>
