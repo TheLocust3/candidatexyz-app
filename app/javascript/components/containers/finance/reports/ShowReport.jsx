@@ -43,7 +43,7 @@ class ShowReport extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.isReady}>
+                    <Loader isReady={this.props.isReady && !_.isEmpty(this.props.report)}>
                         <Report report={this.props.report} />
                     </Loader>
                 </div>

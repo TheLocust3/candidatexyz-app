@@ -10,7 +10,6 @@ export default class Report extends React.Component {
     render() {
         let report = this.props.report;
 
-        console.log(report.data)
         return (
             <div>
                 <Text type='body1'><a className='link' href={report.url}>View Report</a></Text>
