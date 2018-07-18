@@ -16,7 +16,7 @@ export default class User extends React.Component {
     }
 
     renderAddress(user) {
-        if (_.isEmpty(user.address) || _.isEmpty(user.city) || _.isEmpty(user.state) || _.isEmpty(user.country)) {
+        if (_.isEmpty(user.address) || _.isEmpty(user.city) || _.isEmpty(user.state) || _.isEmpty(user.country) || _.isEmpty(user.zipcode)) {
             return (
                 <div>
                     N/A
@@ -26,7 +26,7 @@ export default class User extends React.Component {
 
         return (
             <div>
-                {user.address}, {user.city}, {user.state}, {user.country}
+                {user.address}, {user.city}, {user.state}, {user.country}, {user.zipcode}
             </div>
         );
     }

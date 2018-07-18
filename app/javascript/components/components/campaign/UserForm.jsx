@@ -52,7 +52,7 @@ export default class UserForm extends React.Component {
     }
 
     handleSubmit(event) {
-        StaffApi.update(this.props.user.id, this.state.user.email, this.state.user.firstName, this.state.user.lastName, this.state.user.admin, this.state.user.position, this.state.user.address, this.state.user.city, this.state.user.state, this.state.user.country, this.state.user.phoneNumber, this.state.user.party).then((response) => {
+        StaffApi.update(this.props.user.id, this.state.user.email, this.state.user.firstName, this.state.user.lastName, this.state.user.admin, this.state.user.position, this.state.user.address, this.state.user.city, this.state.user.state, this.state.user.country, this.state.user.zipcode, this.state.user.phoneNumber, this.state.user.party).then((response) => {
             history.push(`/campaign/staff/${this.props.user.id}`)
         }).catch((response) => {
             this.setState({
@@ -84,7 +84,7 @@ export default class UserForm extends React.Component {
                 <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.lastName} style={{ width: '100%' }} /><br /><br />
 
                 <AddressInput address={this.state.user.address} city={this.state.user.city} state={this.state.user.state} country={this.state.user.country} onChange={(name, value) => this.handleAddressChange(name, value)} />
-                <br /><br />
+                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.zipcode} style={{ width: '100%' }} required /><br /><br />
 
                 <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.phoneNumber} style={{ width: '100%' }} /><br />
                 <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.party} style={{ width: '100%' }} /><br /><br />

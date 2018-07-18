@@ -14,7 +14,7 @@ export default class EditUserForm extends React.Component {
 
         this.state = { email: this.props.user.email, firstName: this.props.user.first_name, lastName: this.props.user.last_name,
             address: this.props.user.address, city: this.props.user.city, state: this.props.user.state, country: this.props.user.country,
-            party: this.props.user.party, errors: {} };
+            zipcode: this.props.user.zipcode, party: this.props.user.party, errors: {} };
     }
 
     handleChange(event) {
@@ -32,7 +32,7 @@ export default class EditUserForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        AuthApi.editUser(this.state.email, this.state.password, this.state.passwordConfirmation, this.state.firstName, this.state.lastName, this.state.address, this.state.city, this.state.state, this.state.country, this.state.phoneNumber, this.state.party).then((response) => {
+        AuthApi.editUser(this.state.email, this.state.password, this.state.passwordConfirmation, this.state.firstName, this.state.lastName, this.state.address, this.state.city, this.state.state, this.state.country, this.state.zipcode, this.state.phoneNumber, this.state.party).then((response) => {
             window.location.href = '/';
         }).catch((response) => {
             this.setState({
@@ -49,7 +49,7 @@ export default class EditUserForm extends React.Component {
                 <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.lastName} style={{ width: '100%' }} /><br />
 
                 <AddressInput address={this.props.user.address} city={this.props.user.city} state={this.props.user.state} country={this.props.user.country} onChange={(name, value) => this.handleAddressChange(name, value)} />
-                <br /><br />
+                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.zipcode} style={{ width: '100%' }} required /><br /><br />
 
                 <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.phoneNumber} style={{ width: '100%' }} /><br />
                 <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.party} style={{ width: '100%' }} /><br /><br />

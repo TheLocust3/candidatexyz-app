@@ -30,7 +30,7 @@ export default class StaffSignUpForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        StaffApi.create(this.props.token, this.state.email, this.state.firstName, this.state.lastName, this.state.password, this.state.passwordConfirmation, this.state.address, this.state.city, this.state.state, this.state.country, this.state.phoneNumber, this.state.party).then(() => {
+        StaffApi.create(this.props.token, this.state.email, this.state.firstName, this.state.lastName, this.state.password, this.state.passwordConfirmation, this.state.address, this.state.city, this.state.state, this.state.country, this.state.zipcode, this.state.phoneNumber, this.state.party).then(() => {
             history.push('/');
         }).catch((response) => {
             this.setState({
@@ -47,7 +47,7 @@ export default class StaffSignUpForm extends React.Component {
                 <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} required /><br /><br />
 
                 <AddressInput state={this.state.state} country={this.state.country} onChange={(name, value) => this.handleAddressChange(name, value)} />
-                <br /><br />
+                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.zipcode} style={{ width: '100%' }} required /><br /><br />
 
                 <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} /><br />
                 <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} /><br /><br />
