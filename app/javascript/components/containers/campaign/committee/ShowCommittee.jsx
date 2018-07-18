@@ -12,12 +12,24 @@ import CreateCommittee from './CreateCommittee';
 
 class ShowCommittee extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = { isTimedOut: false };
+    }
+
     componentWillMount() {
         this.props.dispatch(setTitle('Committee'));
         this.props.dispatch(setBreadcrumb('Committee'));
         this.props.dispatch(setDrawerSelected('campaign', 'committee'));
 
         this.props.dispatch(CommitteeActions.fetchCommitteeByCampaign());
+
+        setTimeout(() => {
+            this.setState({
+                isTimedOut: true
+            });
+        }, 1000);
     }
 
     onDeleteClick(event) {
@@ -32,7 +44,13 @@ class ShowCommittee extends React.Component {
     render() {
         let committee = this.props.committee;
 
-        if (_.isEmpty(committee)) return <CreateCommittee />;
+        if (_.isEmpty(committee)) {
+            return (
+                <Loader isReady={this.state.isTimedOut}>
+                    <CreateCommittee />
+                </Loader>
+            );
+        }
 
         return (
             <div className='content'>

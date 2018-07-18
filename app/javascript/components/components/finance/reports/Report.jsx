@@ -10,6 +10,7 @@ export default class Report extends React.Component {
     render() {
         let report = this.props.report;
 
+        console.log(report.data)
         return (
             <div>
                 <Text type='body1'><a className='link' href={report.url}>View Report</a></Text>
@@ -28,11 +29,11 @@ export default class Report extends React.Component {
                 <br />
 
                 <Text type='body1'>Beginning Date</Text>
-                <Text type='body2'>{moment(report.beginningDate).format('MM/DD/YYYY')}</Text>
+                <Text type='body2'>{moment(report.data.beginning_date).format('MM/DD/YYYY')}</Text>
                 <br />
 
                 <Text type='body1'>Ending Date</Text>
-                <Text type='body2'>{moment(report.endingDate).format('MM/DD/YYYY')}</Text>
+                <Text type='body2'>{moment(report.data.ending_date).format('MM/DD/YYYY')}</Text>
                 <br />
 
                 <Text type='body1'>Generated At</Text>

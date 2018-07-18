@@ -16,12 +16,14 @@ class StaffSignUp extends React.Component {
 
     render() {
         return (
-            <div className='content'>
-                <Text type='headline5'>Staff Sign Up</Text>
-                <br /><br />
+            <div className='fullpage relative'>
+                <div className='sign-up-box center'>
+                    <Text type='headline5'>Staff Sign Up</Text>
+                    <br />
 
-                <div className='content-2'>
-                    <StaffSignUpForm token={this.props.match.params.token} />
+                    <div className='content-2'>
+                        <StaffSignUpForm token={this.props.match.params.token} />
+                    </div>
                 </div>
 
                 <MDCAutoInit />

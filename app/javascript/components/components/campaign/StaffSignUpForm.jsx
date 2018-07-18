@@ -42,18 +42,18 @@ export default class StaffSignUpForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} required /><br />
-                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} required /><br />
-                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} required /><br /><br />
+                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} required /><br />
+                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} style={{ width: '47.5%', marginRight: '5%' }} required />
+                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} style={{ width: '47.5%' }} required /><br /><br />
 
                 <AddressInput state={this.state.state} country={this.state.country} onChange={(name, value) => this.handleAddressChange(name, value)} />
-                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.zipcode} style={{ width: '100%' }} required /><br /><br />
+                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.zipcode} style={{ width: '100%' }} /><br /><br />
 
-                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} /><br />
-                <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} /><br /><br />
+                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br />
+                <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br /><br />
 
-                <TextField type='password' label='Password' name='password' onChange={this.handleChange.bind(this)} required /><br />
-                <TextField type='password' label='Confirm Password' name='passwordConfirmation' onChange={this.handleChange.bind(this)} required /><br /><br />
+                <TextField type='password' label='Password' name='password' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} required /><br />
+                <TextField type='password' label='Confirm Password' name='passwordConfirmation' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} required /><br /><br />
 
                 <Button type='submit'>Sign Up</Button>
             </Form>
