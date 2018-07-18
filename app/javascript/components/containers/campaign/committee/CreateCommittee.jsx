@@ -27,9 +27,7 @@ class CreateCommittee extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.isReady}>
-                        <CommitteeForm />
-                    </Loader>
+                    <CommitteeForm />
                 </div>
             </div>
         );

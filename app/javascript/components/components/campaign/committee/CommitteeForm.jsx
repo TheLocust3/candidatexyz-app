@@ -44,7 +44,7 @@ export default class CommitteeForm extends React.Component {
 
         if (_.isEmpty(this.props.committee)) {
             CommitteeApi.create(committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.office, committee.district, committee.bank).then((response) => {
-                history.push('/campaign/committee');
+                window.location.reload();
             }).catch((response) => {
                 this.setState({
                     errors: response.responseJSON.errors
@@ -74,7 +74,7 @@ export default class CommitteeForm extends React.Component {
                 <AddressInput address={this.state.committee.address} city={this.state.committee.city} state={this.state.committee.state} country={this.state.committee.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br />
 
-                <TextField label='Bank Name' name='bank' onChange={this.handleChange.bind(this)} defaultValue={this.props.committee.bank} style={{ width: '100%' }} />
+                <TextField label='Bank Name' name='bank' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.bank} style={{ width: '100%' }} />
                 <br /><br />
 
                 <Button>Save</Button>

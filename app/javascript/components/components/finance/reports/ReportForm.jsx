@@ -66,8 +66,9 @@ export default class ReportForm extends React.Component {
 
     handleSubmit(event) {
         let report = this.state.report;
+        let reportClass = _.isEmpty(this.props.reportClass) ? 'finance' : this.props.reportClass;
 
-        ReportApi.create(report.reportType, report.beginningDate, this.state.reportType.endingDate.toDate(), report.official).then((response) => {
+        ReportApi.create(report.reportType, report.official, reportClass, { beginning_date: report.beginningDate, ending_date: this.state.reportType.endingDate.toDate() }).then((response) => {
             history.push(`/finance/reports/${response.id}`);
         }).catch((response) => {
             this.setState({
@@ -77,9 +78,13 @@ export default class ReportForm extends React.Component {
     }
 
     renderReportTypeDropdown() {
+        let reportClass = _.isEmpty(this.props.reportClass) ? 'finance' : this.props.reportClass;
+
         return (
             <Select label='Report Type' onChange={(select) => this.handleReportTypeChange(select)} selectedIndex={_.findIndex(this.props.reportTypes.ma, (reportType) => { return reportType.value == this.state.report.reportType })}>
                 {this.props.reportTypes.ma.map((reportType) => {
+                    if (reportType.reportClass != reportClass) return;
+
                     return (
                         <SelectItem key={reportType.value}>
                             {reportType.name}
@@ -116,5 +121,6 @@ export default class ReportForm extends React.Component {
 ReportForm.propTypes = {
     reportTypes: PropTypes.object.isRequired,
     reports: PropTypes.array.isRequired,
-    campaign: PropTypes.object.isRequired
+    campaign: PropTypes.object.isRequired,
+    reportClass: PropTypes.string
 };
