@@ -56,6 +56,10 @@ export default class User extends React.Component {
                 <Text type='body2'>{_.isEmpty(user.position) ? 'None' : user.position}</Text>
                 <br />
 
+                <Text type='body1'>Party</Text>
+                <Text type='body2'>{_.isEmpty(user.party) ? 'None' : user.party}</Text>
+                <br />
+
                 <Text type='body1'>Admin?</Text>
                 <Text type='body2'>{user.admin ? 'Yes' : 'No'}</Text>
             </div>
