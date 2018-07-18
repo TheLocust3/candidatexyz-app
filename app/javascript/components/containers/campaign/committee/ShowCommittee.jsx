@@ -25,7 +25,7 @@ class ShowCommittee extends React.Component {
         if (!shouldDelete) return;
 
         CommitteeApi.destroy(this.props.committee.id).then(() => {
-            history.push('/campaign');
+            window.location.href = '/campaign';
         });
     }
 

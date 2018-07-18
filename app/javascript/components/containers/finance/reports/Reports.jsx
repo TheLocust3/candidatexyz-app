@@ -1,7 +1,7 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 import { ReportActions } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
@@ -9,8 +9,6 @@ import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/glo
 
 import Loader from '../../../components/common/Loader';
 import ReportList from '../../../components/finance/reports/ReportList';
-
-const PER_PAGE = 10;
 
 class Reports extends React.Component {
 
@@ -35,7 +33,7 @@ class Reports extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>
-                        <ReportList reports={this.props.reports.reports} />
+                        <ReportList reports={_.filter(this.props.reports.reports, (report) => { return report.reportClass == 'finance' })} />
                     </Loader>
                 </div>
             </div>
