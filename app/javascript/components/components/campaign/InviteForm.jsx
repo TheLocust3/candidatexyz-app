@@ -12,7 +12,7 @@ export default class InviteForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { email: '', position: '', sending: false, errors: {} };
+        this.state = { email: '', position: '', positionOther: '', sending: false, errors: {} };
     }
 
     handleChange(event) {
@@ -34,7 +34,9 @@ export default class InviteForm extends React.Component {
             sending: true
         });
 
-        StaffApi.createToken(this.state.email, this.state.position).then(() => {
+        let position = this.state.position == 'Other PAC Officer' ? this.state.positionOther : this.state.position;
+
+        StaffApi.createToken(this.state.email, position).then(() => {
             history.push('/campaign/staff');
         }).catch((response) => {
             this.setState({
@@ -43,17 +45,31 @@ export default class InviteForm extends React.Component {
         });
     }
 
+    renderPositionTextbox() {
+        if (this.state.position != 'Other PAC Officer') return;
+
+        return (
+            <div>
+                <TextField label='Position' name='positionOther' onChange={this.handleChange.bind(this)} defaultValue={this.state.position} style={{ width: '100%' }} />
+            </div>
+        );
+    }
+
     renderPositionDropdown() {
         return (
-            <Select label='Position' onChange={(select) => this.handlePositionChange(select)} selectedIndex={_.findIndex(this.props.positions, (position) => { return position.name == this.state.position })} style={{ minWidth: '30%' }}>
-                {this.props.positions.map((position, index) => {
-                    return (
-                        <SelectItem key={index}>
-                            {position.name}
-                        </SelectItem>
-                    );
-                })}
-            </Select>
+            <div>
+                <Select label='Position' onChange={(select) => this.handlePositionChange(select)} selectedIndex={_.findIndex(this.props.positions, (position) => { return position.name == this.state.position })} style={{ minWidth: '30%' }}>
+                    {this.props.positions.map((position, index) => {
+                        return (
+                            <SelectItem key={index}>
+                                {position.name}
+                            </SelectItem>
+                        );
+                    })}
+                </Select>
+
+                {this.renderPositionTextbox()}
+            </div>
         );
     }
 

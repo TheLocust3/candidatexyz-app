@@ -42,7 +42,7 @@ class EditUser extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.isReady}>
+                    <Loader isReady={this.props.isReady && !_.isEmpty(this.props.user)}>
                         <UserForm user={this.props.user} positions={this.props.positions.positions} />
                     </Loader>
                 </div>

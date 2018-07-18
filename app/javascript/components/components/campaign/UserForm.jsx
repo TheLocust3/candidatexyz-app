@@ -12,7 +12,11 @@ export default class UserForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { user: { position: '', state: 'MA', country: 'United States', ...this.props.user }, errors: {} };
+        this.state = { user: { position: '', positionOther: '', state: 'MA', country: 'United States' }, errors: {} };
+
+        if (!_.isEmpty(this.props.user)) {
+            this.state.user = this.props.user;
+        }
     }
 
     handleChange(event) {
@@ -52,7 +56,12 @@ export default class UserForm extends React.Component {
     }
 
     handleSubmit(event) {
-        StaffApi.update(this.props.user.id, this.state.user.email, this.state.user.firstName, this.state.user.lastName, this.state.user.admin, this.state.user.position, this.state.user.address, this.state.user.city, this.state.user.state, this.state.user.country, this.state.user.zipcode, this.state.user.phoneNumber, this.state.user.party).then((response) => {
+        let position = this.state.user.position;
+        if (this.state.user.position == 'Other PAC Officer' || _.findIndex(this.props.positions, (position) => { return position.name == this.state.user.position }) == -1) {
+            position = this.state.user.positionOther
+        }
+
+        StaffApi.update(this.props.user.id, this.state.user.email, this.state.user.firstName, this.state.user.lastName, this.state.user.admin, position, this.state.user.address, this.state.user.city, this.state.user.state, this.state.user.country, this.state.user.zipcode, this.state.user.phoneNumber, this.state.user.party).then((response) => {
             history.push(`/campaign/staff/${this.props.user.id}`)
         }).catch((response) => {
             this.setState({
@@ -61,17 +70,34 @@ export default class UserForm extends React.Component {
         });
     }
 
-    renderPositionDropdown() {
+    renderPositionTextbox() {
+        if (this.state.user.position != 'Other PAC Officer' && _.findIndex(this.props.positions, (position) => { return position.name == this.state.user.position }) != -1) return;
+
         return (
-            <Select label='Position' onChange={(select) => this.handlePositionChange(select)} selectedIndex={_.findIndex(this.props.positions, (position) => { return position.name == this.state.user.position })} style={{ minWidth: '30%' }}>
-                {this.props.positions.map((position, index) => {
-                    return (
-                        <SelectItem key={index}>
-                            {position.name}
-                        </SelectItem>
-                    );
-                })}
-            </Select>
+            <div>
+                <TextField label='Position' name='positionOther' onChange={this.handleChange.bind(this)} defaultValue={this.state.user.position} style={{ width: '100%' }} />
+            </div>
+        );
+    }
+
+    renderPositionDropdown() {
+        let index = _.findIndex(this.props.positions, (position) => { return position.name == this.state.user.position });
+        index = index == -1 ? _.findIndex(this.props.positions, (position) => { return position.name == 'Other PAC Officer' }) : index;
+
+        return (
+            <div>
+                <Select label='Position' onChange={(select) => this.handlePositionChange(select)} selectedIndex={index} style={{ minWidth: '30%' }}>
+                    {this.props.positions.map((position, index) => {
+                        return (
+                            <SelectItem key={index}>
+                                {position.name}
+                            </SelectItem>
+                        );
+                    })}
+                </Select>
+
+                {this.renderPositionTextbox()}
+            </div>
         );
     }
 
