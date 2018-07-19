@@ -26,11 +26,12 @@ class RespondMessage extends React.Component {
         this.props.dispatch(MessageActions.fetchMessage(this.props.match.params.id));
     }
 
-    beforeSend() {
-        let message = this.props.message;
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.isReady) return;
+
+        let message = nextProps.message;
         this.setState({
-            emails: [{ id: message.id, email: message.email, type: 'message', firstName: message.firstName, lastName: message.lastName }],
-            shouldSend: true
+            emails: [{ id: message.id, email: message.email, type: 'message', firstName: message.firstName, lastName: message.lastName }]
         });
     }
 
@@ -43,12 +44,10 @@ class RespondMessage extends React.Component {
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady || this.state.shouldSend}>
                         <MessageEmail message={this.props.message} />
-                    </Loader>
-                    <br />
+                        <br />
 
-                    <div style={{ visibility: this.state.shouldSend ? 'hidden' : 'visible' }}>
-                        <MailForm subject={`RE: ${this.props.message.subject}`} beforeSend={() => this.beforeSend()} emails={this.state.emails} shouldSend={this.state.shouldSend} />
-                    </div>
+                        <MailForm subject={`RE: ${this.props.message.subject}`} emails={this.state.emails} />
+                    </Loader>
                 </div>
                 <br />
 

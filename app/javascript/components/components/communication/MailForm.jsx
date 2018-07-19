@@ -13,32 +13,7 @@ export default class MailForm extends React.Component {
 
         this.state = { mail: { subject: _.isEmpty(this.props.subject) ? '' : this.props.subject, body: '' }, errors: {} };
     }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.shouldSend) return;
-
-        this.setState({
-            mail: { subject: _.isEmpty(nextProps.subject) ? this.state.mail.subject : nextProps.subject, body: this.state.mail.body }
-        });
-    }
-
-    componentDidUpdate() {
-        if (!this.props.shouldSend) return;
-
-        this.props.emails.map((email) => {
-            let subject = this.state.mail.subject.replace(/\[FIRST_NAME\]/g, email.firstName).replace(/\[LAST_NAME\]/g, email.lastName);
-            let body = this.state.mail.body.replace(/\[FIRST_NAME\]/g, email.firstName).replace(/\[LAST_NAME\]/g, email.lastName);
-
-            if (email.type == 'message') {
-                MailApi.respondToMessage(email.email, subject, body);
-            } else {
-                MailApi.sendEmail(email.email, subject, body, email.type, email.id);
-            }
-        });
-
-        history.push('/');
-    }
-
+    
     handleChange(event) {
         let mail = this.state.mail;
         mail[event.target.name] = event.target.value;
@@ -60,7 +35,18 @@ export default class MailForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        this.props.beforeSend();
+        this.props.emails.map((email) => {
+            let subject = this.state.mail.subject.replace(/\[FIRST_NAME\]/g, email.firstName).replace(/\[LAST_NAME\]/g, email.lastName);
+            let body = this.state.mail.body.replace(/\[FIRST_NAME\]/g, email.firstName).replace(/\[LAST_NAME\]/g, email.lastName);
+
+            if (email.type == 'message') {
+                MailApi.respondToMessage(email.email, subject, body);
+            } else {
+                MailApi.sendEmail(email.email, subject, body, email.type, email.id);
+            }
+        });
+
+        history.push('/');
     }
 
     render() {
@@ -83,8 +69,6 @@ export default class MailForm extends React.Component {
 }
 
 MailForm.propTypes = {
-    beforeSend: PropTypes.func.isRequired,
     subject: PropTypes.string,
-    emails: PropTypes.array,
-    shouldSend: PropTypes.bool
+    emails: PropTypes.array.isRequired,
 };

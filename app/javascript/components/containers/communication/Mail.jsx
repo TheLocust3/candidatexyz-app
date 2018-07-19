@@ -37,26 +37,31 @@ class Mail extends React.Component {
 
         this.props.dispatch(setDrawerSelected('communication', subItem));
     }
-    
-    beforeSend() {
+
+    componentWillReceiveProps(nextProps) {
         let emails = [];
         if (this.state.group == 'sign-ups') {
-            emails = this.props.contacts.contacts.map((contact) => {
+            if (!nextProps.areContactsReady) return;
+
+            emails = nextProps.contacts.contacts.map((contact) => {
                 return { id: contact.id, email: contact.email, type: 'contact', firstName: contact.firstName, lastName: contact.lastName }
             });
         } else if (this.state.group == 'volunteers') {
-            emails = this.props.volunteers.volunteers.map((volunteer) => {
+            if (!nextProps.areVolunteersReady) return;
+
+            emails = nextProps.volunteers.volunteers.map((volunteer) => {
                 return { id: volunteer.id, email: volunteer.email, type: 'volunteer', firstName: volunteer.firstName, lastName: volunteer.lastName }
             });
         } else if (this.state.group == 'donors') {
-            emails = _.filter(DonorHelper.generateDonors(this.props.receipts.receipts), (donor) => { return donor.receiptType == 'donation' }).map((donor) => {
+            if (!nextProps.areReceiptsReady) return;
+
+            emails = _.filter(DonorHelper.generateDonors(nextProps.receipts.receipts), (donor) => { return donor.receiptType == 'donation' }).map((donor) => {
                 return { id: donor.id, email: donor.email, type: 'donor', firstName: donor.name, lastName: '' }
             });
         }
 
         this.setState({
-            emails: emails,
-            shouldSend: true
+            emails: emails
         });
     }
 
@@ -80,7 +85,7 @@ class Mail extends React.Component {
                     <Text type='body1'>To: {this.renderGroup()}</Text>
                     
                     <Loader isReady={(this.props.areVolunteersReady && this.props.areContactsReady && this.props.areReceiptsReady) || (!this.state.send)}>
-                        <MailForm beforeSend={() => this.beforeSend()} emails={this.state.emails} shouldSend={this.state.shouldSend} />
+                        <MailForm emails={this.state.emails} />
                     </Loader>
                 </div>
 
