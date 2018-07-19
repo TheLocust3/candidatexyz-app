@@ -35,6 +35,20 @@ export default class StaffOverview extends React.Component {
         )
     }
 
+    renderOfficers() {
+        return (
+            <div>
+                {_.filter(this.props.users, (user) => { return !_.isEmpty(user.position) }).map((user) => {
+                    return (
+                        <Text key={user.id} type='body2'>
+                            {user.position}: {user.firstName} {user.lastName}
+                        </Text>
+                    )
+                })}
+            </div>
+        )
+    }
+
     renderNonSmall() {
         if (this.props.small) return;
 
@@ -42,6 +56,10 @@ export default class StaffOverview extends React.Component {
             <div style={{ marginTop: '3%' }}>
                 <Text type='body1'>Administrators</Text>
                 {this.renderAdmins()}
+                <br />
+
+                <Text type='body1'>Committee Officers</Text>
+                {this.renderOfficers()}
             </div>
         );
     }

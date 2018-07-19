@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaffApi } from 'candidatexyz-common-js';
-import { Button, Form, TextField, Select, SelectItem } from 'candidatexyz-common-js/lib/elements';
+import { Button, Form, TextField, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../constants';
 
@@ -40,6 +40,7 @@ export default class InviteForm extends React.Component {
             history.push('/campaign/staff');
         }).catch((response) => {
             this.setState({
+                sending: false,
                 errors: response.responseJSON.errors
             });
         });
@@ -84,6 +85,8 @@ export default class InviteForm extends React.Component {
                     <br /><br />
                     
                     <Button type='submit'>Invite</Button>
+
+                    <MDCAutoInit />
                 </Loader>
             </Form>
         );

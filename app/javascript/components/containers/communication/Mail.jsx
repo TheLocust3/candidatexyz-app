@@ -16,29 +16,40 @@ class Mail extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { group: '', shouldSend: false, emails: [], pullingResource: false };
+        this.state = { group: this.props.match.params.group, shouldSend: false, emails: [], pullingResource: false };
     }
 
     componentWillMount() {
         this.props.dispatch(setTitle('Send Mail'));
         this.props.dispatch(setBreadcrumb('Mail'));
-        this.props.dispatch(setDrawerSelected('communication', 'mail'));
+
+        let subItem = '';
+        if (this.state.group == 'sign-ups') {
+            this.props.dispatch(ContactActions.fetchAllContacts());
+            subItem = 'signUps';
+        } else if (this.state.group == 'volunteers') {
+            this.props.dispatch(VolunteerActions.fetchAllVolunteers());
+            subItem = 'volunteers';
+        } else if (this.state.group == 'donors') {
+            this.props.dispatch(ReceiptActions.fetchAllReceipts());
+            subItem = 'donations';
+        }
+
+        this.props.dispatch(setDrawerSelected('communication', subItem));
     }
-
-    componentWillReceiveProps(nextProps) {
-        if (!(nextProps.areContactsReady || nextProps.areVolunteersReady || nextProps.areReceiptsReady) || !this.state.pullingResource) return;
-
+    
+    beforeSend() {
         let emails = [];
-        if (this.state.group == 'signUps') {
-            emails = nextProps.contacts.contacts.map((contact) => {
+        if (this.state.group == 'sign-ups') {
+            emails = this.props.contacts.contacts.map((contact) => {
                 return { id: contact.id, email: contact.email, type: 'contact', firstName: contact.firstName, lastName: contact.lastName }
             });
         } else if (this.state.group == 'volunteers') {
-            emails = nextProps.volunteers.volunteers.map((volunteer) => {
+            emails = this.props.volunteers.volunteers.map((volunteer) => {
                 return { id: volunteer.id, email: volunteer.email, type: 'volunteer', firstName: volunteer.firstName, lastName: volunteer.lastName }
             });
         } else if (this.state.group == 'donors') {
-            emails = _.filter(DonorHelper.generateDonors(nextProps.receipts.receipts), (donor) => { return donor.receiptType == 'donation' }).map((donor) => {
+            emails = _.filter(DonorHelper.generateDonors(this.props.receipts.receipts), (donor) => { return donor.receiptType == 'donation' }).map((donor) => {
                 return { id: donor.id, email: donor.email, type: 'donor', firstName: donor.name, lastName: '' }
             });
         }
@@ -49,26 +60,14 @@ class Mail extends React.Component {
         });
     }
 
-    handleGroupChange(select) {
-        let groupKey = _.find(GROUPS, (group) => { return group.value == select.value }).key;
-
-        this.setState({
-            group: groupKey
-        });
-    }
-    
-    beforeSend() {
-        if (this.state.group == 'signUps') {
-            this.props.dispatch(ContactActions.fetchAllContacts());
-        } else if (this.state.group == 'volunteers') {
-            this.props.dispatch(VolunteerActions.fetchAllVolunteers());
-        } else if (this.state.group =='donors') {
-            this.props.dispatch(ReceiptActions.fetchAllReceipts());
+    renderGroup() {
+        if (this.state.group == 'volunteers') {
+            return 'Volunteers';
+        } else if (this.state.group == 'sign-ups') {
+            return 'Sign Ups'
+        } else if (this.state.group == 'donors') {
+            return 'Donors'
         }
-
-        this.setState({
-            pullingResource: true
-        });
     }
 
     render() {
@@ -78,21 +77,11 @@ class Mail extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={(this.props.areVolunteersReady && this.props.areContactsReady) || (!this.state.send)}>
-                        <Select label='Send To' selectedIndex={_.findIndex(GROUPS, (group) => { return group.key == this.state.group })} onChange={(select) => this.handleGroupChange(select)} style={{ width: '30%' }}>
-                            {_.map(GROUPS, (group) => {
-                                return (
-                                    <SelectItem key={group.key}>
-                                        {group.value}
-                                    </SelectItem>
-                                );
-                            })}
-                        </Select>
-                    </Loader>
-
-                    <div style={{ visibility: this.state.shouldSend ? 'hidden' : 'visible' }}>
+                    <Text type='body1'>To: {this.renderGroup()}</Text>
+                    
+                    <Loader isReady={(this.props.areVolunteersReady && this.props.areContactsReady && this.props.areReceiptsReady) || (!this.state.send)}>
                         <MailForm beforeSend={() => this.beforeSend()} emails={this.state.emails} shouldSend={this.state.shouldSend} />
-                    </div>
+                    </Loader>
                 </div>
 
                 <MDCAutoInit />

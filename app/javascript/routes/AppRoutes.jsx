@@ -91,7 +91,7 @@ class AppRoutes extends React.Component {
                         <Route exact path='/settings' component={Settings} />
 
                         <Route exact path='/communication' component={Communication} />
-                        <Route exact path='/communication/mail' component={Mail} />
+                        <Route exact path='/communication/mail/:group' component={Mail} />
 
                         <Route exact path='/communication/sign-ups' component={SignUps} />
                         <Route exact path='/communication/sign-ups/:id' component={ShowSignUp} />

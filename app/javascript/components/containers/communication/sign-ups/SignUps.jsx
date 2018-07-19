@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { ContactActions, ContactApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
@@ -23,6 +24,14 @@ class SignUps extends React.Component {
             <div className='content'>
                 <Text type='headline5'>Sign Up List</Text>
                 <div className='resource-actions'>
+                    <Link className='resource-actions-item unstyled-link-black' to='/communication/mail/sign-ups'>
+                        <Text type='body2'>
+                            Email
+                        </Text>
+                    </Link>
+
+                    <div className='resource-actions-spacer' />
+
                     <a className='resource-actions-item unstyled-link-black' href={`${ContactApi.exportLink()}`} download>
                         <Text type='body2'>Download</Text>
                     </a>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { UserActions } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
@@ -22,6 +23,13 @@ class Staff extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Staff Overview</Text>
+                <div className='resource-actions'>
+                    <Link className='resource-actions-item unstyled-link-black' to='/campaign/invite-staff'>
+                        <Text type='body2'>
+                            Invite
+                        </Text>
+                    </Link>
+                </div>
                 <br />
 
                 <Loader isReady={this.props.isReady}>

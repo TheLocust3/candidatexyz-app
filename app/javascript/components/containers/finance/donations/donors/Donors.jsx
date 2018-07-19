@@ -28,7 +28,14 @@ class Donors extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Donor List</Text>
-                <br /><br />
+                <div className='resource-actions'>
+                    <Link className='resource-actions-item unstyled-link-black' to='/communication/mail/donors'>
+                        <Text type='body2'>
+                            Email
+                        </Text>
+                    </Link>
+                </div>
+                <br />
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>

@@ -13,7 +13,7 @@ class InviteStaff extends React.Component {
     componentWillMount() {
         this.props.dispatch(setTitle('Campaign'));
         this.props.dispatch(setBreadcrumb('Staff'));
-        this.props.dispatch(setDrawerSelected('campaign', 'inviteStaff'));
+        this.props.dispatch(setDrawerSelected('campaign', 'staff'));
 
         this.props.dispatch(StaffActions.fetchStaffPositions());
     }
@@ -22,7 +22,7 @@ class InviteStaff extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Invite Staff Member</Text>
-                <br /><br />
+                <br />
 
                 <div className='content-2'>
                     <Loader isReady={this.props.isReady}>
