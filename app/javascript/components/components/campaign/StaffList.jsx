@@ -10,6 +10,14 @@ const PER_PAGE = 10;
 
 export default class StaffList extends React.Component {
 
+    renderName(member) {
+        if (member.created) {
+            return `${member.firstName} ${member.lastName}`;
+        }
+
+        return <i>Invited</i>;
+    }
+
     renderList() {
         let parsed = queryString.parse(location.search);
         let page = _.isEmpty(parsed.page) ? 0 : Number(parsed.page);
@@ -21,7 +29,7 @@ export default class StaffList extends React.Component {
                         <Link key={index} className='unstyled-link-black link-no-hover' to={`/campaign/staff/${member.id}`}>
                             <li className='mdc-list-item'>
                                 <span className='mdc-list-item__text'>
-                                    {member.firstName} {member.lastName}
+                                    {this.renderName(member)}
 
                                     <span className='mdc-list-item__secondary-text'>
                                         {member.email}<br />

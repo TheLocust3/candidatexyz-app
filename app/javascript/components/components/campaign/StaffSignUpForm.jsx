@@ -12,7 +12,9 @@ export default class StaffSignUpForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { user: { state: 'MA', country: 'United States' }, errors: {} };
+        this.state = { user: this.props.user, errors: {} };
+        this.state.user.state = _.isEmpty(this.state.user.state) ? 'MA' : this.state.user.state;
+        this.state.user.country = _.isEmpty(this.state.user.country) ? 'United States' : this.state.user.country;
     }
 
     handleChange(event) {
@@ -48,20 +50,22 @@ export default class StaffSignUpForm extends React.Component {
     }
 
     render() {
+        let extraRequired = !_.isEmpty(this.state.user.position);
+
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} required /><br />
-                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} style={{ width: '47.5%', marginRight: '5%' }} required />
-                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} style={{ width: '47.5%' }} required /><br /><br />
+                <TextField label='Email' name='email' defaultValue={this.state.user.email} onChange={this.handleChange.bind(this)} style={{ width: '100%' }} disabled required /><br />
+                <TextField label='First Name' name='firstName' defaultValue={this.state.user.firstName} onChange={this.handleChange.bind(this)} style={{ width: '47.5%', marginRight: '5%' }} required />
+                <TextField label='Last Name' name='lastName' defaultValue={this.state.user.lastName} onChange={this.handleChange.bind(this)} style={{ width: '47.5%' }} required /><br /><br />
 
-                <AddressInput state={this.state.state} country={this.state.country} onChange={(name, value) => this.handleAddressChange(name, value)} />
-                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.zipcode} style={{ width: '100%' }} /><br /><br />
+                <AddressInput state={this.state.user.state} country={this.state.user.country} onChange={(name, value) => this.handleAddressChange(name, value)} required={extraRequired} />
+                <TextField label='Zipcode' name='zipcode' defaultValue={this.state.user.zipcode} onChange={this.handleChange.bind(this)} defaultValue={this.props.zipcode} style={{ width: '100%' }} required={extraRequired} /><br /><br />
 
-                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br />
-                <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br /><br />
+                <TextField label='Phone Number' name='phoneNumber' defaultValue={this.state.user.phoneNumber} onChange={this.handleChange.bind(this)} style={{ width: '100%' }} required={extraRequired} /><br />
+                <TextField label='Party' name='party' defaultValue={this.state.user.party} onChange={this.handleChange.bind(this)} style={{ width: '100%' }} required={extraRequired} /><br /><br />
 
-                <TextField type='password' label='Password' name='password' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} required /><br />
-                <TextField type='password' label='Confirm Password' name='passwordConfirmation' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} required /><br /><br />
+                <TextField type='password' label='Password' name='password' defaultValue={this.state.user.password} onChange={this.handleChange.bind(this)} style={{ width: '100%' }} required /><br />
+                <TextField type='password' label='Confirm Password' name='passwordConfirmation' defaultValue={this.state.user.passwordConfirmation} onChange={this.handleChange.bind(this)} style={{ width: '100%' }} required /><br /><br />
 
                 <Button type='submit'>Sign Up</Button>
             </Form>
@@ -70,5 +74,6 @@ export default class StaffSignUpForm extends React.Component {
 }
 
 StaffSignUpForm.propTypes = {
-    token: PropTypes.string.isRequired
+    token: PropTypes.string.isRequired,
+    user: PropTypes.object.isRequired,
 };
