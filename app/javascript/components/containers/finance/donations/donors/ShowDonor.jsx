@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { ReceiptActions, ReceiptApi, DonorHelper } from 'candidatexyz-common-js';
+import { ReceiptActions, InKindActions, DonorHelper } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
-import { history } from '../../../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../../actions/global-actions';
 
 import Loader from '../../../../components/common/Loader';
@@ -18,21 +16,12 @@ class ShowDonor extends React.Component {
         this.props.dispatch(setBreadcrumb('Donors'));
         this.props.dispatch(setDrawerSelected('finance', 'donations'));
 
-        this.props.dispatch(ReceiptActions.fetchReceipt(this.props.match.params.id));
         this.props.dispatch(ReceiptActions.fetchAllReceipts());
-    }
-
-    onDeleteClick(event) {
-        let shouldDelete = confirm('Are you sure?');
-        if (!shouldDelete) return;
-
-        ReceiptApi.destroy(this.props.match.params.id).then(() => {
-            history.push('/finance/donors');
-        });
+        this.props.dispatch(InKindActions.fetchAllInKinds());
     }
 
     render() {
-        if (_.isEmpty(this.props.receipts.receipts) || _.isEmpty(this.props.receipt)) return null;
+        if (_.isEmpty(this.props.receipts.receipts)) return null;
 
         return (
             <div className='content'>
@@ -40,8 +29,8 @@ class ShowDonor extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.isReady}>
-                        <Donor donor={_.find(DonorHelper.generateDonors(this.props.receipts.receipts), (donor) => { return donor.name == this.props.receipt.name })} />
+                    <Loader isReady={this.props.areReceiptsReady && this.props.areInKindsReady}>
+                        <Donor donor={_.find(DonorHelper.generateDonors(DonorHelper.mergeDonations(this.props.receipts.receipts, this.props.inKinds.inKinds)), (donor) => { return donor.name == this.props.match.params.name })} />
                     </Loader>
                 </div>
                 <br />
@@ -54,9 +43,10 @@ class ShowDonor extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        isReady: state.receipts.isReady,
-        receipt: state.receipts.receipt,
+        areReceiptsReady: state.receipts.isReady,
         receipts: state.receipts.receipts,
+        areInKindsReady: state.inKinds.isReady,
+        inKinds: state.inKinds.inKinds
     };
 }
 

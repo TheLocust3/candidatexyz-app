@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { ReceiptActions, ReceiptApi } from 'candidatexyz-common-js';
+import { ReceiptActions, ReceiptApi, InKindActions, InKindApi, DonorHelper } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
@@ -21,14 +21,17 @@ class Donations extends React.Component {
         this.props.dispatch(setDrawerSelected('finance', 'donations'));
 
         this.props.dispatch(ReceiptActions.fetchAllReceipts());
+        this.props.dispatch(InKindActions.fetchAllInKinds());
     }
 
     render() {
+        let donations = DonorHelper.mergeDonations(this.props.receipts.receipts, this.props.inKinds.inKinds);
+
         return (
             <div className='content'>
                 <Text type='headline5'>Donation List</Text>
                 <div className='resource-actions'>
-                    <Link className='resource-actions-item unstyled-link-black' to='/finance/donations/create'>
+                    <Link className='resource-actions-item unstyled-link-black' to='/finance/donations/new'>
                         <Text type='body2'>Add</Text>
                     </Link>
 
@@ -41,17 +44,23 @@ class Donations extends React.Component {
                     <div className='resource-actions-spacer' />
 
                     <a className='resource-actions-item unstyled-link-black' href={`${ReceiptApi.exportLink()}`} download>
-                        <Text type='body2'>Download</Text>
+                        <Text type='body2'>Download Receipts</Text>
+                    </a>
+
+                    <div className='resource-actions-spacer' />
+
+                    <a className='resource-actions-item unstyled-link-black' href={`${InKindApi.exportLink()}`} download>
+                        <Text type='body2'>Download In Kinds</Text>
                     </a>
                 </div>
                 <br />
 
                 <div className='content-1'>
-                    <Loader isReady={this.props.isReady}>
-                        <Table to='/finance/donations/' headers={['Name', 'Amount', 'Date Received', 'Address']} keys={['name', 'amountString', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }]} sortingKeys={['name', 'amount', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }]} rows={this.props.receipts.receipts} rowsPerPage={PER_PAGE} />
+                    <Loader isReady={this.props.areReceiptsReady && this.props.areInKindsReady}>
+                        <Table to={(row) => { return row.type == 'Receipt' ? '/finance/donations/' : '/finance/in-kinds/' }} headers={['Name', 'Amount', 'Address', 'Date Received', 'Type']} keys={['name', 'amountString', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'type']} sortingKeys={['name', 'amount', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).unix() }, 'type']} rows={donations} rowsPerPage={PER_PAGE} />
                         <br /><br />
 
-                        <Pager elements={this.props.receipts.receipts} elementsPerPage={PER_PAGE} baseLink='/finance/donations' />
+                        <Pager elements={donations} elementsPerPage={PER_PAGE} baseLink='/finance/donations' />
                     </Loader>
                 </div>
             </div>
@@ -61,8 +70,10 @@ class Donations extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        isReady: state.receipts.isReady,
-        receipts: state.receipts.receipts
+        areReceiptsReady: state.receipts.isReady,
+        receipts: state.receipts.receipts,
+        areInKindsReady: state.inKinds.isReady,
+        inKinds: state.inKinds.inKinds
     };
 }
 

@@ -31,10 +31,21 @@ export default class Table extends React.Component {
         let parsed = queryString.parse(location.search);
         let page = _.isEmpty(parsed.page) ? 0 : Number(parsed.page);
     
-        return this.sort(_.slice(rows, page * rowsPerPage, (page + 1) * rowsPerPage));
+        return _.slice(this.sort(rows), page * rowsPerPage, (page + 1) * rowsPerPage);
     }
 
-    onRowClick(id) {
+    onRowClick(row) {
+        let id = row.id;
+        if (!_.isEmpty(this.props.toId)) {
+            id = row[this.props.toId]
+        }
+
+        if (_.isFunction(this.props.to)) {
+            history.push(`${this.props.to(row)}${id}`);
+
+            return;
+        }
+
         history.push(`${this.props.to}${id}`);
     }
 
@@ -71,7 +82,7 @@ export default class Table extends React.Component {
         return (
             this.displayedRows().map((row, index) => {
                 return (
-                    <tr key={index} className='selectable' onClick={() => this.onRowClick(row.id)}>
+                    <tr key={index} className='selectable' onClick={() => this.onRowClick(row)}>
                         {this.props.keys.map((key) => {
                             let value = _.isFunction(key) ? key(row) : row[key];
                             
@@ -102,7 +113,7 @@ export default class Table extends React.Component {
     }
 
     render() {
-        let { rows, rowsPerPage, headers, keys, sortingKeys, to, ...props } = this.props;
+        let { rows, rowsPerPage, headers, keys, sortingKeys, to, toId, ...props } = this.props;
 
         return (
             <table {...props}>
@@ -124,5 +135,6 @@ Table.propTypes = {
     headers: PropTypes.array.isRequired,
     keys: PropTypes.array.isRequired,
     sortingKeys: PropTypes.array,
-    to: PropTypes.string.isRequired
+    to: PropTypes.any.isRequired,
+    toId: PropTypes.string
 };

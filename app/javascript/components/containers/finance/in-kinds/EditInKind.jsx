@@ -26,7 +26,7 @@ class EditInKind extends React.Component {
         if (!shouldDelete) return;
         
         InKindApi.destroy(this.props.match.params.id).then(() => {
-            history.push('/finance/in-kinds');
+            history.push('/finance/donations');
         });
     }
     

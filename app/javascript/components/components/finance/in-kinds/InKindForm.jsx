@@ -85,7 +85,8 @@ export default class InKindForm extends React.Component {
 
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <AutoCompleteTextField elements={this.props.inKinds} elementKey='fromWhom' label='From Whom' name='fromWhom' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.inKind.fromWhom} style={{ width: '100%' }} required /><br />
+                {/* Autocomplete inKinds is generalized so use name */}
+                <AutoCompleteTextField elements={this.props.inKinds} elementKey='name' label='From Whom' name='fromWhom' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.inKind.fromWhom} style={{ width: '100%' }} required /><br />
 
                 <TextField label='Description' name='description' onChange={this.handleChange.bind(this)} defaultValue={this.state.inKind.description} style={{ width: '100%' }} required /><br /><br />
 

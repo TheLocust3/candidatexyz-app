@@ -28,7 +28,7 @@ class Expenditures extends React.Component {
             <div className='content'>
                 <Text type='headline5'>Expenses List</Text>
                 <div className='resource-actions'>
-                    <Link className='resource-actions-item unstyled-link-black' to='/finance/expenditures/create'>
+                    <Link className='resource-actions-item unstyled-link-black' to='/finance/expenditures/new'>
                         <Text type='body2'>Add</Text>
                     </Link>
 
@@ -42,7 +42,7 @@ class Expenditures extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>
-                        <Table to='/finance/expenditures/' headers={['Paid To', 'Amount', 'Date Paid', 'Address']} keys={['paidTo', 'amountString', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }]} sortingKeys={['paidTo', 'amount', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }]} rows={this.props.expenditures.expenditures} rowsPerPage={PER_PAGE} />
+                        <Table to='/finance/expenditures/' headers={['Paid To', 'Amount', 'Address', 'Date Paid']} keys={['paidTo', 'amountString', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.datePaid).format('MM/DD/YYYY') }]} sortingKeys={['paidTo', 'amount', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.datePaid).unix() }]} rows={this.props.expenditures.expenditures} rowsPerPage={PER_PAGE} />
                         <br /><br />
 
                         <Pager elements={this.props.expenditures.expenditures} elementsPerPage={PER_PAGE} baseLink='/finance/expenditures' />

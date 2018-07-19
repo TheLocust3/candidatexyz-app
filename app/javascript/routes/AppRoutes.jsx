@@ -39,9 +39,7 @@ import ShowExpenditure from '../components/containers/finance/expenditures/ShowE
 import CreateExpenditure from '../components/containers/finance/expenditures/CreateExpenditure';
 import EditExpenditure from '../components/containers/finance/expenditures/EditExpenditure';
 
-import InKinds from '../components/containers/finance/in-kinds/InKinds';
 import ShowInKind from '../components/containers/finance/in-kinds/ShowInKind';
-import CreateInKind from '../components/containers/finance/in-kinds/CreateInKind';
 import EditInKind from '../components/containers/finance/in-kinds/EditInKind';
 
 import Liabilities from '../components/containers/finance/liabilities/Liabilities';
@@ -117,29 +115,27 @@ class AppRoutes extends React.Component {
                         <Route exact path='/finance' component={Finance} />
 
                         <Route exact path='/finance/reports' component={Reports} />
-                        <Route exact path='/finance/reports/create' component={CreateReport} />
+                        <Route exact path='/finance/reports/new' component={CreateReport} />
                         <Route exact path='/finance/reports/:id' component={ShowReport} />
 
                         <Route exact path='/finance/donations' component={Donations} />
-                        <Route exact path='/finance/donations/create' component={CreateDonation} />
+                        <Route exact path='/finance/donations/new' component={CreateDonation} />
                         <Route exact path='/finance/donations/:id' component={ShowDonation} />
                         <Route exact path='/finance/donations/:id/edit' component={EditDonation} />
 
                         <Route exact path='/finance/donors' component={Donors} />
-                        <Route exact path='/finance/donors/:id' component={ShowDonor} />
+                        <Route exact path='/finance/donors/:name' component={ShowDonor} />
 
                         <Route exact path='/finance/expenditures' component={Expenditures} />
-                        <Route exact path='/finance/expenditures/create' component={CreateExpenditure} />
+                        <Route exact path='/finance/expenditures/new' component={CreateExpenditure} />
                         <Route exact path='/finance/expenditures/:id' component={ShowExpenditure} />
                         <Route exact path='/finance/expenditures/:id/edit' component={EditExpenditure} />
                         
-                        <Route exact path='/finance/in-kinds' component={InKinds} />
-                        <Route exact path='/finance/in-kinds/create' component={CreateInKind} />
                         <Route exact path='/finance/in-kinds/:id' component={ShowInKind} />
                         <Route exact path='/finance/in-kinds/:id/edit' component={EditInKind} />
 
                         <Route exact path='/finance/liabilities' component={Liabilities} />
-                        <Route exact path='/finance/liabilities/create' component={CreateLiability} />
+                        <Route exact path='/finance/liabilities/new' component={CreateLiability} />
                         <Route exact path='/finance/liabilities/:id' component={ShowLiability} />
                         <Route exact path='/finance/liabilities/:id/edit' component={EditLiability} />
 

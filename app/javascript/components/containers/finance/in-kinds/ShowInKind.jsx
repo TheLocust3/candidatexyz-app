@@ -26,14 +26,14 @@ class ShowInKind extends React.Component {
         if (!shouldDelete) return;
 
         InKindApi.destroy(this.props.match.params.id).then(() => {
-            history.push('/finance/in-kinds');
+            history.push('/finance/donations');
         });
     }
     
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>View In Kind Contribution</Text>
+                <Text type='headline5'>View In Kind Donation</Text>
 
                 <div className='resource-actions'>
                     <Link className='resource-actions-item unstyled-link-black' to={`/finance/in-kinds/${this.props.match.params.id}/edit`}>
@@ -55,7 +55,7 @@ class ShowInKind extends React.Component {
                 </div>
                 <br />
 
-                <BackLink to='/finance/in-kinds' />
+                <BackLink to='/finance/donations' />
             </div>
         );
     }

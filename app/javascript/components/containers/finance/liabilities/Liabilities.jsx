@@ -17,7 +17,7 @@ class Liabilities extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('Liabilities'));
-        this.props.dispatch(setBreadcrumb('Liabilities'));
+        this.props.dispatch(setBreadcrumb('Debts'));
         this.props.dispatch(setDrawerSelected('finance', 'liabilities'));
 
         this.props.dispatch(LiabilityActions.fetchAllLiabilities());
@@ -26,9 +26,9 @@ class Liabilities extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>Liabilities List</Text>
+                <Text type='headline5'>Debts List</Text>
                 <div className='resource-actions'>
-                    <Link className='resource-actions-item unstyled-link-black' to='/finance/liabilities/create'>
+                    <Link className='resource-actions-item unstyled-link-black' to='/finance/liabilities/new'>
                         <Text type='body2'>Add</Text>
                     </Link>
 
@@ -42,7 +42,7 @@ class Liabilities extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>
-                        <Table to='/finance/liabilities/' headers={['To Whom', 'Amount', 'Date Incurred', 'Address']} keys={['toWhom', 'amountString', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }]} sortingKeys={['toWhom', 'amount', (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }]} rows={this.props.liabilities.liabilities} rowsPerPage={PER_PAGE} />
+                        <Table to='/finance/liabilities/' headers={['To Whom', 'Amount', 'Address', 'Date Incurred']} keys={['toWhom', 'amountString', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }]} sortingKeys={['toWhom', 'amount', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).unix() }]} rows={this.props.liabilities.liabilities} rowsPerPage={PER_PAGE} />
                         <br /><br />
 
                         <Pager elements={this.props.liabilities.liabilities} elementsPerPage={PER_PAGE} baseLink='/finance/liabilities' />

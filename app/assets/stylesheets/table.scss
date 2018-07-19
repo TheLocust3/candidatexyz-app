@@ -49,8 +49,8 @@ th:active.selectable {
 .header-text {
     position: relative;
 
-    margin-left: 13px;
-    margin-right: 13px;
+    margin-left: 15px;
+    margin-right: 15px;
 
     display: inline-block;
 }
@@ -58,5 +58,5 @@ th:active.selectable {
 .header-arrow {
     position: absolute;
     top: 0;
-    right: -13px;
+    right: -15px;
 }

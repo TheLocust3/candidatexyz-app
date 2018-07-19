@@ -14,20 +14,32 @@ export default class Pager extends React.Component {
     }
 
     renderBack() {
-        let display = this.pageIndex() == 0 ? 'hidden' : 'visible';
+        if (this.pageIndex() == 0) {
+            return (
+                <span className='pager-item'>
+                    Back
+                </span>
+            );
+        }
 
         return (
-            <Link className='link pager-item' to={`${this.props.baseLink}?page=${this.pageIndex() - 1}`} style={{ visibility: display }}>
+            <Link className='link pager-item' to={`${this.props.baseLink}?page=${this.pageIndex() - 1}`}>
                 Back
             </Link>
         )
     }
 
     renderNext() {
-        let display = this.pageIndex() >= _.ceil(this.props.elements.length / this.props.elementsPerPage) - 1 ? 'hidden' : 'visible';
+        if (this.pageIndex() >= _.ceil(this.props.elements.length / this.props.elementsPerPage) - 1) {
+            return (
+                <span className='pager-item'>
+                    Next
+                </span>
+            );
+        }
 
         return (
-            <Link className='link pager-item' to={`${this.props.baseLink}?page=${this.pageIndex() + 1}`} style={{ visibility: display }}>
+            <Link className='link pager-item' to={`${this.props.baseLink}?page=${this.pageIndex() + 1}`}>
                 Next
             </Link>
         )

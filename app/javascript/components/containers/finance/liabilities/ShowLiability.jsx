@@ -15,7 +15,7 @@ class ShowLiability extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(setTitle('View Liability'));
-        this.props.dispatch(setBreadcrumb('Liabilities'));
+        this.props.dispatch(setBreadcrumb('Debts'));
         this.props.dispatch(setDrawerSelected('finance', 'liabilities'));
 
         this.props.dispatch(LiabilityActions.fetchLiability(this.props.match.params.id));
@@ -33,7 +33,7 @@ class ShowLiability extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>View Liability</Text>
+                <Text type='headline5'>View Debt</Text>
 
                 <div className='resource-actions'>
                     <Link className='resource-actions-item unstyled-link-black' to={`/finance/liabilities/${this.props.match.params.id}/edit`}>

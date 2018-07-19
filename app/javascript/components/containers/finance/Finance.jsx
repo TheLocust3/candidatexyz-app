@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
+import { Link } from 'react-router-dom';
 import { ReceiptActions, ExpenditureActions, InKindActions, LiabilityActions } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
@@ -26,6 +26,23 @@ class Finance extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Finance Overview</Text>
+                <div className='resource-actions'>
+                    <Link className='resource-actions-item unstyled-link-black' to='/finance/donations/new'>
+                        <Text type='body2'>Add Donation</Text>
+                    </Link>
+
+                    <div className='resource-actions-spacer' />
+
+                    <Link className='resource-actions-item unstyled-link-black' to='/finance/expenditures/new'>
+                        <Text type='body2'>Add Expense</Text>
+                    </Link>
+
+                    <div className='resource-actions-spacer' />
+
+                    <Link className='resource-actions-item unstyled-link-black' to='/finance/liabilities/new'>
+                        <Text type='body2'>Add Debt</Text>
+                    </Link>
+                </div>
                 <br />
 
                 <Loader isReady={this.props.areReceiptsReady && this.props.areExpendituresReady && this.props.areInKindsReady && this.props.areLiabilitiesReady}>

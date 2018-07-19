@@ -25,7 +25,7 @@ class Reports extends React.Component {
             <div className='content'>
                 <Text type='headline5'>Reports List</Text>
                 <div className='resource-actions'>
-                    <Link className='resource-actions-item unstyled-link-black' to='/finance/reports/create'>
+                    <Link className='resource-actions-item unstyled-link-black' to='/finance/reports/new'>
                         <Text type='body2'>Generate</Text>
                     </Link>
                 </div>
