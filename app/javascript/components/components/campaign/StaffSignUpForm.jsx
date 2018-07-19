@@ -12,25 +12,33 @@ export default class StaffSignUpForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { state: 'MA', country: 'United States', errors: {} };
+        this.state = { user: { state: 'MA', country: 'United States' }, errors: {} };
     }
 
     handleChange(event) {
+        let user = this.state.user;
+        user[event.target.name] = event.target.value;
+
         this.setState({
-            [event.target.name]: event.target.value
+            user: user
         });
     }
 
     handleAddressChange(name, value) {
+        let user = this.state.user;
+        user[name] = value;
+
         this.setState({
-            [name]: value
+            user: user
         });
     }
 
     handleSubmit(event) {
         event.preventDefault();
+        
+        let user = this.state.user;
 
-        StaffApi.create(this.props.token, this.state.email, this.state.firstName, this.state.lastName, this.state.password, this.state.passwordConfirmation, this.state.address, this.state.city, this.state.state, this.state.country, this.state.zipcode, this.state.phoneNumber, this.state.party).then(() => {
+        StaffApi.create(this.props.token, user.email, user.firstName, user.lastName, user.password, user.passwordConfirmation, user.address, user.city, user.state, user.country, user.zipcode, user.phoneNumber, user.party).then(() => {
             history.push('/');
         }).catch((response) => {
             this.setState({

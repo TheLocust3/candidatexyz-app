@@ -12,27 +12,33 @@ export default class EditUserForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { email: this.props.user.email, firstName: this.props.user.first_name, lastName: this.props.user.last_name,
-            address: this.props.user.address, city: this.props.user.city, state: this.props.user.state, country: this.props.user.country,
-            zipcode: this.props.user.zipcode, party: this.props.user.party, errors: {} };
+        this.state = { user: this.props.user, errors: {} };
     }
 
     handleChange(event) {
+        let user = this.state.user;
+        user[event.target.name] = event.target.value;
+
         this.setState({
-            [event.target.name]: event.target.value
+            user: user
         });
     }
 
     handleAddressChange(name, value) {
+        let user = this.state.user;
+        user[name] = value;
+        
         this.setState({
-            [name]: value
+            user: user
         });
     }
 
     handleSubmit(event) {
         event.preventDefault();
 
-        AuthApi.editUser(this.state.email, this.state.password, this.state.passwordConfirmation, this.state.firstName, this.state.lastName, this.state.address, this.state.city, this.state.state, this.state.country, this.state.zipcode, this.state.phoneNumber, this.state.party).then((response) => {
+        let user = this.state.user;
+
+        AuthApi.editUser(user.email, user.password, user.passwordConfirmation, user.firstName, user.lastName, user.address, user.city, user.state, user.country, user.zipcode, user.phoneNumber, user.party).then((response) => {
             window.location.href = '/';
         }).catch((response) => {
             this.setState({
