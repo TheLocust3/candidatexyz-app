@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { ReceiptActions } from 'candidatexyz-common-js';
+import { ReceiptActions, ReceiptApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
@@ -37,6 +37,12 @@ class Donations extends React.Component {
                     <Link className='resource-actions-item unstyled-link-black' to='/finance/donors'>
                         <Text type='body2'>Donor List</Text>
                     </Link>
+
+                    <div className='resource-actions-spacer' />
+
+                    <a className='resource-actions-item unstyled-link-black' href={`${ReceiptApi.exportLink()}`} download>
+                        <Text type='body2'>Download</Text>
+                    </a>
                 </div>
                 <br />
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ContactActions } from 'candidatexyz-common-js';
+import { ContactActions, ContactApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
@@ -22,6 +22,11 @@ class SignUps extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Sign Up List</Text>
+                <div className='resource-actions'>
+                    <a className='resource-actions-item unstyled-link-black' href={`${ContactApi.exportLink()}`} download>
+                        <Text type='body2'>Download</Text>
+                    </a>
+                </div>
                 <br />
 
                 <Loader isReady={this.props.isReady}>

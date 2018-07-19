@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { VolunteerActions } from 'candidatexyz-common-js';
+import { VolunteerActions, VolunteerApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
@@ -25,7 +25,12 @@ class Volunteers extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Volunteer List</Text>
-                <br /><br />
+                <div className='resource-actions'>
+                    <a className='resource-actions-item unstyled-link-black' href={`${VolunteerApi.exportLink()}`} download>
+                        <Text type='body2'>Download</Text>
+                    </a>
+                </div>
+                <br />
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>

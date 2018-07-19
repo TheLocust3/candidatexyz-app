@@ -30,7 +30,8 @@ export default class InKind extends React.Component {
 
                 <Text type='body1'>Date Received</Text>
                 <Text type='body2'>{moment(inKind.datePaid).format('MM/DD/YYYY')}</Text>
-                
+                <br />
+
                 <Text type='body1'>Email</Text>
                 <Text type='body2'>{_.isEmpty(inKind.email) ? 'N/A' : inKind.email}</Text>
                 <br />

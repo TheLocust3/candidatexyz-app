@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { InKindActions } from 'candidatexyz-common-js';
+import { InKindActions, InKindApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
@@ -31,6 +31,12 @@ class InKinds extends React.Component {
                     <Link className='resource-actions-item unstyled-link-black' to='/finance/in-kinds/create'>
                         <Text type='body2'>Add</Text>
                     </Link>
+
+                    <div className='resource-actions-spacer' />
+
+                    <a className='resource-actions-item unstyled-link-black' href={`${InKindApi.exportLink()}`} download>
+                        <Text type='body2'>Download</Text>
+                    </a>
                 </div>
                 <br />
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { MessageActions } from 'candidatexyz-common-js';
+import { MessageActions, MessageApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
@@ -22,6 +22,11 @@ class Messages extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Message List</Text>
+                <div className='resource-actions'>
+                    <a className='resource-actions-item unstyled-link-black' href={`${MessageApi.exportLink()}`} download>
+                        <Text type='body2'>Download</Text>
+                    </a>
+                </div>
                 <br />
 
                 <Loader isReady={this.props.isReady}>
