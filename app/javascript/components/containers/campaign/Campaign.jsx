@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { StaffActions, CampaignActions, CommitteeActions } from 'candidatexyz-common-js';
@@ -21,6 +22,17 @@ class Campaign extends React.Component {
         this.props.dispatch(StaffActions.fetchAllUsers());
     }
 
+    renderCommitteeOverview() {
+        if (_.isEmpty(this.props.committee)) return;
+
+        return (
+            <div>
+                <CommitteeOverview committee={this.props.committee} />
+                <br /><br />
+            </div>
+        );
+    }
+
     render() {
         return (
             <div className='content'>
@@ -28,9 +40,8 @@ class Campaign extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.areUsersReady && this.props.isCampaignReady && this.props.isCommitteeReady}>
-                        <CommitteeOverview committee={this.props.committee} />
-                        <br /><br />
+                    <Loader isReady={this.props.areUsersReady && this.props.isCampaignReady}>
+                        {this.renderCommitteeOverview()}
 
                         <Text type='headline6'>Staff</Text>
                         <StaffOverview users={this.props.users.users} />

@@ -2,18 +2,17 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CommitteeApi } from 'candidatexyz-common-js';
-import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
-
-import { history, STATES } from '../../../../constants';
+import { Text, Button, TextField, Form, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import AddressInput from '../../common/AddressInput';
+import CommitteeChecklist from './CommitteeChecklist';
 
 export default class CommitteeForm extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = { errors: {} };
+        this.state = { checklistComplete: false, errors: {} };
         if (_.isEmpty(this.props.committee)) {
             this.state.committee = { state: 'MA', country: 'United States' };
         } else {
@@ -61,7 +60,7 @@ export default class CommitteeForm extends React.Component {
         }
     }
 
-    render() {
+    renderForm() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
                 <TextField label='Committee Name' name='name' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.name} required /><br />
@@ -83,8 +82,28 @@ export default class CommitteeForm extends React.Component {
             </Form>
         );
     }
+
+    renderUncompleted() {
+        return (
+            <Text type='body1'>
+                Before creating forming your campaign's committee, you must complete the above checklist
+            </Text>
+        );
+    }
+
+    render() {
+        return (
+            <div>
+                <CommitteeChecklist users={this.props.users} complete={() => { this.setState({ checklistComplete: true }) }} />
+                <br />
+
+                {this.state.checklistComplete ? this.renderForm() : this.renderUncompleted()}
+            </div>
+        );
+    }
 }
 
 CommitteeForm.propTypes = {
-    committee: PropTypes.object
+    committee: PropTypes.object,
+    users: PropTypes.array.isRequired
 };

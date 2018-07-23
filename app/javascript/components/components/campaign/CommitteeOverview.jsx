@@ -5,6 +5,8 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 export default class CommitteeOverview extends React.Component {
 
     render() {
+        if (_.isEmpty(this.props.committee)) return null;
+
         return (
             <div>
                 <Text type='headline6'>Committee</Text>

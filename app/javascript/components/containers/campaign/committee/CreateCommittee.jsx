@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CommitteeActions } from 'candidatexyz-common-js';
+import { CommitteeActions, UserActions } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
@@ -16,6 +16,7 @@ class CreateCommittee extends React.Component {
         this.props.dispatch(setDrawerSelected('campaign', 'committee'));
 
         this.props.dispatch(CommitteeActions.fetchCommitteeByCampaign());
+        this.props.dispatch(UserActions.fetchAllUsersWithPositions());
     }
 
     render() {
@@ -27,7 +28,9 @@ class CreateCommittee extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <CommitteeForm />
+                    <Loader isReady={this.props.areUsersReady}>
+                        <CommitteeForm users={this.props.users.users} />
+                    </Loader>
                 </div>
             </div>
         );
@@ -37,7 +40,9 @@ class CreateCommittee extends React.Component {
 function mapStateToProps(state) {
     return {
         isReady: state.committees.isReady,
-        committee: state.committees.committee
+        committee: state.committees.committee,
+        areUsersReady: state.users.isReady,
+        users: state.users.users
     };
 }
 
