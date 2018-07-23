@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { ReceiptActions, ReceiptApi, InKindActions, InKindApi, DonorHelper } from 'candidatexyz-common-js';
-import { Text } from 'candidatexyz-common-js/lib/elements';
+import { Text, Fab, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
@@ -30,10 +30,6 @@ class Donations extends React.Component {
             <div className='content'>
                 <Text type='headline5'>Donation List</Text>
                 <div className='resource-actions-under'>
-                    <Link className='resource-actions-item unstyled-link-black' to='/finance/donations/new'>
-                        <Text type='body2'>Add</Text>
-                    </Link>
-
                     <Link className='resource-actions-item unstyled-link-black' to='/finance/donors'>
                         <Text type='body2'>Donor List</Text>
                     </Link>
@@ -53,6 +49,14 @@ class Donations extends React.Component {
                         <Table to={(row) => { return row.type == 'Receipt' ? '/finance/donations/' : '/finance/in-kinds/' }} headers={['Name', 'Amount', 'Address', 'Date Received', 'Type']} keys={['name', 'amountString', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'type']} sortingKeys={['name', 'amount', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).unix() }, 'type']} rows={donations} rowsPerPage={PER_PAGE} pagerLink='/finance/donations' />
                     </Loader>
                 </div>
+
+                <Link className='add-fab-link unstyled-link' to='/finance/donations/new'>
+                    <Fab className='add-fab'>
+                        <i className='material-icons'>add</i>
+                    </Fab>
+                </Link>
+
+                <MDCAutoInit />
             </div>
         );
     }
