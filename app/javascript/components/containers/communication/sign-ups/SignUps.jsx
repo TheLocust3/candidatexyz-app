@@ -10,7 +10,7 @@ import Loader from '../../../components/common/Loader';
 import Pager from '../../../components/common/Pager';
 import Table from '../../../components/common/Table';
 
-const PER_PAGE = 10;
+const PER_PAGE = 20;
 
 class SignUps extends React.Component {
 

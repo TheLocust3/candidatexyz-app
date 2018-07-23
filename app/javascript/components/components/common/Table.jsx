@@ -65,13 +65,13 @@ export default class Table extends React.Component {
     renderArrow() {
         if (this.state.up) {
             return (
-                <span className='header-arrow'>
+                <span className='header-arrow middle'>
                     &#x22C0;
                 </span>
             );
         } else {
             return (
-                <span className='header-arrow'>
+                <span className='header-arrow middle'>
                     &#x22C1;
                 </span>
             );
@@ -103,7 +103,7 @@ export default class Table extends React.Component {
             <tr>
                 {this.props.headers.map((header, index) => {
                     return (
-                        <th className='selectable' key={header} onClick={() => this.onHeaderClick(header, index)}>
+                        <th className='selectable relative' key={header} onClick={() => this.onHeaderClick(header, index)}>
                             <Text className='header-text' type='subtitle1'>{header} {index == this.state.selectedIndex ? this.renderArrow() : ''}</Text>
                         </th>
                     );

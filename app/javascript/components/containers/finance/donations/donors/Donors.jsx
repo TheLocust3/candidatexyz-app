@@ -11,7 +11,7 @@ import Pager from '../../../../components/common/Pager';
 import Table from '../../../../components/common/Table';
 import BackLink from '../../../../components/common/BackLink';
 
-const PER_PAGE = 10;
+const PER_PAGE = 20;
 
 class Donors extends React.Component {
 
