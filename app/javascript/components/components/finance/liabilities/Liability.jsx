@@ -1,6 +1,4 @@
-import _ from 'lodash';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Text } from 'candidatexyz-common-js/lib/elements';
@@ -12,10 +10,6 @@ export default class Liability extends React.Component {
 
         return (
             <div>
-                <Text type='body1'>To Whom</Text>
-                <Text type='body2'>{liability.toWhom}</Text>
-                <br />
-
                 <Text type='body1'>Purpose</Text>
                 <Text type='body2'>{liability.purpose}</Text>
                 <br />
@@ -25,7 +19,7 @@ export default class Liability extends React.Component {
                 <br />
 
                 <Text type='body1'>Address</Text>
-                <Text type='body2'>{liability.address}, {liability.city}, {liability.state}, {liability.country}</Text>
+                <Text type='body2'>{liability.address}, {liability.city}, {liability.state}{_.isEmpty(liability.country) ? '' : `, ${liability.country}`}</Text>
                 <br />
 
                 <Text type='body1'>Date Incurred</Text>

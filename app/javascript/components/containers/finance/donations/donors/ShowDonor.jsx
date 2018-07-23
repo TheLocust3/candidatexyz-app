@@ -23,14 +23,16 @@ class ShowDonor extends React.Component {
     render() {
         if (_.isEmpty(this.props.receipts.receipts)) return null;
 
+        let donor = _.find(DonorHelper.generateDonors(DonorHelper.mergeDonations(this.props.receipts.receipts, this.props.inKinds.inKinds)), (donor) => { return donor.name == this.props.match.params.name });
+
         return (
             <div className='content'>
-                <Text type='headline5'>View Donor</Text>
+                <Text type='headline5'>{donor.name}</Text>
                 <br />
 
                 <div className='content-2'>
                     <Loader isReady={this.props.areReceiptsReady && this.props.areInKindsReady}>
-                        <Donor donor={_.find(DonorHelper.generateDonors(DonorHelper.mergeDonations(this.props.receipts.receipts, this.props.inKinds.inKinds)), (donor) => { return donor.name == this.props.match.params.name })} />
+                        <Donor donor={donor} />
                     </Loader>
                 </div>
                 <br />

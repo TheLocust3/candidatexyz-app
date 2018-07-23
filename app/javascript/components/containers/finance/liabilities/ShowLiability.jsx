@@ -33,7 +33,7 @@ class ShowLiability extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>View Debt</Text>
+                <Text type='headline5'>{this.props.liability.toWhom}</Text>
 
                 <div className='resource-actions'>
                     <Link className='resource-actions-item unstyled-link-black' to={`/finance/liabilities/${this.props.match.params.id}/edit`}>

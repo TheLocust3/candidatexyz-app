@@ -14,9 +14,9 @@ import InKind from '../../../components/finance/in-kinds/InKind';
 class ShowInKind extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setTitle('View In Kind Contribution'));
-        this.props.dispatch(setBreadcrumb('In Kind Contributions'));
-        this.props.dispatch(setDrawerSelected('finance', 'inKinds'));
+        this.props.dispatch(setTitle('View In Kind Donation'));
+        this.props.dispatch(setBreadcrumb('In Kind Donations'));
+        this.props.dispatch(setDrawerSelected('finance', 'donations'));
 
         this.props.dispatch(InKindActions.fetchInKind(this.props.match.params.id));
     }
@@ -33,7 +33,7 @@ class ShowInKind extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>View In Kind Donation</Text>
+                <Text type='headline5'>{this.props.inKind.fromWhom} (In Kind)</Text>
 
                 <div className='resource-actions'>
                     <Link className='resource-actions-item unstyled-link-black' to={`/finance/in-kinds/${this.props.match.params.id}/edit`}>
@@ -45,6 +45,12 @@ class ShowInKind extends React.Component {
                     <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
                         <Text type='body2'>Delete</Text>
                     </a>
+
+                    <div className='resource-actions-spacer' />
+
+                    <Link className='resource-actions-item unstyled-link-black' to={`/finance/donors/${this.props.inKind.fromWhom}`}>
+                        <Text type='body2'>View Donor</Text>
+                    </Link>
                 </div>
                 <br /><br />
 

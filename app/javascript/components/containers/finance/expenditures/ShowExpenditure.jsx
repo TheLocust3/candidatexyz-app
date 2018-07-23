@@ -33,7 +33,7 @@ class ShowExpenditure extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>View Expense</Text>
+                <Text type='headline5'>{this.props.expenditure.paidTo}</Text>
 
                 <div className='resource-actions'>
                     <Link className='resource-actions-item unstyled-link-black' to={`/finance/expenditures/${this.props.match.params.id}/edit`}>

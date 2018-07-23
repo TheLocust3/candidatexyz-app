@@ -7,21 +7,35 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class Donation extends React.Component {
 
+    renderEmail() {
+        let receipt = this.props.receipt;
+        if (_.isEmpty(receipt.email)) return 'N/A';
+
+        return (
+            <a className='link' href={`mailto:${receipt.email}`}>{receipt.email}</a>
+        );
+    }
+
     renderDonationFields() {
         let receipt = this.props.receipt;
         if (receipt.receiptType != 'donation') return;
 
         return (
             <div>
-                <Text type='body1'>Email</Text>
-                <Text type='body2'>{_.isEmpty(receipt.email) ? 'N/A' : receipt.email}</Text>
-                <br />
+                <Text type='body1'>Contact</Text>
+                <Text type='body2'>Email: {this.renderEmail()}</Text>
+                <Text type='body2'>Phone Number: {_.isEmpty(receipt.phoneNumber) ? 'N/A' : receipt.phoneNumber}</Text>
 
-                <Text type='body1'>Phone Number</Text>
-                <Text type='body2'>{_.isEmpty(receipt.phoneNumber) ? 'N/A' : receipt.phoneNumber}</Text>
                 <br />
             </div>
         );
+    }
+
+    renderOccupation() {
+        let receipt = this.props.receipt;
+        if (_.isEmpty(receipt.occupation) || _.isEmpty(receipt.employer)) return 'N/A';
+
+        return `${receipt.occupation} at ${receipt.employer}`;
     }
 
     render() {
@@ -29,26 +43,18 @@ export default class Donation extends React.Component {
 
         return (
             <div>
-                <Text type='body1'>Donor</Text>
-                <Text type='body2'><Link className='link' to={`/finance/donors/${receipt.id}`}>{receipt.name}</Link></Text>
-                <br />
-
                 <Text type='body1'>Amount</Text>
                 <Text type='body2'>{receipt.amountString}</Text>
                 <br />
 
                 <Text type='body1'>Address</Text>
-                <Text type='body2'>{receipt.address}, {receipt.city}, {receipt.state}, {receipt.country}</Text>
+                <Text type='body2'>{receipt.address}, {receipt.city}, {receipt.state}{_.isEmpty(receipt.country) ? '' : `, ${receipt.country}`}</Text>
                 <br />
 
                 {this.renderDonationFields()}
 
                 <Text type='body1'>Occupation</Text>
-                <Text type='body2'>{_.isEmpty(receipt.occupation) ? 'N/A' : receipt.occupation}</Text>
-                <br />
-
-                <Text type='body1'>Employer</Text>
-                <Text type='body2'>{_.isEmpty(receipt.employer) ? 'N/A' : receipt.employer}</Text>
+                <Text type='body2'>{this.renderOccupation()}</Text>
                 <br />
 
                 <Text type='body1'>Date Received</Text>

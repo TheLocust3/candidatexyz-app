@@ -20,20 +20,13 @@ export default class SignUp extends React.Component {
 
         return (
             <div>
-                <Text type='body1'>Name</Text>
-                <Text type='body2'>{this.renderName(contact)}</Text>
-                <br />
-
-                <Text type='body1'>Email</Text>
-                <Text type='body2'>{contact.email}</Text>
+                <Text type='body1'>Contact</Text>
+                <Text type='body2'>Email: <a className='link' href={`mailto:${contact.email}`}>{_.lowerCase(contact.email)}</a></Text>
+                <Text type='body2'>PhoneNumber: {_.isEmpty(contact.phoneNumber) ? 'N/A' : contact.phoneNumber}</Text>
                 <br />
 
                 <Text type='body1'>Zipcode</Text>
                 <Text type='body2'>{_.isEmpty(contact.zipcode) ? 'N/A' : contact.zipcode}</Text>
-                <br />
-
-                <Text type='body1'>Phone Number</Text>
-                <Text type='body2'>{_.isEmpty(contact.phoneNumber) ? 'N/A' : contact.phoneNumber}</Text>
             </div>
         )
     }

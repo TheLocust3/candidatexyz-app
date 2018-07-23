@@ -9,9 +9,9 @@ export default class Message extends React.Component {
         if (_.isEmpty(message.firstName) && _.isEmpty(message.lastName)) return 'N/A';
 
         return (
-            <div>
+            <span>
                 {message.firstName} {message.lastName}
-            </div>
+            </span>
         )
     }
 
@@ -20,12 +20,8 @@ export default class Message extends React.Component {
 
         return (
             <div>
-                <Text type='body1'>Name</Text>
-                <Text type='body2'>{this.renderName(message)}</Text>
-                <br />
-
-                <Text type='body1'>Email</Text>
-                <Text type='body2'>{message.email}</Text>
+                <Text type='body1'>From</Text>
+                <Text type='body2'>{this.renderName(message)} (<a className='link' href={`mailto:${message.email}`}>{_.lowerCase(message.email)}</a>)</Text>
                 <br />
 
                 <Text type='body1'>Message</Text>

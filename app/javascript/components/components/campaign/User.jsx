@@ -16,17 +16,11 @@ export default class User extends React.Component {
     }
 
     renderAddress(user) {
-        if (_.isEmpty(user.address) || _.isEmpty(user.city) || _.isEmpty(user.state) || _.isEmpty(user.country) || _.isEmpty(user.zipcode)) {
-            return (
-                <div>
-                    N/A
-                </div>
-            );
-        }
+        if (_.isEmpty(user.address) || _.isEmpty(user.city)) return <div>N/A</div>;
 
         return (
             <div>
-                {user.address}, {user.city}, {user.state}, {user.country}, {user.zipcode}
+                {user.address}, {user.city}{_.isEmpty(user.state) ? '' : `, ${user.state}`}{_.isEmpty(user.country) ? '' : `, ${user.country}`}{_.isEmpty(user.zipcode) ? '' : `, ${user.zipcode}`}
             </div>
         );
     }
@@ -36,16 +30,9 @@ export default class User extends React.Component {
 
         return (
             <div>
-                <Text type='body1'>Name</Text>
-                <Text type='body2'>{this.renderName(user)}</Text>
-                <br />
-
-                <Text type='body1'>Email</Text>
-                <Text type='body2'>{user.email}</Text>
-                <br />
-
-                <Text type='body1'>Phone Number</Text>
-                <Text type='body2'>{_.isEmpty(user.phoneNumber) ? 'N/A' : user.phoneNumber}</Text>
+                <Text type='body1'>Contact Info</Text>
+                <Text type='body2'>Email: <a className='link' href={`mailto:${user.email}`}>{user.email}</a></Text>
+                <Text type='body2'>Phone Number: {_.isEmpty(user.phoneNumber) ? 'N/A' : user.phoneNumber}</Text>
                 <br />
 
                 <Text type='body1'>Address</Text>
@@ -58,10 +45,6 @@ export default class User extends React.Component {
 
                 <Text type='body1'>Party</Text>
                 <Text type='body2'>{_.isEmpty(user.party) ? 'None' : user.party}</Text>
-                <br />
-
-                <Text type='body1'>Admin?</Text>
-                <Text type='body2'>{user.admin ? 'Yes' : 'No'}</Text>
             </div>
         )
     }

@@ -30,10 +30,16 @@ class ShowSignUp extends React.Component {
         });
     }
     
+    renderName() {
+        if (_.isEmpty(this.props.contact.firstName) || _.isEmpty(this.props.contact.lastName)) return 'No Name Provided';
+
+        return `${this.props.contact.firstName} ${this.props.contaect.lastName}`;
+    }
+
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>View Sign Up</Text>
+                <Text type='headline5'>{this.renderName()}</Text>
 
                 <div className='resource-actions'>
                     <Link className='resource-actions-item unstyled-link-black' to={`/communication/sign-ups/${this.props.match.params.id}/edit`}>

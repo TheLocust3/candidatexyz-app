@@ -20,19 +20,11 @@ export default class Report extends React.Component {
                 <br />
 
                 <Text type='body1'>Report Type</Text>
-                <Text type='body2'>{report.reportTypeName}</Text>
+                <Text type='body2'>{report.reportTypeName} ({report.official ? 'Official' : 'Unofficial'})</Text>
                 <br />
 
-                <Text type='body1'>Official Report?</Text>
-                <Text type='body2'>{report.official ? 'Yes' : 'No'}</Text>
-                <br />
-
-                <Text type='body1'>Beginning Date</Text>
-                <Text type='body2'>{moment(report.data.beginning_date).format('MM/DD/YYYY')}</Text>
-                <br />
-
-                <Text type='body1'>Ending Date</Text>
-                <Text type='body2'>{moment(report.data.ending_date).format('MM/DD/YYYY')}</Text>
+                <Text type='body1'>Date Range</Text>
+                <Text type='body2'>{moment(report.data.beginning_date).format('MM/DD/YYYY')} - {moment(report.data.ending_date).format('MM/DD/YYYY')}</Text>
                 <br />
 
                 <Text type='body1'>Generated At</Text>

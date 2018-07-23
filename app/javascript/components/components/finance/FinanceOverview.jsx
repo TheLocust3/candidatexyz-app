@@ -41,7 +41,7 @@ export default class FinanceOverview extends React.Component {
                     <Text type='body2'>${_.sumBy(this.props.expenditures, (expenditure) => { return expenditure.amount })}</Text>
                     <br />
 
-                    <Text type='body1'>In Kind Contributions</Text>
+                    <Text type='body1'>In Kind Donations</Text>
                     <Text type='body2'>${_.sumBy(this.props.inKinds, (inKind) => { return inKind.value })}</Text>
                     <br />
 

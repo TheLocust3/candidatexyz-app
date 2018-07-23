@@ -12,24 +12,17 @@ export default class Committee extends React.Component {
                 <Text type='body2'><a className='link' href={committee.report.url}>Formation Documents</a></Text>
                 <br />
 
-                <Text type='body1'>Email</Text>
-                <Text type='body2'>{committee.email}</Text>
-                <br />
-
-                <Text type='body1'>Phone Number</Text>
-                <Text type='body2'>{committee.phoneNumber}</Text>
+                <Text type='body1'>Contact Info</Text>
+                <Text type='body2'>Email: <a className='link' href={`mailto:${committee.email}`}>{committee.email}</a></Text>
+                <Text type='body2'>Phone Number: {committee.phoneNumber}</Text>
                 <br />
 
                 <Text type='body1'>Address</Text>
-                <Text type='body2'>{committee.address}, {committee.city}, {committee.state}, {committee.country}</Text>
+                <Text type='body2'>{committee.address}, {committee.city}, {committee.state}{_.isEmpty(committee.country) ? '' : `, ${committee.country}`}</Text>
                 <br />
 
-                <Text type='body1'>Office</Text>
-                <Text type='body2'>{committee.office}</Text>
-                <br />
-
-                <Text type='body1'>District</Text>
-                <Text type='body2'>{committee.district}</Text>
+                <Text type='body1'>Running For</Text>
+                <Text type='body2'>{committee.office} in {committee.district}</Text>
                 <br />
 
                 <Text type='body1'>Bank</Text>

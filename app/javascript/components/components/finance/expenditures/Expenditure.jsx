@@ -12,10 +12,6 @@ export default class Expenditure extends React.Component {
 
         return (
             <div>
-                <Text type='body1'>Paid To</Text>
-                <Text type='body2'>{expenditure.paidTo}</Text>
-                <br />
-
                 <Text type='body1'>Purpose</Text>
                 <Text type='body2'>{expenditure.purpose}</Text>
                 <br />
@@ -25,7 +21,7 @@ export default class Expenditure extends React.Component {
                 <br />
 
                 <Text type='body1'>Address</Text>
-                <Text type='body2'>{expenditure.address}, {expenditure.city}, {expenditure.state}, {expenditure.country}</Text>
+                <Text type='body2'>{expenditure.address}, {expenditure.city}, {expenditure.state}{_.isEmpty(expenditure.country) ? '' : `, ${expenditure.country}`}</Text>
                 <br />
 
                 <Text type='body1'>Date Paid</Text>

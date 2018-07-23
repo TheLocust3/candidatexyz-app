@@ -13,8 +13,8 @@ import InKindForm from '../../../components/finance/in-kinds/InKindForm';
 class EditInKind extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(setTitle('Edit In Kind Contribution'));
-        this.props.dispatch(setBreadcrumb('In Kind Contributions'));
+        this.props.dispatch(setTitle('Edit In Kind Donation'));
+        this.props.dispatch(setBreadcrumb('In Kind Donations'));
         this.props.dispatch(setDrawerSelected('finance', 'inKind'));
 
         this.props.dispatch(InKindActions.fetchInKind(this.props.match.params.id));
@@ -33,7 +33,7 @@ class EditInKind extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>Edit In Kind Contribution</Text>
+                <Text type='headline5'>Edit In Kind Donation</Text>
                 <div className='resource-actions'>
                     <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
                         <Text type='body2'>Delete</Text>

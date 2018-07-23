@@ -5,14 +5,15 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class Volunteer extends React.Component {
 
-    renderName(volunteer) {
-        if (_.isEmpty(volunteer.firstName) && _.isEmpty(volunteer.lastName)) return 'N/A';
+    renderAddress() {
+        let volunteer = this.props.volunteer;
+        if (_.isEmpty(volunteer.address) || _.isEmpty(volunteer.city)) return <div>N/A</div>;
 
         return (
             <div>
-                {volunteer.firstName} {volunteer.lastName}
+                {volunteer.address}, {volunteer.city}{_.isEmpty(volunteer.state) ? '' : `, ${volunteer.state}`}{_.isEmpty(volunteer.country) ? '' : `, ${volunteer.country}`}{_.isEmpty(volunteer.zipcode) ? '' : `, ${volunteer.zipcode}`}
             </div>
-        )
+        );
     }
 
     render() {
@@ -20,32 +21,13 @@ export default class Volunteer extends React.Component {
 
         return (
             <div>
-                <Text type='body1'>Name</Text>
-                <Text type='body2'>{this.renderName(volunteer)}</Text>
-                <br />
-
-                <Text type='body1'>Email</Text>
-                <Text type='body2'>{volunteer.email}</Text>
+                <Text type='body1'>Contact</Text>
+                <Text type='body2'>Email: <a className='link' href={`mailto:${volunteer.email}`}>{volunteer.email}</a></Text>
+                <Text type='body2'>Phone Number: {_.isEmpty(volunteer.phoneNumber) ? 'N/A' : volunteer.phoneNumber}</Text>
                 <br />
 
                 <Text type='body1'>Address</Text>
-                <Text type='body2'>{_.isEmpty(volunteer.address) ? 'N/A' : volunteer.address}</Text>
-                <br />
-
-                <Text type='body1'>City</Text>
-                <Text type='body2'>{_.isEmpty(volunteer.city) ? 'N/A' : volunteer.city}</Text>
-                <br />
-
-                <Text type='body1'>State</Text>
-                <Text type='body2'>{_.isEmpty(volunteer.state) ? 'N/A' : volunteer.state}</Text>
-                <br />
-
-                <Text type='body1'>Zipcode</Text>
-                <Text type='body2'>{_.isEmpty(volunteer.zipcode) ? 'N/A' : volunteer.zipcode}</Text>
-                <br />
-
-                <Text type='body1'>Phone Number</Text>
-                <Text type='body2'>{_.isEmpty(volunteer.phoneNumber) ? 'N/A' : volunteer.phoneNumber}</Text>
+                <Text type='body2'>{this.renderAddress()}</Text>
                 <br />
 
                 <Text type='body1'>Help Type</Text>

@@ -48,10 +48,16 @@ class ShowUser extends React.Component {
         );
     }
 
+    renderName() {
+        if (_.isEmpty(this.props.user.firstName) || _.isEmpty(this.props.user.lastName)) return 'No Name Provided';
+
+        return `${this.props.user.firstName} ${this.props.user.lastName} ${this.props.user.admin ? '(Admin)' : ''}`;
+    }
+
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>View User</Text>
+                <Text type='headline5'>{this.renderName()}</Text>
 
                 {this.renderActions()}
                 <br /><br />

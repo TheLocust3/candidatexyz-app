@@ -30,10 +30,16 @@ class ShowVolunteer extends React.Component {
         });
     }
 
+    renderName() {
+        if (_.isEmpty(this.props.volunteer.firstName) || _.isEmpty(this.props.volunteer.lastName)) return 'No Name Provided';
+
+        return `${this.props.volunteer.firstName} ${this.props.volunteer.lastName}`;
+    }
+
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>View Volunteer</Text>
+                <Text type='headline5'>{this.renderName()}</Text>
 
                 <div className='resource-actions'>
                     <Link className='resource-actions-item unstyled-link-black' to={`/communication/volunteers/${this.props.match.params.id}/edit`}>

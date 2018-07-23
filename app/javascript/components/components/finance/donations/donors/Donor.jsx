@@ -5,21 +5,33 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class Donor extends React.Component {
 
+    renderEmail() {
+        let donor = this.props.donor;
+        if (_.isEmpty(donor.email)) return 'N/A';
+
+        return (
+            <a className='link' href={`mailto:${donor.email}`}>{donor.email}</a>
+        );
+    }
+
     renderDonationFields() {
         let donor = this.props.donor;
         if (donor.receiptType != 'donation') return;
 
         return (
             <div>
-                <Text type='body1'>Email</Text>
-                <Text type='body2'>{_.isEmpty(donor.email) ? 'N/A' : donor.email}</Text>
-                <br />
-
-                <Text type='body1'>Phone Number</Text>
-                <Text type='body2'>{_.isEmpty(donor.phoneNumber) ? 'N/A' : donor.phoneNumber}</Text>
-                <br />
+                <Text type='body1'>Contact</Text>
+                <Text type='body2'>Email: {this.renderEmail()}</Text>
+                <Text type='body2'>Phone Number: {_.isEmpty(donor.phoneNumber) ? 'N/A' : recedonoript.phoneNumber}</Text>
             </div>
         );
+    }
+
+    renderOccupation() {
+        let donor = this.props.donor;
+        if (_.isEmpty(donor.occupation) || _.isEmpty(donor.employer)) return 'N/A';
+
+        return `${donor.occupation} at ${donor.employer}`;
     }
 
     render() {
@@ -27,26 +39,15 @@ export default class Donor extends React.Component {
 
         return (
             <div>
-                <Text type='body1'>Donor</Text>
-                <Text type='body2'>{donor.name}</Text>
-                <br />
-
                 <Text type='body1'>Total Amount</Text>
                 <Text type='body2'>${donor.amount}</Text>
                 <br />
 
                 <Text type='body1'>Address</Text>
-                <Text type='body2'>{donor.address}, {donor.city}, {donor.state}, {donor.country}</Text>
+                <Text type='body2'>{donor.address}, {donor.city}, {donor.state}{_.isEmpty(donor.country) ? '' : `, ${donor.country}`}</Text>
                 <br />
 
                 {this.renderDonationFields()}
-
-                <Text type='body1'>Occupation</Text>
-                <Text type='body2'>{_.isEmpty(donor.occupation) ? 'N/A' : donor.occupation}</Text>
-                <br />
-
-                <Text type='body1'>Employer</Text>
-                <Text type='body2'>{_.isEmpty(donor.employer) ? 'N/A' : donor.employer}</Text>
             </div>
         )
     }

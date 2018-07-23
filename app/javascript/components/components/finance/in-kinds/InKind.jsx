@@ -1,21 +1,24 @@
 import _ from 'lodash';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class InKind extends React.Component {
 
+    renderEmail() {
+        if (_.isEmpty(this.props.inKind.email)) return 'N/A';
+
+        return (
+            <a className='link' href={`mailto:${inKind.email}`}>{inKind.email}</a>
+        );
+    }
+
     render() {
         let inKind = this.props.inKind;
 
         return (
             <div>
-                <Text type='body1'>From Whom</Text>
-                <Text type='body2'>{inKind.fromWhom}</Text>
-                <br />
-
                 <Text type='body1'>Description</Text>
                 <Text type='body2'>{inKind.description}</Text>
                 <br />
@@ -25,19 +28,16 @@ export default class InKind extends React.Component {
                 <br />
 
                 <Text type='body1'>Address</Text>
-                <Text type='body2'>{inKind.address}, {inKind.city}, {inKind.state}, {inKind.country}</Text>
+                <Text type='body2'>{inKind.address}, {inKind.city}, {inKind.state}{_.isEmpty(inKind.country) ? '' : `, ${inKind.country}`}</Text>
+                <br />
+
+                <Text type='body1'>Contact</Text>
+                <Text type='body2'>Email: {this.renderEmail()}</Text>
+                <Text type='body2'>Phone Number: {_.isEmpty(inKind.phoneNumber) ? 'N/A' : inKind.phoneNumber}</Text>
                 <br />
 
                 <Text type='body1'>Date Received</Text>
                 <Text type='body2'>{moment(inKind.datePaid).format('MM/DD/YYYY')}</Text>
-                <br />
-
-                <Text type='body1'>Email</Text>
-                <Text type='body2'>{_.isEmpty(inKind.email) ? 'N/A' : inKind.email}</Text>
-                <br />
-
-                <Text type='body1'>Phone Number</Text>
-                <Text type='body2'>{_.isEmpty(inKind.phoneNumber) ? 'N/A' : inKind.phoneNumber}</Text>
                 <br />
             </div>
         )
