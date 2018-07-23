@@ -7,7 +7,6 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../../actions/global-actions';
 
 import Loader from '../../../../components/common/Loader';
-import Pager from '../../../../components/common/Pager';
 import Table from '../../../../components/common/Table';
 import BackLink from '../../../../components/common/BackLink';
 
@@ -41,10 +40,7 @@ class Donors extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.areReceiptsReady && this.props.areInKindsReady}>
-                        <Table to='/finance/donors/' toId='name' headers={['Name', 'Total Amount', 'Address', 'City', 'State']} keys={['name', (receipt) => { return `$${receipt.amount}` }, 'address', 'city', 'state']} rows={donors} rowsPerPage={PER_PAGE} />
-                        <br /><br />
-
-                        <Pager elements={donors} elementsPerPage={PER_PAGE} baseLink='/finance/donors' />
+                        <Table to='/finance/donors/' toId='name' headers={['Name', 'Total Amount', 'Address', 'City', 'State']} keys={['name', (receipt) => { return `$${receipt.amount}` }, 'address', 'city', 'state']} rows={donors} rowsPerPage={PER_PAGE} pagerLink='/finance/donors' />
                         <br />
                         
                         <BackLink to='/finance/donations' />

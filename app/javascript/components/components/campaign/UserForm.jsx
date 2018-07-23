@@ -75,7 +75,7 @@ export default class UserForm extends React.Component {
 
         return (
             <div>
-                <TextField label='Position' name='positionOther' onChange={this.handleChange.bind(this)} defaultValue={this.state.user.position} style={{ width: '100%' }} />
+                <TextField label='Position' name='positionOther' onChange={this.handleChange.bind(this)} defaultValue={this.state.user.position} />
             </div>
         );
     }
@@ -104,16 +104,16 @@ export default class UserForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.email} style={{ width: '100%' }} /><br /><br />
+                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.email} /><br /><br />
 
-                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.firstName} style={{ width: '100%' }} /><br />
-                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.lastName} style={{ width: '100%' }} /><br /><br />
+                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.firstName} /><br />
+                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.lastName} /><br /><br />
 
                 <AddressInput address={this.state.user.address} city={this.state.user.city} state={this.state.user.state} country={this.state.user.country} onChange={(name, value) => this.handleAddressChange(name, value)} />
-                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.zipcode} style={{ width: '100%' }} required /><br /><br />
+                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.zipcode} required /><br /><br />
 
-                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.phoneNumber} style={{ width: '100%' }} /><br />
-                <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.party} style={{ width: '100%' }} /><br /><br />
+                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.phoneNumber} /><br />
+                <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.party} /><br /><br />
 
                 {this.renderPositionDropdown()}<br />
                 <Checkbox label='Admin' onChange={this.handleAdminCheck.bind(this)} defaultChecked={this.props.user.admin} /><br /><br /><br />

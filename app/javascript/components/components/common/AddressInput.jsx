@@ -32,7 +32,7 @@ export default class AddressInput extends React.Component {
     render() {
         return (
             <div>
-                <TextField label='Mailing Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.props.address} style={{ width: '100%' }} required={this.props.required} /><br />
+                <TextField label='Mailing Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.props.address} required={this.props.required} /><br />
                 <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.props.city} style={{ width: '30%', marginRight: '5%' }} required={this.props.required} />
                 {this.renderStateDropdown()}
                 <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.props.country} style={{ width: '30%' }} required={this.props.required} />

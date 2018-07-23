@@ -202,3 +202,7 @@
 .autocomplete-item:active {
     background-color: darken(white, 10%);
 }
+
+.chartjs-render-monitor {
+    max-width: 800px;
+}

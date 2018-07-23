@@ -31,7 +31,7 @@ export default class ForgotPasswordForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br /><br />
+                <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} /><br /><br />
 
                 <Button type='submit'>Reset Password</Button>
             </Form>

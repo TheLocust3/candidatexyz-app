@@ -51,7 +51,7 @@ export default class InviteForm extends React.Component {
 
         return (
             <div>
-                <TextField label='Position' name='positionOther' onChange={this.handleChange.bind(this)} defaultValue={this.state.position} style={{ width: '100%' }} />
+                <TextField label='Position' name='positionOther' onChange={this.handleChange.bind(this)} defaultValue={this.state.position} />
             </div>
         );
     }

@@ -12,6 +12,8 @@ export default class AnalyticGraphs extends React.Component {
         let dayEnd = moment().minute(0).second(0).millisecond(0);
         let monthStart = moment().hour(0).minute(0).second(0).millisecond(0).subtract(31, 'days');
         let monthEnd = moment().hour(0).minute(0).second(0).millisecond(0);
+        let yearEnd = moment().add(1, 'year').month(0).day(0).hour(0).minute(0).second(0).millisecond(0);
+        let earliestYear = moment(_.minBy(this.props.analyticEntries.month, (entry) => { return entry.datetime })).month(0).day(0).hour(0).minute(0).second(0).millisecond(0);
 
         return (
             <div>
@@ -25,6 +27,11 @@ export default class AnalyticGraphs extends React.Component {
                 <Text type='body2'>Page views per day</Text><br />
 
                 <AggregateGraph analyticEntries={this.props.analyticEntries.day} start={monthStart} end={monthEnd} unit='day' />
+                <br /><br />
+
+                <Text type='headline6'>All time</Text>
+                <Text type='body2'>Page views per month</Text><br />
+                <AggregateGraph analyticEntries={this.props.analyticEntries.month} start={earliestYear} end={yearEnd} unit='month' />
             </div>
         );
     }

@@ -7,7 +7,6 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
 import Loader from '../../../components/common/Loader';
-import Pager from '../../../components/common/Pager';
 import Table from '../../../components/common/Table';
 
 const PER_PAGE = 20;
@@ -42,10 +41,7 @@ class SignUps extends React.Component {
                 <br />
 
                 <Loader isReady={this.props.isReady}>
-                    <Table to='/communication/sign-ups/' headers={['Email', 'First Name', 'Last Name', 'Zipcode']} keys={['email', 'firstName', 'lastName', 'zipcode']} rows={this.props.contacts.contacts} rowsPerPage={PER_PAGE} />
-                    <br /><br />
-
-                    <Pager elements={this.props.contacts.contacts} elementsPerPage={PER_PAGE} baseLink='/communication/sign-ups' />
+                    <Table to='/communication/sign-ups/' headers={['Email', 'First Name', 'Last Name', 'Zipcode']} keys={['email', 'firstName', 'lastName', 'zipcode']} rows={this.props.contacts.contacts} rowsPerPage={PER_PAGE} pagerLink='/communication/sign-ups' />
                 </Loader>
             </div>
         );

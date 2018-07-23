@@ -57,10 +57,10 @@ export default class EditCampaignForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <TextField label='Name' name='name' onChange={this.handleChange.bind(this)} defaultValue={this.props.campaign.name} style={{ width: '100%' }} />
+                <TextField label='Name' name='name' onChange={this.handleChange.bind(this)} defaultValue={this.props.campaign.name} />
                 <br />
 
-                <TextField label='Website URL' name='url' onChange={this.handleChange.bind(this)} defaultValue={this.props.campaign.url} style={{ width: '100%' }} />
+                <TextField label='Website URL' name='url' onChange={this.handleChange.bind(this)} defaultValue={this.props.campaign.url} />
                 <br /><br />
 
                 <DatePicker label='Preliminary Election Day:' defaultValue={this.state.campaign.preliminaryDay} onChange={(date) => { this.handleDateChange('preliminaryDay', date) }} style={{ display: 'inline-block', marginRight: '5%' }} />

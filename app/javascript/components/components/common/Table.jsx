@@ -6,6 +6,8 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../constants';
 
+import Pager from './Pager';
+
 export default class Table extends React.Component {
 
     constructor(props) {
@@ -113,18 +115,23 @@ export default class Table extends React.Component {
     }
 
     render() {
-        let { rows, rowsPerPage, headers, keys, sortingKeys, to, toId, ...props } = this.props;
+        let { rows, rowsPerPage, headers, keys, sortingKeys, to, toId, pagerLink, ...props } = this.props;
 
         return (
-            <table {...props}>
-                <thead>
-                    {this.renderHeader()}
-                </thead>
-                
-                <tbody>
-                    {this.renderRows()}
-                </tbody>
-            </table>
+            <div className='selectable-table'>
+                <table {...props}>
+                    <thead>
+                        {this.renderHeader()}
+                    </thead>
+                    
+                    <tbody>
+                        {this.renderRows()}
+                    </tbody>
+                </table>
+                <br /><br />
+
+                <Pager elements={rows} elementsPerPage={rowsPerPage} baseLink={pagerLink} />
+            </div>
         );
     }
 }
@@ -136,5 +143,6 @@ Table.propTypes = {
     keys: PropTypes.array.isRequired,
     sortingKeys: PropTypes.array,
     to: PropTypes.any.isRequired,
-    toId: PropTypes.string
+    toId: PropTypes.string,
+    pagerLink: PropTypes.string.isRequired,
 };

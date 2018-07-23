@@ -8,7 +8,6 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
 import Loader from '../../../components/common/Loader';
-import Pager from '../../../components/common/Pager';
 import Table from '../../../components/common/Table';
 
 const PER_PAGE = 20;
@@ -57,10 +56,7 @@ class Donations extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.areReceiptsReady && this.props.areInKindsReady}>
-                        <Table to={(row) => { return row.type == 'Receipt' ? '/finance/donations/' : '/finance/in-kinds/' }} headers={['Name', 'Amount', 'Address', 'Date Received', 'Type']} keys={['name', 'amountString', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'type']} sortingKeys={['name', 'amount', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).unix() }, 'type']} rows={donations} rowsPerPage={PER_PAGE} />
-                        <br /><br />
-
-                        <Pager elements={donations} elementsPerPage={PER_PAGE} baseLink='/finance/donations' />
+                        <Table to={(row) => { return row.type == 'Receipt' ? '/finance/donations/' : '/finance/in-kinds/' }} headers={['Name', 'Amount', 'Address', 'Date Received', 'Type']} keys={['name', 'amountString', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'type']} sortingKeys={['name', 'amount', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).unix() }, 'type']} rows={donations} rowsPerPage={PER_PAGE} pagerLink='/finance/donations' />
                     </Loader>
                 </div>
             </div>

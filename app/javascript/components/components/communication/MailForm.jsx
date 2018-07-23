@@ -52,7 +52,7 @@ export default class MailForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <TextField label='Subject' name='subject' defaultValue={this.state.mail.subject} onChange={this.handleChange.bind(this)} style={{ width: '100%' }} /><br /><br />
+                <TextField label='Subject' name='subject' defaultValue={this.state.mail.subject} onChange={this.handleChange.bind(this)} /><br /><br />
                 
                 <TextEditor onChange={(content) => this.handleEditorChange(content)} />
                 <br />

@@ -8,7 +8,6 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
 import Loader from '../../../components/common/Loader';
-import Pager from '../../../components/common/Pager';
 import Table from '../../../components/common/Table';
 
 const PER_PAGE = 20;
@@ -42,10 +41,7 @@ class Liabilities extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>
-                        <Table to='/finance/liabilities/' headers={['To Whom', 'Amount', 'Address', 'Date Incurred']} keys={['toWhom', 'amountString', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }]} sortingKeys={['toWhom', 'amount', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).unix() }]} rows={this.props.liabilities.liabilities} rowsPerPage={PER_PAGE} />
-                        <br /><br />
-
-                        <Pager elements={this.props.liabilities.liabilities} elementsPerPage={PER_PAGE} baseLink='/finance/liabilities' />
+                        <Table to='/finance/liabilities/' headers={['To Whom', 'Amount', 'Address', 'Date Incurred']} keys={['toWhom', 'amountString', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }]} sortingKeys={['toWhom', 'amount', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).unix() }]} rows={this.props.liabilities.liabilities} rowsPerPage={PER_PAGE} pagerLink='/finance/liabilities' />
                     </Loader>
                 </div>
             </div>

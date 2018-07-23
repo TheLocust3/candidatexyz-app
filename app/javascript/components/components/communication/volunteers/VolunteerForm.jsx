@@ -35,19 +35,19 @@ export default class SignUpForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.email} style={{ width: '100%' }} /><br /><br />
+                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.email} /><br /><br />
 
-                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.firstName} style={{ width: '100%' }} /><br />
-                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.lastName} style={{ width: '100%' }} /><br /><br />
+                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.firstName} /><br />
+                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.lastName} /><br /><br />
 
-                <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.address} style={{ width: '100%' }} /><br />
-                <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.city} style={{ width: '100%' }} /><br />
-                <TextField label='State' name='state' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.state} style={{ width: '100%' }} /><br />
-                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.zipcode} style={{ width: '100%' }} /><br /><br />
+                <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.address} /><br />
+                <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.city} /><br />
+                <TextField label='State' name='state' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.state} /><br />
+                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.zipcode} /><br /><br />
 
-                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.phoneNumber} style={{ width: '100%' }} /><br /><br />
+                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.phoneNumber} /><br /><br />
 
-                <TextArea label='Help Blurb' name='helpBlurb' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.helpBlurb} rows={10} style={{ width: '100%' }} /><br /><br />
+                <TextArea label='Help Blurb' name='helpBlurb' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.helpBlurb} rows={10} /><br /><br />
 
                 <Button>Save</Button>
 

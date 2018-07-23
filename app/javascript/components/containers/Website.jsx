@@ -20,6 +20,7 @@ class Website extends React.Component {
 
         this.props.dispatch(CampaignActions.fetchCampaign(this.props.currentUser.campaignId));
         this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(99, 'years').format(), moment().format(), 'year'));
+        this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(99, 'years').format(), moment().format(), 'month'));
         this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(31, 'days').format(), moment().format(), 'day'));
         this.props.dispatch(AnalyticEntryActions.fetchAggregatedAnalyticEntries(moment().subtract(24, 'hours').format(), moment().format(), 'hour'));
     }
@@ -36,7 +37,7 @@ class Website extends React.Component {
                 <div className='content-2'>
                     <Text type='headline6'>At a Glance</Text>
 
-                    <Loader isReady={this.props.isCampaignReady && this.props.isAggregateReady.year && this.props.isAggregateReady.day && this.props.isAggregateReady.hour}>
+                    <Loader isReady={this.props.isCampaignReady && this.props.isAggregateReady.year && this.props.isAggregateReady.month && this.props.isAggregateReady.day && this.props.isAggregateReady.hour}>
                         <AnalyticsOverview analyticEntries={this.props.aggregateEntries} />
                         <br /><br />
 

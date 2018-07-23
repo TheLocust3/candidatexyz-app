@@ -177,5 +177,14 @@ body, #root {
 }
 
 .textfield {
-    width: 40%;
+    width: 100%;
+}
+
+.textarea {
+    width: 100%;
+}
+
+.form {
+    position: relative;
+    max-width: 750px;
 }

@@ -85,9 +85,9 @@ export default class ExpenditureForm extends React.Component {
 
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <AutoCompleteTextField elements={this.props.expenditures} elementKey='paidTo' label='Paid To' name='paidTo' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.expenditure.paidTo} style={{ width: '100%' }} required /><br />
+                <AutoCompleteTextField elements={this.props.expenditures} elementKey='paidTo' label='Paid To' name='paidTo' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.expenditure.paidTo} required /><br />
 
-                <TextField label='Purpose' name='purpose' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.purpose} style={{ width: '100%' }} required /><br /><br />
+                <TextField label='Purpose' name='purpose' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.purpose} required /><br /><br />
 
                 <AddressInput address={this.state.expenditure.address} city={this.state.expenditure.city} state={this.state.expenditure.state} country={this.state.expenditure.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br /><br />

@@ -85,9 +85,9 @@ export default class LiabilityForm extends React.Component {
 
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <AutoCompleteTextField elements={this.props.liabilities} elementKey='toWhom' label='To Whom' name='toWhom' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.liability.toWhom} style={{ width: '100%' }} required /><br />
+                <AutoCompleteTextField elements={this.props.liabilities} elementKey='toWhom' label='To Whom' name='toWhom' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.liability.toWhom} required /><br />
 
-                <TextField label='Purpose' name='purpose' onChange={this.handleChange.bind(this)} defaultValue={this.state.liability.purpose} style={{ width: '100%' }} required /><br /><br />
+                <TextField label='Purpose' name='purpose' onChange={this.handleChange.bind(this)} defaultValue={this.state.liability.purpose} required /><br /><br />
 
                 <AddressInput address={this.state.liability.address} city={this.state.liability.city} state={this.state.liability.state} country={this.state.liability.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br /><br />

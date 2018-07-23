@@ -142,7 +142,7 @@ export default class DonationForm extends React.Component {
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
                 {this.renderReceiptTypeDropdown()}
                 
-                <AutoCompleteTextField elements={this.props.receipts} elementKey='name' label='Name' name='name' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.receipt.name} style={{ width: '100%' }} required /><br />
+                <AutoCompleteTextField elements={this.props.receipts} elementKey='name' label='Name' name='name' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.receipt.name} required /><br />
 
                 <AddressInput address={this.state.receipt.address} city={this.state.receipt.city} state={this.state.receipt.state} country={this.state.receipt.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br /><br />

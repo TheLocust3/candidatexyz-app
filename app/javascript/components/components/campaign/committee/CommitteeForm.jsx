@@ -64,17 +64,17 @@ export default class CommitteeForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <TextField label='Committee Name' name='name' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.name} style={{ width: '100%' }} required /><br />
-                <TextField label='Office' name='office' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.office} style={{ width: '100%' }} required /><br />
-                <TextField label='District' name='district' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.district} style={{ width: '100%' }} required /><br /><br />
+                <TextField label='Committee Name' name='name' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.name} required /><br />
+                <TextField label='Office' name='office' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.office} required /><br />
+                <TextField label='District' name='district' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.district} required /><br /><br />
 
-                <TextField type='email' label='Committee Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.email} style={{ width: '100%' }} required /><br />
-                <TextField label='Committee Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.phoneNumber} style={{ width: '100%' }} required /><br /><br />
+                <TextField type='email' label='Committee Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.email} required /><br />
+                <TextField label='Committee Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.phoneNumber} required /><br /><br />
 
                 <AddressInput address={this.state.committee.address} city={this.state.committee.city} state={this.state.committee.state} country={this.state.committee.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br />
 
-                <TextField label='Bank Name' name='bank' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.bank} style={{ width: '100%' }}  required />
+                <TextField label='Bank Name' name='bank' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.bank} required />
                 <br /><br />
 
                 <Button>Save</Button>

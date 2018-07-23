@@ -35,13 +35,13 @@ export default class SignUpForm extends React.Component {
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.email} style={{ width: '100%' }} /><br /><br />
+                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.email} /><br /><br />
 
-                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.firstName} style={{ width: '100%' }} /><br />
-                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.lastName} style={{ width: '100%' }} /><br /><br />
+                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.firstName} /><br />
+                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.lastName} /><br /><br />
 
-                <TextField label='Zipcode' name='zipCode' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.zipCode} style={{ width: '100%' }} /><br />
-                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.phoneNumber} style={{ width: '100%' }} /><br /><br />
+                <TextField label='Zipcode' name='zipCode' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.zipCode} /><br />
+                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.phoneNumber} /><br /><br />
 
                 <Button>Save</Button>
 
