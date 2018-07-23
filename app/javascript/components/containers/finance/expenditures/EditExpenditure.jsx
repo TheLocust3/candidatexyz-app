@@ -34,7 +34,7 @@ class EditExpenditure extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Edit Expense</Text>
-                <div className='resource-actions'>
+                <div className='resource-actions-under'>
                     <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
                         <Text type='body2'>Delete</Text>
                     </a>

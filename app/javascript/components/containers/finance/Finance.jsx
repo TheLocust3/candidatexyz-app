@@ -28,24 +28,20 @@ class Finance extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Finance Overview</Text>
-                <div className='resource-actions'>
+                <div className='resource-actions-under'>
                     <Link className='resource-actions-item unstyled-link-black' to='/finance/donations/new'>
                         <Text type='body2'>Add Donation</Text>
                     </Link>
-
-                    <div className='resource-actions-spacer' />
 
                     <Link className='resource-actions-item unstyled-link-black' to='/finance/expenditures/new'>
                         <Text type='body2'>Add Expense</Text>
                     </Link>
 
-                    <div className='resource-actions-spacer' />
-
                     <Link className='resource-actions-item unstyled-link-black' to='/finance/liabilities/new'>
                         <Text type='body2'>Add Debt</Text>
                     </Link>
                 </div>
-                <br />
+                <br /><br />
 
                 <Loader className='content-max' isReady={this.props.areReportsReady && this.props.areReceiptsReady && this.props.areExpendituresReady && this.props.areInKindsReady && this.props.areLiabilitiesReady}>
                     <FinanceOverview receipts={this.props.receipts.receipts} expenditures={this.props.expenditures.expenditures} inKinds={this.props.inKinds.inKinds} liabilities={this.props.liabilities.liabilities} />

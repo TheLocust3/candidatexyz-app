@@ -23,7 +23,7 @@ class Staff extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Staff Overview</Text>
-                <div className='resource-actions'>
+                <div className='resource-actions-under'>
                     <Link className='resource-actions-item unstyled-link-black' to='/campaign/invite-staff'>
                         <Text type='body2'>
                             Invite

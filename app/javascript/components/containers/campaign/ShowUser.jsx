@@ -34,17 +34,15 @@ class ShowUser extends React.Component {
         if (!this.props.currentUser.admin) return;
 
         return (
-            <div className='resource-actions'>
+            <span className='resource-actions relative'>
                 <Link className='resource-actions-item unstyled-link-black' to={`/campaign/staff/${this.props.match.params.id}/edit`}>
-                    <Text type='body2'>Edit</Text>
+                    <i className='material-icons middle'>edit</i>
                 </Link>
 
-                <div className='resource-actions-spacer' />
-
-                <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
-                    <Text type='body2'>Delete</Text>
+                <a className='resource-actions-item unstyled-link-black delete' href='#' onClick={this.onDeleteClick.bind(this)}>
+                    <i className='material-icons middle'>delete</i>
                 </a>
-            </div>
+            </span>
         );
     }
 
@@ -57,9 +55,11 @@ class ShowUser extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>{this.renderName()}</Text>
+                <Text type='headline5'>
+                    {this.renderName()}
 
-                {this.renderActions()}
+                    {this.renderActions()}
+                </Text>
                 <br /><br />
 
                 <div className='content-2'>

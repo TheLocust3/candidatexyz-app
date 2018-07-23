@@ -32,8 +32,8 @@ class EditCommittee extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Create Committee</Text>
-                <div className='resource-actions'>
-                    <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
+                <div className='resource-actions-under'>
+                    <a className='resource-actions-item unstyled-link-black delete' href='#' onClick={this.onDeleteClick.bind(this)}>
                         <Text type='body2'>Delete</Text>
                     </a>
                 </div>

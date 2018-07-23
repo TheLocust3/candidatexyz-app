@@ -33,23 +33,23 @@ class ShowInKind extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>{this.props.inKind.fromWhom} (In Kind)</Text>
+                <Text type='headline5'>
+                    {this.props.inKind.fromWhom} (In Kind)
 
-                <div className='resource-actions'>
-                    <Link className='resource-actions-item unstyled-link-black' to={`/finance/in-kinds/${this.props.match.params.id}/edit`}>
-                        <Text type='body2'>Edit</Text>
-                    </Link>
+                    <span className='resource-actions relative'>
+                        <Link className='resource-actions-item unstyled-link-black' to={`/finance/in-kinds/${this.props.match.params.id}/edit`}>
+                            <i className='material-icons middle'>edit</i>
+                        </Link>
 
-                    <div className='resource-actions-spacer' />
+                        <a className='resource-actions-item unstyled-link-black delete' href='#' onClick={this.onDeleteClick.bind(this)}>
+                            <i className='material-icons middle'>delete</i>
+                        </a>
+                    </span>
+                </Text>
 
-                    <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
-                        <Text type='body2'>Delete</Text>
-                    </a>
-
-                    <div className='resource-actions-spacer' />
-
+                <div className='resource-actions-under'>
                     <Link className='resource-actions-item unstyled-link-black' to={`/finance/donors/${this.props.inKind.fromWhom}`}>
-                        <Text type='body2'>View Donor</Text>
+                        <Text type='body2'>Show Donor</Text>
                     </Link>
                 </div>
                 <br /><br />

@@ -56,12 +56,10 @@ class ShowCommittee extends React.Component {
             <div className='content'>
                 <Text type='headline5'>{committee.name}</Text>
 
-                <div className='resource-actions'>
+                <div className='resource-actions-under'>
                     <Link className='resource-actions-item unstyled-link-black' to={`/campaign/committee/edit`}>
                         <Text type='body2'>Change</Text>
                     </Link>
-
-                    <div className='resource-actions-spacer' />
 
                     <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
                         <Text type='body2'>Dissolve</Text>

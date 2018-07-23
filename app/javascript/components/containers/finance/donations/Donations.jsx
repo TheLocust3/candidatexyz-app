@@ -29,30 +29,24 @@ class Donations extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Donation List</Text>
-                <div className='resource-actions'>
+                <div className='resource-actions-under'>
                     <Link className='resource-actions-item unstyled-link-black' to='/finance/donations/new'>
                         <Text type='body2'>Add</Text>
                     </Link>
-
-                    <div className='resource-actions-spacer' />
 
                     <Link className='resource-actions-item unstyled-link-black' to='/finance/donors'>
                         <Text type='body2'>Donor List</Text>
                     </Link>
 
-                    <div className='resource-actions-spacer' />
-
                     <a className='resource-actions-item unstyled-link-black' href={`${ReceiptApi.exportLink()}`} download>
                         <Text type='body2'>Download Receipts</Text>
                     </a>
-
-                    <div className='resource-actions-spacer' />
 
                     <a className='resource-actions-item unstyled-link-black' href={`${InKindApi.exportLink()}`} download>
                         <Text type='body2'>Download In Kinds</Text>
                     </a>
                 </div>
-                <br />
+                <br /><br />
 
                 <div className='content-1'>
                     <Loader isReady={this.props.areReceiptsReady && this.props.areInKindsReady}>

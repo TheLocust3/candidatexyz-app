@@ -39,19 +39,19 @@ class ShowSignUp extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>{this.renderName()}</Text>
+                <Text type='headline5'>
+                    {this.renderName()}
 
-                <div className='resource-actions'>
-                    <Link className='resource-actions-item unstyled-link-black' to={`/communication/sign-ups/${this.props.match.params.id}/edit`}>
-                        <Text type='body2'>Edit</Text>
-                    </Link>
+                    <span className='resource-actions relative'>
+                        <Link className='resource-actions-item unstyled-link-black' to={`/communication/sign-ups/${this.props.match.params.id}/edit`}>
+                            <i className='material-icons middle'>edit</i>
+                        </Link>
 
-                    <div className='resource-actions-spacer' />
-
-                    <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
-                        <Text type='body2'>Delete</Text>
-                    </a>
-                </div>
+                        <a className='resource-actions-item unstyled-link-black delete' href='#' onClick={this.onDeleteClick.bind(this)}>
+                            <i className='material-icons middle'>delete</i>
+                        </a>
+                    </span>
+                </Text>
                 <br /><br />
 
                 <div className='content-2'>

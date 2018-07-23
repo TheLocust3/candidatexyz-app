@@ -25,20 +25,18 @@ class Volunteers extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Volunteer List</Text>
-                <div className='resource-actions'>
+                <div className='resource-actions-under'>
                     <Link className='resource-actions-item unstyled-link-black' to='/communication/mail/volunteers'>
                         <Text type='body2'>
                             Email
                         </Text>
                     </Link>
-
-                    <div className='resource-actions-spacer' />
                 
                     <a className='resource-actions-item unstyled-link-black' href={`${VolunteerApi.exportLink()}`} download>
                         <Text type='body2'>Download</Text>
                     </a>
                 </div>
-                <br />
+                <br /><br />
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>

@@ -25,20 +25,18 @@ class SignUps extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Sign Up List</Text>
-                <div className='resource-actions'>
+                <div className='resource-actions-under'>
                     <Link className='resource-actions-item unstyled-link-black' to='/communication/mail/sign-ups'>
                         <Text type='body2'>
                             Email
                         </Text>
                     </Link>
 
-                    <div className='resource-actions-spacer' />
-
                     <a className='resource-actions-item unstyled-link-black' href={`${ContactApi.exportLink()}`} download>
                         <Text type='body2'>Download</Text>
                     </a>
                 </div>
-                <br />
+                <br /><br />
 
                 <Loader isReady={this.props.isReady}>
                     <Table to='/communication/sign-ups/' headers={['Email', 'First Name', 'Last Name', 'Zipcode']} keys={['email', 'firstName', 'lastName', 'zipcode']} rows={this.props.contacts.contacts} rowsPerPage={PER_PAGE} pagerLink='/communication/sign-ups' />

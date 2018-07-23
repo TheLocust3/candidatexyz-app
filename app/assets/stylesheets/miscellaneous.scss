@@ -23,18 +23,29 @@
 }
 
 .resource-actions {
-    margin-left: 1%;
+    margin-left: -0.15em;
 }
 
 .resource-actions-item {
-    display: inline-block;
+    margin-left: 0.7em;
+    margin-right: 0.7em;
 }
 
-.resource-actions-spacer {
+.resource-actions-under {
     display: inline-block;
 
-    margin-left: 0.5%;
-    margin-right: 0.5%;
+    margin-left: 1%;
+}
+
+.resource-actions-under .resource-actions-item {
+    display: inline-block;
+    
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.delete:hover {
+    color: #E53935 !important;
 }
 
 .resource-list-item {
