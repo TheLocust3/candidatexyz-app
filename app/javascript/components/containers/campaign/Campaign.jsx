@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StaffActions, CampaignActions } from 'candidatexyz-common-js';
+import { StaffActions, CampaignActions, CommitteeActions } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
 
 import Loader from '../../components/common/Loader';
 import StaffOverview from '../../components/campaign/StaffOverview';
+import CommitteeOverview from '../../components/campaign/CommitteeOverview';
 
 class Campaign extends React.Component {
 
@@ -16,6 +17,7 @@ class Campaign extends React.Component {
         this.props.dispatch(setDrawerSelected('campaign'));
 
         this.props.dispatch(CampaignActions.fetchCampaign(this.props.currentUser.campaignId));
+        this.props.dispatch(CommitteeActions.fetchCommitteeByCampaign());
         this.props.dispatch(StaffActions.fetchAllUsers());
     }
 
@@ -26,9 +28,11 @@ class Campaign extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    <Text type='headline6'>Staff</Text>
+                    <Loader isReady={this.props.areUsersReady && this.props.isCampaignReady && this.props.isCommitteeReady}>
+                        <CommitteeOverview committee={this.props.committee} />
+                        <br /><br />
 
-                    <Loader isReady={this.props.areUsersReady && this.props.isCampaignReady}>
+                        <Text type='headline6'>Staff</Text>
                         <StaffOverview users={this.props.users.users} />
                     </Loader>
                 </div>
@@ -43,7 +47,9 @@ function mapStateToProps(state) {
         areUsersReady: state.users.isReady,
         users: state.users.users,
         isCampaignReady: state.campaigns.isReady,
-        campaign: state.campaigns.campaign
+        campaign: state.campaigns.campaign,
+        isCommitteeReady: state.committees.isReady,
+        committee: state.committees.committee
     };
 }
 

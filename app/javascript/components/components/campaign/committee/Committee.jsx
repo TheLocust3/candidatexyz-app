@@ -9,7 +9,7 @@ export default class Committee extends React.Component {
 
         return (
             <div>
-                <Text type='body2'><a className='link' href={committee.report.url}>Formation Document</a></Text>
+                <Text type='body2'><a className='link' href={committee.report.url}>Formation Documents</a></Text>
                 <br />
 
                 <Text type='body1'>Email</Text>

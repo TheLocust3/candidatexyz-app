@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StaffActions, AnalyticEntryActions, CampaignActions, VolunteerActions, ContactActions, MessageActions } from 'candidatexyz-common-js';
+import { StaffActions, AnalyticEntryActions, CampaignActions, VolunteerActions, ContactActions, MessageActions,
+        ReceiptActions, ExpenditureActions, InKindActions, LiabilityActions } from 'candidatexyz-common-js';
 import moment from 'moment';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
@@ -12,6 +13,7 @@ import AggregateGraph from '../components/website/AggregateGraph';
 import VolunteersOverview from '../components/communication/VolunteersOverview';
 import SignUpsOverview from '../components/communication/SignUpsOverview';
 import MessagesOverview from '../components/communication/MessagesOverview';
+import FinanceOverview from '../components/finance/FinanceOverview';
 import StaffOverview from '../components/campaign/StaffOverview';
 
 class Index extends React.Component {
@@ -27,6 +29,11 @@ class Index extends React.Component {
         this.props.dispatch(ContactActions.fetchAllContacts());
         this.props.dispatch(MessageActions.fetchAllMessages());
         this.props.dispatch(StaffActions.fetchAllUsers());
+
+        this.props.dispatch(ReceiptActions.fetchAllReceipts());
+        this.props.dispatch(ExpenditureActions.fetchAllExpenditures());
+        this.props.dispatch(InKindActions.fetchAllInKinds());
+        this.props.dispatch(LiabilityActions.fetchAllLiabilities());
     }
 
     render() {
@@ -42,7 +49,10 @@ class Index extends React.Component {
                 <br /><br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.isCampaignReady && this.props.isAggregateReady.hour && this.props.areVolunteersReady && this.props.areContactsReady && this.props.areMessagesReady && this.props.areUsersReady}>
+                    <Loader isReady={this.props.isCampaignReady && this.props.isAggregateReady.hour && this.props.areVolunteersReady &&
+                        this.props.areContactsReady && this.props.areMessagesReady && this.props.areUsersReady && this.props.areReceiptsReady &&
+                        this.props.areExpendituresReady && this.props.areInKindsReady && this.props.areLiabilitiesReady}>
+
                         <Text type='headline6'>Page Hits</Text><br />
                         <AggregateGraph analyticEntries={this.props.aggregateEntries.hour} start={dayStart} end={dayEnd} unit='hour' />
                         <br /><br />
@@ -55,6 +65,13 @@ class Index extends React.Component {
                             <SignUpsOverview contacts={this.props.contacts.contacts} small />
 
                             <MessagesOverview messages={this.props.messages.messages} small />
+                        </div>
+                        <br />
+
+                        <Text type='headline6'>Finances</Text><br />
+
+                        <div className='content-2'>
+                            <FinanceOverview receipts={this.props.receipts.receipts} expenditures={this.props.expenditures.expenditures} inKinds={this.props.inKinds.inKinds} liabilities={this.props.liabilities.liabilities} small />
                         </div>
                         <br />
 
@@ -85,6 +102,14 @@ function mapStateToProps(state) {
         messages: state.messages.messages,
         areUsersReady: state.users.isReady,
         users: state.users.users,
+        areReceiptsReady: state.receipts.isReady,
+        receipts: state.receipts.receipts,
+        areExpendituresReady: state.expenditures.isReady,
+        expenditures: state.expenditures.expenditures,
+        areInKindsReady: state.inKinds.isReady,
+        inKinds: state.inKinds.inKinds,
+        areLiabilitiesReady: state.liabilities.isReady,
+        liabilities: state.liabilities.liabilities
     };
 }
 

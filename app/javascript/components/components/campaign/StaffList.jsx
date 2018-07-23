@@ -23,7 +23,7 @@ export default class StaffList extends React.Component {
         let page = _.isEmpty(parsed.page) ? 0 : Number(parsed.page);
 
         return (
-            <ul className='mdc-list mdc-list--two-line'>
+            <ul className='mdc-list mdc-list--two-line content-max'>
                 {_.slice(_.sortBy(this.props.staff, (staff) => { return staff.firstName }), page * PER_PAGE, (page + 1) * PER_PAGE).map((member, index) => {
                     return (
                         <Link key={index} className='unstyled-link-black link-no-hover' to={`/campaign/staff/${member.id}`}>

@@ -28,7 +28,7 @@ class Communication extends React.Component {
                 <Text type='headline5'>Communication Overview</Text>
                 <br />
 
-                <div className='content-2'>
+                <div className='content-max content-2'>
                     <Loader isReady={this.props.areVolunteersReady && this.props.areContactsReady && this.props.areMessagesReady}>
                         <Text type='headline6'>Volunteers</Text>
 

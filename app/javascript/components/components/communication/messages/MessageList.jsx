@@ -16,7 +16,7 @@ export default class MessageList extends React.Component {
         let page = _.isEmpty(parsed.page) ? 0 : Number(parsed.page);
 
         return (
-            <ul className='mdc-list mdc-list--two-line'>
+            <ul className='mdc-list mdc-list--two-line content-max'>
                 {_.slice(_.reverse(_.sortBy(this.props.messages, (message) => { return message.createdAt })), page * PER_PAGE, (page + 1) * PER_PAGE).map((message, index) => {
                     return (
                         <div key={index}>

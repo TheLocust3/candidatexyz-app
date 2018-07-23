@@ -16,7 +16,7 @@ export default class ReportList extends React.Component {
         let page = _.isEmpty(parsed.page) ? 0 : Number(parsed.page);
 
         return (
-            <ul className='mdc-list mdc-list--two-line'>
+            <ul className='mdc-list mdc-list--two-line content-max'>
                 {_.slice(_.reverse(_.sortBy(this.props.reports, (report) => { return report })), page * PER_PAGE, (page + 1) * PER_PAGE).map((report, index) => {
                     return (
                         <div key={index}>

@@ -1,13 +1,28 @@
 import _ from 'lodash';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class FinanceOverview extends React.Component {
 
+    renderSmall() {
+        return (
+            <div>
+                <Text type='body1'>Current Balance</Text>
+                <Text type='body2'>${_.round(_.sumBy(this.props.receipts, (receipt) => { return receipt.amount }) - _.sumBy(this.props.expenditures, (expenditure) => { return expenditure.amount }), 2)}</Text>
+                <br />
+
+                <Text type='body1'>Total Donations</Text>
+                <Text type='body2'>${_.sumBy(this.props.receipts, (receipt) => { return receipt.amount })}</Text>
+            </div>
+        );
+    }
+
     render() {
+        if (this.props.small) {
+            return this.renderSmall();
+        }
+
         return (
             <div>
                 <Text type='subtitle1'>Current Balance</Text>
@@ -42,5 +57,6 @@ FinanceOverview.propTypes = {
     receipts: PropTypes.array.isRequired,
     expenditures: PropTypes.array.isRequired,
     inKinds: PropTypes.array.isRequired,
-    liabilities: PropTypes.array.isRequired
+    liabilities: PropTypes.array.isRequired,
+    small: PropTypes.bool
 };
