@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { ReportActions, ReportApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
@@ -19,6 +18,12 @@ class ShowReport extends React.Component {
         this.props.dispatch(setDrawerSelected('finance', 'reports'));
 
         this.props.dispatch(ReportActions.fetchReport(this.props.match.params.id));
+
+        this.interval = setInterval(() => this.refresh(), 1500);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     onDeleteClick(event) {
@@ -54,6 +59,15 @@ class ShowReport extends React.Component {
                 <BackLink to='/finance/reports' />
             </div>
         );
+    }
+
+    private
+    refresh() {
+        if (this.props.report.status != 'done') {
+            this.props.dispatch(ReportActions.fetchReport(this.props.match.params.id));
+        } else {
+            clearInterval(this.interval);
+        }
     }
 }
 

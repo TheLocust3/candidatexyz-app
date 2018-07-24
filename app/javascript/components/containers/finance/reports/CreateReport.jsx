@@ -58,7 +58,7 @@ class CreateReport extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.areReportTypesReady && this.props.isReady && !_.isEmpty(this.props.reportTypes) && this.props.isCampaignReady}>
+                    <Loader isReady={this.props.areReportTypesReady && this.props.isReady && !_.isEmpty(this.props.reportTypes) && this.props.isCampaignReady && this.props.isCommitteeReady}>
                         <ReportChecklist users={this.props.users.users} committee={this.props.committee} complete={() => { this.setState({ checklistComplete: true }) }} />
                         <br /><br />
                         

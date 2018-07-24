@@ -1,19 +1,28 @@
 import _ from 'lodash';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class Report extends React.Component {
 
+    renderLink() {
+        if (this.props.report.status != 'done') return;
+
+        return (
+            <div>
+                <Text type='body1'><a className='link' href={this.props.report.url}>View Report</a></Text>
+                <br />
+            </div>
+        );
+    }
+
     render() {
         let report = this.props.report;
 
         return (
             <div>
-                <Text type='body1'><a className='link' href={report.url}>View Report</a></Text>
-                <br />
+                {this.renderLink()}
 
                 <Text type='body1'>Status</Text>
                 <Text type='body2'>{_.capitalize(report.status)}</Text>
