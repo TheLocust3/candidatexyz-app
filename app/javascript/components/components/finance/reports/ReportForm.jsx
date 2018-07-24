@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { ReportApi, ReportHelper } from 'candidatexyz-common-js';
-import { Text, Button, Checkbox, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
+import { Button, Checkbox, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
 
@@ -68,7 +69,7 @@ export default class ReportForm extends React.Component {
         let report = this.state.report;
         let reportClass = _.isEmpty(this.props.reportClass) ? 'finance' : this.props.reportClass;
 
-        ReportApi.create(report.reportType, report.official, reportClass, { beginning_date: report.beginningDate, ending_date: this.state.reportType.endingDate.toDate() }).then((response) => {
+        ReportApi.create(report.reportType, report.official, reportClass, { beginning_date: moment(report.beginningDate).format(), ending_date: moment(this.state.reportType.endingDate).format() }).then((response) => {
             history.push(`/finance/reports/${response.id}`);
         }).catch((response) => {
             this.setState({
