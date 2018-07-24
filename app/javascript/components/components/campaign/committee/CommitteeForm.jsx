@@ -60,7 +60,7 @@ export default class CommitteeForm extends React.Component {
         }
     }
 
-    renderForm() {
+    render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
                 <TextField label='Committee Name' name='name' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.name} required /><br />
@@ -82,28 +82,8 @@ export default class CommitteeForm extends React.Component {
             </Form>
         );
     }
-
-    renderUncompleted() {
-        return (
-            <Text type='body1'>
-                Before creating forming your campaign's committee, you must complete the above checklist
-            </Text>
-        );
-    }
-
-    render() {
-        return (
-            <div>
-                <CommitteeChecklist users={this.props.users} complete={() => { this.setState({ checklistComplete: true }) }} />
-                <br />
-
-                {this.state.checklistComplete ? this.renderForm() : this.renderUncompleted()}
-            </div>
-        );
-    }
 }
 
 CommitteeForm.propTypes = {
-    committee: PropTypes.object,
-    users: PropTypes.array.isRequired
+    committee: PropTypes.object
 };

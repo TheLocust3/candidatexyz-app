@@ -7,8 +7,15 @@ import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/glo
 
 import Loader from '../../../components/common/Loader';
 import CommitteeForm from '../../../components/campaign/committee/CommitteeForm';
+import CommitteeChecklist from '../../../components/campaign/committee/CommitteeChecklist';
 
 class CreateCommittee extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = { checklistComplete: false };
+    }
 
     componentWillMount() {
         this.props.dispatch(setTitle('Create Committee'));
@@ -17,6 +24,18 @@ class CreateCommittee extends React.Component {
 
         this.props.dispatch(CommitteeActions.fetchCommitteeByCampaign());
         this.props.dispatch(UserActions.fetchAllUsersWithPositions());
+    }
+
+    renderCommitteeForm() {
+        if (this.state.checklistComplete) {
+            return <CommitteeForm />;
+        } else {
+            return (
+                <Text type='body1'>
+                    Before creating forming your campaign's committee, you must complete the above checklist
+                </Text>
+            );
+        }
     }
 
     render() {
@@ -29,7 +48,9 @@ class CreateCommittee extends React.Component {
 
                 <div className='content-2'>
                     <Loader isReady={this.props.areUsersReady}>
-                        <CommitteeForm users={this.props.users.users} />
+                        <CommitteeChecklist users={this.props.users.users} complete={() => { this.setState({ checklistComplete: true }) }} />
+
+                        {this.renderCommitteeForm()}
                     </Loader>
                 </div>
             </div>
