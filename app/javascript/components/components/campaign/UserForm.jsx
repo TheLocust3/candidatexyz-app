@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { StaffApi } from 'candidatexyz-common-js';
 import { Button, Form, TextField, Checkbox, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
-import { history, STATES } from '../../../constants';
+import { history } from '../../../constants';
 
 import AddressInput from '../common/AddressInput';
+import FullNameInput from '../common/FullNameInput';
 
 export default class UserForm extends React.Component {
 
@@ -46,7 +47,7 @@ export default class UserForm extends React.Component {
         });
     }
 
-    handleAddressChange(name, value) {
+    handleGenericChange(name, value) {
         let user = this.state.user;
         user[name] = value;
 
@@ -102,21 +103,21 @@ export default class UserForm extends React.Component {
     }
 
     render() {
+        let user = this.state.user;
+
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.email} /><br /><br />
+                <FullNameInput firstName={user.firstName} lastName={user.lastName} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
 
-                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.firstName} /><br />
-                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.lastName} /><br /><br />
+                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={user.email} /><br />
+                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={user.phoneNumber} /><br /><br />
 
-                <AddressInput address={this.state.user.address} city={this.state.user.city} state={this.state.user.state} country={this.state.user.country} onChange={(name, value) => this.handleAddressChange(name, value)} />
-                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.zipcode} required /><br /><br />
+                <AddressInput address={user.address} city={user.city} state={user.state} country={user.country} zipcode={user.zipcode} showZipcode={true} onChange={(name, value) => this.handleGenericChange(name, value)} /><br />
 
-                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.phoneNumber} /><br />
-                <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} defaultValue={this.props.user.party} /><br /><br />
+                <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} defaultValue={user.party} /><br /><br />
 
                 {this.renderPositionDropdown()}<br />
-                <Checkbox label='Admin' onChange={this.handleAdminCheck.bind(this)} defaultChecked={this.props.user.admin} /><br /><br /><br />
+                <Checkbox label='Admin' onChange={this.handleAdminCheck.bind(this)} defaultChecked={user.admin} /><br /><br /><br />
 
                 <Button>Save</Button>
 
