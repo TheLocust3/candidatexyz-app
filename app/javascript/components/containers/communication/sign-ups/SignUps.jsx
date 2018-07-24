@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ContactActions, ContactApi } from 'candidatexyz-common-js';
-import { Text } from 'candidatexyz-common-js/lib/elements';
+import { Text, Fab, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
@@ -41,6 +41,14 @@ class SignUps extends React.Component {
                 <Loader isReady={this.props.isReady}>
                     <Table to='/communication/sign-ups/' headers={['Email', 'First Name', 'Last Name', 'Zipcode']} keys={['email', 'firstName', 'lastName', 'zipcode']} rows={this.props.contacts.contacts} rowsPerPage={PER_PAGE} pagerLink='/communication/sign-ups' />
                 </Loader>
+
+                <Link className='add-fab-link unstyled-link' to='/communication/sign-ups/new'>
+                    <Fab className='add-fab'>
+                        <i className='material-icons'>add</i>
+                    </Fab>
+                </Link>
+
+                <MDCAutoInit />
             </div>
         );
     }

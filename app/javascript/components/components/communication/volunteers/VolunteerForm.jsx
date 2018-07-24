@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { VolunteerApi } from 'candidatexyz-common-js';
@@ -5,12 +6,20 @@ import { Button, TextField, TextArea, Form, MDCAutoInit } from 'candidatexyz-com
 
 import { history } from '../../../../constants';
 
-export default class SignUpForm extends React.Component {
+import AddressInput from '../../common/AddressInput';
+import FullNameInput from '../../common/FullNameInput';
+
+export default class VolunteerForm extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = { volunteer: this.props.volunteer, errors: {} };
+        this.state = { errors: {} };
+        if (_.isEmpty(this.props.volunteer)) {
+            this.state.volunteer = { state: 'MA' };
+        } else {
+            this.state.volunteer = this.props.volunteer;
+        }
     }
 
     handleChange(event) {
@@ -22,32 +31,50 @@ export default class SignUpForm extends React.Component {
         });
     }
 
-    handleSubmit(event) {
-        VolunteerApi.update(this.props.volunteer.id, this.state.volunteer.email, this.state.volunteer.phoneNumber, this.state.volunteer.firstName, this.state.volunteer.lastName, this.state.volunteer.address, this.state.volunteer.zipcode, this.state.volunteer.city, this.state.volunteer.state, this.state.volunteer.helpBlurb).then((response) => {
-            history.push(`/communication/volunteers/${this.props.volunteer.id}`)
-        }).catch((response) => {
-            this.setState({
-                errors: response.responseJSON.errors
-            });
+    handleGenericChange(name, value) {
+        let volunteer = this.state.volunteer;
+        volunteer[name] = value;
+
+        this.setState({
+            volunteer: volunteer
         });
     }
 
+    handleSubmit(event) {
+        let volunteer = this.state.volunteer;
+
+        if (_.isEmpty(this.props.receipt)) {
+            VolunteerApi.create(volunteer.email, volunteer.phoneNumber, volunteer.firstName, volunteer.lastName, volunteer.address, volunteer.zipcode, volunteer.city, volunteer.state, volunteer.helpBlurb).then((response) => {
+                history.push(`/communication/volunteers/${response.id}`)
+            }).catch((response) => {
+                this.setState({
+                    errors: response.responseJSON.errors
+                });
+            });
+        } else {
+            VolunteerApi.update(this.props.volunteer.id, volunteer.email, volunteer.phoneNumber, volunteer.firstName, volunteer.lastName, volunteer.address, volunteer.zipcode, volunteer.city, volunteer.state, volunteer.helpBlurb).then((response) => {
+                history.push(`/communication/volunteers/${this.props.volunteer.id}`)
+            }).catch((response) => {
+                this.setState({
+                    errors: response.responseJSON.errors
+                });
+            });
+        }
+    }
+
     render() {
+        let volunteer = this.state.volunteer;
+
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.email} /><br /><br />
+                <FullNameInput firstName={volunteer.firstName} lastName={volunteer.lastName} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
 
-                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.firstName} /><br />
-                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.lastName} /><br /><br />
+                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={volunteer.email} required />
+                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.state.volunteer.phoneNumber} /><br /><br />
 
-                <TextField label='Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.address} /><br />
-                <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.city} /><br />
-                <TextField label='State' name='state' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.state} /><br />
-                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.zipcode} /><br /><br />
+                <AddressInput address={volunteer.address} city={volunteer.city} state={volunteer.state} zipcode={volunteer.zipcode} hideCountry={true} showZipcode={true} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
 
-                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.phoneNumber} /><br /><br />
-
-                <TextArea label='Help Blurb' name='helpBlurb' onChange={this.handleChange.bind(this)} defaultValue={this.props.volunteer.helpBlurb} rows={10} /><br /><br />
+                <TextField label='Help Type' name='helpBlurb' onChange={this.handleChange.bind(this)} defaultValue={this.state.volunteer.helpBlurb} /><br /><br />
 
                 <Button>Save</Button>
 
@@ -57,6 +84,6 @@ export default class SignUpForm extends React.Component {
     }
 }
 
-SignUpForm.propTypes = {
+VolunteerForm.propTypes = {
     volunteer: PropTypes.object
 };

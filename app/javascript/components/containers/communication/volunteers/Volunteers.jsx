@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { VolunteerActions, VolunteerApi } from 'candidatexyz-common-js';
-import { Text } from 'candidatexyz-common-js/lib/elements';
+import { Text, Fab, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
@@ -43,6 +43,14 @@ class Volunteers extends React.Component {
                         <Table to='/communication/volunteers/' headers={['First Name', 'Last Name', 'Email', 'Address', 'Help Type']} keys={['firstName', 'lastName', 'email', 'address', 'helpBlurb']} rows={this.props.volunteers.volunteers} rowsPerPage={PER_PAGE} pagerLink='/communication/volunteers' />
                     </Loader>
                 </div>
+
+                <Link className='add-fab-link unstyled-link' to='/communication/volunteers/new'>
+                    <Fab className='add-fab'>
+                        <i className='material-icons'>add</i>
+                    </Fab>
+                </Link>
+
+                <MDCAutoInit />
             </div>
         );
     }

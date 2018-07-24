@@ -33,7 +33,7 @@ class ShowSignUp extends React.Component {
     renderName() {
         if (_.isEmpty(this.props.contact.firstName) || _.isEmpty(this.props.contact.lastName)) return 'No Name Provided';
 
-        return `${this.props.contact.firstName} ${this.props.contaect.lastName}`;
+        return `${this.props.contact.firstName} ${this.props.contact.lastName}`;
     }
 
     render() {

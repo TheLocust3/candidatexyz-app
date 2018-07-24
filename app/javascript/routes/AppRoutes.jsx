@@ -64,6 +64,9 @@ import RespondMessage from '../components/containers/communication/messages/Resp
 import EditSignUp from '../components/containers/communication/sign-ups/EditSignUp';
 import EditVolunteer from '../components/containers/communication/volunteers/EditVolunteer';
 
+import CreateVolunteer from '../components/containers/communication/volunteers/CreateVolunteer';
+import CreateSignUp from '../components/containers/communication/sign-ups/CreateSignUp';
+
 class AppRoutes extends React.Component {
 
     componentWillMount() {
@@ -92,10 +95,12 @@ class AppRoutes extends React.Component {
                         <Route exact path='/communication/mail/:group' component={Mail} />
 
                         <Route exact path='/communication/sign-ups' component={SignUps} />
+                        <Route exact path='/communication/sign-ups/new' component={CreateSignUp} />
                         <Route exact path='/communication/sign-ups/:id' component={ShowSignUp} />
                         <Route exact path='/communication/sign-ups/:id/edit' component={EditSignUp} />
 
                         <Route exact path='/communication/volunteers' component={Volunteers} />
+                        <Route exact path='/communication/volunteers/new' component={CreateVolunteer} />
                         <Route exact path='/communication/volunteers/:id' component={ShowVolunteer} />
                         <Route exact path='/communication/volunteers/:id/edit' component={EditVolunteer} />
 

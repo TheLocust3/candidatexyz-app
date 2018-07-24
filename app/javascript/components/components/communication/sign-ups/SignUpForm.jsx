@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ContactApi } from 'candidatexyz-common-js';
@@ -5,12 +6,19 @@ import { Button, TextField, Form, MDCAutoInit } from 'candidatexyz-common-js/lib
 
 import { history } from '../../../../constants';
 
+import FullNameInput from '../../common/FullNameInput';
+
 export default class SignUpForm extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = { contact: this.props.contact, errors: {} };
+        this.state = { errors: {} };
+        if (_.isEmpty(this.props.contact)) {
+            this.state.contact = {};
+        } else {
+            this.state.contact = this.props.contact;
+        }
     }
 
     handleChange(event) {
@@ -22,26 +30,48 @@ export default class SignUpForm extends React.Component {
         });
     }
 
-    handleSubmit(event) {
-        ContactApi.update(this.props.contact.id, this.state.contact.email, this.state.contact.zipCode, this.state.contact.firstName, this.state.contact.lastName, this.state.contact.phoneNumber).then((response) => {
-            history.push(`/communication/sign-ups/${this.props.contact.id}`)
-        }).catch((response) => {
-            this.setState({
-                errors: response.responseJSON.errors
-            });
+    handleGenericChange(name, value) {
+        let contact = this.state.contact;
+        contact[name] = value;
+
+        this.setState({
+            contact: contact
         });
     }
 
+    handleSubmit(event) {
+        let contact = this.state.contact;
+
+        if (_.isEmpty(this.props.receipt)) {
+            ContactApi.create(contact.email, contact.zipCode, contact.firstName, contact.lastName, contact.phoneNumber).then((response) => {
+                history.push(`/communication/sign-ups/${response.id}`)
+            }).catch((response) => {
+                this.setState({
+                    errors: response.responseJSON.errors
+                });
+            });
+        } else {
+            ContactApi.update(this.props.contact.id, contact.email, contact.zipCode, contact.firstName, contact.lastName, contact.phoneNumber).then((response) => {
+                history.push(`/communication/sign-ups/${this.props.contact.id}`)
+            }).catch((response) => {
+                this.setState({
+                    errors: response.responseJSON.errors
+                });
+            });
+        }
+    }
+
     render() {
+        let contact = this.state.contact;
+
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.email} /><br /><br />
+                <FullNameInput firstName={contact.firstName} lastName={contact.lastName} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
 
-                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.firstName} /><br />
-                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.lastName} /><br /><br />
+                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={contact.email} /><br /><br />
+                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={contact.phoneNumber} /><br /><br />
 
-                <TextField label='Zipcode' name='zipCode' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.zipCode} /><br />
-                <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.contact.phoneNumber} /><br /><br />
+                <TextField label='Zipcode' name='zipCode' onChange={this.handleChange.bind(this)} defaultValue={contact.zipCode} /><br /><br />
 
                 <Button>Save</Button>
 
