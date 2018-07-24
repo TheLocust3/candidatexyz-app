@@ -11,7 +11,7 @@ class NotificationButton extends React.Component {
     }
 
     renderNotificationIcon() {
-        if (_.filter(this.props.notifications.notifications, (notification) => { return notification.read }) == 0) {
+        if (_.filter(this.props.notifications.notifications, (notification) => { return !notification.read }).length != 0) {
             return <i className='material-icons'>notification_important</i>;
         } else {
             return <i className='material-icons'>notifications_none</i>;

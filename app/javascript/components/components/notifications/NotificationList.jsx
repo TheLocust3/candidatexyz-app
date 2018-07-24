@@ -20,7 +20,7 @@ export default class NotificationList extends React.Component {
                 {_.slice(_.reverse(_.sortBy(this.props.notifications, (notification) => { return notification.createdAt })), page * PER_PAGE, (page + 1) * PER_PAGE).map((notification) => {
                     return (
                         <div key={notification.id}>
-                            <Notification notification={notification} />
+                            <Notification notification={notification} refresh={this.props.refresh} />
                         </div>
                     );
                 })}
@@ -49,5 +49,6 @@ export default class NotificationList extends React.Component {
 }
 
 NotificationList.propTypes = {
-    notifications: PropTypes.array
+    notifications: PropTypes.array,
+    refresh: PropTypes.func.isRequired
 };

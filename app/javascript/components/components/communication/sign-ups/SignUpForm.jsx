@@ -42,8 +42,8 @@ export default class SignUpForm extends React.Component {
     handleSubmit(event) {
         let contact = this.state.contact;
 
-        if (_.isEmpty(this.props.receipt)) {
-            ContactApi.create(contact.email, contact.zipCode, contact.firstName, contact.lastName, contact.phoneNumber).then((response) => {
+        if (_.isEmpty(this.props.contact)) {
+            ContactApi.create(contact.email, contact.zipcode, contact.firstName, contact.lastName, contact.phoneNumber).then((response) => {
                 history.push(`/communication/sign-ups/${response.id}`)
             }).catch((response) => {
                 this.setState({
@@ -51,7 +51,7 @@ export default class SignUpForm extends React.Component {
                 });
             });
         } else {
-            ContactApi.update(this.props.contact.id, contact.email, contact.zipCode, contact.firstName, contact.lastName, contact.phoneNumber).then((response) => {
+            ContactApi.update(this.props.contact.id, contact.email, contact.zipcode, contact.firstName, contact.lastName, contact.phoneNumber).then((response) => {
                 history.push(`/communication/sign-ups/${this.props.contact.id}`)
             }).catch((response) => {
                 this.setState({
@@ -66,12 +66,12 @@ export default class SignUpForm extends React.Component {
 
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <FullNameInput firstName={contact.firstName} lastName={contact.lastName} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
+                <FullNameInput firstName={contact.firstName} lastName={contact.lastName} onChange={(name, value) => this.handleGenericChange(name, value)} /><br />
 
-                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={contact.email} /><br /><br />
+                <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={contact.email} required /><br /><br />
                 <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={contact.phoneNumber} /><br /><br />
 
-                <TextField label='Zipcode' name='zipCode' onChange={this.handleChange.bind(this)} defaultValue={contact.zipCode} /><br /><br />
+                <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={contact.zipcode} required /><br /><br />
 
                 <Button>Save</Button>
 

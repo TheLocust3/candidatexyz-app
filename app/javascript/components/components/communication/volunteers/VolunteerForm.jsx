@@ -43,7 +43,7 @@ export default class VolunteerForm extends React.Component {
     handleSubmit(event) {
         let volunteer = this.state.volunteer;
 
-        if (_.isEmpty(this.props.receipt)) {
+        if (_.isEmpty(this.props.volunteer)) {
             VolunteerApi.create(volunteer.email, volunteer.phoneNumber, volunteer.firstName, volunteer.lastName, volunteer.address, volunteer.zipcode, volunteer.city, volunteer.state, volunteer.helpBlurb).then((response) => {
                 history.push(`/communication/volunteers/${response.id}`)
             }).catch((response) => {
