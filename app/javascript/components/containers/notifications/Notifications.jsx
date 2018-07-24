@@ -55,7 +55,6 @@ class Notifications extends React.Component {
         );
     }
 
-    private
     refresh() {
         this.props.dispatch(NotificationActions.fetchAllNotifications());
     }
