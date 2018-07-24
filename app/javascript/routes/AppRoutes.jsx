@@ -11,7 +11,7 @@ import Index from '../components/containers/Index';
 import Website from '../components/containers/Website';
 import Settings from '../components/containers/Settings';
 import SignIn from '../components/containers/users/SignInContainer';
-import Notifications from '../components/containers/Notifications';
+import Notifications from '../components/containers/notifications/Notifications';
 
 import Campaign from '../components/containers/campaign/Campaign';
 import Staff from '../components/containers/campaign/Staff';

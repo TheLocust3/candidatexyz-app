@@ -89,7 +89,9 @@ export default class Pager extends React.Component {
 
     private
     length() {
-        return _.ceil(this.props.elements.length / this.props.elementsPerPage);
+        let length = _.ceil(this.props.elements.length / this.props.elementsPerPage);
+
+        return length == 0 ? 1 : length;
     }
 }
 
