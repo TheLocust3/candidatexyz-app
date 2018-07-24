@@ -11,6 +11,7 @@ import Index from '../components/containers/Index';
 import Website from '../components/containers/Website';
 import Settings from '../components/containers/Settings';
 import SignIn from '../components/containers/users/SignInContainer';
+import Notifications from '../components/containers/Notifications';
 
 import Campaign from '../components/containers/campaign/Campaign';
 import Staff from '../components/containers/campaign/Staff';
@@ -90,6 +91,7 @@ class AppRoutes extends React.Component {
                         <Route exact path='/' component={Index} />
                         <Route exact path='/website' component={Website} />
                         <Route exact path='/settings' component={Settings} />
+                        <Route exact path='/notifications' component={Notifications} />
 
                         <Route exact path='/communication' component={Communication} />
                         <Route exact path='/communication/mail/:group' component={Mail} />

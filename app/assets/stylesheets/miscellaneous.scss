@@ -234,3 +234,13 @@
 .checklist .mdc-checkbox__native-control:checked + .mdc-checkbox__background {
     background-color: $purple-primary !important;
 }
+
+.notification-button-wrapper {
+    position: relative;
+    width: 20px;
+    height: 20px;
+
+    margin-top: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

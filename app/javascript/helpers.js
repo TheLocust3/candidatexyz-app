@@ -8,25 +8,6 @@ export function uuid() {
     )
 }
 
-import mdcAutoInit from '@material/auto-init';
-import { MDCRipple } from '@material/ripple';
-import { MDCTextField } from '@material/textfield';
-import { MDCCheckbox } from '@material/checkbox';
-import { MDCSelect } from '@material/select';
-import { MDCTabBar } from '@material/tabs';
-
-// TODO: Find better way to do this
-export function autoInit() {
-    mdcAutoInit.deregisterAll();
-
-    mdcAutoInit.register('MDCRipple', MDCRipple);
-    mdcAutoInit.register('MDCTextField', MDCTextField);
-    mdcAutoInit.register('MDCCheckbox', MDCCheckbox);
-    mdcAutoInit.register('MDCSelect', MDCSelect);
-    mdcAutoInit.register('MDCTabBar', MDCTabBar);
-    mdcAutoInit(document, () => { /* no messages */ });
-}
-
 export function websiteLink(domain) {
     let currentHeaders = $.auth.retrieveData('authHeaders');
     if (_.isUndefined(currentHeaders)) {

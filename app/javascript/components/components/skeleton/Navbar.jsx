@@ -10,6 +10,7 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 import { MAX_MOBILE_WIDTH } from '../../../constants';
 
 import CompanyTitle from '../common/CompanyTitle';
+import NotificationButton from '../global/NotificationButton';
 
 class Navbar extends React.Component {
 
@@ -203,6 +204,8 @@ class Navbar extends React.Component {
                                 <Text type='body2' style={{ marginRight: '3%' }}>{this.props.user.firstName} {this.props.user.lastName}</Text>
 
                                 <Link className='unstyled-link unstyled-link-black' onClick={this.onSignOutClick.bind(this)} to='#'><Text type='body2'>Sign Out</Text></Link>
+
+                                <NotificationButton />
                             </section>
                         </div>
                     </header>
