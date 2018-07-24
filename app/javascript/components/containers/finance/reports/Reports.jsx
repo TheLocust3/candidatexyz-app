@@ -29,7 +29,7 @@ class Reports extends React.Component {
                         <Text type='body2'>Generate</Text>
                     </Link>
                 </div>
-                <br />
+                <br /><br />
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>

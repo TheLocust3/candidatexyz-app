@@ -44,7 +44,12 @@ class Notifications extends React.Component {
         return (
             <div className='content'>
                 <Text type='headline5'>Notifications</Text>
-                <br />
+                <div className='resource-actions-under'>
+                    <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.deleteAll.bind(this)}>
+                        <Text type='body2'>Clear All</Text>
+                    </a>
+                </div>
+                <br /><br />
 
                 <NotificationList notifications={this.props.notifications.notifications} refresh={() => this.refresh()} />
             </div>
@@ -54,6 +59,14 @@ class Notifications extends React.Component {
     private
     refresh() {
         this.props.dispatch(NotificationActions.fetchAllNotifications());
+    }
+
+    deleteAll() {
+        _.map(this.props.notifications.notifications, (notification) => {
+            NotificationApi.destroy(notification.id);
+        });
+
+        window.location.reload();
     }
 }
 

@@ -27,7 +27,7 @@ class Messages extends React.Component {
                         <Text type='body2'>Download</Text>
                     </a>
                 </div>
-                <br />
+                <br /><br />
 
                 <Loader isReady={this.props.isReady}>
                     <MessageList messages={this.props.messages.messages} />

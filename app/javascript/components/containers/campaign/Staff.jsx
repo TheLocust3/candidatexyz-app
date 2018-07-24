@@ -30,7 +30,7 @@ class Staff extends React.Component {
                         </Text>
                     </Link>
                 </div>
-                <br />
+                <br /><br />
 
                 <Loader isReady={this.props.isReady}>
                     <StaffList staff={this.props.staff.users} />
