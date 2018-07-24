@@ -1,14 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CampaignActions } from 'candidatexyz-common-js';
-import { Text, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
+import { NotificationActions } from 'candidatexyz-common-js';
+import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../actions/global-actions';
 
-import Loader from '../components/common/Loader';
-import EditUserForm from '../components/users/EditUserForm';
-import SuperuserForm from '../components/users/SuperuserForm';
-import EditCampaignForm from '../components/campaign/EditCampaignForm';
+import NotificationList from '../components/notifications/NotificationList';
 
 class Notifications extends React.Component {
 
@@ -22,6 +19,8 @@ class Notifications extends React.Component {
         this.props.dispatch(setTitle('Notifications'));
         this.props.dispatch(setBreadcrumb('Notifications'));
         this.props.dispatch(setDrawerSelected('notifications'));
+
+        this.props.dispatch(NotificationActions.fetchAllNotifications())
     }
 
     render() {
@@ -29,9 +28,18 @@ class Notifications extends React.Component {
             <div className='content'>
                 <Text type='headline5'>Notifications</Text>
                 <br />
+
+                <NotificationList notifications={this.props.notifications.notifications} />
             </div>
         );
     }
 }
 
-export default connect()(Notifications);
+function mapStateToProps(state) {
+    return {
+        isReady: state.notifications.isReady,
+        notifications: state.notifications.notifications
+    };
+}
+
+export default connect(mapStateToProps)(Notifications);

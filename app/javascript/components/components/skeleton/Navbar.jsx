@@ -10,7 +10,7 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 import { MAX_MOBILE_WIDTH } from '../../../constants';
 
 import CompanyTitle from '../common/CompanyTitle';
-import NotificationButton from '../global/NotificationButton';
+import NotificationButton from '../notifications/NotificationButton';
 
 class Navbar extends React.Component {
 

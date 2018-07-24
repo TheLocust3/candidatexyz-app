@@ -30,7 +30,7 @@ export default class Pager extends React.Component {
     }
 
     renderNext() {
-        if (this.pageIndex() >= _.ceil(this.props.elements.length / this.props.elementsPerPage) - 1) {
+        if (this.pageIndex() >= this.length() - 1) {
             return (
                 <span className='pager-item'>
                     Next
@@ -46,11 +46,13 @@ export default class Pager extends React.Component {
     }
 
     renderPages() {
+        if (this.length() == 1 && this.props.hideEmpty) return;
+
         return (
             <div>
                 {this.renderBack()}
 
-                {_.range(0, _.ceil(this.props.elements.length / this.props.elementsPerPage)).map((index) => {
+                {_.range(0, this.length()).map((index) => {
                     if (this.pageIndex() == index) {
                         return (
                             <span className='pager-item' key={index}>
@@ -72,7 +74,7 @@ export default class Pager extends React.Component {
     }
 
     render() {
-        let { elements, elementsPerPage, baseLink, className, ...props } = this.props;
+        let { elements, elementsPerPage, baseLink, hideEmpty, className, ...props } = this.props;
 
         className = _.isEmpty(className) ? '' : className;
 
@@ -84,11 +86,17 @@ export default class Pager extends React.Component {
             </div>
         );
     }
+
+    private
+    length() {
+        return _.ceil(this.props.elements.length / this.props.elementsPerPage);
+    }
 }
 
 Pager.propTypes = {
     elements: PropTypes.array,
     elementsPerPage: PropTypes.number,
     baseLink: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    hideEmpty: PropTypes.bool
 };
