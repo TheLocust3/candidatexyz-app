@@ -219,7 +219,7 @@ class Navbar extends React.Component {
 
     renderMobile() {
         let disabled = this.props.drawerDisabled;
-        
+
         return (
             <div className='content-root'>
                 <header className='mdc-toolbar mdc-toolbar--fixed navbar'>
