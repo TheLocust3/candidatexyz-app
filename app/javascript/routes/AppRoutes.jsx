@@ -8,6 +8,7 @@ import Skeleton from '../components/containers/Skeleton';
 import NotFound from '../components/containers/NotFound';
 
 import Index from '../components/containers/Index';
+import Setup from '../components/containers/Setup';
 import Website from '../components/containers/Website';
 import Settings from '../components/containers/Settings';
 import SignIn from '../components/containers/users/SignInContainer';
@@ -83,6 +84,14 @@ class AppRoutes extends React.Component {
     render() {
         if (!this.props.isReady) return null;
         if (_.isEmpty(this.props.user)) return <SignIn />;
+
+        if (_.isEmpty(this.props.user.campaignId)) {
+            return (
+                <Skeleton>
+                    <Setup />
+                </Skeleton>
+            );
+        }
 
         return (
             <Skeleton>

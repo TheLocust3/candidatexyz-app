@@ -22,7 +22,7 @@ class NotificationButton extends React.Component {
         return (
             <div className='notification-button-wrapper'>
                 <div className='middle'>
-                    <Link className='unstyled-link unstyled-link-black' to='/notifications'>
+                    <Link className='unstyled-link unstyled-link-black' to={this.props.drawerDisabled ? '#' : '/notifications'}>
                         {this.renderNotificationIcon()}
                     </Link>
                 </div>
@@ -34,7 +34,8 @@ class NotificationButton extends React.Component {
 function mapStateToProps(state) {
     return {
         isReady: state.notifications.isReady,
-        notifications: state.notifications.notifications
+        notifications: state.notifications.notifications,
+        drawerDisabled: state.global.drawerDisabled
     };
 }
 

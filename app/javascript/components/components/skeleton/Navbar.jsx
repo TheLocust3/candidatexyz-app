@@ -102,77 +102,78 @@ class Navbar extends React.Component {
     renderDrawerList() {
         let item = this.props.drawerSelected.item;
         let subItem = this.props.drawerSelected.subItem;
+        let disabled = this.props.drawerDisabled;
 
         return (
             <div>
-                <Link className={`mdc-list-item ${item == 'home' ? 'mdc-list-item--activated' : ''}`} to='/'>
+                <Link className={`mdc-list-item ${item == 'home' ? 'mdc-list-item--activated' : ''}`} to={disabled ? '#' : '/'}>
                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>home</i>
                     <Text type='body2' className={`mdc-list-item-text ${item == 'home' ? 'mdc-list-item-text--activated' : ''}`}>Home</Text>
                 </Link>
 
-                <Link className={`mdc-list-item ${item == 'website' ? 'mdc-list-item--activated' : ''}`} to='/website'>
+                <Link className={`mdc-list-item ${item == 'website' ? 'mdc-list-item--activated' : ''}`} to={disabled ? '#' : '/website'}>
                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>desktop_windows</i>
                     <Text type='body2' className={`mdc-list-item-text ${item == 'website' ? 'mdc-list-item-text--activated' : ''}`}>Website</Text>
                 </Link>
 
-                <Link className={`mdc-list-item ${item == 'communication' ? 'mdc-list-item--activated' : ''}`} to='/communication'>
+                <Link className={`mdc-list-item ${item == 'communication' ? 'mdc-list-item--activated' : ''}`} to={disabled ? '#' : '/communication'}>
                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>person</i>
                     <Text type='body2' className={`mdc-list-item-text ${item == 'communication' ? 'mdc-list-item-text--activated' : ''}`}>Communication</Text>
                 </Link>
 
                 <div id='communication-drop-down'>
-                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/volunteers'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to={disabled ? '#' : '/communication/volunteers'}>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'volunteers' ? 'drawer-sub-item-text--activated' : ''}`}>Volunteers</Text>
                     </Link>
 
-                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/sign-ups'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to={disabled ? '#' : '/communication/sign-ups'}>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'signUps' ? 'drawer-sub-item-text--activated' : ''}`}>Sign Ups</Text>
                     </Link>
 
-                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/communication/messages'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to={disabled ? '#' : '/communication/messages'}>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'messages' ? 'drawer-sub-item-text--activated' : ''}`}>Messages</Text>
                     </Link>
                 </div>
 
-                <Link className={`mdc-list-item ${item == 'finance' ? 'mdc-list-item--activated' : ''}`} to='/finance'>
+                <Link className={`mdc-list-item ${item == 'finance' ? 'mdc-list-item--activated' : ''}`} to={disabled ? '#' : '/finance'}>
                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>attach_money</i>
                     <Text type='body2' className={`mdc-list-item-text ${item == 'finance' ? 'mdc-list-item-text--activated' : ''}`}>Finance</Text>
                 </Link>
 
                 <div id='finance-drop-down'>
-                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/finance/reports'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to={disabled ? '#' : '/finance/reports'}>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'reports' ? 'drawer-sub-item-text--activated' : ''}`}>Reports</Text>
                     </Link>
 
-                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/finance/donations'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to={disabled ? '#' : '/finance/donations'}>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'donations' ? 'drawer-sub-item-text--activated' : ''}`}>Donations</Text>
                     </Link>
 
-                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/finance/expenditures'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to={disabled ? '#' : '/finance/expenditures'}>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'expenditures' ? 'drawer-sub-item-text--activated' : ''}`}>Expenses</Text>
                     </Link>
 
-                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/finance/liabilities'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to={disabled ? '#' : '/finance/liabilities'}>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'liabilities' ? 'drawer-sub-item-text--activated' : ''}`}>Debts</Text>
                     </Link>
                 </div>
 
-                <Link className={`mdc-list-item ${item == 'campaign' ? 'mdc-list-item--activated' : ''}`} to='/campaign'>
+                <Link className={`mdc-list-item ${item == 'campaign' ? 'mdc-list-item--activated' : ''}`} to={disabled ? '#' : '/campaign'}>
                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>domain</i>
                     <Text type='body2' className={`mdc-list-item-text ${item == 'campaign' ? 'mdc-list-item-text--activated' : ''}`}>Campaign</Text>
                 </Link>
 
                 <div id='campaign-drop-down'>
-                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/campaign/committee'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to={disabled ? '#' : '/campaign/committee'}>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'committee' ? 'drawer-sub-item-text--activated' : ''}`}>Committee</Text>
                     </Link>
 
-                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to='/campaign/staff'>
+                    <Link className='drawer-sub-item unstyled-link unstyled-link-black' to={disabled ? '#' : '/campaign/staff'}>
                         <Text type='body2' className={`drawer-sub-item-text ${subItem == 'staff' ? 'drawer-sub-item-text--activated' : ''}`}>Staff</Text>
                     </Link>
                 </div>
 
-                <Link className={`mdc-list-item ${item == 'settings' ? 'mdc-list-item--activated' : ''}`} to='/settings'>
+                <Link className={`mdc-list-item ${item == 'settings' ? 'mdc-list-item--activated' : ''}`} to={disabled ? '#' : '/settings'}>
                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>settings</i>
                     <Text type='body2' className={`mdc-list-item-text ${item == 'settings' ? 'mdc-list-item-text--activated' : ''}`}>Settings</Text>
                 </Link>
@@ -217,6 +218,8 @@ class Navbar extends React.Component {
     }
 
     renderMobile() {
+        let disabled = this.props.drawerDisabled;
+        
         return (
             <div className='content-root'>
                 <header className='mdc-toolbar mdc-toolbar--fixed navbar'>
@@ -241,32 +244,32 @@ class Navbar extends React.Component {
 
                         <nav className='mdc-drawer__content mdc-list-group'>
                             <div className='mdc-list'>
-                                <Link className='mdc-list-item' to='/' onClick={this.onLinkClick.bind(this)}>
+                                <Link className='mdc-list-item' to={disabled ? '#' : '/'} onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>home</i>
                                     <Text type='body2'>Home</Text>
                                 </Link>
 
-                                <Link className='mdc-list-item' to='/website' onClick={this.onLinkClick.bind(this)}>
+                                <Link className='mdc-list-item' to={disabled ? '#' : '/website'} onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>desktop_windows</i>
                                     <Text type='body2'>Website</Text>
                                 </Link>
 
-                                <Link className='mdc-list-item' to='/communication' onClick={this.onLinkClick.bind(this)}>
+                                <Link className='mdc-list-item' to={disabled ? '#' : '/communication'} onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>person</i>
                                     <Text type='body2'>Communication</Text>
                                 </Link>
 
-                                <Link className='mdc-list-item' to='/finance' onClick={this.onLinkClick.bind(this)}>
+                                <Link className='mdc-list-item' to={disabled ? '#' : '/finance'} onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>attach_money</i>
                                     <Text type='body2'>Finance</Text>
                                 </Link>
 
-                                <Link className='mdc-list-item' to='/campaign' onClick={this.onLinkClick.bind(this)}>
+                                <Link className='mdc-list-item' to={disabled ? '#' : '/campaign'} onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>domain</i>
                                     <Text type='body2'>Campaign</Text>
                                 </Link>
 
-                                <Link className='mdc-list-item' to='/settings' onClick={this.onLinkClick.bind(this)}>
+                                <Link className='mdc-list-item' to={disabled ? '#' : '/settings'} onClick={this.onLinkClick.bind(this)}>
                                     <i className='material-icons mdc-list-item__graphic' aria-hidden='true'>settings</i>
                                     <Text type='body2'>Settings</Text>
                                 </Link>
@@ -306,7 +309,8 @@ function mapStateToProps(state) {
     return {
         user: state.users.currentUser,
         breadcrumb: state.global.breadcrumb,
-        drawerSelected: state.global.drawerSelected
+        drawerSelected: state.global.drawerSelected,
+        drawerDisabled: state.global.drawerDisabled
     };
 }
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { NotificationActions, NotificationApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
-import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
+import { setTitle, setBreadcrumb } from '../../actions/global-actions';
 
 import NotificationList from '../../components/notifications/NotificationList';
 
@@ -19,7 +19,6 @@ class Notifications extends React.Component {
     componentWillMount() {
         this.props.dispatch(setTitle('Notifications'));
         this.props.dispatch(setBreadcrumb('Notifications'));
-        this.props.dispatch(setDrawerSelected('notifications'));
 
         this.props.dispatch(NotificationActions.fetchAllNotifications());
     }

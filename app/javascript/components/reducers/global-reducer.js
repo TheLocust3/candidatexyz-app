@@ -4,7 +4,8 @@ import { TITLE } from '../../constants';
 const initialState = {
     title: '',
     breadcrumb: '',
-    drawerSelected: { item: 'Home', subItem: '' }
+    drawerSelected: { item: 'Home', subItem: '' },
+    drawerDisabled: false
 };
 
 export function globalReducer(state = initialState, action) {
@@ -22,6 +23,10 @@ export function globalReducer(state = initialState, action) {
         case GlobalActions.SET_DRAWER_SELECTED:
             return Object.assign({}, state, {
                 drawerSelected: action.data
+            });
+        case GlobalActions.SET_DRAWER_DISABLED:
+            return Object.assign({}, state, {
+                drawerDisabled: action.data
             });
         default:
             return state;
