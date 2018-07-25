@@ -16,7 +16,7 @@ export default class NotificationList extends React.Component {
         let page = _.isEmpty(parsed.page) ? 0 : Number(parsed.page);
 
         return (
-            <ul className='mdc-list mdc-list--two-line content-max'>
+            <ul className='mdc-list mdc-list--two-line'>
                 {_.slice(_.reverse(_.sortBy(this.props.notifications, (notification) => { return notification.createdAt })), page * PER_PAGE, (page + 1) * PER_PAGE).map((notification) => {
                     return (
                         <div key={notification.id}>
@@ -37,7 +37,7 @@ export default class NotificationList extends React.Component {
             return this.renderNone();
         } else {
             return (
-                <div>
+                <div className='content-max'>
                     {this.renderList()}
                     <br />
 
