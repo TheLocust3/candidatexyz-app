@@ -63,7 +63,7 @@ export default class UserForm extends React.Component {
         }
 
         StaffApi.update(this.props.user.id, this.state.user.email, this.state.user.firstName, this.state.user.lastName, this.state.user.admin, position, this.state.user.address, this.state.user.city, this.state.user.state, this.state.user.country, this.state.user.zipcode, this.state.user.phoneNumber, this.state.user.party).then((response) => {
-            history.push(`/campaign/staff/${this.props.user.id}`)
+            history.push(`/campaign/staff/${this.props.user.id}`);
         }).catch((response) => {
             this.setState({
                 errors: response.responseJSON.errors
@@ -117,7 +117,8 @@ export default class UserForm extends React.Component {
                 <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} defaultValue={user.party} /><br /><br />
 
                 {this.renderPositionDropdown()}<br />
-                <Checkbox label='Admin' onChange={this.handleAdminCheck.bind(this)} defaultChecked={user.admin} /><br /><br /><br />
+                <Checkbox label='Admin' onChange={this.handleAdminCheck.bind(this)} defaultChecked={user.admin} />
+                <br /><br /><br />
 
                 <Button>Save</Button>
 

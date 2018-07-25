@@ -7,8 +7,12 @@ import { UserActions, setCampaignId } from 'candidatexyz-common-js';
 import Skeleton from '../components/containers/Skeleton';
 import NotFound from '../components/containers/NotFound';
 
+import Setup from '../components/containers/setup/Setup';
+import UserSetup from '../components/containers/setup/UserSetup';
+import CampaignSetup from '../components/containers/setup/CampaignSetup';
+import CompleteSetup from '../components/containers/setup/CompleteSetup';
+
 import Index from '../components/containers/Index';
-import Setup from '../components/containers/Setup';
 import Website from '../components/containers/Website';
 import Settings from '../components/containers/Settings';
 import SignIn from '../components/containers/users/SignInContainer';
@@ -81,82 +85,93 @@ class AppRoutes extends React.Component {
         setCampaignId(nextProps.user.campaignId);
     }
 
+    renderRoutes() {
+        if (_.isEmpty(this.props.user.campaignId)) {
+            return (
+                <Switch>
+                    <Route exact path='/' component={Setup} />
+                    <Route exact path='/user' component={UserSetup} />
+                    <Route exact path='/campaign' component={CampaignSetup} />
+                    <Route exact path='/complete' component={CompleteSetup} />
+
+                    <Route component={NotFound} />
+                </Switch>
+            );
+        } else {
+            return (
+                <Switch>
+                    <Route exact path='/' component={Index} />
+                    <Route exact path='/website' component={Website} />
+                    <Route exact path='/settings' component={Settings} />
+                    <Route exact path='/notifications' component={Notifications} />
+
+                    <Route exact path='/communication' component={Communication} />
+                    <Route exact path='/communication/mail/:group' component={Mail} />
+
+                    <Route exact path='/communication/sign-ups' component={SignUps} />
+                    <Route exact path='/communication/sign-ups/new' component={CreateSignUp} />
+                    <Route exact path='/communication/sign-ups/:id' component={ShowSignUp} />
+                    <Route exact path='/communication/sign-ups/:id/edit' component={EditSignUp} />
+
+                    <Route exact path='/communication/volunteers' component={Volunteers} />
+                    <Route exact path='/communication/volunteers/new' component={CreateVolunteer} />
+                    <Route exact path='/communication/volunteers/:id' component={ShowVolunteer} />
+                    <Route exact path='/communication/volunteers/:id/edit' component={EditVolunteer} />
+
+                    <Route exact path='/communication/messages' component={Messages} />
+                    <Route exact path='/communication/messages/:id' component={ShowMessage} />
+                    <Route exact path='/communication/messages/:id/respond' component={RespondMessage} />
+
+                    <Route exact path='/campaign' component={Campaign} />
+                    <Route exact path='/campaign/staff' component={Staff} />
+                    <Route exact path='/campaign/staff/:id' component={ShowUser} />
+                    <Route exact path='/campaign/staff/:id/edit' component={EditUser} />
+                    <Route exact path='/campaign/invite-staff' component={InviteStaff} />
+
+                    <Route exact path='/campaign/committee' component={ShowCommittee} />
+                    <Route exact path='/campaign/committee/edit' component={EditCommittee} />
+
+                    <Route exact path='/finance' component={Finance} />
+
+                    <Route exact path='/finance/reports' component={Reports} />
+                    <Route exact path='/finance/reports/new' component={CreateReport} />
+                    <Route exact path='/finance/reports/:id' component={ShowReport} />
+
+                    <Route exact path='/finance/donations' component={Donations} />
+                    <Route exact path='/finance/donations/new' component={CreateDonation} />
+                    <Route exact path='/finance/donations/:id' component={ShowDonation} />
+                    <Route exact path='/finance/donations/:id/edit' component={EditDonation} />
+
+                    <Route exact path='/finance/donors' component={Donors} />
+                    <Route exact path='/finance/donors/:name' component={ShowDonor} />
+
+                    <Route exact path='/finance/expenditures' component={Expenditures} />
+                    <Route exact path='/finance/expenditures/new' component={CreateExpenditure} />
+                    <Route exact path='/finance/expenditures/:id' component={ShowExpenditure} />
+                    <Route exact path='/finance/expenditures/:id/edit' component={EditExpenditure} />
+                    
+                    <Route exact path='/finance/in-kinds/:id' component={ShowInKind} />
+                    <Route exact path='/finance/in-kinds/:id/edit' component={EditInKind} />
+
+                    <Route exact path='/finance/liabilities' component={Liabilities} />
+                    <Route exact path='/finance/liabilities/new' component={CreateLiability} />
+                    <Route exact path='/finance/liabilities/:id' component={ShowLiability} />
+                    <Route exact path='/finance/liabilities/:id/edit' component={EditLiability} />
+
+                    <Route component={NotFound} />
+                </Switch>
+            );
+        }
+    }
+
     render() {
         if (!this.props.isReady) return null;
         if (_.isEmpty(this.props.user)) return <SignIn />;
 
-        if (_.isEmpty(this.props.user.campaignId)) {
-            return (
-                <Skeleton>
-                    <Setup />
-                </Skeleton>
-            );
-        }
-
         return (
             <Skeleton>
                 <Route>
-                    <Switch>
-                        <Route exact path='/' component={Index} />
-                        <Route exact path='/website' component={Website} />
-                        <Route exact path='/settings' component={Settings} />
-                        <Route exact path='/notifications' component={Notifications} />
-
-                        <Route exact path='/communication' component={Communication} />
-                        <Route exact path='/communication/mail/:group' component={Mail} />
-
-                        <Route exact path='/communication/sign-ups' component={SignUps} />
-                        <Route exact path='/communication/sign-ups/new' component={CreateSignUp} />
-                        <Route exact path='/communication/sign-ups/:id' component={ShowSignUp} />
-                        <Route exact path='/communication/sign-ups/:id/edit' component={EditSignUp} />
-
-                        <Route exact path='/communication/volunteers' component={Volunteers} />
-                        <Route exact path='/communication/volunteers/new' component={CreateVolunteer} />
-                        <Route exact path='/communication/volunteers/:id' component={ShowVolunteer} />
-                        <Route exact path='/communication/volunteers/:id/edit' component={EditVolunteer} />
-
-                        <Route exact path='/communication/messages' component={Messages} />
-                        <Route exact path='/communication/messages/:id' component={ShowMessage} />
-                        <Route exact path='/communication/messages/:id/respond' component={RespondMessage} />
-
-                        <Route exact path='/campaign' component={Campaign} />
-                        <Route exact path='/campaign/staff' component={Staff} />
-                        <Route exact path='/campaign/staff/:id' component={ShowUser} />
-                        <Route exact path='/campaign/staff/:id/edit' component={EditUser} />
-                        <Route exact path='/campaign/invite-staff' component={InviteStaff} />
-
-                        <Route exact path='/campaign/committee' component={ShowCommittee} />
-                        <Route exact path='/campaign/committee/edit' component={EditCommittee} />
-
-                        <Route exact path='/finance' component={Finance} />
-
-                        <Route exact path='/finance/reports' component={Reports} />
-                        <Route exact path='/finance/reports/new' component={CreateReport} />
-                        <Route exact path='/finance/reports/:id' component={ShowReport} />
-
-                        <Route exact path='/finance/donations' component={Donations} />
-                        <Route exact path='/finance/donations/new' component={CreateDonation} />
-                        <Route exact path='/finance/donations/:id' component={ShowDonation} />
-                        <Route exact path='/finance/donations/:id/edit' component={EditDonation} />
-
-                        <Route exact path='/finance/donors' component={Donors} />
-                        <Route exact path='/finance/donors/:name' component={ShowDonor} />
-
-                        <Route exact path='/finance/expenditures' component={Expenditures} />
-                        <Route exact path='/finance/expenditures/new' component={CreateExpenditure} />
-                        <Route exact path='/finance/expenditures/:id' component={ShowExpenditure} />
-                        <Route exact path='/finance/expenditures/:id/edit' component={EditExpenditure} />
-                        
-                        <Route exact path='/finance/in-kinds/:id' component={ShowInKind} />
-                        <Route exact path='/finance/in-kinds/:id/edit' component={EditInKind} />
-
-                        <Route exact path='/finance/liabilities' component={Liabilities} />
-                        <Route exact path='/finance/liabilities/new' component={CreateLiability} />
-                        <Route exact path='/finance/liabilities/:id' component={ShowLiability} />
-                        <Route exact path='/finance/liabilities/:id/edit' component={EditLiability} />
-
-                        <Route component={NotFound} />
-                    </Switch>
+                    {this.renderRoutes()}
                 </Route>
             </Skeleton>
         );
