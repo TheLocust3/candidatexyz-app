@@ -21,7 +21,7 @@ export default class Message extends React.Component {
         return (
             <div>
                 <Text type='body1'>From</Text>
-                <Text type='body2'>{this.renderName(message)} (<a className='link' href={`mailto:${message.email}`}>{_.lowerCase(message.email)}</a>)</Text>
+                <Text type='body2'>{this.renderName(message)} (<a className='link' href={`mailto:${message.email}`}>{_.toLower(message.email)}</a>)</Text>
                 <br />
 
                 <Text type='body1'>Message</Text>

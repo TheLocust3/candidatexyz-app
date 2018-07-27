@@ -39,7 +39,10 @@ export default class AutoCompleteTextField extends React.Component {
             return;
         }
 
-        let suggested = _.filter(this.props.elements, (element) => { return _.startsWith(_.lowerCase(element[this.props.elementKey]), _.lowerCase(this.state.value)) });
+        let suggested = _.filter(this.props.elements, (element) => { 
+            return _.startsWith(_.toLower(element[this.props.elementKey]), _.toLower(this.state.value))
+        });
+
         suggested = _.sortBy(suggested, (element) => { return element[this.props.elementKey] });
         suggested = _.uniqBy(suggested, (element) => { return element[this.props.elementKey] });
 
