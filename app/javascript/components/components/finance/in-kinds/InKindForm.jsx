@@ -2,9 +2,9 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { InKindApi } from 'candidatexyz-common-js';
-import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
+import { Button, TextField, Form, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
-import { history, STATES } from '../../../../constants';
+import { history } from '../../../../constants';
 
 import AddressInput from '../../common/AddressInput';
 import AutoCompleteTextField from '../../common/AutoCompleteTextField';

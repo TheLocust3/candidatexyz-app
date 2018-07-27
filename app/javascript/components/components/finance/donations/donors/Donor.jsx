@@ -14,19 +14,6 @@ export default class Donor extends React.Component {
         );
     }
 
-    renderDonationFields() {
-        let donor = this.props.donor;
-        if (donor.receiptType != 'donation') return;
-
-        return (
-            <div>
-                <Text type='body1'>Contact</Text>
-                <Text type='body2'>Email: {this.renderEmail()}</Text>
-                <Text type='body2'>Phone Number: {_.isEmpty(donor.phoneNumber) ? 'N/A' : recedonoript.phoneNumber}</Text>
-            </div>
-        );
-    }
-
     renderOccupation() {
         let donor = this.props.donor;
         if (_.isEmpty(donor.occupation) || _.isEmpty(donor.employer)) return 'N/A';
@@ -43,11 +30,13 @@ export default class Donor extends React.Component {
                 <Text type='body2'>${donor.amount}</Text>
                 <br />
 
-                <Text type='body1'>Address</Text>
-                <Text type='body2'>{donor.address}, {donor.city}, {donor.state}{_.isEmpty(donor.country) ? '' : `, ${donor.country}`}</Text>
+                <Text type='body1'>Contact</Text>
+                <Text type='body2'>Email: {this.renderEmail()}</Text>
+                <Text type='body2'>Phone Number: {_.isEmpty(donor.phoneNumber) ? 'N/A' : recedonoript.phoneNumber}</Text>
                 <br />
 
-                {this.renderDonationFields()}
+                <Text type='body1'>Address</Text>
+                <Text type='body2'>{donor.address}, {donor.city}, {donor.state}{_.isEmpty(donor.country) ? '' : `, ${donor.country}`}</Text>
             </div>
         )
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ReceiptActions, InKindActions, DonorHelper } from 'candidatexyz-common-js';
+import { DonorActions } from 'candidatexyz-common-js';
 import { Text, Select, SelectItem } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
@@ -25,8 +25,7 @@ class CreateDonation extends React.Component {
         this.props.dispatch(setBreadcrumb('Donations'));
         this.props.dispatch(setDrawerSelected('finance', 'donations'));
 
-        this.props.dispatch(ReceiptActions.fetchAllReceipts());
-        this.props.dispatch(InKindActions.fetchAllInKinds());
+        this.props.dispatch(DonorActions.fetchAllDonors());
     }
     
     handleTypeChange(select) {
@@ -50,19 +49,17 @@ class CreateDonation extends React.Component {
     }
 
     renderForm() {
-        let donations = DonorHelper.mergeDonations(this.props.receipts.receipts, this.props.inKinds.inKinds);
-
         if (this.state.type == 'Receipt') {
             return (
                 <div>
                     {/* Generate donors (below) so autocomplete completes the fullest one possible (with email and stuff) */}
-                    <DonationForm receipts={DonorHelper.generateDonors(donations)} receiptType='donation' />
+                    <DonationForm receipts={this.props.donors.donors} receiptType='donation' />
                 </div>
             );
         } else {
             return (
                 <div>
-                    <InKindForm inKinds={DonorHelper.generateDonors(donations)} />
+                    <InKindForm inKinds={this.props.donors.donors} />
                 </div>
             );
         }
@@ -75,7 +72,7 @@ class CreateDonation extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.areDonationsReady && this.props.areInKindsReady}>
+                    <Loader isReady={this.props.isReady}>
                         {this.renderTypeDropdown()}
 
                         {this.renderForm()}
@@ -91,10 +88,8 @@ class CreateDonation extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        areDonationsReady: state.receipts.isReady,
-        receipts: state.receipts.receipts,
-        areInKindsReady: state.inKinds.isReady,
-        inKinds: state.inKinds.inKinds
+        isReady: state.donors.isReady,
+        donors: state.donors.donors
     };
 }
 

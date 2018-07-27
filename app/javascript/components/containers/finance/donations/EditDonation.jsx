@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ReceiptActions, ReceiptApi, DonorHelper } from 'candidatexyz-common-js';
+import { ReceiptActions, DonorActions, ReceiptApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
@@ -18,7 +18,7 @@ class EditDonation extends React.Component {
         this.props.dispatch(setDrawerSelected('finance', 'donations'));
 
         this.props.dispatch(ReceiptActions.fetchReceipt(this.props.match.params.id));
-        this.props.dispatch(ReceiptActions.fetchAllReceipts());
+        this.props.dispatch(DonorActions.fetchAllDonors());
     }
 
     onDeleteClick(event) {
@@ -42,8 +42,8 @@ class EditDonation extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.isReady}>
-                        <DonationForm receipt={this.props.receipt} receipts={DonorHelper.generateDonors(this.props.receipts.receipts)} receiptType='donation' />
+                    <Loader isReady={this.props.isReady && this.props.areDonorsReady}>
+                        <DonationForm receipt={this.props.receipt} receipts={this.props.donors.donors} receiptType='donation' />
                     </Loader>
                 </div>
                 <br />
@@ -58,7 +58,8 @@ function mapStateToProps(state) {
     return {
         isReady: state.receipts.isReady,
         receipt: state.receipts.receipt,
-        receipts: state.receipts.receipts
+        areDonorsReady: state.donors.isReady,
+        donors: state.donors.donors
     };
 }
 

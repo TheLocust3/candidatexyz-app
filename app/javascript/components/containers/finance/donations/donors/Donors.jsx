@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { ReceiptActions, InKindActions, DonorHelper } from 'candidatexyz-common-js';
+import { DonorActions } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../../actions/global-actions';
@@ -19,13 +19,10 @@ class Donors extends React.Component {
         this.props.dispatch(setBreadcrumb('Donors'));
         this.props.dispatch(setDrawerSelected('finance', 'donations'));
 
-        this.props.dispatch(ReceiptActions.fetchAllReceipts());
-        this.props.dispatch(InKindActions.fetchAllInKinds());
+        this.props.dispatch(DonorActions.fetchAllDonors());
     }
 
     render() {
-        let donors = DonorHelper.generateDonorsInYear(DonorHelper.mergeDonations(this.props.receipts.receipts, this.props.inKinds.inKinds));
-
         return (
             <div className='content'>
                 <Text type='headline5'>Donor List</Text>
@@ -39,8 +36,8 @@ class Donors extends React.Component {
                 <br />
 
                 <div className='content-1'>
-                    <Loader isReady={this.props.areReceiptsReady && this.props.areInKindsReady}>
-                        <Table to='/finance/donors/' toId='name' headers={['Name', 'Total Amount', 'Address', 'City', 'State']} keys={['name', (receipt) => { return `$${receipt.amount}` }, 'address', 'city', 'state']} rows={donors} rowsPerPage={PER_PAGE} pagerLink='/finance/donors' />
+                    <Loader isReady={this.props.isReady}>
+                        <Table to='/finance/donors/' toId='name' headers={['Name', 'Total Amount', 'Address', 'City', 'State']} keys={['name', (receipt) => { return `$${receipt.amount}` }, 'address', 'city', 'state']} rows={this.props.donors.donors} rowsPerPage={PER_PAGE} pagerLink='/finance/donors' />
                         <br />
                         
                         <BackLink to='/finance/donations' />
@@ -53,10 +50,8 @@ class Donors extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        areReceiptsReady: state.receipts.isReady,
-        receipts: state.receipts.receipts,
-        areInKindsReady: state.inKinds.isReady,
-        inKinds: state.inKinds.inKinds
+        isReady: state.donors.isReady,
+        donors: state.donors.donors
     };
 }
 

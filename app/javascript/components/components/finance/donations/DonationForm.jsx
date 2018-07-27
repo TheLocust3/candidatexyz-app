@@ -1,11 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ReceiptApi, DonorHelper } from 'candidatexyz-common-js';
-import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
+import { ReceiptApi } from 'candidatexyz-common-js';
+import { Button, TextField, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
-import { history, STATES, RECEIPT_TYPES, OCCUPATION_AMOUNT_THRESHOLD } from '../../../../constants';
-import { arraysEquals } from '../../../../helpers';
+import { history, RECEIPT_TYPES } from '../../../../constants';
 
 import AddressInput from '../../common/AddressInput';
 import AutoCompleteTextField from '../../common/AutoCompleteTextField';
@@ -16,26 +15,11 @@ export default class DonationForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { donors: DonorHelper.generateDonorsInYear(this.props.receipts), donor: { amount: 0 }, occupationRequired: false, errors: {} };
+        this.state = { errors: {} };
         if (_.isEmpty(this.props.receipt)) {
             this.state.receipt = { receiptType: RECEIPT_TYPES[0].value, state: 'MA', country: 'United States', dateReceived: new Date() };
         } else {
             this.state.receipt = this.props.receipt;
-        }
-    }
-
-    componentDidUpdate() {
-        if (_.isEmpty(this.state.donor)) return;
-
-        let amount = this.state.donor.amount + Number(this.state.receipt.amount);
-        if (amount >= OCCUPATION_AMOUNT_THRESHOLD && !this.state.occupationRequired) {
-            this.setState({
-                occupationRequired: true
-            });
-        } else if (amount < OCCUPATION_AMOUNT_THRESHOLD && this.state.occupationRequired) {
-            this.setState({
-                occupationRequired: false
-            });
         }
     }
 
@@ -101,8 +85,7 @@ export default class DonationForm extends React.Component {
         receipt.amount = '';
 
         this.setState({
-            receipt: { ...receipt, ...this.state.receipt, name: receipt.name },
-            donor: _.find(this.state.donors, (donor) => { return donor.name == receipt.name })
+            receipt: { ...receipt, ...this.state.receipt, name: receipt.name }
         });
     }
 
@@ -152,8 +135,8 @@ export default class DonationForm extends React.Component {
 
                 {this.renderDonationFields()}
 
-                <TextField label='Occupation' name='occupation' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.occupation} style={{ width: '47.5%', marginRight: '5%' }} required={this.state.occupationRequired} />
-                <TextField label='Employer' name='employer' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.employer} style={{ width: '47.5%' }} required={this.state.occupationRequired} /><br /><br />
+                <TextField label='Occupation' name='occupation' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.occupation} style={{ width: '47.5%', marginRight: '5%' }} />
+                <TextField label='Employer' name='employer' onChange={this.handleChange.bind(this)} defaultValue={this.state.receipt.employer} style={{ width: '47.5%' }} /><br /><br />
 
                 <Button>Save</Button>
 

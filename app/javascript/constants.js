@@ -20,5 +20,4 @@ export const DOMAIN = DEVELOPMENT_ENVIRONMENT ? 'http://127.0.0.1:3000' : 'https
 
 configure({ developmentRoutes: DEVELOPMENT_ENVIRONMENT });
 
-export const OCCUPATION_AMOUNT_THRESHOLD = 200;
 export const RECEIPT_TYPES = [ { label: 'Donation', value: 'donation' }, { label: 'Other', value: 'other' } ];

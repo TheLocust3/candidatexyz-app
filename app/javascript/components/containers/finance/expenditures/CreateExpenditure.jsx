@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { ExpenditureActions } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
-import { history } from '../../../../constants';
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
 
 import BackLink from '../../../components/common/BackLink';

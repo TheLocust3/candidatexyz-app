@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ReceiptActions, InKindActions, DonorHelper } from 'candidatexyz-common-js';
+import { DonorActions } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../../actions/global-actions';
@@ -16,23 +16,18 @@ class ShowDonor extends React.Component {
         this.props.dispatch(setBreadcrumb('Donors'));
         this.props.dispatch(setDrawerSelected('finance', 'donations'));
 
-        this.props.dispatch(ReceiptActions.fetchAllReceipts());
-        this.props.dispatch(InKindActions.fetchAllInKinds());
+        this.props.dispatch(DonorActions.fetchDonor(this.props.match.params.name));
     }
 
     render() {
-        if (_.isEmpty(this.props.receipts.receipts)) return null;
-
-        let donor = _.find(DonorHelper.generateDonors(DonorHelper.mergeDonations(this.props.receipts.receipts, this.props.inKinds.inKinds)), (donor) => { return donor.name == this.props.match.params.name });
-
         return (
             <div className='content'>
-                <Text type='headline5'>{donor.name}</Text>
+                <Text type='headline5'>{this.props.donor.name}</Text>
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.areReceiptsReady && this.props.areInKindsReady}>
-                        <Donor donor={donor} />
+                    <Loader isReady={this.props.isReady}>
+                        <Donor donor={this.props.donor} />
                     </Loader>
                 </div>
                 <br />
@@ -45,10 +40,8 @@ class ShowDonor extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        areReceiptsReady: state.receipts.isReady,
-        receipts: state.receipts.receipts,
-        areInKindsReady: state.inKinds.isReady,
-        inKinds: state.inKinds.inKinds
+        isReady: state.donors.isReady,
+        donor: state.donors.donor
     };
 }
 

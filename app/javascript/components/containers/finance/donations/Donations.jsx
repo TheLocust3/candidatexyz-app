@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { ReceiptActions, ReceiptApi, InKindActions, InKindApi, DonorHelper } from 'candidatexyz-common-js';
+import { ReceiptApi, InKindApi, DonationActions } from 'candidatexyz-common-js';
 import { Text, Fab, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
@@ -19,13 +19,10 @@ class Donations extends React.Component {
         this.props.dispatch(setBreadcrumb('Donations'));
         this.props.dispatch(setDrawerSelected('finance', 'donations'));
 
-        this.props.dispatch(ReceiptActions.fetchAllReceipts());
-        this.props.dispatch(InKindActions.fetchAllInKinds());
+        this.props.dispatch(DonationActions.fetchAllDonations());
     }
 
     render() {
-        let donations = DonorHelper.mergeDonations(this.props.receipts.receipts, this.props.inKinds.inKinds);
-
         return (
             <div className='content'>
                 <Text type='headline5'>Donation List</Text>
@@ -45,8 +42,8 @@ class Donations extends React.Component {
                 <br /><br />
 
                 <div className='content-1'>
-                    <Loader isReady={this.props.areReceiptsReady && this.props.areInKindsReady}>
-                        <Table to={(row) => { return row.type == 'Receipt' ? '/finance/donations/' : '/finance/in-kinds/' }} headers={['Name', 'Amount', 'Address', 'Date Received', 'Type']} keys={['name', 'amountString', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'type']} sortingKeys={['name', 'amount', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).unix() }, 'type']} rows={donations} rowsPerPage={PER_PAGE} pagerLink='/finance/donations' />
+                    <Loader isReady={this.props.isReady}>
+                        <Table to={(row) => { return row.type == 'Receipt' ? '/finance/donations/' : '/finance/in-kinds/' }} headers={['Name', 'Amount', 'Address', 'Date Received', 'Type']} keys={['name', 'amountString', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).format('MM/DD/YYYY') }, 'type']} sortingKeys={['name', 'amount', (row) => { return `${row.address}, ${row.city}, ${row.state}, ${row.country}` }, (row) => { return moment(row.dateReceived).unix() }, 'type']} rows={this.props.donations.donations} rowsPerPage={PER_PAGE} pagerLink='/finance/donations' />
                     </Loader>
                 </div>
 
@@ -67,7 +64,9 @@ function mapStateToProps(state) {
         areReceiptsReady: state.receipts.isReady,
         receipts: state.receipts.receipts,
         areInKindsReady: state.inKinds.isReady,
-        inKinds: state.inKinds.inKinds
+        inKinds: state.inKinds.inKinds,
+        isReady: state.donations.isReady,
+        donations: state.donations.donations
     };
 }
 

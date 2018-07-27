@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { InKindActions, InKindApi } from 'candidatexyz-common-js';
+import { DonorActions, InKindActions, InKindApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { history } from '../../../../constants';
@@ -18,7 +18,7 @@ class EditInKind extends React.Component {
         this.props.dispatch(setDrawerSelected('finance', 'inKind'));
 
         this.props.dispatch(InKindActions.fetchInKind(this.props.match.params.id));
-        this.props.dispatch(InKindActions.fetchAllInKinds());
+        this.props.dispatch(DonorActions.fetchAllDonors());
     }
 
     onDeleteClick(event) {
@@ -42,8 +42,8 @@ class EditInKind extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.isReady}>
-                        <InKindForm inKind={this.props.inKind} inKinds={this.props.inKinds.inKinds} />
+                    <Loader isReady={this.props.isReady && this.props.areDonorsReady}>
+                        <InKindForm inKind={this.props.inKind} inKinds={this.props.donors.donors} />
                     </Loader>
                 </div>
                 <br />
@@ -58,7 +58,8 @@ function mapStateToProps(state) {
     return {
         isReady: state.inKinds.isReady,
         inKind: state.inKinds.inKind,
-        inKinds: state.inKinds.inKinds
+        areDonorsReady: state.donors.isReady,
+        donors: state.donors.donors
     };
 }
 

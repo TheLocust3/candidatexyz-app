@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { VolunteerActions, ContactActions, ReceiptActions, DonorHelper } from 'candidatexyz-common-js';
+import { VolunteerActions, ContactActions, ReceiptActions, DonorActions } from 'candidatexyz-common-js';
 import { Text, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../actions/global-actions';
@@ -31,7 +31,7 @@ class Mail extends React.Component {
             this.props.dispatch(VolunteerActions.fetchAllVolunteers());
             subItem = 'volunteers';
         } else if (this.state.group == 'donors') {
-            this.props.dispatch(ReceiptActions.fetchAllReceipts());
+            this.props.dispatch(DonorActions.fetchAllDonors());
             subItem = 'donations';
         }
 
@@ -53,9 +53,9 @@ class Mail extends React.Component {
                 return { id: volunteer.id, email: volunteer.email, type: 'volunteer', firstName: volunteer.firstName, lastName: volunteer.lastName }
             });
         } else if (this.state.group == 'donors') {
-            if (!nextProps.areReceiptsReady) return;
+            if (!nextProps.areDonorsReady) return;
 
-            emails = _.filter(DonorHelper.generateDonors(nextProps.receipts.receipts), (donor) => { return donor.receiptType == 'donation' }).map((donor) => {
+            emails = _.filter(nextProps.donors.donors, (donor) => { return donor.receiptType == 'donation' }).map((donor) => {
                 return { id: donor.id, email: donor.email, type: 'donor', firstName: donor.name, lastName: '' }
             });
         }
@@ -101,8 +101,8 @@ function mapStateToProps(state) {
         volunteers: state.volunteers.volunteers,
         areContactsReady: state.contacts.isReady,
         contacts: state.contacts.contacts,
-        areReceiptsReady: state.receipts.isReady,
-        receipts: state.receipts.receipts
+        areDonorsReady: state.donors.isReady,
+        donors: state.donors.donors
     };
 }
 

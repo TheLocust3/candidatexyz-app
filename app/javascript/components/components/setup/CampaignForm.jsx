@@ -39,8 +39,6 @@ export default class CampaignForm extends React.Component {
         CampaignApi.create(campaign.name, '', campaign.electionDay, campaign.preliminaryDay).then((response) => {
             StaffApi.updateCampaignId(this.props.user.id, response.id).then((response) => {
                 history.push('/complete');
-            }).catch((response) => {
-                console.log(response)
             });
         }).catch((response) => {
             this.setState({
