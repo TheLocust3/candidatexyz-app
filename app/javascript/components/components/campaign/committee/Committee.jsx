@@ -4,13 +4,23 @@ import { Text } from 'candidatexyz-common-js/lib/elements';
 
 export default class Committee extends React.Component {
 
+    renderLink() {
+        if (this.props.committee.report.status != 'done') return;
+
+        return (
+            <div>
+                <Text type='body2'><a className='link' href={this.props.committee.report.url}>Formation Documents</a></Text>
+                <br />
+            </div>
+        );
+    }
+
     render() {
         let committee = this.props.committee;
 
         return (
             <div>
-                <Text type='body2'><a className='link' href={committee.report.url}>Formation Documents</a></Text>
-                <br />
+                {this.renderLink()}
 
                 <Text type='body1'>Contact Info</Text>
                 <Text type='body2'>Email: <a className='link' href={`mailto:${committee.email}`}>{committee.email}</a></Text>

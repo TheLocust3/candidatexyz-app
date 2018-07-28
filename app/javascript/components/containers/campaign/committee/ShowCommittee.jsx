@@ -30,6 +30,12 @@ class ShowCommittee extends React.Component {
                 isTimedOut: true
             });
         }, 1000);
+
+        this.interval = setInterval(() => this.refresh(), 1500);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     onDeleteClick(event) {
@@ -74,6 +80,14 @@ class ShowCommittee extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    refresh() {
+        if (this.props.committee.report.status != 'done') {
+            this.props.dispatch(CommitteeActions.fetchCommitteeByCampaign());
+        } else {
+            clearInterval(this.interval);
+        }
     }
 }
 
