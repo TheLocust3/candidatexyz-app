@@ -83,7 +83,7 @@ class ShowCommittee extends React.Component {
     }
 
     refresh() {
-        if (this.props.committee.report.status != 'done') {
+        if (this.props.committee.report.status != 'done' && this.props.committee.report.status != 'error') {
             this.props.dispatch(CommitteeActions.fetchCommitteeByCampaign());
         } else {
             clearInterval(this.interval);

@@ -62,7 +62,7 @@ class ShowReport extends React.Component {
     }
 
     refresh() {
-        if (this.props.report.status != 'done') {
+        if (this.props.report.status != 'done' && this.props.report.status != 'error') {
             this.props.dispatch(ReportActions.fetchReport(this.props.match.params.id));
         } else {
             clearInterval(this.interval);
