@@ -41,7 +41,7 @@ export default class CommitteeForm extends React.Component {
         let committee = this.state.committee;
 
         if (_.isEmpty(this.props.committee)) {
-            CommitteeApi.create(committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.office, committee.district, committee.bank).then((response) => {
+            CommitteeApi.create(committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.zipcode, committee.office, committee.district, committee.bank).then((response) => {
                 window.location.reload();
             }).catch((response) => {
                 this.setState({
@@ -49,7 +49,7 @@ export default class CommitteeForm extends React.Component {
                 });
             });
         } else {
-            CommitteeApi.update(this.props.committee.id, committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.office, committee.district, committee.bank).then((response) => {
+            CommitteeApi.update(this.props.committee.id, committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.zipcode, committee.office, committee.district, committee.bank).then((response) => {
                 window.location.reload();
             }).catch((response) => {
                 this.setState({
@@ -69,7 +69,7 @@ export default class CommitteeForm extends React.Component {
                 <TextField type='email' label='Committee Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.email} required /><br />
                 <TextField label='Committee Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.phoneNumber} required /><br /><br />
 
-                <AddressInput address={this.state.committee.address} city={this.state.committee.city} state={this.state.committee.state} country={this.state.committee.country} inputs={['address', 'city', 'state', 'country']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <AddressInput address={this.state.committee.address} city={this.state.committee.city} state={this.state.committee.state} country={this.state.committee.country} inputs={['address', 'city', 'state', 'country', 'zipcode']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br />
 
                 <TextField label='Bank Name' name='bank' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.bank} required />
