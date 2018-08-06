@@ -89,7 +89,7 @@ export default class LiabilityForm extends React.Component {
 
                 <TextField label='Purpose' name='purpose' onChange={this.handleChange.bind(this)} defaultValue={this.state.liability.purpose} required /><br /><br />
 
-                <AddressInput address={this.state.liability.address} city={this.state.liability.city} state={this.state.liability.state} country={this.state.liability.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <AddressInput address={this.state.liability.address} city={this.state.liability.city} state={this.state.liability.state} country={this.state.liability.country} inputs={['address', 'city', 'state', 'country']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br /><br />
 
                 <DatePicker label='Date Incurred:' defaultValue={this.state.liability.dateIncurred} onChange={(date) => { this.handleDateChange(date) }} style={{ display: 'inline-block' }} />

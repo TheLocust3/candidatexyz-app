@@ -90,7 +90,7 @@ export default class InKindForm extends React.Component {
 
                 <TextField label='Description' name='description' onChange={this.handleChange.bind(this)} defaultValue={this.state.inKind.description} required /><br /><br />
 
-                <AddressInput address={this.state.inKind.address} city={this.state.inKind.city} state={this.state.inKind.state} country={this.state.inKind.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <AddressInput address={this.state.inKind.address} city={this.state.inKind.city} state={this.state.inKind.state} country={this.state.inKind.country} inputs={['address', 'city', 'state', 'country']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br /><br />
 
                 <DatePicker label='Date Received:' defaultValue={this.state.inKind.dateReceived} onChange={(date) => { this.handleDateChange(date) }} style={{ display: 'inline-block' }} />

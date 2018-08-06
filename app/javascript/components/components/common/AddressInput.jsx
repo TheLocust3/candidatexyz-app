@@ -15,7 +15,26 @@ export default class AddressInput extends React.Component {
         this.props.onChange('state', select.value);
     }
 
+    renderAddress() {
+        if (!_.includes(this.props.inputs, 'address')) return;
+
+        return (
+            <div>
+                <TextField label='Mailing Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.props.address} required={this.props.required} />
+                <br />
+            </div>
+        );
+    }
+
+    renderCity() {
+        if (!_.includes(this.props.inputs, 'city')) return;
+
+        return <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.props.city} style={{ width: '30%', marginRight: '5%' }} required={this.props.required} />;
+    }
+
     renderStateDropdown() {
+        if (!_.includes(this.props.inputs, 'state')) return;
+
         return (
             <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.props.state })} style={{ width: '30%', marginRight: '5%' }} required={this.props.required}>
                 {STATES.map((state) => {
@@ -30,13 +49,13 @@ export default class AddressInput extends React.Component {
     }
 
     renderCountry() {
-        if (this.props.hideCountry) return;
+        if (!_.includes(this.props.inputs, 'country')) return;
 
         return <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.props.country} style={{ width: '30%' }} required={this.props.required} />;
     }
 
     renderZipcode() {
-        if (!this.props.showZipcode) return
+        if (!_.includes(this.props.inputs, 'zipcode')) return;
 
         let width = this.props.hideCountry ? '30%' : '100%' ;
 
@@ -46,8 +65,8 @@ export default class AddressInput extends React.Component {
     render() {
         return (
             <div>
-                <TextField label='Mailing Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.props.address} required={this.props.required} /><br />
-                <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.props.city} style={{ width: '30%', marginRight: '5%' }} required={this.props.required} />
+                {this.renderAddress()}
+                {this.renderCity()}
                 {this.renderStateDropdown()}
                 {this.renderCountry()}
                 {this.renderZipcode()}
@@ -63,8 +82,7 @@ AddressInput.propTypes = {
     city: PropTypes.string,
     state: PropTypes.string,
     country: PropTypes.string,
-    hideCountry: PropTypes.bool,
-    showZipcode: PropTypes.bool,
+    inputs: PropTypes.array,
     onChange: PropTypes.func.isRequired,
     required: PropTypes.bool
 };

@@ -72,7 +72,7 @@ export default class VolunteerForm extends React.Component {
                 <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={volunteer.email} required />
                 <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.state.volunteer.phoneNumber} /><br /><br />
 
-                <AddressInput address={volunteer.address} city={volunteer.city} state={volunteer.state} zipcode={volunteer.zipcode} hideCountry={true} showZipcode={true} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
+                <AddressInput address={volunteer.address} city={volunteer.city} state={volunteer.state} zipcode={volunteer.zipcode} inputs={['address', 'city', 'state', 'zipcode']} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
 
                 <TextField label='Help Type' name='helpBlurb' onChange={this.handleChange.bind(this)} defaultValue={this.state.volunteer.helpBlurb} /><br /><br />
 

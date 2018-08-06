@@ -2,10 +2,9 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CommitteeApi } from 'candidatexyz-common-js';
-import { Text, Button, TextField, Form, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
+import { Button, TextField, Form, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
 import AddressInput from '../../common/AddressInput';
-import CommitteeChecklist from './CommitteeChecklist';
 
 export default class CommitteeForm extends React.Component {
 
@@ -70,7 +69,7 @@ export default class CommitteeForm extends React.Component {
                 <TextField type='email' label='Committee Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.email} required /><br />
                 <TextField label='Committee Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.phoneNumber} required /><br /><br />
 
-                <AddressInput address={this.state.committee.address} city={this.state.committee.city} state={this.state.committee.state} country={this.state.committee.country} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <AddressInput address={this.state.committee.address} city={this.state.committee.city} state={this.state.committee.state} country={this.state.committee.country} inputs={['address', 'city', 'state', 'country']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br />
 
                 <TextField label='Bank Name' name='bank' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.bank} required />
