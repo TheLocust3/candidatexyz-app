@@ -33,7 +33,7 @@ class Donors extends React.Component {
                         </Text>
                     </Link>
                 </div>
-                <br />
+                <br /><br />
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>
