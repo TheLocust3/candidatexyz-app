@@ -7,6 +7,7 @@ import { history } from '../../../constants';
 
 import AddressInput from '../common/AddressInput';
 import FullNameInput from '../common/FullNameInput';
+import PartyInput from '../common/PartyInput';
 
 export default class StaffSignUpForm extends React.Component {
 
@@ -64,7 +65,7 @@ export default class StaffSignUpForm extends React.Component {
 
                 <AddressInput state={user.state} country={user.country} zipcode={user.zipcode} inputs={['address', 'city', 'state', 'country', 'zipcode']} onChange={(name, value) => this.handleGenericChange(name, value)} required={extraRequired} /><br />
 
-                <TextField label='Party' name='party' defaultValue={this.state.user.party} onChange={this.handleChange.bind(this)} required={extraRequired} /><br />
+                <PartyInput party={user.party} onChange={(name, value) => this.handleGenericChange(name, value)} required={extraRequired} /><br />
 
                 <TextField type='password' label='Password' name='password' defaultValue={this.state.user.password} onChange={this.handleChange.bind(this)} required /><br />
                 <TextField type='password' label='Confirm Password' name='passwordConfirmation' defaultValue={this.state.user.passwordConfirmation} onChange={this.handleChange.bind(this)} required /><br /><br />

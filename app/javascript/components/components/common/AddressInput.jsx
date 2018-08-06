@@ -7,6 +7,23 @@ import { STATES } from '../../../constants';
 
 export default class AddressInput extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = { address: this.props.address, city: this.props.city, state: this.props.state, country: this.props.country, zipcode: this.props.zipcode };
+
+        let campaign = this.props.campaign;
+        if (!_.isEmpty(campaign)) {
+            this.state.city = campaign.city;
+            this.state.state = campaign.state;
+            this.state.country = campaign.country;
+
+            this.props.onChange('city', this.state.city);
+            this.props.onChange('state', this.state.state);
+            this.props.onChange('country', this.state.country);
+        }
+    }
+
     handleChange(event) {
         this.props.onChange(event.target.name, event.target.value);
     }
@@ -20,23 +37,23 @@ export default class AddressInput extends React.Component {
 
         return (
             <div>
-                <TextField label='Mailing Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.props.address} required={this.props.required} />
+                <TextField label='Mailing Address' name='address' onChange={this.handleChange.bind(this)} defaultValue={this.state.address} required={this.props.required} />
                 <br />
             </div>
         );
     }
 
-    renderCity(defaultCity) {
+    renderCity() {
         if (!_.includes(this.props.inputs, 'city')) return;
 
-        return <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={defaultCity} style={{ width: '30%', marginRight: '5%' }} required={this.props.required} />;
+        return <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.city} style={{ width: '30%', marginRight: '5%' }} required={this.props.required} />;
     }
 
-    renderStateDropdown(defaultState) {
+    renderStateDropdown() {
         if (!_.includes(this.props.inputs, 'state')) return;
 
         return (
-            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == defaultState })} style={{ width: '30%', marginRight: '5%' }} required={this.props.required}>
+            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.state })} style={{ width: '30%', marginRight: '5%' }} required={this.props.required}>
                 {STATES.map((state) => {
                     return (
                         <SelectItem key={state}>
@@ -48,10 +65,10 @@ export default class AddressInput extends React.Component {
         );
     }
 
-    renderCountry(defaultCountry) {
+    renderCountry() {
         if (!_.includes(this.props.inputs, 'country')) return;
 
-        return <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={defaultCountry} style={{ width: '30%' }} required={this.props.required} />;
+        return <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.state.country} style={{ width: '30%' }} required={this.props.required} />;
     }
 
     renderZipcode() {
@@ -59,28 +76,16 @@ export default class AddressInput extends React.Component {
 
         let width = this.props.hideCountry ? '30%' : '100%' ;
 
-        return <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.props.zipcode} style={{ width: width }} required={this.props.required} />;
+        return <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.state.zipcode} style={{ width: width }} required={this.props.required} />;
     }
 
     render() {
-        let city = this.props.city;
-        let state = this.props.state;
-        let country = this.props.country;
-
-        if (!_.isEmpty(this.props.campaign)) {
-            let campaign = this.props.campaign;
-
-            city = campaign.city;
-            state = campaign.state;
-            country = campaign.country;
-        }
-
         return (
             <div>
                 {this.renderAddress()}
-                {this.renderCity(city)}
-                {this.renderStateDropdown(state)}
-                {this.renderCountry(country)}
+                {this.renderCity()}
+                {this.renderStateDropdown()}
+                {this.renderCountry()}
                 {this.renderZipcode()}
 
                 <MDCAutoInit />

@@ -7,6 +7,7 @@ import { history } from '../../../constants';
 
 import AddressInput from '../common/AddressInput';
 import FullNameInput from '../common/FullNameInput';
+import PartyInput from '../common/PartyInput';
 
 export default class EditUserForm extends React.Component {
 
@@ -122,7 +123,7 @@ export default class EditUserForm extends React.Component {
 
                 <AddressInput address={user.address} city={user.city} state={user.state} country={user.country} zipcode={user.zipcode} inputs={['address', 'city', 'state', 'country', 'zipcode']} onChange={(name, value) => this.handleGenericChange(name, value)} /><br />
 
-                <TextField label='Party' name='party' onChange={this.handleChange.bind(this)} defaultValue={user.party} /><br /><br />
+                <PartyInput party={user.party} onChange={(name, value) => this.handleGenericChange(name, value)} />
 
                 {this.renderInitial()}
                 

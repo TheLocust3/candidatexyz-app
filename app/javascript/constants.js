@@ -12,6 +12,7 @@ export const MAX_MOBILE_WIDTH = 768;
 export const TITLE = 'candidateXYZ';
 
 export const STATES = [ 'AL', 'AK', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'AS', 'DC', 'FM', 'GU', 'MH', 'MP', 'PW', 'PR', 'VI' ];
+export const PARTIES = [ 'Democratic Party', 'Republican Party', 'Other' ];
 
 export const PURPLE_PRIMARY = { red: 71, green: 10, blue: 102 };
 export const PURPLE_LIGHT = { red: 142, green: 18, blue: 204 };
