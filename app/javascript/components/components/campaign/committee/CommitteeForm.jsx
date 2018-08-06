@@ -69,7 +69,7 @@ export default class CommitteeForm extends React.Component {
                 <TextField type='email' label='Committee Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.email} required /><br />
                 <TextField label='Committee Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.phoneNumber} required /><br /><br />
 
-                <AddressInput address={this.state.committee.address} city={this.state.committee.city} state={this.state.committee.state} country={this.state.committee.country} inputs={['address', 'city', 'state', 'country', 'zipcode']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <AddressInput address={this.state.committee.address} campaign={this.props.campaign} inputs={['address', 'city', 'state', 'country', 'zipcode']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br />
 
                 <TextField label='Bank Name' name='bank' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.bank} required />
@@ -84,5 +84,6 @@ export default class CommitteeForm extends React.Component {
 }
 
 CommitteeForm.propTypes = {
-    committee: PropTypes.object
+    committee: PropTypes.object,
+    campaign: PropTypes.object
 };

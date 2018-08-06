@@ -26,17 +26,17 @@ export default class AddressInput extends React.Component {
         );
     }
 
-    renderCity() {
+    renderCity(defaultCity) {
         if (!_.includes(this.props.inputs, 'city')) return;
 
-        return <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.props.city} style={{ width: '30%', marginRight: '5%' }} required={this.props.required} />;
+        return <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={defaultCity} style={{ width: '30%', marginRight: '5%' }} required={this.props.required} />;
     }
 
-    renderStateDropdown() {
+    renderStateDropdown(defaultState) {
         if (!_.includes(this.props.inputs, 'state')) return;
 
         return (
-            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.props.state })} style={{ width: '30%', marginRight: '5%' }} required={this.props.required}>
+            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == defaultState })} style={{ width: '30%', marginRight: '5%' }} required={this.props.required}>
                 {STATES.map((state) => {
                     return (
                         <SelectItem key={state}>
@@ -48,10 +48,10 @@ export default class AddressInput extends React.Component {
         );
     }
 
-    renderCountry() {
+    renderCountry(defaultCountry) {
         if (!_.includes(this.props.inputs, 'country')) return;
 
-        return <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={this.props.country} style={{ width: '30%' }} required={this.props.required} />;
+        return <TextField label='Country' name='country' onChange={this.handleChange.bind(this)} defaultValue={defaultCountry} style={{ width: '30%' }} required={this.props.required} />;
     }
 
     renderZipcode() {
@@ -63,12 +63,24 @@ export default class AddressInput extends React.Component {
     }
 
     render() {
+        let city = this.props.city;
+        let state = this.props.state;
+        let country = this.props.country;
+
+        if (!_.isEmpty(this.props.campaign)) {
+            let campaign = this.props.campaign;
+
+            city = campaign.city;
+            state = campaign.state;
+            country = campaign.country;
+        }
+
         return (
             <div>
                 {this.renderAddress()}
-                {this.renderCity()}
-                {this.renderStateDropdown()}
-                {this.renderCountry()}
+                {this.renderCity(city)}
+                {this.renderStateDropdown(state)}
+                {this.renderCountry(country)}
                 {this.renderZipcode()}
 
                 <MDCAutoInit />
@@ -84,5 +96,6 @@ AddressInput.propTypes = {
     country: PropTypes.string,
     inputs: PropTypes.array,
     onChange: PropTypes.func.isRequired,
-    required: PropTypes.bool
+    required: PropTypes.bool,
+    campaign: PropTypes.object
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CommitteeActions, UserActions } from 'candidatexyz-common-js';
+import { CommitteeActions, UserActions, CampaignActions } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
 import { setTitle, setBreadcrumb, setDrawerSelected } from '../../../actions/global-actions';
@@ -24,11 +24,12 @@ class CreateCommittee extends React.Component {
 
         this.props.dispatch(CommitteeActions.fetchCommitteeByCampaign());
         this.props.dispatch(UserActions.fetchAllUsersWithPositions());
+        this.props.dispatch(CampaignActions.fetchCampaign(this.props.user.campaignId));
     }
 
     renderCommitteeForm() {
         if (this.state.checklistComplete) {
-            return <CommitteeForm />;
+            return <CommitteeForm campaign={this.props.campaign} />;
         } else {
             return (
                 <Text type='body1'>
@@ -47,7 +48,7 @@ class CreateCommittee extends React.Component {
                 <br />
 
                 <div className='content-2'>
-                    <Loader isReady={this.props.areUsersReady}>
+                    <Loader isReady={this.props.areUsersReady && this.props.isCampaignReady}>
                         <CommitteeChecklist users={this.props.users.users} complete={() => { this.setState({ checklistComplete: true }) }} />
 
                         {this.renderCommitteeForm()}
@@ -63,7 +64,10 @@ function mapStateToProps(state) {
         isReady: state.committees.isReady,
         committee: state.committees.committee,
         areUsersReady: state.users.isReady,
-        users: state.users.users
+        users: state.users.users,
+        user: state.users.currentUser,
+        isCampaignReady: state.campaigns.isReady,
+        campaign: state.campaigns.campaign
     };
 }
 
