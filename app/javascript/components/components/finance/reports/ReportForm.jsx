@@ -14,9 +14,11 @@ export default class ReportForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { reportType: ReportHelper.generateReportType(this.props.reportTypes.ma[0], this.props.campaign), report: {
-            official: false, reportType: this.props.reportTypes.ma[0].value, beginningDate: new Date(), endingDate: new Date()
-        }, errors: {} };
+        this.state = { errors: {} };
+
+        this.state.reportTypes = _.filter(this.props.reportTypes[_.toLower(this.props.campaign.state)], (reportType) => { return reportType.officeType == this.props.campaign.officeType });
+        this.state.reportType = ReportHelper.generateReportType(this.state.reportTypes[0], this.props.campaign);
+        this.state.report = { official: false, reportType: this.state.reportTypes[0].value, beginningDate: new Date(), endingDate: new Date() };
 
         this.state.lastReport = ReportHelper.lastOfficialReport(this.props.reports);
     }
@@ -40,7 +42,7 @@ export default class ReportForm extends React.Component {
     }
 
     handleReportTypeChange(select) {
-        let reportType = ReportHelper.generateReportType(_.find(this.props.reportTypes.ma, (reportType) => { return reportType.name == select.value }), this.props.campaign)
+        let reportType = ReportHelper.generateReportType(_.find(this.state.reportTypes, (reportType) => { return reportType.name == select.value }), this.props.campaign)
 
         let report = this.state.report;
         report.reportType = reportType.value;
@@ -82,8 +84,8 @@ export default class ReportForm extends React.Component {
         let reportClass = _.isEmpty(this.props.reportClass) ? 'finance' : this.props.reportClass;
 
         return (
-            <Select label='Report Type' onChange={(select) => this.handleReportTypeChange(select)} selectedIndex={_.findIndex(this.props.reportTypes.ma, (reportType) => { return reportType.value == this.state.report.reportType })}>
-                {this.props.reportTypes.ma.map((reportType) => {
+            <Select label='Report Type' onChange={(select) => this.handleReportTypeChange(select)} selectedIndex={_.findIndex(this.state.reportTypes, (reportType) => { return reportType.value == this.state.report.reportType })}>
+                {this.state.reportTypes.map((reportType) => {
                     if (reportType.reportClass != reportClass) return;
 
                     return (
