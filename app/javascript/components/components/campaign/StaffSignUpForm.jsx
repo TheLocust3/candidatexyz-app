@@ -41,7 +41,7 @@ export default class StaffSignUpForm extends React.Component {
         
         let user = this.state.user;
 
-        StaffApi.create(this.props.token, user.email, user.firstName, user.lastName, user.password, user.passwordConfirmation, user.address, user.city, user.state, user.country, user.zipcode, user.phoneNumber, user.party).then(() => {
+        StaffApi.create(this.props.token, user.email, user.firstName, user.middleName, user.lastName, user.password, user.passwordConfirmation, user.address, user.city, user.state, user.country, user.zipcode, user.phoneNumber, user.party).then(() => {
             history.push('/');
         }).catch((response) => {
             this.setState({
@@ -57,7 +57,7 @@ export default class StaffSignUpForm extends React.Component {
 
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <FullNameInput firstName={user.firstName} lastName={user.lastName} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
+                <FullNameInput firstName={user.firstName} middleName={user.middleName} lastName={user.lastName} showMiddleName={true} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
 
                 <TextField label='Email' name='email' defaultValue={user.email} onChange={this.handleChange.bind(this)} disabled required /><br />
                 <TextField label='Phone Number' name='phoneNumber' defaultValue={this.state.user.phoneNumber} onChange={this.handleChange.bind(this)} required={extraRequired} /><br />

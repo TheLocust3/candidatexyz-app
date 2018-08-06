@@ -53,7 +53,7 @@ export default class EditUserForm extends React.Component {
             position = user.positionOther
         }
 
-        AuthApi.editUser(user.email, user.password, user.passwordConfirmation, user.firstName, user.lastName, user.address, user.city, user.state, user.country, user.zipcode, user.phoneNumber, user.party, position).then((response) => {
+        AuthApi.editUser(user.email, user.password, user.passwordConfirmation, user.firstName, user.middleName, user.lastName, user.address, user.city, user.state, user.country, user.zipcode, user.phoneNumber, user.party, position).then((response) => {
             if (_.isEmpty(this.props.redirect)) {
                 window.location.href = '/';
             } else {
@@ -61,7 +61,7 @@ export default class EditUserForm extends React.Component {
             }
         }).catch((response) => {
             this.setState({
-                errors: { error: response.data.errors }
+                errors: response.data.errors
             });
         });
     }
@@ -115,7 +115,7 @@ export default class EditUserForm extends React.Component {
         
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors}>
-                <FullNameInput firstName={user.firstName} lastName={user.lastName} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
+                <FullNameInput firstName={user.firstName} middleName={user.middleName} lastName={user.lastName} showMiddleName={true} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
 
                 <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={user.email} /><br />
                 <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={user.phoneNumber} /><br /><br />

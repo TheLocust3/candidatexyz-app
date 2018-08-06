@@ -8,12 +8,20 @@ export default class FullNameInput extends React.Component {
         this.props.onChange(event.target.name, event.target.value);
     }
 
+    renderMiddleName() {
+        if (!this.props.showMiddleName) return;
+
+        return <TextField label='Middle Name' name='middleName' onChange={this.handleChange.bind(this)} defaultValue={this.props.middleName} style={{ width: '30%', marginRight: '5%' }} />;
+    }
 
     render() {
+        let width = this.props.showMiddleName ? '30%' : '47.5%';
+
         return (
             <div>
-                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.firstName} required={this.props.required} style={{ width: '47.5%', marginRight: '5%' }} />
-                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.lastName} style={{ width: '47.5%' }} required={this.props.required} />
+                <TextField label='First Name' name='firstName' onChange={this.handleChange.bind(this)} defaultValue={this.props.firstName} required={this.props.required} style={{ width: width, marginRight: '5%' }} />
+                {this.renderMiddleName()}
+                <TextField label='Last Name' name='lastName' onChange={this.handleChange.bind(this)} defaultValue={this.props.lastName} style={{ width: width }} required={this.props.required} />
 
                 <MDCAutoInit />
             </div>
@@ -23,7 +31,9 @@ export default class FullNameInput extends React.Component {
 
 FullNameInput.propTypes = {
     firstName: PropTypes.string,
+    middleName: PropTypes.string,
     lastName: PropTypes.string,
+    showMiddleName: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     required: PropTypes.bool
 };

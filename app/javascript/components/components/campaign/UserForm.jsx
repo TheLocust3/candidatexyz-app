@@ -62,7 +62,7 @@ export default class UserForm extends React.Component {
             position = this.state.user.positionOther
         }
 
-        StaffApi.update(this.props.user.id, this.state.user.email, this.state.user.firstName, this.state.user.lastName, this.state.user.admin, position, this.state.user.address, this.state.user.city, this.state.user.state, this.state.user.country, this.state.user.zipcode, this.state.user.phoneNumber, this.state.user.party).then((response) => {
+        StaffApi.update(this.props.user.id, this.state.user.email, this.state.user.firstName, this.state.user.middleName, this.state.user.lastName, this.state.user.admin, position, this.state.user.address, this.state.user.city, this.state.user.state, this.state.user.country, this.state.user.zipcode, this.state.user.phoneNumber, this.state.user.party).then((response) => {
             history.push(`/campaign/staff/${this.props.user.id}`);
         }).catch((response) => {
             this.setState({
@@ -107,7 +107,7 @@ export default class UserForm extends React.Component {
 
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <FullNameInput firstName={user.firstName} lastName={user.lastName} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
+                <FullNameInput firstName={user.firstName} middleName={user.middleName} lastName={user.lastName} showMiddleName={true} onChange={(name, value) => this.handleGenericChange(name, value)} required /><br />
 
                 <TextField label='Email' type='email' name='email' onChange={this.handleChange.bind(this)} defaultValue={user.email} /><br />
                 <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={user.phoneNumber} /><br /><br />
