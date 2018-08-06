@@ -10,9 +10,15 @@ const PER_PAGE = 10;
 
 export default class StaffList extends React.Component {
 
+    renderPosition(member) {
+        if (_.isEmpty(member.position)) return '';
+
+        return `(${member.position})`;
+    }
+
     renderName(member) {
         if (member.created) {
-            return `${member.firstName} ${member.lastName}`;
+            return `${member.firstName} ${member.lastName} ${this.renderPosition(member)}`;
         }
 
         return <i>Invited</i>;

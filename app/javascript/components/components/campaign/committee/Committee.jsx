@@ -21,7 +21,7 @@ export default class Committee extends React.Component {
         return (
             <Text type='body2'>
                 Error encountered while generating formation documetns. Please try again
-                <br />
+                <br /><br />
             </Text>
         );
     }
