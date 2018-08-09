@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LiabilityApi } from 'candidatexyz-common-js';
-import { Text, Button, TextField, Form, Select, SelectItem, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
+import { LiabilityApi, ReceiptApi } from 'candidatexyz-common-js';
+import { Button, TextField, Checkbox, Form, MDCAutoInit } from 'candidatexyz-common-js/lib/elements';
 
-import { history, STATES } from '../../../../constants';
+import { history } from '../../../../constants';
 
 import AddressInput from '../../common/AddressInput';
 import AutoCompleteTextField from '../../common/AutoCompleteTextField';
@@ -15,7 +15,7 @@ export default class LiabilityForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { errors: {} };
+        this.state = { autoAdd: true, errors: {} };
         if (_.isEmpty(this.props.liability)) {
             this.state.liability = { state: 'MA', country: 'United States', dateIncurred: new Date() };
         } else {
@@ -55,7 +55,16 @@ export default class LiabilityForm extends React.Component {
 
         if (_.isEmpty(this.props.liability)) {
             LiabilityApi.create(liability.toWhom, liability.purpose, liability.address, liability.city, liability.state, liability.country, liability.dateIncurred, liability.amount).then((response) => {
-                history.push(`/finance/liabilities/${response.id}`);
+                let redirect = `/finance/liabilities/${response.id}`;
+
+                if (!this.state.autoAdd) {
+                    history.push(redirect);
+                    return;
+                }
+                
+                ReceiptApi.create(liability.toWhom, 'donation', liability.amount, liability.address, liability.city, liability.state, liability.country, liability.dateIncurred, liability.purpose, '', '', '').then((response) => {
+                    history.push(redirect);
+                });
             }).catch((response) => {
                 this.setState({
                     errors: response.responseJSON.errors
@@ -80,6 +89,17 @@ export default class LiabilityForm extends React.Component {
         });
     }
 
+    renderAutoAddCheckbox() {
+        if (!_.isEmpty(this.props.liability)) return;
+
+        return (
+            <div>
+                <Checkbox label='Automatically log new liability as receipt?' defaultChecked={this.state.autoAdd} onChange={() => { this.setState({ autoAdd: !this.state.autoAdd }) }} />
+                <br />
+            </div>
+        );
+    }
+
     render() {
         let amount = _.isUndefined(this.state.liability.amount) ? null : String(this.state.liability.amount);
 
@@ -94,7 +114,9 @@ export default class LiabilityForm extends React.Component {
 
                 <DatePicker label='Date Incurred:' defaultValue={this.state.liability.dateIncurred} onChange={(date) => { this.handleDateChange(date) }} style={{ display: 'inline-block' }} />
                 <TextField type='number' label='Amount ($)' name='amount' step='0.01' onChange={this.handleChange.bind(this)} defaultValue={amount} style={{ width: 'auto', marginLeft: '5%' }} required />
-                <br /><br />
+                <br />
+                
+                {this.renderAutoAddCheckbox()}<br />
 
                 <Button>Save</Button>
 
