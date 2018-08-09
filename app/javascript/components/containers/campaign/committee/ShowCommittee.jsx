@@ -47,6 +47,22 @@ class ShowCommittee extends React.Component {
         });
     }
 
+    renderLinks() {
+        if (!this.props.committee.dissolved) {
+            return (
+                <div>
+                    <Link className='resource-actions-item unstyled-link-black' to={`/campaign/committee/edit`}>
+                        <Text type='body2'>Change</Text>
+                    </Link>
+    
+                    <Link className='resource-actions-item unstyled-link-black' to={`/campaign/committee/dissolve`}>
+                        <Text type='body2'>Dissolve</Text>
+                    </Link>
+                </div>
+            );
+        }
+    }
+
     render() {
         let committee = this.props.committee;
 
@@ -60,16 +76,10 @@ class ShowCommittee extends React.Component {
 
         return (
             <div className='content'>
-                <Text type='headline5'>{committee.name}</Text>
+                <Text type='headline5'>{committee.name} {this.props.committee.dissolved ? '(Dissolved)' : ''}</Text>
 
                 <div className='resource-actions-under'>
-                    <Link className='resource-actions-item unstyled-link-black' to={`/campaign/committee/edit`}>
-                        <Text type='body2'>Change</Text>
-                    </Link>
-
-                    <a className='resource-actions-item unstyled-link-black' href='#' onClick={this.onDeleteClick.bind(this)}>
-                        <Text type='body2'>Dissolve</Text>
-                    </a>
+                    {this.renderLinks()}
                 </div>
                 <br /><br />
 

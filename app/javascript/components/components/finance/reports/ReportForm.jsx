@@ -20,7 +20,7 @@ export default class ReportForm extends React.Component {
         this.state.reportType = ReportHelper.generateReportType(this.state.reportTypes[0], this.props.campaign);
         this.state.report = { official: false, reportType: this.state.reportTypes[0].value, beginningDate: new Date(), endingDate: new Date() };
 
-        this.state.lastReport = ReportHelper.lastOfficialReport(this.props.reports);
+        this.state.lastReport = ReportHelper.lastOfficialReport(this.props.reports, this.props.reportClass);
     }
 
     handleChange(event) {

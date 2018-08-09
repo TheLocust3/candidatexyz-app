@@ -15,6 +15,17 @@ export default class Committee extends React.Component {
         );
     }
 
+    renderDissolutionLink() {
+        if (!this.props.committee.dissolved || this.props.committee.dissolutionReport.status != 'done') return;
+
+        return (
+            <div>
+                <Text type='body2'><a className='link' href={this.props.committee.dissolutionReport.url}>Dissolution Documents</a></Text>
+                <br />
+            </div>
+        );
+    }
+
     renderError() {
         if (this.props.committee.report.status != 'error') return;
 
@@ -33,6 +44,7 @@ export default class Committee extends React.Component {
             <div>
                 {this.renderError()}
                 {this.renderLink()}
+                {this.renderDissolutionLink()}
 
                 <Text type='body1'>Contact Info</Text>
                 <Text type='body2'>Email: <a className='link' href={`mailto:${committee.email}`}>{committee.email}</a></Text>
