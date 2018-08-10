@@ -125,10 +125,11 @@ export default class DonationForm extends React.Component {
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
                 {this.renderReceiptTypeDropdown()}
                 
-                <AutoCompleteTextField elements={this.props.receipts} elementKey='name' label='Name' name='name' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.receipt.name} required /><br />
+                <AutoCompleteTextField elements={this.props.receipts} elementKey='name' label='Name' name='name' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.receipt.name} required />
+                <br />
 
                 <AddressInput address={this.state.receipt.address} city={this.state.receipt.city} state={this.state.receipt.state} country={this.state.receipt.country} inputs={['address', 'city', 'state', 'country']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
-                <br /><br />
+                <br />
 
                 <DatePicker label='Date Received:' defaultValue={this.state.receipt.dateReceived} onChange={(date) => { this.handleDateChange(date) }} style={{ display: 'inline-block' }} />
                 <TextField type='number' label='Amount ($)' name='amount' step='0.01' onChange={this.handleChange.bind(this)} defaultValue={amount} style={{ width: 'auto', marginLeft: '5%' }} required /><br />

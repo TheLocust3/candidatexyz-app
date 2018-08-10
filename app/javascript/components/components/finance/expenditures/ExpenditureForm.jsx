@@ -85,15 +85,17 @@ export default class ExpenditureForm extends React.Component {
 
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <AutoCompleteTextField elements={this.props.expenditures} elementKey='paidTo' label='Paid To' name='paidTo' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.expenditure.paidTo} required /><br />
+                <AutoCompleteTextField elements={this.props.expenditures} elementKey='paidTo' label='Paid To' name='paidTo' onChange={this.handleChange.bind(this)} onAutoComplete={(element) => this.onAutoComplete(element)} defaultValue={this.state.expenditure.paidTo} required />
 
-                <TextField label='Purpose' name='purpose' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.purpose} required /><br /><br />
+                <TextField label='Purpose' name='purpose' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.purpose} required />
+                <br />
 
                 <AddressInput address={this.state.expenditure.address} city={this.state.expenditure.city} state={this.state.expenditure.state} country={this.state.expenditure.country} inputs={['address', 'city', 'state', 'country']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
-                <br /><br />
+                <br />
 
                 <DatePicker label='Date Paid:' defaultValue={this.state.expenditure.datePaid} onChange={(date) => { this.handleDateChange(date) }} style={{ display: 'inline-block' }} />
-                <TextField type='number' label='Amount ($)' name='amount' step='0.01' onChange={this.handleChange.bind(this)} defaultValue={amount} style={{ width: 'auto', marginLeft: '5%' }} required /><br />
+                <TextField type='number' label='Amount ($)' name='amount' step='0.01' onChange={this.handleChange.bind(this)} defaultValue={amount} style={{ width: 'auto', marginLeft: '5%' }} required />
+                <br /><br />
 
                 <Button>Save</Button>
 

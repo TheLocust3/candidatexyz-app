@@ -53,7 +53,7 @@ export default class AddressInput extends React.Component {
         if (!_.includes(this.props.inputs, 'state')) return;
 
         return (
-            <Select label='State' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.state })} style={{ width: '30%', marginRight: '5%' }} required={this.props.required}>
+            <Select label='State*' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.state })} style={{ width: '30%', marginRight: '5%' }} required={this.props.required}>
                 {STATES.map((state) => {
                     return (
                         <SelectItem key={state}>

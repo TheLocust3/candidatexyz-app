@@ -10,14 +10,14 @@ import Loader from '../../../components/common/Loader';
 import DonationForm from '../../../components/finance/donations/DonationForm';
 import InKindForm from '../../../components/finance/in-kinds/InKindForm';
 
-const DONATION_TYPES = ['Receipt', 'In Kind'];
+const DONATION_TYPES = ['Monetary', 'In Kind'];
 
 class CreateDonation extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = { type: 'Receipt' };
+        this.state = { type: 'Monetary' };
     }
 
     componentWillMount() {
@@ -49,7 +49,7 @@ class CreateDonation extends React.Component {
     }
 
     renderForm() {
-        if (this.state.type == 'Receipt') {
+        if (this.state.type == 'Monetary') {
             return (
                 <div>
                     {/* Generate donors (below) so autocomplete completes the fullest one possible (with email and stuff) */}
