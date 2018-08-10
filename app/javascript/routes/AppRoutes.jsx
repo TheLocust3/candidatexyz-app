@@ -23,6 +23,7 @@ import Staff from '../components/containers/campaign/Staff';
 import EditUser from '../components/containers/campaign/EditUser';
 import InviteStaff from '../components/containers/campaign/InviteStaff';
 
+import CreateCommittee from '../components/containers/campaign/committee/CreateCommittee';
 import DissolveCommittee from '../components/containers/campaign/committee/DissolveCommittee';
 import ShowCommittee from '../components/containers/campaign/committee/ShowCommittee';
 import EditCommittee from '../components/containers/campaign/committee/EditCommittee';
@@ -129,6 +130,7 @@ class AppRoutes extends React.Component {
                     <Route exact path='/campaign/staff/:id/edit' component={EditUser} />
                     <Route exact path='/campaign/invite-staff' component={InviteStaff} />
 
+                    <Route exact path='/campaign/committee/new' component={CreateCommittee} />
                     <Route exact path='/campaign/committee/dissolve' component={DissolveCommittee} />
                     <Route exact path='/campaign/committee' component={ShowCommittee} />
                     <Route exact path='/campaign/committee/edit' component={EditCommittee} />

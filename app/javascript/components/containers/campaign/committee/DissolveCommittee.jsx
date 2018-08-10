@@ -41,7 +41,7 @@ class DissolveCommittee extends React.Component {
             beginningDate = lastReport.data.beginning_date;
         }
 
-        ReportApi.create(reportType.value, true, 'finance', { committee_id: this.props.committee.id, beginning_date: moment(beginningDate).format(), ending_date: moment().format() }).then((response) => {
+        ReportApi.create(reportType.value, true, 'committee', { committee_id: this.props.committee.id, beginning_date: moment(beginningDate).format(), ending_date: moment().format() }).then((response) => {
             history.push(`/finance/reports/${response.id}`);
         })
     }

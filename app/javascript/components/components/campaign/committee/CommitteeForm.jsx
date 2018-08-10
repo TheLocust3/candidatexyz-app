@@ -49,30 +49,42 @@ export default class CommitteeForm extends React.Component {
                 });
             });
         } else {
-            CommitteeApi.update(this.props.committee.id, committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.zipcode, committee.office, committee.district, committee.bank).then((response) => {
-                window.location.reload();
-            }).catch((response) => {
-                this.setState({
-                    errors: response.responseJSON.errors
+            if (this.props.recreate) {
+                CommitteeApi.destroy(this.props.committee.id).then(() => {
+                    CommitteeApi.create(committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.zipcode, committee.office, committee.district, committee.bank).then((response) => {
+                        window.location.href = '/campaign/committee';
+                    }).catch((response) => {
+                        this.setState({
+                            errors: response.responseJSON.errors
+                        });
+                    });
+                });    
+            } else {
+                CommitteeApi.update(this.props.committee.id, committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.zipcode, committee.office, committee.district, committee.bank).then((response) => {
+                    window.location.reload();
+                }).catch((response) => {
+                    this.setState({
+                        errors: response.responseJSON.errors
+                    });
                 });
-            });
+            }
         }
     }
 
     render() {
         return (
             <Form handleSubmit={this.handleSubmit.bind(this)} errors={this.state.errors} top>
-                <TextField label='Committee Name' name='name' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.name} required /><br />
-                <TextField label='Office' name='office' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.office} required /><br />
-                <TextField label='District' name='district' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.district} required /><br /><br />
+                <TextField label='Committee Name' name='name' onChange={this.handleChange.bind(this)} defaultValue={this.props.recreate ? '' : this.state.committee.name} required /><br />
+                <TextField label='Office' name='office' onChange={this.handleChange.bind(this)} defaultValue={this.props.recreate ? '' : this.state.committee.office} required /><br />
+                <TextField label='District' name='district' onChange={this.handleChange.bind(this)} defaultValue={this.props.recreate ? '' : this.state.committee.district} required /><br /><br />
 
-                <TextField type='email' label='Committee Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.email} required /><br />
-                <TextField label='Committee Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.phoneNumber} required /><br /><br />
+                <TextField type='email' label='Committee Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={this.props.recreate ? '' : this.state.committee.email} required /><br />
+                <TextField label='Committee Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.recreate ? '' : this.state.committee.phoneNumber} required /><br /><br />
 
-                <AddressInput address={this.state.committee.address} campaign={this.props.campaign} inputs={['address', 'city', 'state', 'country', 'zipcode']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <AddressInput address={this.props.recreate ? '' : this.state.committee.address} campaign={this.props.campaign} inputs={['address', 'city', 'state', 'country', 'zipcode']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br />
 
-                <TextField label='Bank Name' name='bank' onChange={this.handleChange.bind(this)} defaultValue={this.state.committee.bank} required />
+                <TextField label='Bank Name' name='bank' onChange={this.handleChange.bind(this)} defaultValue={this.props.recreate ? '' : this.state.committee.bank} required />
                 <br /><br />
 
                 <Button>Save</Button>
@@ -85,5 +97,6 @@ export default class CommitteeForm extends React.Component {
 
 CommitteeForm.propTypes = {
     committee: PropTypes.object,
-    campaign: PropTypes.object
+    campaign: PropTypes.object,
+    recreate: PropTypes.bool
 };

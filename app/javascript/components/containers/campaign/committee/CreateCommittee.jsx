@@ -14,7 +14,7 @@ class CreateCommittee extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { checklistComplete: false };
+        this.state = { checklistComplete: false, recreate: _.includes(window.location.href, 'new') };
     }
 
     componentWillMount() {
@@ -29,7 +29,7 @@ class CreateCommittee extends React.Component {
 
     renderCommitteeForm() {
         if (this.state.checklistComplete) {
-            return <CommitteeForm campaign={this.props.campaign} />;
+            return <CommitteeForm campaign={this.props.campaign} committee={this.props.committee} recreate={this.state.recreate} />;
         } else {
             return (
                 <Text type='body1'>
@@ -40,7 +40,7 @@ class CreateCommittee extends React.Component {
     }
 
     render() {
-        if (!_.isEmpty(this.props.committee)) return null;
+        if (!this.state.recreate && !_.isEmpty(this.props.committee)) return null;
 
         return (
             <div className='content'>

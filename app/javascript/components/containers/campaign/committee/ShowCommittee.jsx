@@ -61,6 +61,14 @@ class ShowCommittee extends React.Component {
                 </div>
             );
         }
+
+        return (
+            <div>
+                <Link className='resource-actions-item unstyled-link-black' to={`/campaign/committee/new`}>
+                    <Text type='body2'>New Committee</Text>
+                </Link>
+            </div>
+        );
     }
 
     render() {
