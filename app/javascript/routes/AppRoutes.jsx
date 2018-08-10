@@ -33,6 +33,7 @@ import Finance from '../components/containers/finance/Finance';
 import Reports from '../components/containers/finance/reports/Reports';
 import ShowReport from '../components/containers/finance/reports/ShowReport';
 import CreateReport from '../components/containers/finance/reports/CreateReport';
+import EditReport from '../components/containers/finance/reports/EditReport';
 
 import Donations from '../components/containers/finance/donations/Donations';
 import ShowDonation from '../components/containers/finance/donations/ShowDonation';
@@ -139,6 +140,7 @@ class AppRoutes extends React.Component {
 
                     <Route exact path='/finance/reports' component={Reports} />
                     <Route exact path='/finance/reports/new' component={CreateReport} />
+                    <Route exact path='/finance/reports/:id/edit' component={EditReport} />
                     <Route exact path='/finance/reports/:id' component={ShowReport} />
 
                     <Route exact path='/finance/donations' component={Donations} />

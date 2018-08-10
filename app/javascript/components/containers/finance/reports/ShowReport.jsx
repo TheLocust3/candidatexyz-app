@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { ReportActions, ReportApi } from 'candidatexyz-common-js';
 import { Text } from 'candidatexyz-common-js/lib/elements';
 
@@ -42,6 +43,10 @@ class ShowReport extends React.Component {
                     View Report
 
                     <span className='resource-actions relative'>
+                        <Link className='resource-actions-item unstyled-link-black' to={`/finance/reports/${this.props.match.params.id}/edit`}>
+                            <i className='material-icons middle'>edit</i>
+                        </Link>
+
                         <a className='resource-actions-item unstyled-link-black delete' href='#' onClick={this.onDeleteClick.bind(this)}>
                             <i className='material-icons middle'>delete</i>
                         </a>

@@ -11,7 +11,7 @@ import Loader from '../../../components/common/Loader';
 import ReportForm from '../../../components/finance/reports/ReportForm';
 import ReportChecklist from '../../../components/finance/reports/ReportChecklist';
 
-class CreateReport extends React.Component {
+class EditReport extends React.Component {
 
     constructor(props) {
         super(props);
@@ -25,6 +25,7 @@ class CreateReport extends React.Component {
         this.props.dispatch(setDrawerSelected('finance', 'reports'));
 
         this.props.dispatch(ReportActions.fetchReportTypes());
+        this.props.dispatch(ReportActions.fetchReport(this.props.match.params.id));
         this.props.dispatch(ReportActions.fetchAllReports());
         this.props.dispatch(CampaignActions.fetchCampaign(this.props.user.campaignId));
         this.props.dispatch(UserActions.fetchAllUsersWithPositions());
@@ -39,7 +40,7 @@ class CreateReport extends React.Component {
                         Generate Report
                     </Text>
 
-                    <ReportForm reportTypes={this.props.reportTypes} reports={this.props.reports.reports} reportClass='finance' campaign={this.props.campaign} />
+                    <ReportForm report={this.props.report} reportTypes={this.props.reportTypes} reports={this.props.reports.reports} campaign={this.props.campaign} />
                 </div>
             );
         } else {
@@ -54,7 +55,7 @@ class CreateReport extends React.Component {
     render() {
         return (
             <div className='content'>
-                <Text type='headline5'>Add Report</Text>
+                <Text type='headline5'>Regenerate Report</Text>
                 <br />
 
                 <div className='content-2'>
@@ -79,6 +80,7 @@ function mapStateToProps(state) {
         areReportTypesReady: state.reports.areReportTypesReady,
         reportTypes: state.reports.reportTypes,
         reports: state.reports.reports,
+        report: state.reports.report,
         user: state.users.currentUser,
         isCampaignReady: state.campaigns.isReady,
         campaign: state.campaigns.campaign,
@@ -89,4 +91,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(CreateReport);
+export default connect(mapStateToProps)(EditReport);

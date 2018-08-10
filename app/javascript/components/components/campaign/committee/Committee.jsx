@@ -9,7 +9,7 @@ export default class Committee extends React.Component {
 
         return (
             <div>
-                <Text type='body2'><a className='link' href={this.props.committee.report.url}>Formation Documents</a></Text>
+                <Text type='body2'><a className='link' href={`/finance/reports/${this.props.committee.report.id}`}>Formation Report</a></Text>
                 <br />
             </div>
         );
@@ -20,7 +20,7 @@ export default class Committee extends React.Component {
 
         return (
             <div>
-                <Text type='body2'><a className='link' href={this.props.committee.dissolutionReport.url}>Dissolution Documents</a></Text>
+                <Text type='body2'><a className='link' href={`/finance/reports/${this.props.committee.dissolutionReport.id}`}>Dissolution Report</a></Text>
                 <br />
             </div>
         );

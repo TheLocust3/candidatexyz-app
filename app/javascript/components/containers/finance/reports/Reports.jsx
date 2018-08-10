@@ -33,7 +33,7 @@ class Reports extends React.Component {
 
                 <div className='content-1'>
                     <Loader isReady={this.props.isReady}>
-                        <ReportList reports={_.filter(this.props.reports.reports, (report) => { return report.reportClass == 'finance' })} />
+                        <ReportList reports={_.sortBy(this.props.reports.reports, (report) => { return report.createdAt })} />
                     </Loader>
                 </div>
             </div>
