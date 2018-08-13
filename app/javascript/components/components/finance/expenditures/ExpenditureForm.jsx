@@ -90,7 +90,7 @@ export default class ExpenditureForm extends React.Component {
                 <TextField label='Purpose' name='purpose' onChange={this.handleChange.bind(this)} defaultValue={this.state.expenditure.purpose} required />
                 <br />
 
-                <AddressInput address={this.state.expenditure.address} city={this.state.expenditure.city} state={this.state.expenditure.state} country={this.state.expenditure.country} inputs={['address', 'city', 'state', 'country']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
+                <AddressInput address={this.state.expenditure.address} city={this.state.expenditure.city} state={this.state.expenditure.state} country={this.state.expenditure.country} inputs={['address', 'city', 'state']} onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br />
 
                 <DatePicker label='Date Paid:' defaultValue={this.state.expenditure.datePaid} onChange={(date) => { this.handleDateChange(date) }} style={{ display: 'inline-block' }} />

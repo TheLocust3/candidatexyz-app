@@ -121,7 +121,7 @@ export default class EditUserForm extends React.Component {
                 <TextField label='Email' name='email' onChange={this.handleChange.bind(this)} defaultValue={user.email} /><br />
                 <TextField label='Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={user.phoneNumber} /><br /><br />
 
-                <AddressInput address={user.address} city={user.city} state={user.state} country={user.country} zipcode={user.zipcode} inputs={['address', 'city', 'state', 'country', 'zipcode']} onChange={(name, value) => this.handleGenericChange(name, value)} /><br />
+                <AddressInput address={user.address} city={user.city} state={user.state} country={user.country} zipcode={user.zipcode} inputs={['address', 'city', 'state', 'zipcode']} onChange={(name, value) => this.handleGenericChange(name, value)} /><br />
 
                 <PartyInput party={user.party} onChange={(name, value) => this.handleGenericChange(name, value)} />
 

@@ -72,7 +72,7 @@ export default class CommitteeForm extends React.Component {
                 <TextField label='Committee Phone Number' name='phoneNumber' onChange={this.handleChange.bind(this)} defaultValue={this.props.recreate ? '' : this.state.committee.phoneNumber} required /><br /><br />
 
                 <AddressInput address={this.props.recreate ? '' : this.state.committee.address} city={this.props.recreate ? '' : this.state.committee.city} state={this.props.recreate ? '' : this.state.committee.state}
-                    country={this.props.recreate ? '' : this.state.committee.country} zipcode={this.props.recreate ? '' : this.state.committee.zipcode} campaign={this.props.campaign} inputs={['address', 'city', 'state', 'country', 'zipcode']}
+                    country={this.props.recreate ? '' : this.state.committee.country} zipcode={this.props.recreate ? '' : this.state.committee.zipcode} campaign={this.props.campaign} inputs={['address', 'city', 'state', 'zipcode']}
                     onChange={(name, value) => this.handleAddressChange(name, value)} required />
                 <br />
 

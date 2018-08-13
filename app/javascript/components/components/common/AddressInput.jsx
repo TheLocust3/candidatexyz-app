@@ -20,8 +20,23 @@ export default class AddressInput extends React.Component {
 
             this.props.onChange('city', this.state.city);
             this.props.onChange('state', this.state.state);
+        }
+
+        if (_.isEmpty(this.state.country)) {
+            this.props.onChange('country', 'United States');
+        } else {
             this.props.onChange('country', this.state.country);
         }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            address: nextProps.address,
+            city: nextProps.city,
+            state: nextProps.state,
+            country: nextProps.country,
+            zipcode: nextProps.zipcode
+        });
     }
 
     handleChange(event) {
@@ -46,14 +61,20 @@ export default class AddressInput extends React.Component {
     renderCity() {
         if (!_.includes(this.props.inputs, 'city')) return;
 
-        return <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.city} style={{ width: '30%', marginRight: '5%' }} required={this.props.required} />;
+        let style = { width: '30%', marginRight: '5%' };
+        style = !_.includes(this.props.inputs, 'country') && !_.includes(this.props.inputs, 'zipcode') ? { width: '47.5%', marginRight: '5%' } : style;
+
+        return <TextField label='City' name='city' onChange={this.handleChange.bind(this)} defaultValue={this.state.city} style={style} required={this.props.required} />;
     }
 
     renderStateDropdown() {
         if (!_.includes(this.props.inputs, 'state')) return;
 
+        let style = { width: '30%', marginRight: '5%' };
+        style = !_.includes(this.props.inputs, 'country') && !_.includes(this.props.inputs, 'zipcode') ? { width: '47.5%' } : style;
+
         return (
-            <Select label='State*' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.state })} style={{ width: '30%', marginRight: '5%' }} required={this.props.required}>
+            <Select label='State*' onChange={(select) => this.handleStateChange(select)} selectedIndex={_.findIndex(STATES, (state) => { return state == this.state.state })} style={style} required={this.props.required}>
                 {STATES.map((state) => {
                     return (
                         <SelectItem key={state}>
@@ -74,7 +95,7 @@ export default class AddressInput extends React.Component {
     renderZipcode() {
         if (!_.includes(this.props.inputs, 'zipcode')) return;
 
-        let width = this.props.hideCountry ? '30%' : '100%' ;
+        let width = !_.includes(this.props.inputs, 'country') ? '30%' : '100%' ;
 
         return <TextField label='Zipcode' name='zipcode' onChange={this.handleChange.bind(this)} defaultValue={this.state.zipcode} style={{ width: width }} required={this.props.required} />;
     }

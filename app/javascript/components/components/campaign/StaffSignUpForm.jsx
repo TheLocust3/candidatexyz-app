@@ -63,7 +63,7 @@ export default class StaffSignUpForm extends React.Component {
                 <TextField label='Email' name='email' defaultValue={user.email} onChange={this.handleChange.bind(this)} disabled required /><br />
                 <TextField label='Phone Number' name='phoneNumber' defaultValue={this.state.user.phoneNumber} onChange={this.handleChange.bind(this)} required={extraRequired} /><br />
 
-                <AddressInput state={user.state} country={user.country} zipcode={user.zipcode} inputs={['address', 'city', 'state', 'country', 'zipcode']} onChange={(name, value) => this.handleGenericChange(name, value)} required={extraRequired} /><br />
+                <AddressInput state={user.state} country={user.country} zipcode={user.zipcode} inputs={['address', 'city', 'state', 'zipcode']} onChange={(name, value) => this.handleGenericChange(name, value)} required={extraRequired} /><br />
 
                 <PartyInput party={user.party} onChange={(name, value) => this.handleGenericChange(name, value)} required={extraRequired} /><br />
 

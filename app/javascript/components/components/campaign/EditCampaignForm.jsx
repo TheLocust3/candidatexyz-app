@@ -98,7 +98,7 @@ export default class EditCampaignForm extends React.Component {
                 <TextField label='Website URL' name='url' onChange={this.handleChange.bind(this)} defaultValue={this.props.campaign.url} />
                 <br />
 
-                <AddressInput city={this.state.campaign.city} state={this.state.campaign.state} country={this.state.campaign.country} inputs={['city', 'state', 'country']} onChange={(name, value) => this.handleAddressChange(name, value)} />
+                <AddressInput city={this.state.campaign.city} state={this.state.campaign.state} country={this.state.campaign.country} inputs={['city', 'state']} onChange={(name, value) => this.handleAddressChange(name, value)} />
                 <br />
 
                 {this.renderOfficeTypeDropdown()}
