@@ -49,25 +49,15 @@ export default class CommitteeForm extends React.Component {
                 });
             });
         } else {
-            if (this.props.recreate) {
-                CommitteeApi.destroy(this.props.committee.id).then(() => {
-                    CommitteeApi.create(committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.zipcode, committee.office, committee.district, committee.bank).then((response) => {
-                        window.location.href = '/campaign/committee';
-                    }).catch((response) => {
-                        this.setState({
-                            errors: response.responseJSON.errors
-                        });
-                    });
-                });    
-            } else {
-                CommitteeApi.update(this.props.committee.id, committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.zipcode, committee.office, committee.district, committee.bank).then((response) => {
-                    window.location.reload();
+            CommitteeApi.destroy(this.props.committee.id).then(() => {
+                CommitteeApi.create(committee.name, committee.email, committee.phoneNumber, committee.address, committee.city, committee.state, committee.country, committee.zipcode, committee.office, committee.district, committee.bank).then((response) => {
+                    window.location.href = '/campaign';
                 }).catch((response) => {
                     this.setState({
                         errors: response.responseJSON.errors
                     });
                 });
-            }
+            });
         }
     }
 
