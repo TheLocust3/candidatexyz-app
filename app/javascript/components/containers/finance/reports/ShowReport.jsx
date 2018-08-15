@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -36,6 +37,16 @@ class ShowReport extends React.Component {
         });
     }
     
+    renderDelete() {
+        if (this.props.report.reportClass != 'finance') return;
+
+        return (
+            <a className='resource-actions-item unstyled-link-black delete' href='#' onClick={this.onDeleteClick.bind(this)}>
+                <i className='material-icons middle'>delete</i>
+            </a>
+        );
+    }
+
     render() {
         return (
             <div className='content'>
@@ -47,9 +58,7 @@ class ShowReport extends React.Component {
                             <i className='material-icons middle'>edit</i>
                         </Link>
 
-                        <a className='resource-actions-item unstyled-link-black delete' href='#' onClick={this.onDeleteClick.bind(this)}>
-                            <i className='material-icons middle'>delete</i>
-                        </a>
+                        {this.renderDelete()}
                     </span>
                 </Text>
                 <br /><br />
@@ -67,7 +76,7 @@ class ShowReport extends React.Component {
     }
 
     refresh() {
-        if (this.props.report.status != 'done' && this.props.report.status != 'error') {
+        if (this.props.report.status != 'done' && !_.includes(_.lowerCase(this.props.report.status), 'error')) {
             this.props.dispatch(ReportActions.fetchReport(this.props.match.params.id));
         } else {
             clearInterval(this.interval);

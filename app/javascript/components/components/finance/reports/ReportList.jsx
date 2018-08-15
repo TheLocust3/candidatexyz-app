@@ -11,13 +11,19 @@ const PER_PAGE = 10;
 
 export default class ReportList extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = { reports: _.filter(this.props.reports, (report) => { return report.reportClass == 'finance' }) };
+    }
+
     renderList() {
         let parsed = queryString.parse(location.search);
         let page = _.isEmpty(parsed.page) ? 0 : Number(parsed.page);
 
         return (
             <ul className='mdc-list mdc-list--two-line content-max'>
-                {_.slice(_.reverse(_.sortBy(this.props.reports, (report) => { return report })), page * PER_PAGE, (page + 1) * PER_PAGE).map((report, index) => {
+                {_.slice(_.reverse(_.sortBy(this.state.reports, (report) => { return report.createdAt })), page * PER_PAGE, (page + 1) * PER_PAGE).map((report, index) => {
                     return (
                         <div key={index}>
                             <ReportThumbnail report={report} />
@@ -33,7 +39,7 @@ export default class ReportList extends React.Component {
     }
 
     render() {
-        if (_.isEmpty(this.props.reports)) {
+        if (_.isEmpty(this.state.reports)) {
             return this.renderNone();
         } else {
             return (
@@ -41,7 +47,7 @@ export default class ReportList extends React.Component {
                     {this.renderList()}
                     <br />
 
-                    <Pager elements={this.props.reports} elementsPerPage={PER_PAGE} baseLink='/finance/reports' />
+                    <Pager elements={this.state.reports} elementsPerPage={PER_PAGE} baseLink='/finance/reports' />
                 </div>
             );
         }

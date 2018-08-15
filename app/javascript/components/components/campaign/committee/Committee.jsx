@@ -27,11 +27,11 @@ export default class Committee extends React.Component {
     }
 
     renderError() {
-        if (this.props.committee.report.status != 'error') return;
+        if (!_.includes(_.lowerCase(this.props.committee.report.status), 'error')) return;
 
         return (
             <Text type='body2'>
-                Error encountered while generating formation documetns. Please try again
+                Error encountered while generating formation documents. Please try again
                 <br /><br />
             </Text>
         );
